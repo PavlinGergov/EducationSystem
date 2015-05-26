@@ -19,7 +19,7 @@
       if(isFormValid) {
         authService.register(vm.user, url)
           .then(function() {
-            //$state.go('')
+            $state.go('activation');
           });
       }
     };

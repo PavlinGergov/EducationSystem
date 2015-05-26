@@ -13,7 +13,7 @@
     function login() {
       return authService.login(vm.user)
         .then(function() {
-          // $state.go('');
+          $state.go('home');
         });
     }
   };

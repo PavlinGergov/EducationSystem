@@ -9,6 +9,7 @@
     var service = {
       register: register,
       login: login,
+      activate: activate,
       splitName: splitName
     };
     
@@ -17,17 +18,22 @@
     function register(user, url) {
       console.log(url);
       //send url
-      return $http.post(DATA_URL, user)
-        .then(function() {
+      return $http.post(DATA_URL + 'register/', user)
+        .then(function(response) {
           //success
+          console.log(response);
         });
     };
 
     function login(user) {
-      return $http.post(DATA_URL, user)
+      return $http.post(DATA_URL + 'login/', user)
         .then(function() {
           //success
         });
+    }
+
+    function activate(data) {
+      return $http.post(DATA_URL + 'activate/', data);
     }
 
     function splitName(name) {
