@@ -19,6 +19,14 @@
         controller: 'registerCtrl',
         controllerAs: 'vm'
       })
+      .state('register-from', {
+        url: '/register/:from',
+        controller: function($stateParams, $state) {
+          localStorage.setItem('from', $stateParams.from);
+          console.log(localStorage);
+          $state.go('register');
+        }
+      })
       .state('login', {
         url: '/login',
         templateUrl: 'views/auth-login.html',

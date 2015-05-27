@@ -5,7 +5,7 @@
     .module('educationSystemApp.auth')
     .controller('activateCtrl', activateCtrl);
 
-  function activateCtrl($stateParams, $state, authService) {
+  function activateCtrl($stateParams, $state, authService, $window) {
     var vm = this;
     vm.data = $stateParams;
 
@@ -14,9 +14,13 @@
     function activate() {
       console.log(vm.data);
       authService.activate(vm.data)
-        .then(function(data) {
-          localStorage.setItem('token', data.auth_token);
-          $state.go('home');
+        .then(function() {
+          if(localStorage.length !== 0) {
+            $window.location.href='http://' + localStorage.from + '#/login';
+          }
+          else {
+            $state.go('login');
+          }  
         });
     };
   };

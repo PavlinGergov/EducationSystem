@@ -16,7 +16,7 @@
     return service;
 
     function register(user, url) {
-      console.log(url);
+      console.log();
       //send url
       return $http.post(DATA_URL + 'register/', user)
         .then(function(response) {
@@ -27,7 +27,8 @@
 
     function login(user) {
       return $http.post(DATA_URL + 'login/', user)
-        .then(function() {
+        .then(function(response) {
+          console.log(response);
           //success
         });
     }
