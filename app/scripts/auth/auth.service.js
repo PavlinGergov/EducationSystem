@@ -10,7 +10,6 @@
       register: register,
       login: login,
       activate: activate,
-      logout: logout,
       splitName: splitName,
       logout: logout,
       profile: profile
