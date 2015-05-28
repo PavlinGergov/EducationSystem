@@ -51,7 +51,7 @@ describe('Auth Module:', function () {
       });
 
       it('should have correct templateUrl', function(done) {
-        expect(config.templateUrl).to.equal('views/auth-login.html');
+        expect(config.templateUrl).to.equal('views/auth/auth-login.html');
         done();
       });
 
@@ -87,7 +87,7 @@ describe('Auth Module:', function () {
       });
 
       it('should have correct templateUrl', function(done) {
-        expect(config.templateUrl).to.equal('views/auth-register.html');
+        expect(config.templateUrl).to.equal('views/auth/auth-register.html');
         done();
       });
 
@@ -195,7 +195,7 @@ describe('Auth Module:', function () {
       });
 
       it('should have correct templateUrl', function(done) {
-        expect(config.templateUrl).to.equal('views/auth-register.html');
+        expect(config.templateUrl).to.equal('views/auth/auth-register.html');
         done();
       });
 
@@ -267,7 +267,7 @@ describe('Auth Module:', function () {
       });
 
       it('should have correct templateUrl', function(done) {
-        expect(config.templateUrl).to.equal('views/auth-activation.html');
+        expect(config.templateUrl).to.equal('views/auth/auth-activation.html');
         done();
       });
 
