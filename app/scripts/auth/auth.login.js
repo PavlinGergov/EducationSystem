@@ -12,7 +12,8 @@
 
     function login() {
       return authService.login(vm.user)
-        .then(function() {
+        .then(function(response) {
+          localStorage.setItem('token', response.auth_token);
           $state.go('home');
         });
     }

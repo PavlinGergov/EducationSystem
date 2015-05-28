@@ -14,7 +14,7 @@ module.exports = function(config) {
     basePath: '../',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine'],
+    frameworks: ['mocha', 'sinon-chai'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -25,8 +25,9 @@ module.exports = function(config) {
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
-      'app/scripts/**/*.js',
-      'test/mock/**/*.js',
+      'app/scripts/app.js',
+      'app/scripts/auth/auth.module.js',
+      'app/scripts/auth/*.js',
       'test/spec/**/*.js'
     ],
 
@@ -46,13 +47,20 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: [
-      'PhantomJS'
+      'Chrome'
     ],
 
     // Which plugins to enable
     plugins: [
-      'karma-phantomjs-launcher',
-      'karma-jasmine'
+      'karma-chrome-launcher',
+      'karma-chai',
+      'karma-mocha',
+      'karma-sinon',
+      "karma-mocha-reporter",
+      'karma-sinon-chai'
+    ],
+    reporters: [
+      'mocha'
     ],
 
     // Continuous Integration mode
