@@ -1,24 +1,20 @@
 (function() {
   'use strict';
-  
+
   angular
     .module('educationSystemApp.auth')
     .factory('authService', authService);
-  
+
   function authService($http, DATA_URL) {
     var service = {
       register: register,
       login: login,
       activate: activate,
-<<<<<<< Updated upstream
       splitName: splitName
-=======
       logout: logout,
-      splitName: splitName,
       profile: profile
->>>>>>> Stashed changes
     };
-    
+
     return service;
 
     function register(user, url) {
