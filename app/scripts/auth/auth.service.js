@@ -11,7 +11,7 @@
       login: login,
       activate: activate,
       logout: logout,
-      splitName: splitName
+      splitName: splitName,
       logout: logout,
       profile: profile
     };
