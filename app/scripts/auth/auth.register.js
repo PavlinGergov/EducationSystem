@@ -10,11 +10,8 @@
     vm.user = {};
     vm.register = register;
     var url = $stateParams;
-    console.log($location);
-    
     
     function register(isFormValid) {
-      console.log(url);
       var fullName = authService.splitName(vm.user.name);
       vm.user.first_name = fullName[0];
       vm.user.last_name = fullName[1];
