@@ -15,7 +15,7 @@
       })
       .state('register', {
         url: '/register',
-        templateUrl: 'views/auth-register.html',
+        templateUrl: 'views/auth/auth-register.html',
         controller: 'registerCtrl',
         controllerAs: 'vm'
       })
@@ -29,12 +29,12 @@
       })
       .state('login', {
         url: '/login',
-        templateUrl: 'views/auth-login.html',
+        templateUrl: 'views/auth/auth-login.html',
         controller: 'loginCtrl',
         controllerAs: 'vm'
       })
       .state('activation-msg', {
-        templateUrl: 'views/auth-activation.html'
+        templateUrl: 'views/auth/auth-activation.html'
       })
       .state('activate', {
         url: '/activate/:uid/:token',
