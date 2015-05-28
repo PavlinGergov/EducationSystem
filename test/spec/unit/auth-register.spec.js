@@ -17,8 +17,7 @@ describe('RegisterCtrl:', function() {
         return deferred.promise;
       },
       splitName: function(name) {
-        deferred = q.defer();
-        return deferred.promise;
+        return ['firstName', 'lastName'];
       }
     };
   });
@@ -54,13 +53,13 @@ describe('RegisterCtrl:', function() {
     done();
   });
 
-  if('should pass user and url to register service when form is valid', function(done){
+  it('should pass user and url to register service when form is valid', function(done){
     spy = sinon.spy(mockService, 'register');
     ctrl.user = mockUser;
     var formValid = true;
     ctrl.register(formValid);
     expect(spy).to.have.been.called;
-    expect(spy).to.have.been.calledWith(mockUser, '');
+    expect(spy).to.have.been.calledWith(ctrl.user);
     spy.restore();
     done();
   });
