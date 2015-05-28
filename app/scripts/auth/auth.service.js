@@ -23,6 +23,7 @@
     }
     function register(user, url) {
       //send url
+      localStorage.setItem('from', url);
       return $http.post(DATA_URL + 'register/', user)
         .then(function(response) {
           return response;
