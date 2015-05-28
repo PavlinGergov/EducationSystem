@@ -40,6 +40,17 @@
         url: '/activate/:uid/:token',
         controller: 'activateCtrl',
         controllerAs: 'vm'
+      })
+      .state('profile', {
+        url:'/profile',
+        controller: 'profileCtrl',
+        controllerAs: 'vm',
+        data: {
+          permissions: {
+            except: ['anonymous'],
+            redirectTo: 'login'
+          }
+        }
       });
   };
 })();

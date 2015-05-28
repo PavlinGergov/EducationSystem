@@ -10,7 +10,13 @@
       register: register,
       login: login,
       activate: activate,
+<<<<<<< Updated upstream
       splitName: splitName
+=======
+      logout: logout,
+      splitName: splitName,
+      profile: profile
+>>>>>>> Stashed changes
     };
     
     return service;
@@ -41,6 +47,11 @@
       var fullName = name.split(' ');
       fullName = fullName.filter(Boolean);
       return fullName;
+    }
+
+    function profile() {
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.token }};
+      return $http.get(DATA_URL + 'me/', opptions)
     }
   }
 })();
