@@ -12,7 +12,6 @@
     activate();
 
     function activate() {
-      console.log(vm.data);
       authService.activate(vm.data)
         .then(function() {
           if(localStorage.length !== 0) {
