@@ -1,6 +1,6 @@
 'use strict';
 
-describe('LoginCtrl:', function() {
+describe('ProfileCtrl:', function() {
   beforeEach(module('educationSystemApp.auth'));
   var scope, ctrl, mockService, q, deferred, mockUser, spy;
 
@@ -11,7 +11,7 @@ describe('LoginCtrl:', function() {
     };
 
     mockService = {
-      login: function(user) {
+      profile: function(user) {
         deferred = q.defer();
         return deferred.promise;
       }
@@ -21,31 +21,15 @@ describe('LoginCtrl:', function() {
   beforeEach(inject(function ($controller, $rootScope, $q) {
     scope = $rootScope.$new();
     q = $q;
-    ctrl = $controller('loginCtrl', {
+    ctrl = $controller('profileCtrl', {
       $scope: scope,
-      authService: mockService
+      user: mockUser
     });
   }));
 
-  it('should have login function', function(done) {
-    expect(ctrl.login).to.be.a('function');
-    done();
-  });
-
   it('should have user object', function(done) {
     expect(ctrl.user).to.be.a('object');
-    expect(ctrl.user).to.be.empty;
+    expect(ctrl.user).to.not.be.empty;
     done();
   });
-
-  it('should pass data to service', function(done) {
-    spy = sinon.spy(mockService, 'login');
-    ctrl.user = mockUser;
-    ctrl.login();
-    expect(spy).to.have.been.called;
-    expect(spy).to.have.been.calledWith(mockUser);
-    spy.restore();
-    done();
-  });
-  
 });

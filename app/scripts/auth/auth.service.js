@@ -32,7 +32,7 @@
     function login(user) {
       return $http.post(DATA_URL + 'login/', user)
         .then(function(response) {
-          return response.data;
+          return response;
         });
     }
 
@@ -48,7 +48,13 @@
 
     function profile() {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.token }};
-      return $http.get(DATA_URL + 'me/', opptions)
+      return $http.get(DATA_URL + 'me/', options)
+        .then(function(response) {
+          return response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   }
 })();

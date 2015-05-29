@@ -33,6 +33,11 @@
         controller: 'loginCtrl',
         controllerAs: 'vm'
       })
+      .state('logout', {
+        url: '/logout',
+        controller: 'logoutCtrl',
+        controllerAs: 'vm'
+      })
       .state('activation-msg', {
         templateUrl: 'views/auth/auth-activation.html'
       })
@@ -45,12 +50,17 @@
         url:'/profile',
         controller: 'profileCtrl',
         controllerAs: 'vm',
-        data: {
-          permissions: {
-            except: ['anonymous'],
-            redirectTo: 'login'
-          }
+        templateUrl: 'views/auth/auth-profile.html',
+        resolve: {
+          user: profileData
         }
       });
+    
+    function profileData(authService) {
+      return authService.profile()
+        .then(function(response) {
+          return response;
+        });
+    }
   };
 })();

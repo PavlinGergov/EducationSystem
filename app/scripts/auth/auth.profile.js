@@ -5,10 +5,10 @@
     .module('educationSystemApp.auth')
     .controller('profileCtrl', profileCtrl);
   
-  function profileCtrl(authService) {
-    console.log("fostataaaa")
+  function profileCtrl(user) {
     var vm = this;
-    vm.user = {};
+    vm.user = user;
 
+    console.log(vm.user);
   };
 })();
