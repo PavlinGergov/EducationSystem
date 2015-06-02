@@ -5,8 +5,10 @@
     .module('educationSystemApp.auth')
     .controller('profileCtrl', profileCtrl);
   
-  function profileCtrl(user) {
+  function profileCtrl(user, navbar) {
     var vm = this;
+    vm.menu = navbar.user();
+    vm.containerId = 'profile-container';
     vm.user = {
       first_name: 'Margarita',
       last_name: 'Vasileva',

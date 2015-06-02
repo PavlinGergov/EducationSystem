@@ -1,52 +1,55 @@
-<div  class="box-container" id="user-data">
-   <img src='{{vm.user.avatar}}'>
-  <div id="user-info">
-    <h1>{{vm.user.first_name}} {{vm.user.last_name}}</h1>
-    <div id="social-links">
-      <h3>Social links:</h3>
-      <p>
-        <i class="fa fa-github fa-2x"></i> <a href='{{vm.user.social_links.github}}'>{{vm.user.social_links.github}}</a>
-      </p>
-      <p>
-        <i class="fa fa-twitter fa-2x"></i> <a href='{{vm.user.social_links.twitter}}'>{{vm.user.social_links.twitter}}</a>
-      </p>
-      <p>
-        <i class="fa fa-linkedin fa-2x"></i><a href='{{vm.user.social_links.linkedin}}'>{{vm.user.social_links.linkedin}}</a>
-      </p>
+<div class="container" id="profile-container">
+  <angled-navbar menus="vm.menu"></angled-navbar>
+  <div  class="box-container" id="user-data">
+    <img src='{{vm.user.avatar}}'>
+    <div id="user-info">
+      <h1>{{vm.user.first_name}} {{vm.user.last_name}}</h1>
+      <div id="social-links">
+        <h3>Social links:</h3>
+        <p>
+          <i class="fa fa-github fa-2x"></i> <a href='{{vm.user.social_links.github}}'>{{vm.user.social_links.github}}</a>
+        </p>
+        <p>
+          <i class="fa fa-twitter fa-2x"></i> <a href='{{vm.user.social_links.twitter}}'>{{vm.user.social_links.twitter}}</a>
+        </p>
+        <p>
+          <i class="fa fa-linkedin fa-2x"></i><a href='{{vm.user.social_links.linkedin}}'>{{vm.user.social_links.linkedin}}</a>
+        </p>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="card card-container" id="courses">
-  <h3>Courses:</h3>
-  <table class="table table-bordered">
-    <tr>
-      <th>Status</th>
-      <th>Course</th>
-      <th>Actions</th>
-    </tr>
-    <tr ng-repeat="course in vm.user.courses">
-      <td>{{course.status}}</td>
-      <td>{{course.name}}</td>
-      <td>{{course.notes}}</td>
-    </tr>
-  </table>
-</div>
+  <div class="card card-container" id="courses">
+    <h3>Courses:</h3>
+    <table class="table table-bordered">
+      <tr>
+        <th>Status</th>
+        <th>Course</th>
+        <th>Actions</th>
+      </tr>
+      <tr ng-repeat="course in vm.user.courses">
+        <td>{{course.status}}</td>
+        <td>{{course.name}}</td>
+        <td>{{course.notes}}</td>
+      </tr>
+    </table>
+  </div>
 
-<div class="card card-container" id="challenges">
-  <h3>Challenges:</h3>
-  <table class="table table-bordered">
-    <tr>
-      <th>Hackathon</th>
-      <th>Team name</th>
-      <th>Idea description</th>
-      <th>Place</th>
-    </tr>
-    <tr ng-repeat="challenge in vm.user.challenges">
-      <td>{{challenge.hackathon}}</td>
-      <td>{{challenge.team_name}}</td>
-      <td>{{challenge.idea_description}}</td>
-      <td>{{challenge.place}}</td>
-    </tr>
-  </table>
+  <div class="card card-container" id="challenges">
+    <h3>Challenges:</h3>
+    <table class="table table-bordered">
+      <tr>
+        <th>Hackathon</th>
+        <th>Team name</th>
+        <th>Idea description</th>
+        <th>Place</th>
+      </tr>
+      <tr ng-repeat="challenge in vm.user.challenges">
+        <td>{{challenge.hackathon}}</td>
+        <td>{{challenge.team_name}}</td>
+        <td>{{challenge.idea_description}}</td>
+        <td>{{challenge.place}}</td>
+      </tr>
+    </table>
+  </div>
 </div>

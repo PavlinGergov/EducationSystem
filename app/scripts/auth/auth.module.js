@@ -3,6 +3,7 @@
   
   angular
     .module('educationSystemApp.auth', [
-    'ui.router'
+      'ui.router',
+      'educationSystemApp.nav'
   ]);
 })();
