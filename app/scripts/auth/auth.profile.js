@@ -9,6 +9,16 @@
     var vm = this;
     vm.menu = navbar.user();
     vm.containerId = 'profile-container';
+    vm.icon = function(text) {
+      if(text === 'done') {
+        return 'fa fa-check';
+      } else if (text == 'dropped') {
+        return 'fa fa-times';
+      } else {
+        return 'fa fa-clock-o';
+      };
+    };
+
     vm.user = {
       first_name: 'Margarita',
       last_name: 'Vasileva',
@@ -21,20 +31,33 @@
       },
       courses: [
         {
-          name: 'Programming 101 v2',
+          name: 'Programming 101',
+          during: '03.2015 - 06.2015',
+          classes: 15,
+          certificate: 'http://view.certificate.com',
+          certificate_p: 100,
           status: 'done',
-          notes: 'notes here'
-        },
-        {
-          name: 'Ruby on Rails',
-          status: 'taking',
-          notes: 'notes2 here'
+          notes: ''
         },
         {
           name: 'C',
+          during: '07.2015 - 10.2015',
+          classes: 15,
+          certificate: '',
+          certificate_p: 0,
           status: 'dropped',
-          notes: 'notes3 here'
+          notes: 'reason'
+        },
+        {
+          name: 'Ruby on Rails',
+          during: '07.2015 - 10.2015',
+          classes: 15,
+          certificate: '',
+          certificate_p: 0,
+          status: 'taking',
+          notes: 'submit solutions'
         }
+
       ],
       challenges: [
         {

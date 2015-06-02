@@ -25,12 +25,21 @@
       <tr>
         <th>Status</th>
         <th>Course</th>
+        <th>During</th>
+        <th>Certificate</th>
         <th>Actions</th>
       </tr>
       <tr ng-repeat="course in vm.user.courses">
-        <td>{{course.status}}</td>
+        <td><i class={{vm.icon(course.status)}}></i>{{course.status}}</td>
         <td>{{course.name}}</td>
-        <td>{{course.notes}}</td>
+        <td>{{course.during}}</td>
+        <td><a href='{{course.certificate}}' ng-show="course.certificate">Link - {{course.certificate_p}}%</a><span ng-hide="course.certificate">N/A</span></td>
+        <td>
+          <span ng-show="course.notes">
+            <a ui-sref="home" class="btn btn-primary">{{course.notes}}</a>
+          </span>
+          <span ng-hide="course.notes">N/A</span>
+        </td>
       </tr>
     </table>
   </div>
