@@ -1,25 +1,33 @@
-<div class="container" id="profile-container">
+<div class="container">
   <angled-navbar menus="vm.menu"></angled-navbar>
-  <div  class="box-container" id="user-data">
-    <img src='{{vm.user.avatar}}'>
-    <div id="user-info">
-      <h1>{{vm.user.first_name}} {{vm.user.last_name}}</h1>
-      <div id="social-links">
-        <h3>Social links:</h3>
-        <p>
-          <i class="fa fa-github fa-2x"></i> <a href='{{vm.user.social_links.github}}'>{{vm.user.social_links.github}}</a>
-        </p>
-        <p>
-          <i class="fa fa-twitter fa-2x"></i> <a href='{{vm.user.social_links.twitter}}'>{{vm.user.social_links.twitter}}</a>
-        </p>
-        <p>
-          <i class="fa fa-linkedin fa-2x"></i><a href='{{vm.user.social_links.linkedin}}'>{{vm.user.social_links.linkedin}}</a>
-        </p>
+  <div class="card par">
+      <img id="box1" src='{{vm.user.avatar}}'>
+    <div id="box2">
+        <h1 id="box4">{{vm.user.first_name}} {{vm.user.last_name}}</h1>
+      <div id="box5">
+        <p><strong>MAC address: </strong><span>{{vm.user.mac_address}} </span><button type="button" class="btn btn-primary" ng-click="vm.mac()">Edit</button></p>
       </div>
+
+        <button id="box6" type="button" class="btn btn-primary" ng-click="vm.cv()">Upload CV</button>
+
+    </div>
+    <div id="box3">
+      <h4>Social links:</h3>
+        <p ng-show="vm.user.social_links.github">
+          <i class="fa fa-github fa-2x icon-text"></i> <a href='{{vm.user.social_links.github}}'>{{vm.user.social_links.github}}</a>
+        </p>
+        <p ng-show="vm.user.social_links.twitter">
+          <i class="fa fa-twitter fa-2x icon-text"></i> <a href='{{vm.user.social_links.twitter}}'>{{vm.user.social_links.twitter}}</a>
+        </p>
+        <p ng-show="vm.user.social_links.linkedin">
+          <i class="fa fa-linkedin fa-2x icon-text"></i> <a href='{{vm.user.social_links.linkedin}}'>{{vm.user.social_links.linkedin}}</a>
+        </p>
+
+        <button type="button" class="btn btn-primary" ng-click="vm.open()">Edit</button>
     </div>
   </div>
-
-  <div class="card card-container" id="courses">
+  
+  <div class="card par">
     <h3>Courses:</h3>
     <table class="table table-bordered">
       <tr>
@@ -29,8 +37,8 @@
         <th>Certificate</th>
         <th>Actions</th>
       </tr>
-      <tr ng-repeat="course in vm.user.courses">
-        <td><i class={{vm.icon(course.status)}}></i>{{course.status}}</td>
+      <tr ng-repeat="course in vm.user.courses" class="{{vm.icon(course.status)[1]}}">
+        <td class="text-center"><i class="{{vm.icon(course.status)[0]}} icon-text" ></i>{{course.status}}</td>
         <td>{{course.name}}</td>
         <td>{{course.during}}</td>
         <td><a href='{{course.certificate}}' ng-show="course.certificate">Link - {{course.certificate_p}}%</a><span ng-hide="course.certificate">N/A</span></td>
@@ -44,7 +52,7 @@
     </table>
   </div>
 
-  <div class="card card-container" id="challenges">
+  <div class="card par">
     <h3>Challenges:</h3>
     <table class="table table-bordered">
       <tr>

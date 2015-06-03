@@ -84,7 +84,7 @@ body {
 }
 
 .card-container.card {
-    width: 350px;
+    width: 400px;
     padding: 40px 40px;
 }
 
@@ -103,93 +103,170 @@ body {
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
-i {
-
-}
-
-#user-data img {
-    height: 200px;
-    margin: 20px;
-}
-
-#profile-container {
-    width: 90%;
-}
-
-#register-form  {
-  margin-top: 5px;
-  width: 500px;
-}
-
-#user-data {
-    margin-top: 10px;
+.par.card {
     width: 100%;
+    margin-top: 10px;
 }
 
-#user-info {
-  width: 70%;
-  margin-left: 30px;
-  margin-top: 10px;
-  display: inline-block;
-  float: right;
+#box1 {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    margin: 20px;
+    vertical-align: initial;
 }
 
-#user-info h1 {
-    float: left;
+#box2 {
+    position: absolute;
+    width: 46%;
+    height: 200px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+#box3 {
+    position: relative;
+    width: 21%;
+    height: 200px;
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    float: right;
+    margin: 20px;
+    
+}
+
+#box3 button {
+    margin-left: 40%
+}
+
+#box4 {
+    position: relative;
+    width: 100%;
+    height: 70px;
     font-size: 50px;
 }
 
-#social-links {
-    margin-top: 10px;
-    width: 40%;
-    float: right;
+#box5 {
+    position: relative;
+    width: 100%;
+    height: 35px;
+    top: 15px;
 }
 
-.fa-2x {
+#box5 p {
+    font-size: 17px;
+}
+
+#box5 button {
+    margin-left: 20px;
+}
+
+#box6 {
+    position: relative;
+    width: 30%;
+    height: 35px;
+    top: 30px;
+}
+
+.icon-text {
     vertical-align: middle;
+    padding-bottom: 4px;
     margin-right: 5px;
 }
 
-#courses {
-  margin-top: 20px;
-  width: 100%;
-  display: block;
-  /* background-color: #48d1cc; */
+#register-form {
+    width: 600px;
 }
 
-#challenges {
-  margin-top: 10px; 
-  width: 100%;
-  display: block;
-  /* background-color: #87cefa; */
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+    width: 550px;
 }
 
-.box-container {
-    /* background-color:  #778899; */
-    margin-top: 10px;
-    border-radius: 2px;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+.form-horizontal div {
+    margin-bottom: 10px;
 }
 
-/* Responsive: Portrait tablets and up */
-/* @media screen and (min-width: 768px) { */
-/*   .container { */
-/*     max-width: 730px; */
-/*   } */
+.table tbody tr td {
+    vertical-align: middle;
+}
 
-/*   /\* Remove the padding we set earlier *\/ */
-/*   .header, */
-/*   .marketing, */
-/*   .footer { */
-/*     padding-left: 0; */
-/*     padding-right: 0; */
-/*   } */
-/*   /\* Space out the masthead *\/ */
-/*   .header { */
-/*     margin-bottom: 30px; */
-/*   } */
-/*   /\* Remove the bottom border on the jumbotron for visual effect *\/ */
-/*   .jumbotron { */
-/*     border-bottom: 0; */
-/*   } */
-/* } */
+.tr-done {
+    background-color: #c1ffc1;
+}
+
+.tr-dropped {
+    background-color: #ffc1c1;
+}
+
+.tr-taking {
+    background-color: #ffec8b;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .container {
+    max-width: 90%;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
