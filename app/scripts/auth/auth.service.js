@@ -20,9 +20,8 @@
     function logout() {
       //send delete request
     }
-    function register(user, url) {
+    function register(user) {
       //send url
-      localStorage.setItem('from', url);
       return $http.post(DATA_URL + 'register/', user)
         .then(function(response) {
           return response;

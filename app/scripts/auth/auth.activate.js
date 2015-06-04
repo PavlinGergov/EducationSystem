@@ -15,10 +15,15 @@
       authService.activate(vm.data)
         .then(function() {
           if(localStorage.from !== undefined) {
-            $window.location.href='http://' + localStorage.from + '#/login';
+            var from = localStorage.getItem('from');
+            var url = 'http://' + from + '/#/login';
+            localStorage.removeItem('from');
+            console.log(url);
+            $window.location.href = url;
           }
           else {
-            $state.go('login');
+            console.log($window.location.host);
+            //$state.go('login');
           }
         });
     };

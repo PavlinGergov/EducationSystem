@@ -9,7 +9,6 @@
     var vm = this;
     vm.user = {};
     vm.register = register;
-    var url = $stateParams;
     vm.menu = navbar.anonymous();
     
     function register(isFormValid) {
@@ -18,7 +17,7 @@
       vm.user.last_name = fullName[1];
 
       if(isFormValid) {
-        authService.register(vm.user, url)
+        authService.register(vm.user)
           .then(function() {
             $state.go('activation-msg');
           });
