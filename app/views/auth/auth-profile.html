@@ -29,7 +29,7 @@
   
   <div class="card par">
     <h3>Courses:</h3>
-    <table class="table table-bordered">
+    <table ng-show="vm.user.student" class="table table-bordered">
       <tr>
         <th>Status</th>
         <th>Course</th>
@@ -54,7 +54,7 @@
 
   <div class="card par">
     <h3>Challenges:</h3>
-    <table class="table table-bordered">
+    <table ng-show="vm.user.competitor" class="table table-bordered">
       <tr>
         <th>Hackathon</th>
         <th>Team name</th>

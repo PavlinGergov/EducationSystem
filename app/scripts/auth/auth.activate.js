@@ -18,12 +18,10 @@
             var from = localStorage.getItem('from');
             var url = 'http://' + from + '/#/login';
             localStorage.removeItem('from');
-            console.log(url);
             $window.location.href = url;
           }
           else {
-            console.log($window.location.host);
-            //$state.go('login');
+            $state.go('login');
           }
         });
     };

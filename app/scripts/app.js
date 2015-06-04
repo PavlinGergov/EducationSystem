@@ -11,11 +11,9 @@
     .config(function ($urlRouterProvider) {
       $urlRouterProvider.otherwise('/');
     })
-    .run(function (Permission, authService) {
-      
+    .run(function (Permission, authService, $rootScope) {
       Permission.defineRole('anonymous', function (stateParams) {
         if (localStorage.getItem('token') === null) {
-          console.log('anonymous');
           return true;
         }
         return false;
@@ -23,7 +21,6 @@
 
       Permission.defineRole('logged', function (stateParams) {
         if (localStorage.getItem('token') !== null) {
-          console.log('user');
           return true;
         }
         return false;
