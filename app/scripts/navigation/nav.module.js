@@ -4,6 +4,7 @@
   angular
     .module('educationSystemApp.nav', [
       'ngSanitize',
-      'ui.router'
+      'ui.router',
+      'permission'
     ]);
 })();
