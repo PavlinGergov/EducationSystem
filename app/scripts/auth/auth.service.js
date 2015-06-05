@@ -12,7 +12,8 @@
       activate: activate,
       splitName: splitName,
       logout: logout,
-      profile: profile
+      profile: profile,
+      userData: userData
     };
 
     return service;
@@ -49,11 +50,29 @@
       var options = { headers: { 'Authorization': 'Token ' + localStorage.token }};
       return $http.get(DATA_URL + 'me/', options)
         .then(function(response) {
-          return response.data;
+          return userData(response.data);
         })
         .catch(function(error) {
           console.log(error);
         });
+    }
+
+    function userData(user) {
+      var result = {
+        'name': user.first_name + user.last_name,
+        'email': user.email,
+//      'avatar': user.avatar,
+        'avatar': 'https://s-media-cache-ak0.pinimg.com/736x/10/61/61/1061614ee7f3a3e64be576c2cc04d13e.jpg',
+        'mac': user.student.mac,
+        'social_links': {
+          'github': user.student.github_account,
+          'linkedin': user.student.linkedin_account,
+          'twitter': user.student.twitter_account
+        },
+        'courses': user.student.courses,
+        'challenges': user.competitor.teammembership_set
+      };
+      return result;
     }
   }
 })();
