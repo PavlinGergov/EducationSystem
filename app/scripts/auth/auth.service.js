@@ -47,7 +47,7 @@
     }
 
     function profile() {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.token }};
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       return $http.get(DATA_URL + 'me/', options)
         .then(function(response) {
           return userData(response.data);
@@ -59,7 +59,7 @@
 
     function userData(user) {
       var result = {
-        'name': user.first_name + user.last_name,
+        'name': user.first_name + " " + user.last_name,
         'email': user.email,
 //      'avatar': user.avatar,
         'avatar': 'https://s-media-cache-ak0.pinimg.com/736x/10/61/61/1061614ee7f3a3e64be576c2cc04d13e.jpg',

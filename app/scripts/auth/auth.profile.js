@@ -13,9 +13,11 @@
     vm.icon = function(text) {
       if(text === 'done') {
         return ['fa fa-check', 'tr-done'];
-      } else if (text == 'dropped') {
+      }
+      else if (text == 'dropped') {
         return ['fa fa-times', 'tr-dropped'];
-      } else if (text == 'taking'){
+      }
+      else if (text == 'taking'){
         return ['fa fa-clock-o', 'tr-taking'];
       }
       else {
@@ -26,19 +28,19 @@
     vm.user = user;
     console.log(vm.user);
 
+    var sl = angular.copy(vm.user.social_links);
     vm.social = function() {
-      var data = vm.user.social_links;
+      var data = sl;
       ngDialog.open({
         template: 'views/auth/auth-profile-social-dialog.html',
         data: data,
         showClose: false,
         controller: function($scope) {
-          console.log($scope);
           $scope.social_links = $scope.ngDialogData;
-          console.log($scope.social_links);
           $scope.editSocial = function() {
-            //send request
+            // send request
             vm.user.social_links = $scope.social_links;
+            
             $scope.closeThisDialog();
           };
         }
@@ -52,7 +54,6 @@
         data: data,
         showClose: false,
         controller: function($scope) {
-          console.log($scope);
           $scope.mac_address = $scope.ngDialogData;
           $scope.editMac = function() {
             //send request
