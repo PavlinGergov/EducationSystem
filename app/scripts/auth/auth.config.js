@@ -3,14 +3,18 @@
   
   angular
     .module('educationSystemApp.auth')
-    .constant('DATA_URL', 'http://localhost:8000/base/api/')
+    .constant('BASE_URL', 'http://localhost:8000/base/api/')
+    .constant('EDUCATION_URL', 'http://localhost:8000/education/api/')
     .config(configure);
   
   function configure($stateProvider) {
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'views/home.html'
+        templateUrl: 'views/home.html',
+        controller: function($scope, navbar) {
+          $scope.menu = navbar.anonymous();
+        }
       })
       .state('register', {
         url: '/register',
