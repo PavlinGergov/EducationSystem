@@ -5,35 +5,35 @@
     <div id="box2">
       <h1 id="box4">{{vm.user.name}}</h1>
       <div id="box5">
-        <p ng-hide="vm.user.courses === null"><strong>MAC address: </strong><span>{{vm.user.mac}} </span><button type="button" class="btn btn-primary" ng-click="vm.mac()">Edit</button></p>
+        <p ng-hide="vm.user.courses === null"><strong>MAC адрес: </strong><span>{{vm.user.mac}} </span><button type="button" class="btn btn-primary" ng-click="vm.mac()">Edit</button></p>
       </div>
 
-      <button ng-hide="vm.user.courses === null" id="box6" type="button" class="btn btn-primary" ng-click="vm.cv()">Upload CV</button>
+      <button ng-hide="true" id="box6" type="button" class="btn btn-primary" ng-click="vm.cv()">Upload CV</button>
 
     </div>
     <div id="box3">
-      <h4>Social links:</h3>
+      <h4>Социални връзки:</h3>
         <p>
-          <i class="fa fa-github fa-2x icon-text"></i> <a href='{{vm.user.social_links.github_account}}'>{{vm.user.social_links.github_account}}</a>
+          <i class="fa fa-github fa-2x icon-text"></i> <a href='{{vm.user.socialLinks.github_account}}'>{{vm.user.socialLinks.github_account}}</a>
         </p>
         <p>
-          <i class="fa fa-twitter fa-2x icon-text"></i> <a href='{{vm.user.social_links.twitter_account}}'>{{vm.user.social_links.twitter_account}}</a>
+          <i class="fa fa-twitter fa-2x icon-text"></i> <a href='{{vm.user.socialinks.twitter_account}}'>{{vm.user.socialLinks.twitter_account}}</a>
         </p>
         <p>
-          <i class="fa fa-linkedin fa-2x icon-text"></i> <a href='{{vm.user.social_links.linkedin_account}}'>{{vm.user.social_links.linkedin_account}}</a>
+          <i class="fa fa-linkedin fa-2x icon-text"></i> <a href='{{vm.user.socialLinks.linkedin_account}}'>{{vm.user.socialLinks.linkedin_account}}</a>
         </p>
-      <button type="button" class="btn btn-primary" ng-click="vm.social()">Edit</button>
+      <button type="button" class="btn btn-primary" ng-click="vm.social()">Промени</button>
     </div>
   </div>
 <div class="card par">
-  <h3>Courses:</h3>
+  <h3>Курсове:</h3>
   <table ng-show="vm.user.courses" class="table table-bordered">
     <tr>
-      <th>Status</th>
-      <th>Course</th>
-      <th>During</th>
-      <th>Certificate</th>
-      <th>Actions</th>
+      <th>Статус</th>
+      <th>Курс</th>
+      <th>Период</th>
+      <th>Сертификат</th>
+      <th></th>
     </tr>
     <tr ng-repeat="course in vm.user.courses">
       <td class="text-center"><i class="{{vm.icon(course.status)}} icon-text" ></i>{{course.status}}</td>

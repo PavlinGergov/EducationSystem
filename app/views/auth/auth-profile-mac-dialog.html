@@ -1,9 +1,9 @@
 <div class="edit-dialog">
-  <form class="form-horizontal" name="mac_form" ng-submit="editMac(mac_form.$valid)" novalidate>
+  <form class="form-horizontal" name="macForm" ng-submit="editMac(macForm.$valid)" novalidate>
     <div>
       <label>MAC:</label>
-      <span ng-show="mac_form.$invalid">невалиден MAC</span>
-      <input type="text" name="mac" class="form-control" ng-model="mac_address" pattern="([0-9a-fA-F]{2}[:-]){5}([0-9a-fA-F]{2})">
+      <span ng-show="macForm.$invalid">невалиден MAC</span>
+      <input type="text" name="mac" class="form-control" ng-model="macAddr" pattern="([0-9a-fA-F]{2}[:-]){5}([0-9a-fA-F]{2})">
     </div>
     <div class="text-center">
       <button type="submit" class="btn btn-primary">

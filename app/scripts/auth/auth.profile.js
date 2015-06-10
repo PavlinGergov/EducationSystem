@@ -23,42 +23,40 @@
       }
     };
 
+    
+    
     vm.user = user;
 
-    var sl = angular.copy(vm.user.social_links);
     vm.social = function() {
-      var data = sl;
       ngDialog.open({
         template: 'views/auth/auth-profile-social-dialog.html',
-        data: data,
+        data: angular.copy(vm.user.socialLinks),
         showClose: false,
         controller: ['$scope', function($scope) {
-          $scope.social_links = $scope.ngDialogData;
+          $scope.socialLinks = $scope.ngDialogData;
           $scope.editSocial = function(isValid) {
             if(isValid === true) {
-              authService.changeSocialLinks($scope.social_links);
-              vm.user.social_links = $scope.social_links;
+              authService.changeSocialLinks($scope.socialLinks);
+              vm.user.socialLinks = $scope.socialLinks;
               $scope.closeThisDialog();
             }
           };
         }]
       });
+ 
     };
 
     vm.mac = function() {
-      var data = vm.user.mac;
       ngDialog.open({
         template: 'views/auth/auth-profile-mac-dialog.html',
-        data: data,
+        data: vm.user.mac,
         showClose: false,
         controller: function($scope) {
-          $scope.mac_address = $scope.ngDialogData;
+          $scope.macAddr = $scope.ngDialogData;
           $scope.editMac = function(isValid) {
             if(isValid === true) {
-              console.log(isValid);
-              var mac = authService.transformMac($scope.mac_address);
-              vm.user.mac = mac;
-              authService.changeMac(mac);
+              authService.changeMac($scope.macAddr);
+              vm.user.mac = $scope.macAddr;
               $scope.closeThisDialog();
             }
           };

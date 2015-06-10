@@ -5,7 +5,7 @@
     .module('educationSystemApp.auth')
     .factory('authService', authService);
 
-  function authService($http, BASE_URL, EDUCATION_URL) {
+  function authService($http, BASE_URL, EDUCATION_URL, $q) {
     var service = {
       register: register,
       login: login,
@@ -15,35 +15,56 @@
       profile: profile,
       userData: userData,
       changeMac: changeMac,
-      changeSocialLinks: changeSocialLinks,
-      transformMac: transformMac
+      changeSocialLinks: changeSocialLinks
     };
 
     return service;
 
-    function transformMac(mac_address) {
-      // малки букви
-      // две точки не тире
-      //      var mac = '1A-2B-3c-4d-5e-6f';
-      var mac = mac_address.toLowerCase().replace(/-/g, ':');
-      return mac;
+    function transformMac(macAddress) {
+      return macAddress.toLowerCase().replace(/-/g, ':');
     }
     
     function logout() {
       //send delete request
     }
+
+    function toast(type, css, msg) {
+        toastr.options.positionClass = css;
+        toastr[type](msg);
+    }
+
+    function errorsNotification(err) {
+      Object.keys(err.data).map(function(key) {
+        err.data[key].map(function(msg) {
+          toast('error', 'toast-top-right', msg);
+        });
+      });
+    }
+    
     function register(user) {
       //send url
       return $http.post(BASE_URL + 'register/', user)
         .then(function(response) {
           return response;
+        })
+        .catch(function(error) {
+          errorsNotification(error);
+          return $q.reject(error);
+          //error.data.non_field_errors.map(function(error) {
+          //  toastr.error(error);
+          //});
         });
+          
     };
 
     function login(user) {
       return $http.post(BASE_URL + 'login/', user)
         .then(function(response) {
           return response;
+        })
+        .catch(function(error) {
+          errorsNotification(error);
+          return $q.reject(error);
         });
     }
 
@@ -101,7 +122,7 @@
         'email': user.email,
 //      'avatar': user.avatar,
         'avatar': 'https://s-media-cache-ak0.pinimg.com/736x/10/61/61/1061614ee7f3a3e64be576c2cc04d13e.jpg',
-        'social_links': {
+        'socialLinks': {
           'github_account': user.github_account,
           'linkedin_account': user.linkedin_account,
           'twitter_account': user.twitter_account
@@ -126,20 +147,19 @@
     }
 
     function changeMac(mac) {
-      // patch
-      // mac
-      // education/student-update
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       var data = {
-        'mac_address': mac
+        'mac': transformMac(mac)
       };
+      console.log(transformMac(mac));
+      
       $http.patch(EDUCATION_URL + 'student-update/', data, options)
-        .success(function(data) {
-          return data;
-        })
-        .error(function(error) {
-          return error;
-        });
+       .then(function() {
+         toast('success', 'toast-top-right', 'Успешно редактира MAC адреса си!');
+       })
+       .catch(function() {
+         return $q.reject();
+       });
     }
     
     function changeSocialLinks(data) {
@@ -147,7 +167,7 @@
       
       $http.patch(BASE_URL + 'baseuser-update/', data, options)
         .success(function(data) {
-          return data;
+          toast('success', 'toast-top-right', 'Успешно редактира социалните си линкове!');
         })
         .error(function(error) {
           return error;

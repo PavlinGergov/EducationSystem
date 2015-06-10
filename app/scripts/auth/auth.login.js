@@ -14,9 +14,9 @@
     function login() {
       return authService.login(vm.user)
         .then(function(response) {
-          localStorage.setItem('token', response.data.auth_token);
-          localStorage.removeItem('from');
-          $state.go('profile');
+         localStorage.setItem('token', response.data.auth_token);
+         localStorage.removeItem('from');
+         $state.go('profile');
         });
     }
   };
