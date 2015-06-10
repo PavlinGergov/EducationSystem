@@ -24,11 +24,7 @@
     };
 
     vm.user = user;
-    vm.bGithub = user.social_links.github_account;
-    vm.bTwitter = user.social_links.twitter_account;
-    vm.bLinkedin = user.social_links.twitter_account;
 
-    console.log(vm.bGithub);
     var sl = angular.copy(vm.user.social_links);
     vm.social = function() {
       var data = sl;
