@@ -1,70 +1,103 @@
-<div class="container">
-  <angled-navbar menus="vm.menu"></angled-navbar>
-  <div class="card par">
-    <img id="box1" src='{{vm.user.avatar}}'>
-    <div id="box2">
-      <h1 id="box4">{{vm.user.name}}</h1>
-      <div id="box5">
-        <p ng-hide="vm.user.courses === null"><strong>MAC адрес: </strong><span>{{vm.user.mac}} </span><button type="button" class="btn btn-primary" ng-click="vm.mac()">Edit</button></p>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">HackBulgaria</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#/logout">Изход</a></li>
+          </ul>
+        </div>
       </div>
+    </nav>
 
-      <button ng-hide="true" id="box6" type="button" class="btn btn-primary" ng-click="vm.cv()">Upload CV</button>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active">
+              <a href="#"><i class="fa fa-user fa-1x icon-text"></i> Profile <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">{{vm.user.name}}</h1>
 
+            <div class="col-xs-3 text-center">
+              <img class="img-thumbnail" src='{{vm.user.avatar}}'>
+              <strong>MAC адрес: </strong> <span>{{vm.user.mac}} </span>
+              <button type="button" class="btn btn-primary" ng-click="vm.mac()">Edit</button>
+            </div>
+
+            <div class="col-xs-8">
+              <div ng-hide="vm.user.courses === null">
+                <p>
+                  <i class="fa fa-github fa-2x icon-text"></i> <a href='{{vm.user.socialLinks.github_account}}'>{{vm.user.socialLinks.github_account}}</a>
+                </p>
+                <p>
+                  <i class="fa fa-twitter fa-2x icon-text"></i> <a href='{{vm.user.socialinks.twitter_account}}'>{{vm.user.socialLinks.twitter_account}}</a>
+                </p>
+                <p>
+                  <i class="fa fa-linkedin fa-2x icon-text"></i> <a href='{{vm.user.socialLinks.linkedin_account}}'>{{vm.user.socialLinks.linkedin_account}}</a>
+                </p>
+                <button type="button" class="btn btn-primary" ng-click="vm.social()">Промени</button>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <hr>
+              <h3>Курсове:</h3>
+              <table ng-show="vm.user.courses" class="table table-bordered">
+                <tr>
+                  <th>Статус</th>
+                  <th>Курс</th>
+                  <th>Период</th>
+                  <th>Сертификат</th>
+                  <th></th>
+                </tr>
+
+                <tr ng-repeat="course in vm.user.courses">
+                  <td class="text-center"><i class="{{vm.icon(course.status)}} icon-text" ></i>{{course.status}}</td>
+                  <td>{{course.course.name}}</td>
+                  <td>{{course.course.start_time | date}} - {{course.course.end_time | date}}</td>
+                  <td><a href='{{course.certificate}}' ng-show="course.certificate">Link - {{course.certificate_p}}%</a><span ng-hide="course.certificate">N/A</span></td>
+                  <td>
+                    <span ng-show="course.notes">
+                      <a ui-sref="home" class="btn btn-primary">{{course.notes}}</a>
+                    </span>
+                    <span ng-hide="course.notes">N/A</span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="col-md-12">
+              <hr>
+              <h3>Challenges:</h3>
+              <table ng-show="vm.user.challenges" class="table table-bordered">
+                <tr>
+                  <th>Hackathon</th>
+                  <th>Team name</th>
+                  <th>Idea description</th>
+                  <th>Place</th>
+                </tr>
+                <tr ng-repeat="challenge in vm.user.challenges">
+                  <td>{{challenge.team.season.name}}</td>
+                  <td>{{challenge.team.name}}</td>
+                  <td>{{challenge.team.idea_description}}</td>
+                  <td>{{challenge.team.place}}</td>
+                </tr>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="box3">
-      <h4>Социални връзки:</h3>
-        <p>
-          <i class="fa fa-github fa-2x icon-text"></i> <a href='{{vm.user.socialLinks.github_account}}'>{{vm.user.socialLinks.github_account}}</a>
-        </p>
-        <p>
-          <i class="fa fa-twitter fa-2x icon-text"></i> <a href='{{vm.user.socialinks.twitter_account}}'>{{vm.user.socialLinks.twitter_account}}</a>
-        </p>
-        <p>
-          <i class="fa fa-linkedin fa-2x icon-text"></i> <a href='{{vm.user.socialLinks.linkedin_account}}'>{{vm.user.socialLinks.linkedin_account}}</a>
-        </p>
-      <button type="button" class="btn btn-primary" ng-click="vm.social()">Промени</button>
-    </div>
-  </div>
-<div class="card par">
-  <h3>Курсове:</h3>
-  <table ng-show="vm.user.courses" class="table table-bordered">
-    <tr>
-      <th>Статус</th>
-      <th>Курс</th>
-      <th>Период</th>
-      <th>Сертификат</th>
-      <th></th>
-    </tr>
-    <tr ng-repeat="course in vm.user.courses">
-      <td class="text-center"><i class="{{vm.icon(course.status)}} icon-text" ></i>{{course.status}}</td>
-      <td>{{course.course.name}}</td>
-      <td>{{course.course.start_time | date}} - {{course.course.end_time | date}}</td>
-      <td><a href='{{course.certificate}}' ng-show="course.certificate">Link - {{course.certificate_p}}%</a><span ng-hide="course.certificate">N/A</span></td>
-      <td>
-        <span ng-show="course.notes">
-          <a ui-sref="home" class="btn btn-primary">{{course.notes}}</a>
-        </span>
-        <span ng-hide="course.notes">N/A</span>
-      </td>
-    </tr>
-  </table>
-</div>
 
-<div class="card par">
-  <h3>Challenges:</h3>
-  <table ng-show="vm.user.challenges" class="table table-bordered">
-    <tr>
-      <th>Hackathon</th>
-      <th>Team name</th>
-      <th>Idea description</th>
-      <th>Place</th>
-    </tr>
-    <tr ng-repeat="challenge in vm.user.challenges">
-      <td>{{challenge.team.season.name}}</td>
-      <td>{{challenge.team.name}}</td>
-      <td>{{challenge.team.idea_description}}</td>
-      <td>{{challenge.team.place}}</td>
-    </tr>
-  </table>
-</div>
-</div>
