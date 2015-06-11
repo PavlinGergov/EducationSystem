@@ -1,19 +1,24 @@
 (function() {
   'use strict';
-  
+
   angular
     .module('educationSystemApp.auth')
     .constant('BASE_URL', 'http://localhost:8000/base/api/')
     .constant('EDUCATION_URL', 'http://localhost:8000/education/api/')
     .config(configure);
-  
+
   function configure($stateProvider) {
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'views/home.html',
-        controller: function($scope, navbar) {
-          $scope.menu = navbar.anonymous();
+        templateUrl: 'views/auth/auth-login.html',
+        controller: 'loginCtrl',
+        controllerAs: 'vm',
+        data: {
+          permissions: {
+            only: ['anonymous'],
+            redirectTo: 'profile'
+          }
         }
       })
       .state('register', {
@@ -100,7 +105,7 @@
           }
         }
       });
-    
+
     function profileData(authService) {
       return authService.profile()
         .then(function(response) {
