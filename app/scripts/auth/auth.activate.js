@@ -14,12 +14,15 @@
     function activate() {
       authService.activate(vm.data)
         .then(function() {
-          if(localStorage.length !== 0) {
-            $window.location.href='http://' + localStorage.from + '#/login';
+          if(localStorage.from !== undefined) {
+            var from = localStorage.getItem('from');
+            var url = 'http://' + from + '/#/login';
+            localStorage.removeItem('from');
+            $window.location.href = url;
           }
           else {
             $state.go('login');
-          }  
+          }
         });
     };
   };

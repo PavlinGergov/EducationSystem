@@ -3,6 +3,9 @@
   
   angular
     .module('educationSystemApp.auth', [
-    'ui.router'
+      'ui.router',
+      'ngDialog',
+      'educationSystemApp.nav',
+      'permission'
   ]);
 })();

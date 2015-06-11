@@ -5,11 +5,11 @@
     .module('educationSystemApp.auth')
     .controller('registerCtrl', registerCtrl);
   
-  function registerCtrl(authService, $state, $location, $stateParams) {
+  function registerCtrl(authService, $state, $location, $stateParams, navbar) {
     var vm = this;
     vm.user = {};
     vm.register = register;
-    var url = $stateParams;
+    vm.menu = navbar.anonymous();
     
     function register(isFormValid) {
       var fullName = authService.splitName(vm.user.name);
@@ -17,7 +17,7 @@
       vm.user.last_name = fullName[1];
 
       if(isFormValid) {
-        authService.register(vm.user, url)
+        authService.register(vm.user)
           .then(function() {
             $state.go('activation-msg');
           });

@@ -1,7 +1,23 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "components-font-awesome/scss/font-awesome.scss";
 // endbower
+
+#main-navigation {
+  font-size: 120%;
+  font-weight: 500;
+  text-align: center;
+  padding: 10px;
+  li {
+    display: inline;
+    padding: 5px;
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
 
 .browsehappy {
   margin: 0.2em 0;
@@ -67,10 +83,130 @@ body {
   }
 }
 
-/* Responsive: Portrait tablets and up */
+.card-container.card {
+    width: 400px;
+    padding: 40px 40px;
+}
+
+.card {
+    background-color: #F7F7F7;
+    /* just in case there no content*/
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.par.card {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#box1 {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    margin: 20px;
+    vertical-align: initial;
+}
+
+#box2 {
+    position: absolute;
+    width: 46%;
+    height: 200px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+#box3 {
+    position: relative;
+    width: 21%;
+    height: 200px;
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    float: right;
+    margin: 20px;
+    
+}
+
+#box3 button {
+    margin-left: 40%
+}
+
+#box4 {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    font-size: 50px;
+}
+
+#box5 {
+    position: relative;
+    width: 100%;
+    height: 35px;
+    top: 15px;
+}
+
+#box5 p {
+    font-size: 17px;
+}
+
+#box5 button {
+    margin-left: 20px;
+}
+
+#box6 {
+    position: relative;
+    width: 30%;
+    height: 35px;
+    top: 30px;
+}
+
+.icon-text {
+    vertical-align: middle;
+    padding-bottom: 4px;
+    margin-right: 5px;
+}
+
+#register-form {
+    width: 600px;
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+    width: 550px;
+}
+
+.form-horizontal div {
+    margin-bottom: 10px;
+}
+
+.table tbody tr td {
+    vertical-align: middle;
+}
+
+.tr-done {
+    background-color: #c1ffc1;
+}
+
+.tr-dropped {
+    background-color: #ffc1c1;
+}
+
+.tr-taking {
+    background-color: #ffec8b;
+}
+
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 730px;
+    max-width: 90%;
   }
 
   /* Remove the padding we set earlier */
@@ -89,3 +225,48 @@ body {
     border-bottom: 0;
   }
 }
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .container {
+    max-width: 90%;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+

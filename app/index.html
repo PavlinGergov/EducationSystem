@@ -2,12 +2,16 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>EducationSystem</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog.css" />
+    <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog-theme-default.css" />
+    <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -24,9 +28,7 @@
       
     </div>
 
-    <div class="container">
-      <div ui-view=""></div>
-    </div>
+    <div ui-view=""></div>
 
     <div class="footer">
       <div class="container">
@@ -52,6 +54,10 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/ngDialog/js/ngDialog.js"></script>
+    <script src="bower_components/angular-permission/dist/angular-permission.js"></script>
+    <script src="bower_components/toastr/toastr.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -62,7 +68,14 @@
     <script src="scripts/auth/auth.register.js"></script>
     <script src="scripts/auth/auth.login.js"></script>
     <script src="scripts/auth/auth.activate.js"></script>
+    <script src="scripts/auth/auth.profile.js"></script>
+    <script src="scripts/auth/auth.logout.js"></script>
     <script src="scripts/app.js"></script>
     <!-- endbuild -->
+
+    <script src="scripts/navigation/nav.module.js"></script>
+    <script src="scripts/navigation/config.js"></script>
+    <script src="scripts/navigation/nav-directive.js"></script>
+    <script src="scripts/navigation/nav.js"></script>
 </body>
 </html>

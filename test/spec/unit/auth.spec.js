@@ -28,11 +28,12 @@ describe('Auth Module:', function () {
   });
 
   describe('Routes:', function() {
-    var state, config;
+    var state, config, service;
     
     beforeEach(module('ui.router'));
     beforeEach(inject(function($injector) {
       state = $injector.get('$state');
+      service = $injector.get('authService');
     }));
 
     describe('Login State:', function() {
@@ -40,8 +41,7 @@ describe('Auth Module:', function () {
         config = state.get('login');
       });
 
-      it('should have correct configuration', function(done) {
-        
+      it('should have correct configuration', function(done) {        
         expect(config.name).to.equal('login');
         expect(config.url).to.equal('/login');
         expect(config.templateUrl).to.equal('views/auth/auth-login.html');
@@ -52,6 +52,22 @@ describe('Auth Module:', function () {
       });
     });
 
+     describe('Logout State:', function() {
+      before(function() {
+        config = state.get('logout');
+      });
+
+      it('should have correct configuration', function(done) {
+        expect(config.name).to.equal('logout');
+        expect(config.url).to.equal('/logout');
+        expect(config.templateUrl).to.be.undefined;
+        expect(config.controller).to.equal('logoutCtrl');
+        expect(config.controllerAs).to.equal('vm');
+        expect(state.href('logout')).to.equal('#/logout');
+        done();
+      });
+    });
+    
     describe('Register State:', function() {
       before(function() {
         config = state.get('register');
@@ -144,6 +160,25 @@ describe('Auth Module:', function () {
         expect(config.controller).to.be.undefined;
         expect(config.controllerAs).to.be.undefined;
         expect(state.href('activation-msg')).to.be.null;
+        done();
+      });
+    });
+
+    describe('Profile State:', function() {
+      before(function() {
+        config = state.get('profile');
+      });
+
+      it('should have correct configuration', function(done) {
+     
+        expect(config.name).to.equal('profile');
+        expect(config.url).to.equal('/profile');
+        expect(config.templateUrl).to.equal('views/auth/auth-profile.html');
+        expect(config.controller).to.equal('profileCtrl');
+        expect(config.controllerAs).to.equal('vm');
+        expect(state.href('profile')).to.equal('#/profile');
+        expect(config.resolve).to.be.a('object');
+        expect(config.resolve.user).to.be.a('function');
         done();
       });
     });
