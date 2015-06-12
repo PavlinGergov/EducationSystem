@@ -25,5 +25,20 @@
         }
         return false;
       });
+
+      Permission.defineRole('teacher', function (stateParams) {
+        return authService.profile()
+          .then(function(response) {
+            console.log(response.teacher !== null);
+            return response.teacher !== null; 
+          });
+      });
+
+      Permission.defineRole('student', function (stateParams) {
+        return authService.profile()
+          .then(function(response) {
+            return response.courses !== null;
+          });
+      });
     });
 })();

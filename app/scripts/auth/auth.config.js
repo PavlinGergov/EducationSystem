@@ -5,6 +5,7 @@
     .module('educationSystemApp.auth')
     .constant('BASE_URL', 'http://localhost:8000/base/api/')
     .constant('EDUCATION_URL', 'http://localhost:8000/education/api/')
+    .constant('URL', 'http://localhost:8000')
     .config(configure);
 
   function configure($stateProvider) {

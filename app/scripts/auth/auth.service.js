@@ -5,7 +5,7 @@
     .module('educationSystemApp.auth')
     .factory('authService', authService);
 
-  function authService($http, BASE_URL, EDUCATION_URL, $q) {
+  function authService($http, BASE_URL, EDUCATION_URL, URL, $q) {
     var service = {
       register: register,
       login: login,
@@ -112,17 +112,16 @@
     }
     
     function userData(user) {
-      console.log(user);
       var result = {
         'name': user.first_name + " " + user.last_name,
         'email': user.email,
-//        'avatar': user.avatar
-        'avatar': 'https://hackbulgaria.com//static/img/no-avatar.png',
+        'avatar': URL + user.avatar,
         'socialLinks': {
           'github_account': user.github_account,
           'linkedin_account': user.linkedin_account,
           'twitter_account': user.twitter_account
-        }
+        },
+        'teacher': user.teacher
       };
       if(user.student === null) {
         result.mac = null;
@@ -132,12 +131,14 @@
         result.mac = user.student.mac;
         result.courses = status(user.student.courseassignment_set);
       }
+      
       if(user.competitor === null || user.competitor.teammembership_set.length === 0) {
         result.challenges = null;
       }
       else {
         result.challenges = user.competitor.teammembership_set;
       }
+
       console.log(result);
       return result;
     }
@@ -147,8 +148,6 @@
       var data = {
         'mac': transformMac(mac)
       };
-      console.log(transformMac(mac));
-      
       $http.patch(EDUCATION_URL + 'student-update/', data, options)
        .then(function() {
          toast('success', 'toast-top-right', 'Успешно редактира MAC адреса си!');
