@@ -51,7 +51,7 @@
         template: 'views/auth/auth-profile-mac-dialog.html',
         data: vm.user.mac,
         showClose: false,
-        controller: function($scope) {
+        controller: ['$scope', function($scope) {
           $scope.macAddr = $scope.ngDialogData;
           $scope.editMac = function(isValid) {
             if(isValid === true) {
@@ -60,7 +60,7 @@
               $scope.closeThisDialog();
             }
           };
-        }
+        }]
       });
     };
   }

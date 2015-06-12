@@ -124,7 +124,7 @@
       };
 
       if(user.avatar === null) {
-        result.avatar = URL + '/media/avatar/no-avatar.png';
+        result.avatar = 'images/no-avatar.png';
       }
       else {
         result.avatar = URL + user.avatar;
