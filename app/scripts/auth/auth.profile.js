@@ -5,10 +5,10 @@
     .module('educationSystemApp.auth')
     .controller('profileCtrl', profileCtrl);
   
-  function profileCtrl(user, navbar, ngDialog, authService) {
+  function profileCtrl(user, navbar, ngDialog, authService, URL) {
     var vm = this;
     vm.menu = navbar.user();
-    vm.containerId = 'profile-container';
+    vm.MEDIA_URL = URL;
     vm.icon = function(status) {
       switch(status) {
       case 'taking':
@@ -22,8 +22,6 @@
         break;
       }
     };
-
-    
     
     vm.user = user;
 

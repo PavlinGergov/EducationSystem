@@ -115,7 +115,7 @@
       var result = {
         'name': user.first_name + " " + user.last_name,
         'email': user.email,
-        'avatar': URL + user.avatar,
+        'avatar': user.avatar,
         'socialLinks': {
           'github_account': user.github_account,
           'linkedin_account': user.linkedin_account,
@@ -123,6 +123,9 @@
         },
         'teacher': user.teacher
       };
+
+      console.log(typeof(user.avatar));
+      console.log(user.avatar);
       
       if(user.student === null) {
         result.mac = null;

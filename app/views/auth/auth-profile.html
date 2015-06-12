@@ -30,8 +30,8 @@
           <h1 class="page-header">{{vm.user.name}}</h1>
 
             <div class="col-xs-3 text-center">
-              <img ng-show="vm.user.avatar !== null" class="img-thumbnail" src='{{vm.user.avatar}}'>
-              <img ng-show="vm.user.avatar === null" class="img-thumbnail" src='/images/no-avatar.png'>
+              <img ng-show="vm.user.avatar !== null" class="img-thumbnail" src='{{vm.MEDIA_URL}}{{vm.user.avatar}}'>
+              <img ng-hide="vm.user.avatar !== null" class="img-thumbnail" src='/images/no-avatar.png'>
               <strong>MAC адрес: </strong> <span>{{vm.user.mac}} </span>
               <button type="button" class="btn btn-primary" ng-click="vm.mac()">Edit</button>
             </div>
