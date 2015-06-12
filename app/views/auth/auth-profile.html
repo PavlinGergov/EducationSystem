@@ -37,18 +37,16 @@
             </div>
 
             <div class="col-xs-8">
-              <div ng-hide="vm.user.courses === null">
-                <p>
-                  <i class="fa fa-github fa-2x icon-text"></i> <a href='{{vm.user.socialLinks.github_account}}'>{{vm.user.socialLinks.github_account}}</a>
-                </p>
-                <p>
-                  <i class="fa fa-twitter fa-2x icon-text"></i> <a href='{{vm.user.socialinks.twitter_account}}'>{{vm.user.socialLinks.twitter_account}}</a>
-                </p>
-                <p>
-                  <i class="fa fa-linkedin fa-2x icon-text"></i> <a href='{{vm.user.socialLinks.linkedin_account}}'>{{vm.user.socialLinks.linkedin_account}}</a>
-                </p>
-                <button type="button" class="btn btn-primary" ng-click="vm.social()">Промени</button>
-              </div>
+              <p>
+                <i class="fa fa-github icon-text"></i> <a href='{{vm.user.socialLinks.github_account}}'>{{vm.user.socialLinks.github_account}}</a>
+              </p>
+              <p>
+                <i class="fa fa-twitter icon-text"></i> <a href='{{vm.user.socialinks.twitter_account}}'>{{vm.user.socialLinks.twitter_account}}</a>
+              </p>
+              <p>
+                <i class="fa fa-linkedin icon-text"></i> <a href='{{vm.user.socialLinks.linkedin_account}}'>{{vm.user.socialLinks.linkedin_account}}</a>
+              </p>
+              <button type="button" class="btn btn-primary" ng-click="vm.social()">Промени</button>
             </div>
 
             <div class="col-md-12">
