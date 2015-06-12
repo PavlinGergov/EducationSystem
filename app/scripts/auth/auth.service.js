@@ -115,6 +115,7 @@
       var result = {
         'name': user.first_name + " " + user.last_name,
         'email': user.email,
+        'avatar': URL + user.avatar,
         'socialLinks': {
           'github_account': user.github_account,
           'linkedin_account': user.linkedin_account,
@@ -122,13 +123,6 @@
         },
         'teacher': user.teacher
       };
-
-      if(user.avatar === null) {
-        result.avatar = 'images/no-avatar.png';
-      }
-      else {
-        result.avatar = URL + user.avatar;
-      }
       
       if(user.student === null) {
         result.mac = null;
