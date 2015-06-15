@@ -12,9 +12,8 @@
 
     function lostPassword() {
       return authService.resetPassword(vm.userData)
-        .then(function(data) {
-          console.log(vm.userData);
-          //$state.go('resetpassword-success');
+        .then(function(response) {
+          console.log(response);
         });
     }
   };

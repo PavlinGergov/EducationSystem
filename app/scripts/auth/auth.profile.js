@@ -23,7 +23,6 @@
     };
     
     vm.user = user;
-    console.log(vm.user);
 
     vm.social = function() {
       ngDialog.open({
@@ -47,14 +46,14 @@
     vm.mac = function() {
       ngDialog.open({
         template: 'views/auth/auth-profile-mac-dialog.html',
-        data: vm.user.mac,
+        data: vm.user.student.mac,
         showClose: false,
         controller: ['$scope', function($scope) {
           $scope.macAddr = $scope.ngDialogData;
           $scope.editMac = function(isValid) {
             if(isValid === true) {
               authService.changeMac($scope.macAddr);
-              vm.user.mac = $scope.macAddr;
+              vm.user.student.mac = $scope.macAddr;
               $scope.closeThisDialog();
             }
           };

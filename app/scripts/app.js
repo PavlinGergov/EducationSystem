@@ -8,7 +8,7 @@
       'permission'
     ])
     .config(function ($urlRouterProvider) {
-      $urlRouterProvider.otherwise('/login');
+      $urlRouterProvider.otherwise('/profile');
     })
     .run(function (Permission, authService, $rootScope) {
       Permission.defineRole('anonymous', function (stateParams) {

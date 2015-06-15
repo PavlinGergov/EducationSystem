@@ -14,7 +14,6 @@
     function setNew() {
       return authService.setNewPassword(vm.data)
         .then(function(response) {
-          console.log(vm.data);
           $state.go('login');
         });
     }

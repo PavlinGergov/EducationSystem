@@ -22,6 +22,19 @@
 
     return service;
 
+    function toast(type, css, msg) {
+      toastr.options.positionClass = css;
+      toastr[type](msg);
+    }
+
+    function errorsNotification(err) {
+      Object.keys(err.data).map(function(key) {
+        err.data[key].map(function(msg) {
+          toast('error', 'toast-top-right', msg);
+        });
+      });
+    }
+
     function transformMac(macAddress) {
       return macAddress.toLowerCase().replace(/-/g, ':');
     }
@@ -39,12 +52,9 @@
     }
 
     function setNewPassword(data) {
-      console.log(data);
       return $http.post(BASE_URL + 'password-reset-confirm/', data)
         .then(function(response) {
-          console.log(data);
-          console.log(response);
-          var msg = 'Успешно промени паролата си. Вече можеш да влезеш в системата.';
+          var msg = 'Успешно промени паролата си.';
           toast('success', 'toast-top-right', msg);
         })
         .catch(function(error) {
@@ -54,19 +64,6 @@
     
     function logout() {
       //send delete request
-    }
-
-    function toast(type, css, msg) {
-        toastr.options.positionClass = css;
-        toastr[type](msg);
-    }
-
-    function errorsNotification(err) {
-      Object.keys(err.data).map(function(key) {
-        err.data[key].map(function(msg) {
-          toast('error', 'toast-top-right', msg);
-        });
-      });
     }
     
     function register(user) {
@@ -149,27 +146,16 @@
           'linkedin_account': user.linkedin_account,
           'twitter_account': user.twitter_account
         },
-        'teacher': user.teacher
+        'teacher': user.teacher,
+        'competitor': user.competitor,
+        'student': user.student
       };
 
-      console.log(typeof(user.avatar));
-      console.log(user.avatar);
-      
-      if(user.student === null) {
-        result.mac = null;
-        result.courses = null;
+      if(result.student !== null) {
+        result.student.courses = status(user.student.courseassignment_set);
       }
-      else {
-        result.mac = user.student.mac;
-        result.courses = status(user.student.courseassignment_set);
-      }
-      
-      if(user.competitor === null || user.competitor.teammembership_set.length === 0) {
-        result.challenges = null;
-      }
-      else {
-        result.challenges = user.competitor.teammembership_set;
-      }
+      //   result.courses = status(user.student.courseassignment_set);
+      console.log(user);
       return result;
     }
 

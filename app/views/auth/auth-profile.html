@@ -31,8 +31,8 @@
         <div class="col-xs-3 text-center">
           <img ng-show="vm.user.avatar !== null" class="img-thumbnail" src='{{vm.MEDIA_URL}}{{vm.user.avatar}}'>
           <img ng-hide="vm.user.avatar !== null" class="img-thumbnail" src='/images/no-avatar.png'>
-          <div ng-show="vm.user.courses">
-            <strong>MAC адрес: </strong> <span>{{vm.user.mac}} </span>
+          <div ng-show="vm.user.student">
+            <strong>MAC адрес: </strong> <span>{{vm.user.student.mac}} </span>
             <button type="button" class="btn btn-primary" ng-click="vm.mac()">Промени MAC</button>
           </div>
         </div>
@@ -50,10 +50,10 @@
           <button type="button" class="btn btn-primary" ng-click="vm.social()">Промени socials</button>
         </div>
 
-        <div class="col-md-12" ng-show="vm.user.courses">
+        <div class="col-md-12" ng-show="vm.user.student">
           <hr>
           <h3>Курсове:</h3>
-          <table ng-show="vm.user.courses" class="table table-bordered">
+          <table ng-show="vm.user.student" class="table table-bordered">
             <tr>
               <th>Статус</th>
               <th>Курс</th>
@@ -62,10 +62,10 @@
               <th></th>
             </tr>
 
-            <tr ng-repeat="course in vm.user.courses">
+            <tr ng-repeat="course in vm.user.student.courses">
               <td class="text-center"><i class="{{vm.icon(course.status)}} icon-text" ></i>{{course.status}}</td>
               <td>{{course.course.name}}</td>
-              <td>{{course.course.start_time | date}} - {{course.course.end_time | date}}</td>
+              <td>{{course.course.start_time | date : "dd.MM.yyyy"}} - {{course.course.end_time | date : "dd.MM.yyyy"}}</td>
               <td><a href='{{course.certificate}}' ng-show="course.certificate">Link - {{course.certificate_p}}%</a><span ng-hide="course.certificate">N/A</span></td>
               <td>
                 <span ng-show="course.notes">
@@ -76,17 +76,17 @@
             </tr>
           </table>
         </div>
-        <div class="col-md-12" ng-show="vm.user.challenges">
+        <div class="col-md-12" ng-show="vm.user.competitor">
           <hr>
           <h3>Състезания:</h3>
-          <table ng-show="vm.user.challenges" class="table table-bordered">
+          <table ng-show="vm.user.competitor" class="table table-bordered">
             <tr>
               <th>Състезание</th>
               <th>Име на отбора</th>
               <th>Описание на идеята</th>
               <th>Място</th>
             </tr>
-            <tr ng-repeat="challenge in vm.user.challenges">
+            <tr ng-repeat="challenge in vm.user.competitor.teammembership_set">
               <td>{{challenge.team.season.name}}</td>
               <td>{{challenge.team.name}}</td>
               <td>{{challenge.team.idea_description}}</td>
