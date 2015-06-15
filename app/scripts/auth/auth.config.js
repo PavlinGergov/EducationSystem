@@ -10,18 +10,6 @@
 
   function configure($stateProvider) {
     $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'views/auth/auth-login.html',
-        controller: 'loginCtrl',
-        controllerAs: 'vm',
-        data: {
-          permissions: {
-            only: ['anonymous'],
-            redirectTo: 'profile'
-          }
-        }
-      })
       .state('register', {
         url: '/register',
         templateUrl: 'views/auth/auth-register.html',
@@ -83,6 +71,30 @@
       .state('activate', {
         url: '/activate/:uid/:token',
         controller: 'activateCtrl',
+        controllerAs: 'vm',
+        data: {
+          permissions: {
+            only: ['anonymous'],
+            redirectTo: 'profile'
+          }
+        }
+      })
+      .state('resetpassword', {
+        url: '/resetpassword',
+        templateUrl: 'views/auth/auth-resetpassword.html',
+        controller: 'resetPasswordCtrl',
+        controllerAs: 'vm',
+        data: {
+          permissions: {
+            only: ['anonymous'],
+            redirectTo: 'profile'
+          }
+        }
+      })
+      .state('setnewpassword', {
+        url: '/password_reset/:uid/:token',
+        templateUrl: 'views/auth/auth-setnewpassword.html',
+        controller: 'setNewPasswordCtrl',
         controllerAs: 'vm',
         data: {
           permissions: {

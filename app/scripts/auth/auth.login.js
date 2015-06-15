@@ -5,11 +5,10 @@
     .module('educationSystemApp.auth')
     .controller('loginCtrl', loginCtrl);
   
-  function loginCtrl($state, authService, navbar) {
+  function loginCtrl($state, authService) {
     var vm = this;
     vm.login = login;
     vm.user = {};
-    vm.menu = navbar.anonymous();
     
     function login() {
       return authService.login(vm.user)

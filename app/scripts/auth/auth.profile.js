@@ -5,9 +5,8 @@
     .module('educationSystemApp.auth')
     .controller('profileCtrl', profileCtrl);
   
-  function profileCtrl(user, navbar, ngDialog, authService, URL) {
+  function profileCtrl(user, ngDialog, authService, URL) {
     var vm = this;
-    vm.menu = navbar.user();
     vm.MEDIA_URL = URL;
     vm.icon = function(status) {
       switch(status) {
@@ -24,6 +23,7 @@
     };
     
     vm.user = user;
+    console.log(vm.user);
 
     vm.social = function() {
       ngDialog.open({

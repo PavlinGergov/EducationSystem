@@ -11,7 +11,7 @@
     // authService.logout()
     //   .then(function() {
         localStorage.removeItem('token');
-        $state.go('home');
+        $state.go('login');
     //   });
   };
 })();

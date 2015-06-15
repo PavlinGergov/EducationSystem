@@ -12,6 +12,8 @@
       activate: activate,
       splitName: splitName,
       logout: logout,
+      resetPassword: resetPassword,
+      setNewPassword: setNewPassword,
       profile: profile,
       userData: userData,
       changeMac: changeMac,
@@ -22,6 +24,32 @@
 
     function transformMac(macAddress) {
       return macAddress.toLowerCase().replace(/-/g, ':');
+    }
+
+    function resetPassword(data) {
+      return $http.post(BASE_URL + 'password-reset/', data)
+        .then(function(response) {
+          console.log(response);
+          var msg = 'Изпратихме ти email с линк, от който можеш да промениш паролата си.';
+          toast('success', 'toast-top-right', msg);
+        })
+        .catch(function(error) {
+          errorsNotification(error);
+        });
+    }
+
+    function setNewPassword(data) {
+      console.log(data);
+      return $http.post(BASE_URL + 'password-reset-confirm/', data)
+        .then(function(response) {
+          console.log(data);
+          console.log(response);
+          var msg = 'Успешно промени паролата си. Вече можеш да влезеш в системата.';
+          toast('success', 'toast-top-right', msg);
+        })
+        .catch(function(error) {
+          errorsNotification(error);
+        });
     }
     
     function logout() {

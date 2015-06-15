@@ -5,11 +5,10 @@
     .module('educationSystemApp', [
       'ui.router',
       'educationSystemApp.auth',
-      'educationSystemApp.nav',
       'permission'
     ])
     .config(function ($urlRouterProvider) {
-      $urlRouterProvider.otherwise('/');
+      $urlRouterProvider.otherwise('/login');
     })
     .run(function (Permission, authService, $rootScope) {
       Permission.defineRole('anonymous', function (stateParams) {

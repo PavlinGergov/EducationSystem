@@ -5,11 +5,10 @@
     .module('educationSystemApp.auth')
     .controller('registerCtrl', registerCtrl);
   
-  function registerCtrl(authService, $state, $location, $stateParams, navbar) {
+  function registerCtrl(authService, $state, $location, $stateParams) {
     var vm = this;
     vm.user = {};
     vm.register = register;
-    vm.menu = navbar.anonymous();
     
     function register(isFormValid) {
       var fullName = authService.splitName(vm.user.name);
