@@ -14,6 +14,19 @@
     
     return service;
 
+    function toast(type, css, msg) {
+      toastr.options.positionClass = css;
+      toastr[type](msg);
+    }
+
+    function errorsNotification(err) {
+      Object.keys(err.data).map(function(key) {
+        err.data[key].map(function(msg) {
+          toast('error', 'toast-top-right', msg);
+        });
+      });
+    }
+
     function transformMac(macAddress) {
       return macAddress.toLowerCase().replace(/-/g, ':');
     }
