@@ -15,7 +15,7 @@
         .then(function(response) {
          localStorage.setItem('token', response.data.auth_token);
          localStorage.removeItem('from');
-         $state.go('profile');
+         $state.go('check');
         });
     }
   };

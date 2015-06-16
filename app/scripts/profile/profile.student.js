@@ -2,10 +2,10 @@
   'use strict';
   
   angular
-    .module('educationSystemApp.auth')
+    .module('educationSystemApp.profile')
     .controller('profileCtrl', profileCtrl);
   
-  function profileCtrl(user, ngDialog, authService, URL) {
+  function profileCtrl(user, ngDialog, profileService, URL) {
     var vm = this;
     vm.MEDIA_URL = URL;
     vm.icon = function(status) {
@@ -26,14 +26,14 @@
 
     vm.social = function() {
       ngDialog.open({
-        template: 'views/auth/auth-profile-social-dialog.html',
+        template: 'views/profile/profile-social-dialog.html',
         data: angular.copy(vm.user.socialLinks),
         showClose: false,
         controller: ['$scope', function($scope) {
           $scope.socialLinks = $scope.ngDialogData;
           $scope.editSocial = function(isValid) {
             if(isValid === true) {
-              authService.changeSocialLinks($scope.socialLinks);
+              profileService.changeSocialLinks($scope.socialLinks);
               vm.user.socialLinks = $scope.socialLinks;
               $scope.closeThisDialog();
             }
@@ -45,14 +45,14 @@
 
     vm.mac = function() {
       ngDialog.open({
-        template: 'views/auth/auth-profile-mac-dialog.html',
+        template: 'views/profile/profile-mac-dialog.html',
         data: vm.user.student.mac,
         showClose: false,
         controller: ['$scope', function($scope) {
           $scope.macAddr = $scope.ngDialogData;
           $scope.editMac = function(isValid) {
             if(isValid === true) {
-              authService.changeMac($scope.macAddr);
+              profileService.changeMac($scope.macAddr);
               vm.user.student.mac = $scope.macAddr;
               $scope.closeThisDialog();
             }

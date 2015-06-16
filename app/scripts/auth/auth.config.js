@@ -102,28 +102,7 @@
             redirectTo: 'profile'
           }
         }
-      })
-      .state('profile', {
-        url:'/profile',
-        controller: 'profileCtrl',
-        controllerAs: 'vm',
-        templateUrl: 'views/auth/auth-profile.html',
-        resolve: {
-          user: profileData
-        },
-        data: {
-          permissions: {
-            only: ['logged'],
-            redirectTo: 'login'
-          }
-        }
       });
-
-    function profileData(authService) {
-      return authService.profile()
-        .then(function(response) {
-          return response;
-        });
-    }
+      
   };
 })();
