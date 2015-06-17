@@ -50,7 +50,7 @@
       var data = {'event_id': eventId};
       return $http.post(BASE_URL + 'buy-ticket/', data, options)
         .then(function(response) {
-          var msg = 'Успешно заяви своя билет за HackConf 2015';
+          var msg = 'Успешно взе своя билет за HackConf 2015';
           toast('success', 'toast-top-right', msg);
         })
         .catch(function(error) {
