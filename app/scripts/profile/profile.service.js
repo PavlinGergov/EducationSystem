@@ -1,10 +1,10 @@
 (function() {
   'use strict';
-  
+
   angular
     .module('educationSystemApp.profile')
     .factory('profileService', profileService);
-  
+
   function profileService($http, BASE_URL, EDUCATION_URL, URL) {
     var service = {
       getProfileData: getProfileData,
@@ -13,7 +13,7 @@
       getEvents: getEvents,
       buyTicket: buyTicket
     };
-    
+
     return service;
 
     function toast(type, css, msg) {
@@ -50,7 +50,7 @@
       var data = {'event_id': eventId};
       return $http.post(BASE_URL + 'buy-ticket/', data, options)
         .then(function(response) {
-          msg = 'Успешно заяви своя билет';
+          var msg = 'Успешно заяви своя билет за HackConf 2015';
           toast('success', 'toast-top-right', msg);
         })
         .catch(function(error) {
@@ -87,7 +87,7 @@
       });
       return courses;
     }
-    
+
     //def service methods here
     function getProfileData() {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
@@ -101,10 +101,12 @@
     }
 
     function userData(user) {
+      console.log(user)
       var result = {
         'name': user.first_name + " " + user.last_name,
         'email': user.email,
         'avatar': user.avatar,
+        'ticket_set': user.ticket_set,
         'socialLinks': {
           'github_account': user.github_account,
           'linkedin_account': user.linkedin_account,
@@ -112,7 +114,7 @@
         },
         'teacher': user.teacher,
         'competitor': user.competitor,
-        'student': user.student
+        'student': user.student,
       };
 
       if(result.student !== null) {
@@ -135,10 +137,10 @@
          return $q.reject();
        });
     }
-    
+
     function changeSocialLinks(data) {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      
+
       $http.patch(BASE_URL + 'baseuser-update/', data, options)
         .success(function(data) {
           toast('success', 'toast-top-right', 'Успешно редактира социалните си линкове!');

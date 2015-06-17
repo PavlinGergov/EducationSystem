@@ -1,10 +1,10 @@
 (function() {
   'use strict';
-  
+
   angular
     .module('educationSystemApp.profile')
     .controller('profileCtrl', profileCtrl);
-  
+
   function profileCtrl(user, events, ngDialog, profileService, URL) {
     var vm = this;
     vm.MEDIA_URL = URL;
@@ -21,18 +21,19 @@
         break;
       }
     };
-    
+
     vm.user = user;
     vm.events = events;
-    
+
     vm.buyTicket = function(eventId) {
       console.log('eventId: ' + eventId);
       profileService.buyTicket(eventId)
         .then(function(response) {
-          console.log(response);
+          vm.events = [];
+          vm.user.ticket_set.length = 1;
         });
     };
-    
+
     vm.social = function() {
       ngDialog.open({
         template: 'views/profile/profile-social-dialog.html',
@@ -49,7 +50,7 @@
           };
         }]
       });
- 
+
     };
 
     vm.mac = function() {

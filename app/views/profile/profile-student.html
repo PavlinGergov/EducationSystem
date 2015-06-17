@@ -28,39 +28,63 @@
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
       <h1 class="page-header">{{vm.user.name}}</h1>
-        <div class="col-xs-3 text-center">
-          <img ng-show="vm.user.avatar !== null" class="img-thumbnail" src='{{vm.MEDIA_URL}}{{vm.user.avatar}}'>
-          <img ng-hide="vm.user.avatar !== null" class="img-thumbnail" src='/images/no-avatar.png'>
-          
+        <div class="row">
+          <div class="col-xs-3 text-center">
+            <img ng-show="vm.user.avatar !== null" class="img-thumbnail" src='{{vm.MEDIA_URL}}{{vm.user.avatar}}'>
+            <img ng-hide="vm.user.avatar !== null" class="img-thumbnail" src='/images/no-avatar.png'>
+
+          </div>
+
+          <div class="col-xs-8">
+            <p>
+              <i class="fa fa-github icon-text"></i> <a href='{{vm.user.socialLinks.github_account}}' target="_blank">{{vm.user.socialLinks.github_account}}</a>
+            </p>
+            <p>
+              <i class="fa fa-twitter icon-text"></i> <a href='{{vm.user.socialLinks.twitter_account}}' target="_blank">{{vm.user.socialLinks.twitter_account}}</a>
+            </p>
+            <p>
+              <i class="fa fa-linkedin icon-text"></i> <a href='{{vm.user.socialLinks.linkedin_account}}' target="_blank">{{vm.user.socialLinks.linkedin_account}}</a>
+            </p>
+            <button type="button" class="btn btn-primary" ng-click="vm.social()">Промени socials</button>
+
+            <div ng-show="vm.user.student">
+              <strong>MAC адрес: </strong> <span>{{vm.user.student.mac}} </span>
+
+            </div>
+            <button ng-show="vm.user.student" type="button" class="btn btn-primary" ng-click="vm.mac()">Промени MAC</button>
+          </div>
+
+          <div class="col-md-12" ng-show="vm.events.length !== 0 && vm.user.ticket_set.length !== 1">
+            <hr>
+            <h3>Идващи събития:</h3>
+            <div  ng-repeat="event in vm.events">
+              <div class="alert alert-success">
+                <p>
+                  <strong>
+                    {{event.name}}
+                  </strong> - Безплатна, двудневна конференция за IT образование в НДК.
+                </p>
+                <p>
+                  Дати: 19 - 20 Септември.
+                </p>
+                <p>
+                  Прочети повече на:
+                  <a href="{{event.url}}" target="_blank" class="alert-link">
+                    {{event.url}}
+                  </a>
+                </p>
+                <br>
+                <button type="button" class="btn btn-primary" ng-click="vm.buyTicket(event.id)">Вземи билет</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="alert alert-warning" role="alert"  ng-show="vm.user.ticket_set.length === 1">
+          <div>Успешно се записа за <strong>HackConf 2015</strong>. Чакаме те на 19 - 20 Септември в НДИ София от 9:30 часа!</div>
         </div>
 
-        <div class="col-xs-8">
-          <p>
-            <i class="fa fa-github icon-text"></i> <a href='{{vm.user.socialLinks.github_account}}' target="_blank">{{vm.user.socialLinks.github_account}}</a>
-          </p>
-          <p>
-            <i class="fa fa-twitter icon-text"></i> <a href='{{vm.user.socialLinks.twitter_account}}' target="_blank">{{vm.user.socialLinks.twitter_account}}</a>
-          </p>
-          <p>
-            <i class="fa fa-linkedin icon-text"></i> <a href='{{vm.user.socialLinks.linkedin_account}}' target="_blank">{{vm.user.socialLinks.linkedin_account}}</a>
-          </p>
-          <button type="button" class="btn btn-primary" ng-click="vm.social()">Промени socials</button>
 
-          <div ng-show="vm.user.student">
-            <strong>MAC адрес: </strong> <span>{{vm.user.student.mac}} </span>
-            
-          </div>
-          <button ng-show="vm.user.student" type="button" class="btn btn-primary" ng-click="vm.mac()">Промени MAC</button>
-        </div>
-        
-        <div class="col-md-12" ng-show="vm.events.length !== 0">
-          <hr>
-          <div ng-repeat="event in vm.events">
-            {{event.name}} {{event.url}}
-            <button type="button" class="btn btn-primary" ng-click="vm.buyTicket(event.id)">Купи билет</button>
-          </div>
-        </div>
-          
         <div class="col-md-12" ng-show="vm.user.student">
           <hr>
           <h3>Курсове:</h3>
