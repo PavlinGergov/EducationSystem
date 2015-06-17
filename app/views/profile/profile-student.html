@@ -50,9 +50,17 @@
             <strong>MAC адрес: </strong> <span>{{vm.user.student.mac}} </span>
             
           </div>
-          <button type="button" class="btn btn-primary" ng-click="vm.mac()">Промени MAC</button>
+          <button ng-show="vm.user.student" type="button" class="btn btn-primary" ng-click="vm.mac()">Промени MAC</button>
         </div>
-
+        
+        <div class="col-md-12" ng-show="vm.events.length !== 0">
+          <hr>
+          <div ng-repeat="event in vm.events">
+            {{event.name}} {{event.url}}
+            <button type="button" class="btn btn-primary" ng-click="vm.buyTicket(event.id)">Купи билет</button>
+          </div>
+        </div>
+          
         <div class="col-md-12" ng-show="vm.user.student">
           <hr>
           <h3>Курсове:</h3>

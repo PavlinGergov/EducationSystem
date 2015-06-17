@@ -33,10 +33,8 @@
         return profileService.getProfileData()
           .then(function(response) {
             if(response.teacher) {
-              console.log(response.teacher);
               return true;
             }
-            console.log('not teacher');
             return false;
           });
       });

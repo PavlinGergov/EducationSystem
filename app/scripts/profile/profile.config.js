@@ -11,7 +11,7 @@
         controller: function(profileService, $state) {
           profileService.getProfileData()
             .then(function(response) {
-              if(response.teacher !== null) {
+              if(response.teacher) {
                 $state.go('teacher');
               }
               else {
@@ -26,7 +26,8 @@
         controllerAs: 'vm',
         templateUrl: 'views/profile/profile-student.html',
         resolve: {
-          user: profileData
+          user: profileData,
+          events: eventsPrep
         },
         data: {
           permissions: {
@@ -39,16 +40,22 @@
         url: '/teacher',
         data: {
           permissions: {
-            only: ['teacher'],
-            redirectTo: 'profile'
+            except: ['anonymous'],
+            redirectTo: 'login'
           }
         }
       });
 
+    function eventsPrep(profileService) {
+      return profileService.getEvents()
+        .then(function(response) {
+          return response;
+        });
+    }
+
     function profileData(profileService) {
       return profileService.getProfileData()
         .then(function(response) {
-          console.log(response);
           return response;
         });
     }

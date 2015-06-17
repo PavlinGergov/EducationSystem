@@ -5,7 +5,7 @@
     .module('educationSystemApp.profile')
     .controller('profileCtrl', profileCtrl);
   
-  function profileCtrl(user, ngDialog, profileService, URL) {
+  function profileCtrl(user, events, ngDialog, profileService, URL) {
     var vm = this;
     vm.MEDIA_URL = URL;
     vm.icon = function(status) {
@@ -23,7 +23,16 @@
     };
     
     vm.user = user;
-
+    vm.events = events;
+    
+    vm.buyTicket = function(eventId) {
+      console.log('eventId: ' + eventId);
+      profileService.buyTicket(eventId)
+        .then(function(response) {
+          console.log(response);
+        });
+    };
+    
     vm.social = function() {
       ngDialog.open({
         template: 'views/profile/profile-social-dialog.html',

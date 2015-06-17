@@ -9,7 +9,9 @@
     var service = {
       getProfileData: getProfileData,
       changeMac: changeMac,
-      changeSocialLinks: changeSocialLinks
+      changeSocialLinks: changeSocialLinks,
+      getEvents: getEvents,
+      buyTicket: buyTicket
     };
     
     return service;
@@ -25,6 +27,35 @@
           toast('error', 'toast-top-right', msg);
         });
       });
+    }
+
+    function getEvents() {
+      return $http.get(BASE_URL + 'get-events/')
+        .then(function(response) {
+          console.log(response.data);
+          return filterEvents(response.data);
+        });
+    }
+
+    function filterEvents(events) {
+      return events.filter(function(event) {
+          var now = new Date();
+          var eventDate = new Date(event.start_date);
+            return eventDate > now;
+        });
+    }
+
+    function buyTicket(eventId) {
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      var data = {'event_id': eventId};
+      return $http.post(BASE_URL + 'buy-ticket/', data, options)
+        .then(function(response) {
+          msg = 'Успешно заяви своя билет';
+          toast('success', 'toast-top-right', msg);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
 
     function transformMac(macAddress) {
