@@ -87,6 +87,7 @@
     }
 
     function lectureWeek(lectures, lectureDays) {
+      //TODO: GET rid of undefined
       var data = {};
 
       lectures.forEach(function(lecture) {
