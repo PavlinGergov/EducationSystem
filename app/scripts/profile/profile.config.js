@@ -25,26 +25,71 @@
         controller: 'profileCtrl',
         controllerAs: 'vm',
         templateUrl: 'views/profile/profile-student.html',
-        resolve: {
-          user: profileData,
-          events: eventsPrep
-        },
         data: {
           permissions: {
             except: ['anonymous'],
             redirectTo: 'login'
           }
+        },
+        resolve: {
+          user: profileData,
+          events: eventsPrep
         }
       })
       .state('teacher', {
         url: '/teacher',
+        controller: 'teacherCtrl',
+        controllerAs: 'vm',
+        templateUrl: 'views/profile/profile-teacher.html',
         data: {
           permissions: {
-            except: ['anonymous'],
-            redirectTo: 'login'
-          }
+            only: ['teacher'],
+            redirectTo: 'profile'
+          } 
+        },
+        resolve: {
+          courses: coursesData
+        }
+      })
+      .state('course', {
+        url: '/course/:id',
+        controller: 'courseCtrl',
+        controllerAs: 'vm',
+        templateUrl: 'views/profile/profile-course.html',
+        data: {
+          permissions: {
+            only: ['teacher'],
+            redirectTo: 'profile'
+          } 
+        },
+        resolve: {
+          students: courseStudents,
+          lectures: lecturesData
         }
       });
+
+    function coursesData(profileService) {
+      return profileService.courses()
+        .then(function(response) {
+          return response;
+        });
+    }
+
+    function lecturesData(profileService, $stateParams) {
+      return profileService.lectures($stateParams.id)
+        .then(function(response) {
+          return response.data.map(function(lecture) {
+            return lecture.date;
+          }).sort();
+        });
+    }
+
+    function courseStudents(profileService, $stateParams) {
+      return profileService.students($stateParams.id)
+        .then(function(response) {
+          return response;
+        });
+    }
 
     function eventsPrep(profileService) {
       return profileService.getEvents()

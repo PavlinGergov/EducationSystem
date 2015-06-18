@@ -5,16 +5,92 @@
     .module('educationSystemApp.profile')
     .factory('profileService', profileService);
 
-  function profileService($http, BASE_URL, EDUCATION_URL, URL) {
+  function profileService($http, BASE_URL, EDUCATION_URL, URL, $filter) {
     var service = {
       getProfileData: getProfileData,
       changeMac: changeMac,
       changeSocialLinks: changeSocialLinks,
       getEvents: getEvents,
-      buyTicket: buyTicket
+      buyTicket: buyTicket,
+      courses: courses,
+      students: students,
+      lectures: lectures,
+      getCheckins: getCheckins,
+      getWeekDays: getWeekDays,
+      getWeekDay: getWeekDay,
+      getNumberOfWeek: getNumberOfWeek,
+      lectureWeek: lectureWeek
     };
 
     return service;
+
+
+    function lectures(courseId) {
+      var data = {'course_id' : courseId };
+      return $http.get(EDUCATION_URL + 'get-lectures/?course_id=' + courseId)
+        .then(function(response) {
+          return response;
+        });
+      }
+
+    function courses() {
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      return $http.get(EDUCATION_URL + 'get-courses/', options)
+        .then(function(response) {
+          return response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
+
+    function students(courseId) {
+      return $http.get(EDUCATION_URL + 'get-students-for-course/?course_id=' + courseId)
+        .then(function(response) {
+          return response.data;
+        });
+    }
+
+    function getCheckins(studentId) {
+      return $http.get(EDUCATION_URL + 'get-check-ins/?student_id=' + studentId)
+        .then(function(response) {
+          return response.data;
+        });
+    }
+
+    function getWeekDays(lectures) {
+      return lectures.map(function(lecture) {
+        return $filter('date')(new Date(lecture), 'EEEE');
+      }).filter(function (v, i, a) {
+        return a.indexOf(v) === i;
+      });
+    }
+
+    function getWeekDay(date) {
+      return $filter('date')(new Date(date), 'EEEE');
+    }
+
+    function getNumberOfWeek(date) {
+      var date = new Date(date);
+      return $filter('date')(date, 'w') + 52 *
+        $filter('date')(date, 'y');
+    }
+
+    function lectureWeek(lectures, lectureDays) {
+      var data = {};
+      lectures.forEach(function(lecture) {
+        
+        if (!data[getNumberOfWeek(lecture).toString()]) {
+          data[getNumberOfWeek(lecture).toString()] = [];
+        }
+        var index = lectureDays.indexOf(getWeekDay(lecture));
+        data[getNumberOfWeek(lecture).toString()][index] = {
+          'date': lecture,
+          'presence': false
+        };
+      });
+      return data;
+    }
 
     function toast(type, css, msg) {
       toastr.options.positionClass = css;
@@ -98,6 +174,7 @@
     }
 
     function userData(user) {
+      console.log(user);
       var result = {
         'name': user.first_name + " " + user.last_name,
         'email': user.email,
@@ -110,7 +187,7 @@
         },
         'teacher': user.teacher,
         'competitor': user.competitor,
-        'student': user.student,
+        'student': user.student
       };
 
       if(result.student !== null) {

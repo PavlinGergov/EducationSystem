@@ -14,7 +14,7 @@
         $state.go('login');
       });
     })
-    .run(function (Permission, profileService, $rootScope) {
+    .run(function (Permission, profileService, $rootScope, $q) {
       Permission.defineRole('anonymous', function (stateParams) {
         if (localStorage.getItem('token') === null) {
           return true;
@@ -30,13 +30,24 @@
       });
 
       Permission.defineRole('teacher', function (stateParams) {
+        var deferred = $q.defer();
+
         return profileService.getProfileData()
           .then(function(response) {
             if(response.teacher) {
-              return true;
+              console.log(response);
+              console.log('is teacher');
+              deferred.resolve();
+              //              return true;
             }
-            return false;
+            console.log('not teacher');
+            console.log($rootScope);
+            deferred.reject();
+            //            return false;
+          }, function() {
+            deferred.reject();
           });
+        return deferred.promise;
       });
     });
 })();

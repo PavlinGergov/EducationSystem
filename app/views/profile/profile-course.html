@@ -1,0 +1,20 @@
+
+<div ng-repeat="student in vm.students">
+  <span ng-click="vm.getCheckins(student.id, vm.data)">{{student.first_name}} {{student.last_name}}</span>
+</div>
+
+<table border="1">
+  <caption>Presence</caption>
+  <thead>
+    <tr>
+      <th></th>
+      <th ng-repeat="day in vm.lectureDays">{{day}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="(week, date) in vm.tempData">
+      <td>{{'week' + ($index + 1)}}</td>
+      <td ng-repeat="day in vm.lectureDays">{{date[$index].presence}}</td>
+    </tr>
+  </tbody>
+</table>
