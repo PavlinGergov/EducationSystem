@@ -38,13 +38,5 @@
             return false;
           });
       });
-
-      // Permission.defineRole('student', function (stateParams) {
-      //   return profileService.getProfileData()
-      //     .then(function(response) {
-      //       console.log(response);
-      //       //return response.courses !== null;
-      //     });
-      // });
     });
 })();

@@ -31,7 +31,6 @@
           }
         },
         controller: function($stateParams, $state) {
-          console.log($stateParams.from);
           localStorage.setItem('from', $stateParams.from);
           $state.go('register');
         }

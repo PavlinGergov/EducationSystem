@@ -26,7 +26,6 @@
     vm.events = events;
 
     vm.buyTicket = function(eventId) {
-      console.log('eventId: ' + eventId);
       profileService.buyTicket(eventId)
         .then(function(response) {
           vm.events = [];

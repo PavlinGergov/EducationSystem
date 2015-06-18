@@ -32,7 +32,6 @@
     function getEvents() {
       return $http.get(BASE_URL + 'get-events/')
         .then(function(response) {
-          console.log(response.data);
           return filterEvents(response.data);
         });
     }
@@ -54,7 +53,6 @@
           toast('success', 'toast-top-right', msg);
         })
         .catch(function(error) {
-          console.log(error);
         });
     }
 
@@ -96,12 +94,10 @@
           return userData(response.data);
         })
         .catch(function(error) {
-          console.log(error);
         });
     }
 
     function userData(user) {
-      console.log(user)
       var result = {
         'name': user.first_name + " " + user.last_name,
         'email': user.email,

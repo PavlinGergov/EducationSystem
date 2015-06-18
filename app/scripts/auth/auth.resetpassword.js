@@ -13,7 +13,6 @@
     function lostPassword() {
       return authService.resetPassword(vm.userData)
         .then(function(response) {
-          console.log(response);
         });
     }
   };
