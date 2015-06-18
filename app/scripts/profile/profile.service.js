@@ -59,6 +59,7 @@
     }
 
     function getWeekDays(lectures) {
+      // TODO: Sort lecture days
       return lectures.map(function(lecture) {
         return $filter('date')(new Date(lecture), 'EEEE');
       }).filter(function (v, i, a) {
@@ -77,9 +78,10 @@
     }
 
     function lectureWeek(lectures, lectureDays) {
+      //TODO: GET rid of undefined
       var data = {};
       lectures.forEach(function(lecture) {
-        
+
         if (!data[getNumberOfWeek(lecture).toString()]) {
           data[getNumberOfWeek(lecture).toString()] = [];
         }

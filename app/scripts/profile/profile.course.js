@@ -14,7 +14,7 @@
     console.log(vm.data);
 
     vm.getCheckins = function(studentId, data) {
-      vm.tempData = angular.copy(vm.data);
+      vm.courseWeeks = angular.copy(data);
       profileService.getCheckins(studentId)
         .then(function(checkins){
           console.log(checkins);
@@ -22,8 +22,8 @@
           checkins.forEach(function(checkin) {
             checkinsDic[checkin.date] = checkin.id;
           });
-          Object.keys(vm.tempData).forEach(function(key) {
-            vm.tempData[key].forEach(function(lec) {
+          Object.keys(vm.courseWeeks).forEach(function(week) {
+            vm.courseWeeks[week].forEach(function(lec) {
               if (typeof lec === 'undefined') {
                 return;
               }
@@ -41,4 +41,4 @@
     function activate() {
     }
   }
-}) ();
+})();

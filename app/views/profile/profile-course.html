@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="(week, date) in vm.tempData">
+    <tr ng-repeat="(week, date) in vm.courseWeeks">
       <td>{{'week' + ($index + 1)}}</td>
       <td ng-repeat="day in vm.lectureDays">{{date[$index].presence}}</td>
     </tr>
