@@ -59,11 +59,15 @@
     }
 
     function getWeekDays(lectures) {
-      // TODO: Sort lecture days
-      return lectures.map(function(lecture) {
+      var days = ['Monday', 'Tuesday', 'Wednesday',
+       'Thursday', 'Friday', 'Saturday', 'Sunday'];
+      var lectureDays = lectures.map(function(lecture) {
         return $filter('date')(new Date(lecture), 'EEEE');
       }).filter(function (v, i, a) {
         return a.indexOf(v) === i;
+      });
+      return days.filter(function(day) {
+        return lectureDays.indexOf(day) !== -1;
       });
     }
 
