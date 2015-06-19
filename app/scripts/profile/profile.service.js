@@ -38,9 +38,6 @@
       return $http.get(EDUCATION_URL + 'get-courses/', options)
         .then(function(response) {
           return response.data;
-        })
-        .catch(function(error) {
-          console.log(error);
         });
     }
 
