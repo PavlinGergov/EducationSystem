@@ -52,6 +52,7 @@
         }
       });
 
+
     function eventsPrep(profileService) {
       return profileService.getEvents()
         .then(function(response) {
