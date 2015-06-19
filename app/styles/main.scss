@@ -105,6 +105,7 @@ body {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .true {
   background-color: green;
 }
@@ -173,3 +174,21 @@ body {
   width:500px;
   height:350px;
 }
+
+#student-list {
+  padding: 0px;
+  
+  .student-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  .student-item:hover {
+    background-color: #E5E5E5;
+  }
+  .student-avatar {
+    width: 70px;
+    height: 70px;
+    border: 1px solid;
+  }
+}
+
