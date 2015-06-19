@@ -7,7 +7,7 @@
 
   function teacherCtrl(courses, profileService) {
     var vm = this;
-    vm.courses = courses;
+    vm.teachedCourses = courses;
 
     vm.showStudents = function(id) {
       profileService.students(id)

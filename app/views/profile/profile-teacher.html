@@ -11,6 +11,8 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="">Dashboard</a></li>
+        <li><a href="#/profile">Профил</a></li>
         <li><a href="#/logout">Изход</a></li>
       </ul>
     </div>
@@ -19,19 +21,32 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-3 col-md-2 sidebar">
-      <ul class="nav nav-sidebar">
-        <li class="active">
-          <a href="#"><i class="fa fa-user fa-1x icon-text"></i> Profile <span class="sr-only"></span></a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-      <select ng-options="course as course.name for course in vm.courses" ng-change="vm.showStudents(course.id)" ng-model="course">
-      </select>
-    </div>
+    <hb-side-panel teached-courses="vm.teachedCourses"></hb-side-panel>
 
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="row" style="padding-top: 20px;">
+      <div class="col-xs-3 col-sm-offset-2 sidebar" id="student-list">
+        <div class="student-item">
+          <img src="https://hackbulgaria.com/static/img/no-avatar.png" class="student-avatar">
+          Ivaylo Bachvarov  <span class="badge">2</span>
+        </div>
+        <div class="student-item">
+          <img src="https://hackbulgaria.com/static/img/no-avatar.png" class="student-avatar">
+          Ivaylo Bachvarov <span class="badge">2</span>
+        </div>
+        <div class="student-item">
+          <img src="https://hackbulgaria.com/static/img/no-avatar.png" class="student-avatar">
+          Ivaylo Bachvarov <span class="badge">2</span>
+        </div>
+      </div>
+    </div>
+    
+
+
+    <div class="col-sm-9 col-sm-offset-5 main">
+    daaaaaaaaaaaaaaaaaaaaaaaaa
+    daaaaaaaaaaaaaaaaaaaaaaaaa
+    daaaaaaaaaaaaaaaaaaaaaaaaa
+    daaaaaaaaaaaaaaaaaaaaaaaaa
       <ul>
         <li ng-repeat="student in vm.students" ng-click="vm.getCheckins(student.id, vm.data)">{{student.first_name}} {{student.last_name}}</li>
       </ul>

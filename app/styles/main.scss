@@ -103,3 +103,20 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+#student-list {
+  padding: 0px;
+  
+  .student-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  .student-item:hover {
+    background-color: #E5E5E5;
+  }
+  .student-avatar {
+    width: 70px;
+    height: 70px;
+    border: 1px solid;
+  }
+}
