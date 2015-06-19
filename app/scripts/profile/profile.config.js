@@ -48,16 +48,9 @@
           } 
         },
         resolve: {
-          courses: coursesData
+          user: profileData
         }
       });
-
-    function coursesData(profileService) {
-      return profileService.courses()
-        .then(function(response) {
-          return response;
-        });
-    }
 
     function eventsPrep(profileService) {
       return profileService.getEvents()

@@ -12,7 +12,7 @@
       changeSocialLinks: changeSocialLinks,
       getEvents: getEvents,
       buyTicket: buyTicket,
-      courses: courses,
+//      courses: courses,
       students: students,
       lectures: lectures,
       getCheckins: getCheckins,
@@ -29,17 +29,19 @@
       var data = {'course_id' : courseId };
       return $http.get(EDUCATION_URL + 'get-lectures/?course_id=' + courseId)
         .then(function(response) {
-          return response;
+          return response.data.map(function(lecture) {
+            return lecture.date;
+          }).sort();
         });
       }
 
-    function courses() {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(EDUCATION_URL + 'get-courses/', options)
-        .then(function(response) {
-          return response.data;
-        });
-    }
+    // function courses() {
+    //   var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+    //   return $http.get(EDUCATION_URL + 'get-courses/', options)
+    //     .then(function(response) {
+    //       return response.data;
+    //     });
+    // }
 
     function students(courseId) {
       return $http.get(EDUCATION_URL + 'get-students-for-course/?course_id=' + courseId)
@@ -48,8 +50,8 @@
         });
     }
 
-    function getCheckins(studentId) {
-      return $http.get(EDUCATION_URL + 'get-check-ins/?student_id=' + studentId)
+    function getCheckins(studentId, courseId) {
+      return $http.get(EDUCATION_URL + 'get-check-ins/?student_id=' + studentId + '&course_id=' + courseId)
         .then(function(response) {
           return response.data;
         });
@@ -69,22 +71,20 @@
 
     function getNumberOfWeek(date) {
       var date = new Date(date);
-      return $filter('date')(date, 'w') + 52 *
-        $filter('date')(date, 'y');
+      return 'w' + $filter('date')(date, 'w') + 52 *
+          $filter('date')(date, 'y');
     }
 
     function lectureWeek(lectures, lectureDays) {
       var data = {};
-      lectures.forEach(function(lecture) {
-        
-        if (!data[getNumberOfWeek(lecture).toString()]) {
-          data[getNumberOfWeek(lecture).toString()] = [];
+      lectures.map(function(lecture) {
+        var numberOfWeek = getNumberOfWeek(lecture);
+        if (!data[numberOfWeek]) {
+          data[numberOfWeek] = Array.apply(null, Array(lectureDays.length)).map(String.prototype.valueOf, ' ');
         }
+        //console.log(data[numberOfWeek])
         var index = lectureDays.indexOf(getWeekDay(lecture));
-        data[getNumberOfWeek(lecture).toString()][index] = {
-          'date': lecture,
-          'presence': false
-        };
+        data[getNumberOfWeek(lecture)][index] = {'date': lecture, 'presence': false};
       });
       return data;
     }
