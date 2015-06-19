@@ -51,10 +51,10 @@
             var weekNumber = profileService.getNumberOfWeek(checkin.date);
             if(vm.tempData[weekNumber]) {
               vm.tempData[weekNumber].map(function(lec) {
-              
-              if(lec.date == checkin.date) {
-                lec.presence = true;
-              }
+                
+                if(lec.date == checkin.date) {
+                  lec.presence = true;
+                }
               });
             }
           });
@@ -64,7 +64,7 @@
         return student.user.id === studentId;
       })[0];
     };
-
+  
     activate();
 
     function activate() {

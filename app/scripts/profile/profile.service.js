@@ -95,6 +95,7 @@
         if (!data[numberOfWeek]) {
           data[numberOfWeek] = Array.apply(null, Array(lectureDays.length)).map(String.prototype.valueOf, ' ');
         }
+
         var index = lectureDays.indexOf(getWeekDay(lecture));
         data[getNumberOfWeek(lecture)][index] = {'date': lecture, 'presence': false};
       });
