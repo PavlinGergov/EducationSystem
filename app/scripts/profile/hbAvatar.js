@@ -26,10 +26,13 @@
           setDefaultImage(el);
         }
         else {
-          el.attr('src', URL+src);
+          el.attr('src', URL + src);
         }
       });
-      el.bind('error', function() { setDefaultImage(el); });
+      
+      el.bind('error', function() {
+        setDefaultImage(el);
+      });
     }
   };
 })();
