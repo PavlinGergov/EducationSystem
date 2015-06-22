@@ -1,3 +1,70 @@
-<div ng-repeat="course in vm.courses">
-  <a href="#/course/{{course.id}}">{{course.name}}</a>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">HackBulgaria</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="">Dashboard</a></li>
+        <li><a href="#/profile">Профил</a></li>
+        <li><a href="#/logout">Изход</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <hb-side-panel teached-courses="vm.teachedCourses"></hb-side-panel>
+
+    <div class="row" style="padding-top: 20px;">
+      <div class="col-xs-3 col-sm-offset-2 sidebar" id="student-list">
+        <div class="student-item">
+          <img src="https://hackbulgaria.com/static/img/no-avatar.png" class="student-avatar">
+          Ivaylo Bachvarov  <span class="badge">2</span>
+        </div>
+        <div class="student-item">
+          <img src="https://hackbulgaria.com/static/img/no-avatar.png" class="student-avatar">
+          Ivaylo Bachvarov <span class="badge">2</span>
+        </div>
+        <div class="student-item">
+          <img src="https://hackbulgaria.com/static/img/no-avatar.png" class="student-avatar">
+          Ivaylo Bachvarov <span class="badge">2</span>
+        </div>
+      </div>
+    </div>
+    
+
+
+    <div class="col-sm-9 col-sm-offset-5 main">
+    daaaaaaaaaaaaaaaaaaaaaaaaa
+    daaaaaaaaaaaaaaaaaaaaaaaaa
+    daaaaaaaaaaaaaaaaaaaaaaaaa
+    daaaaaaaaaaaaaaaaaaaaaaaaa
+      <ul>
+        <li ng-repeat="student in vm.students" ng-click="vm.getCheckins(student.id)">{{student.first_name}} {{student.last_name}}</li>
+      </ul>
+      <table border="1">
+        <caption>Presence</caption>
+        <thead>
+          <tr>
+            <th></th>
+            <th ng-repeat="day in vm.lectureDays">{{day}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="(week, date) in vm.tempData">
+            <td>{{'week' + ($index + 1)}}</td>
+            <td ng-repeat="day in vm.lectureDays">{{date[$index].presence}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

@@ -11,7 +11,7 @@
     .config(function ($urlRouterProvider) {
       $urlRouterProvider.otherwise(function($injector) {
         var $state = $injector.get("$state");
-        $state.go('login');
+        $state.go('check');
       });
     })
     .run(function (Permission, profileService, $rootScope, $q) {
@@ -29,25 +29,22 @@
         return false;
       });
 
-      Permission.defineRole('teacher', function (stateParams) {
-        var deferred = $q.defer();
-
-        return profileService.getProfileData()
-          .then(function(response) {
-            if(response.teacher) {
-              console.log(response);
-              console.log('is teacher');
-              deferred.resolve();
-              //              return true;
-            }
-            console.log('not teacher');
-            console.log($rootScope);
-            deferred.reject();
-            //            return false;
-          }, function() {
-            deferred.reject();
-          });
-        return deferred.promise;
+      Permission.defineRole('teacher', function () {
+        console.log(Permission);
+        if(localStorage.getItem('token')) {
+          return profileService.getProfileData()
+            .then(function(response) {
+              if(response.teacher) {
+                console.log('teacher');
+                console.log(response.teacher);
+                return true;
+              }
+              console.log('not teacher');
+              return false;
+            });
+        }
+        console.log('not teacher');
+        return false;
       });
     });
 })();
