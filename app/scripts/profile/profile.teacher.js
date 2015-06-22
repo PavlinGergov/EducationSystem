@@ -74,4 +74,5 @@
       vm.showStudents(vm.teachedCourses[0].id);
     }
   }
+
 })();
