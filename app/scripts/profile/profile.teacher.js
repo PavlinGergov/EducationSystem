@@ -63,7 +63,7 @@
         return student.user.id === studentId;
       })[0];
     };
-  
+    
     activate();
 
     function activate() {
