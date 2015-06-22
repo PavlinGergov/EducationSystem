@@ -128,3 +128,17 @@ body {
     border: 1px solid;
   }
 }
+
+#presence-table {
+  width: 100%;
+  tr, th, td {
+    text-align: center;
+    padding: 4px;
+  }
+}
+
+#student-name {
+  padding: 0px;
+  margin: 0px;
+  padding-top: -20px;
+}
