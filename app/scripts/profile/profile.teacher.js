@@ -41,22 +41,27 @@
     };
 
     vm.getCheckins = function (studentId) {
+      // TODO:
+      // fix tempData[weekNumber] undefined (out of range)
       vm.tempData = angular.copy(vm.data);
       profileService.getCheckins(studentId, vm.currentId)
         .then(function(checkins){
           checkins.map(function(checkin) {
             var weekNumber = profileService.getNumberOfWeek(checkin.date);
-            vm.tempData[weekNumber].map(function(lec) {
+            if(vm.tempData[weekNumber]) {
+              vm.tempData[weekNumber].map(function(lec) {
+              
               if(lec.date == checkin.date) {
                 lec.presence = true;
               }
-            });
+              });
+            }
           });
         });
+      
       vm.currentStudent = vm.ca.filter(function(student) {
         return student.user.id === studentId;
       })[0];
-      console.log(vm.currentStudent);
     };
 
     activate();

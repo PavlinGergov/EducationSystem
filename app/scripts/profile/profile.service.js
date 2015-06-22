@@ -86,7 +86,6 @@
     }
 
     function lectureWeek(lectures, lectureDays) {
-      //TODO: GET rid of undefined
       var data = {};
 
       lectures.forEach(function(lecture) {
@@ -94,7 +93,6 @@
         if (!data[numberOfWeek]) {
           data[numberOfWeek] = Array.apply(null, Array(lectureDays.length)).map(String.prototype.valueOf, ' ');
         }
-        //console.log(data[numberOfWeek])
         var index = lectureDays.indexOf(getWeekDay(lecture));
         data[getNumberOfWeek(lecture)][index] = {'date': lecture, 'presence': false};
       });
@@ -183,7 +181,6 @@
     }
 
     function userData(user) {
-      console.log(user);
       var result = {
         'first_name': user.first_name,
         'last_name': user.last_name,
