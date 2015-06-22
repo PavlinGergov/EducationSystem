@@ -27,6 +27,7 @@ module.exports = function(config) {
       'bower_components/angular-permission/dist/angular-permission.js',
       'bower_components/toastr/toastr.js',
       'bower_components/bootstrap/dist/js/bootstrap.js',
+      'bower_components/ngImgCrop/compile/minified/ng-img-crop.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/app.js',
