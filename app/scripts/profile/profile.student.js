@@ -39,6 +39,40 @@
         });
     };
 
+    vm.chAvatar = function() {
+      ngDialog.open({
+        template: 'views/profile/profile-avatar-dialog.html',
+        showClose: false,
+        controller: ['$scope', function($scope) {
+          $scope.myImage='';
+          $scope.myCroppedImage='';
+
+          console.log(document);
+          console.log(document.getElementById('fileInput'));
+
+          var handleFileSelect = function(evt) {
+            console.log("smeniha snimkata bacee!")
+            var file = evt.currentTarget.files[0];
+            var reader = new FileReader();
+            reader.onload = function (evt) {
+              $scope.$apply(function($scope){
+                $scope.myImage = evt.target.result;
+              });
+            };
+            reader.readAsDataURL(file);
+          };
+
+          angular.element(document.getElementById('fileInput'))
+            .on('change', handleFileSelect);
+
+          // $scope.changeAvatar = function() {
+          //     console.log('lil lil lil');
+          //   }
+          }
+        ]
+      })
+    };
+
     vm.social = function() {
       ngDialog.open({
         template: 'views/profile/profile-social-dialog.html',
