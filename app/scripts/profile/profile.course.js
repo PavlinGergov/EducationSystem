@@ -11,13 +11,11 @@
     vm.lectures = lectures;
     vm.lectureDays = profileService.getWeekDays(vm.lectures);
     vm.data = profileService.lectureWeek(vm.lectures, vm.lectureDays);
-    console.log(vm.data);
 
     vm.getCheckins = function(studentId, data) {
       vm.courseWeeks = angular.copy(data);
       profileService.getCheckins(studentId)
         .then(function(checkins){
-          console.log(checkins);
           var checkinsDic = {};
           checkins.forEach(function(checkin) {
             checkinsDic[checkin.date] = checkin.id;

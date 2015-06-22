@@ -5,9 +5,8 @@
     .module('educationSystemApp.profile')
     .controller('profileCtrl', profileCtrl);
 
-  function profileCtrl(user, events, ngDialog, profileService, URL) {
+  function profileCtrl(user, events, ngDialog, profileService) {
     var vm = this;
-    vm.MEDIA_URL = URL;
     vm.icon = function(status) {
       switch(status) {
       case 'taking':
@@ -23,7 +22,6 @@
     };
 
     vm.user = user;
-    console.log(vm.user);
     vm.events = events;
 
     vm.buyTicket = function(eventId) {
