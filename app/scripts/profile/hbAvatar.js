@@ -7,14 +7,14 @@
 
   function hbAvatar() {
     var directive = {
-      template: '<img class="img-thumbnail" src={{ avatar }}>',
-      link: link
+      link: postLink
     };
     return directive;
 
-    function link(scope, element, attrs, ctrl) {
-      console.log(scope);
-      
+    function postLink(scope, iElement, iAttrs) {
+      iElement.bind('error', function() {
+        angular.element(this).attr("src", iAttrs.hbAvatar);
+      });
     }
   }
 })();

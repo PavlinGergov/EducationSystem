@@ -30,9 +30,10 @@
       <h1 class="page-header">{{vm.user.first_name}} {{vm.user.last_name}}</h1>
         <div class="row">
           <div class="col-xs-3 text-center">
-            <img ng-show="vm.user.avatar !== null" class="img-thumbnail" src='{{vm.MEDIA_URL}}{{vm.user.avatar}}'>
-            <img ng-hide="vm.user.avatar !== null" class="img-thumbnail" src='/images/no-avatar.png'>
-
+            <!-- <img ng-show="vm.user.avatar !== null" class="img-thumbnail" src='{{vm.MEDIA_URL}}{{vm.user.avatar}}'> -->
+            <!-- <img ng-hide="vm.user.avatar !== null" class="img-thumbnail" src='/images/no-avatar.png'> -->
+            <img hb-avatar="/images/no-avatar.png" ng-src="{{vm.MEDIA_URL}}{{vm.user.avatar}}"></div>
+            
           </div>
 
           <div class="col-xs-8">
