@@ -9,10 +9,11 @@
     var vm = this;
 
     vm.showStudents = function(id) {
-      vm.current_id = id;
+      vm.currentId = id;
       profileService.students(id)
         .then(function(response) {
-          vm.students =  response;
+          console.log(response);
+          vm.ca =  response;
         });
 
       profileService.lectures(id)
@@ -25,7 +26,7 @@
 
     vm.getCheckins = function (studentId) {
       vm.tempData = angular.copy(vm.data);
-      profileService.getCheckins(studentId, vm.current_id)
+      profileService.getCheckins(studentId, vm.currentId)
         .then(function(checkins){
           checkins.map(function(checkin) {
             var weekNumber = profileService.getNumberOfWeek(checkin.date);
@@ -36,6 +37,9 @@
             });
           });
         });
+      vm.currentStudent = vm.ca.filter(function(student) {
+        return student.user.id === studentId;
+      })[0];
     };
 
     activate();
@@ -43,6 +47,7 @@
     function activate() {
       vm.url = URL;
       vm.user = user;
+      console.log(user);
       vm.teachedCourses = vm.user.teacher.teached_courses;
       // TODO:
       // sort teachedCourses

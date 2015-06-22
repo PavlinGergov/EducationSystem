@@ -47,7 +47,7 @@
 
     function students(courseId) {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(EDUCATION_URL + 'get-students-for-course/?course_id=' + courseId, options)
+      return $http.get(EDUCATION_URL + 'get-cas-for-course/?course_id=' + courseId, options)
         .then(function(response) {
           return response.data;
         });

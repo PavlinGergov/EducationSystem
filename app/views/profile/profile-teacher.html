@@ -32,17 +32,19 @@
 
     <div class="row" style="padding-top: 20px;">
       <div class="col-xs-3 col-sm-offset-2 sidebar" id="student-list">
-        <div class="student-item" ng-repeat="student in vm.students" ng-click="vm.getCheckins(student.id)">
-          <img src="{{vm.url}}{{student.avatar}}" class="student-avatar">
-          {{student.first_name}} {{student.last_name}}  <span class="badge">2</span>
+        <div class="student-item" ng-repeat="student in vm.ca" ng-click="vm.getCheckins(student.user.id)">
+          <img src="{{vm.url}}{{student.user.avatar}}" class="student-avatar">
+          {{student.user.first_name}} {{student.user.last_name}}  <span class="badge">{{student.studentnote_set.length}}</span>
         </div>
       </div>
     </div>
-    
-
 
     <div class="col-sm-9 col-sm-offset-5 main">
-      <table border="1">
+      <p ng-repeat="note in vm.currentStudent.studentnote_set"> {{note.text}} </p>
+    </div>
+
+    <div class="col-sm-9 col-sm-offset-5 main">
+      <table class="table table-bordered">
         <caption>Presence</caption>
         <thead>
           <tr>
@@ -53,10 +55,11 @@
         <tbody>
           <tr ng-repeat="(week, date) in vm.tempData">
             <td>{{'week' + ($index + 1)}}</td>
-            <td ng-repeat="day in vm.lectureDays">{{date[$index].presence}}</td>
+            <td ng-repeat="day in vm.lectureDays" class="{{date[$index].presence}}"></td>
           </tr>
         </tbody>
       </table>
     </div>
+    
   </div>
 </div>
