@@ -5,16 +5,13 @@
     .module('educationSystemApp.auth')
     .controller('teacherCtrl', teacherCtrl);
 
-  function teacherCtrl(user, profileService) {
+  function teacherCtrl(user, profileService, URL) {
     var vm = this;
-    vm.user = user;
-    vm.teachedCourses = vm.user.teacher.teached_courses;
 
     vm.showStudents = function(id) {
       vm.current_id = id;
       profileService.students(id)
         .then(function(response) {
-          console.log(response);
           vm.students =  response;
         });
 
@@ -40,5 +37,16 @@
           });
         });
     };
+
+    activate();
+
+    function activate() {
+      vm.url = URL;
+      vm.user = user;
+      vm.teachedCourses = vm.user.teacher.teached_courses;
+      // TODO:
+      // sort teachedCourses
+      vm.showStudents(vm.teachedCourses[0].id);
+    }
   }
 })();

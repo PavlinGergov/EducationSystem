@@ -33,7 +33,7 @@
     <div class="row" style="padding-top: 20px;">
       <div class="col-xs-3 col-sm-offset-2 sidebar" id="student-list">
         <div class="student-item" ng-repeat="student in vm.students" ng-click="vm.getCheckins(student.id)">
-          <img src="http://localhost:8000{{student.avatar}}" class="student-avatar">
+          <img src="{{vm.url}}{{student.avatar}}" class="student-avatar">
           {{student.first_name}} {{student.last_name}}  <span class="badge">2</span>
         </div>
       </div>
