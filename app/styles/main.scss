@@ -190,6 +190,7 @@ body {
   }
 }
 
+<<<<<<< HEAD
 .true {
   background-color: green;
 }
@@ -198,3 +199,18 @@ body {
   background-color: red;
 }
 
+=======
+#presence-table {
+  width: 100%;
+  tr, th, td {
+    text-align: center;
+    padding: 4px;
+  }
+}
+
+#student-name {
+  padding: 0px;
+  margin: 0px;
+  padding-top: -20px;
+}
+>>>>>>> Style improvements
