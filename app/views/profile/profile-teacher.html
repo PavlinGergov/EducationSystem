@@ -39,11 +39,17 @@
       </div>
     </div>
 
-    <div class="col-sm-9 col-sm-offset-5 main">
-      <p ng-repeat="note in vm.currentStudent.studentnote_set"> {{note.text}} </p>
+    <div class="col-sm-9 col-sm-offset-5 main" ng-show="vm.currentStudent">
+      <p ng-repeat="note in vm.currentStudent.studentnote_set">{{note.author.first_name}} {{note.author.last_name}}: {{note.text}} </p>
+      <form class="form-horizontal" name="macForm" ng-submit="vm.addNote(vm.currentStudent.id)" novalidate>
+        <textarea name="new_note" class="form-control" ng-model="vm.newNote" rows="3"></textarea>
+        <button type="submit" class="btn btn-primary">
+          Добави коментар
+        </button>
+      </form>
     </div>
 
-    <div class="col-sm-9 col-sm-offset-5 main">
+    <div class="col-sm-9 col-sm-offset-5 main" ng-show="vm.currentStudent">
       <table class="table table-bordered">
         <caption>Presence</caption>
         <thead>

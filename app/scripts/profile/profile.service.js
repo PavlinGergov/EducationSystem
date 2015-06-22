@@ -12,38 +12,39 @@
       changeSocialLinks: changeSocialLinks,
       getEvents: getEvents,
       buyTicket: buyTicket,
-//      courses: courses,
       students: students,
       lectures: lectures,
       getCheckins: getCheckins,
       getWeekDays: getWeekDays,
       getWeekDay: getWeekDay,
       getNumberOfWeek: getNumberOfWeek,
-      lectureWeek: lectureWeek
+      lectureWeek: lectureWeek,
+      addNote: addNote
     };
 
     return service;
 
-
+    function addNote(data) {
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      return $http.post(EDUCATION_URL + 'create-student_note/', data, options)
+        .success(function(response) {
+          var msg = response.message;
+          toast('success', 'toast-top-right', msg);
+        })
+        .error(function(error) {
+        });
+    }
+    
     function lectures(courseId) {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       var data = {'course_id' : courseId };
       return $http.get(EDUCATION_URL + 'get-lectures/?course_id=' + courseId, options)
         .then(function(response) {
-          console.log(response.data);
           return response.data.map(function(lecture) {
             return lecture.date;
           }).sort();
         });
       }
-
-    // function courses() {
-    //   var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-    //   return $http.get(EDUCATION_URL + 'get-courses/', options)
-    //     .then(function(response) {
-    //       return response.data;
-    //     });
-    // }
 
     function students(courseId) {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
@@ -184,7 +185,8 @@
     function userData(user) {
       console.log(user);
       var result = {
-        'name': user.first_name + " " + user.last_name,
+        'first_name': user.first_name,
+        'last_name': user.last_name,
         'email': user.email,
         'avatar': user.avatar,
         'ticket_set': user.ticket_set,

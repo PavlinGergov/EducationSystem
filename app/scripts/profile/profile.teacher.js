@@ -12,7 +12,6 @@
       vm.currentId = id;
       profileService.students(id)
         .then(function(response) {
-          console.log(response);
           vm.ca =  response;
         });
 
@@ -21,6 +20,23 @@
           vm.lectures = response;
           vm.lectureDays = profileService.getWeekDays(vm.lectures);
           vm.data = profileService.lectureWeek(vm.lectures, vm.lectureDays);
+        });
+    };
+
+    vm.addNote = function(caId) {
+      var data = {
+        'text': vm.newNote,
+        'ca_id': caId
+      };
+      profileService.addNote(data)
+        .success(function(response) {
+          vm.newNote = '';
+          data.author = {
+            'first_name': vm.user.first_name,
+            'last_name': vm.user.last_name
+          };
+          
+          vm.currentStudent.studentnote_set.push(data);
         });
     };
 
@@ -40,6 +56,7 @@
       vm.currentStudent = vm.ca.filter(function(student) {
         return student.user.id === studentId;
       })[0];
+      console.log(vm.currentStudent);
     };
 
     activate();
@@ -47,7 +64,6 @@
     function activate() {
       vm.url = URL;
       vm.user = user;
-      console.log(user);
       vm.teachedCourses = vm.user.teacher.teached_courses;
       // TODO:
       // sort teachedCourses
