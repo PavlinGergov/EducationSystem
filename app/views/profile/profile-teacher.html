@@ -33,15 +33,15 @@
     <div class="row" style="padding-top: 20px;">
       <div class="col-xs-3 col-sm-offset-2 sidebar" id="student-list">
         <div class="student-item" ng-repeat="student in vm.ca" ng-click="vm.getCheckins(student.user.id)">
-          <img src="{{vm.url}}{{student.user.avatar}}" class="student-avatar">
+          <img hb-avatar ng-src="{{student.user.avatar}}" class="student-avatar">
           {{student.user.first_name}} {{student.user.last_name}}  <span class="badge">{{student.studentnote_set.length}}</span>
         </div>
       </div>
     </div>
 
-    <div class="col-sm-9 col-sm-offset-5 main" ng-show="vm.currentStudent">
-      <p ng-repeat="note in vm.currentStudent.studentnote_set">{{note.author.first_name}} {{note.author.last_name}}: {{note.text}} </p>
-      <form class="form-horizontal" name="macForm" ng-submit="vm.addNote(vm.currentStudent.id)" novalidate>
+    <div class="col-sm-9 col-sm-offset-5 main" ng-show="vm.courseAssignment">
+      <p ng-repeat="note in vm.courseAssignment.studentnote_set">{{note.author.first_name}} {{note.author.last_name}}: {{note.text}} </p>
+      <form class="form-horizontal" name="macForm" ng-submit="vm.addNote(vm.courseAssignment.id)" novalidate>
         <textarea name="new_note" class="form-control" ng-model="vm.newNote" rows="3"></textarea>
         <button type="submit" class="btn btn-primary">
           Добави коментар
@@ -49,7 +49,7 @@
       </form>
     </div>
 
-    <div class="col-sm-9 col-sm-offset-5 main" ng-show="vm.currentStudent">
+    <div class="col-sm-9 col-sm-offset-5 main" ng-show="vm.courseAssignment">
       <table class="table table-bordered">
         <caption>Presence</caption>
         <thead>

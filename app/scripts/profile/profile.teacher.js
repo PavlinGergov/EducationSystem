@@ -36,7 +36,7 @@
             'last_name': vm.user.last_name
           };
           
-          vm.currentStudent.studentnote_set.push(data);
+          vm.courseAssignment.studentnote_set.push(data);
         });
     };
 
@@ -59,7 +59,7 @@
           });
         });
       
-      vm.currentStudent = vm.ca.filter(function(student) {
+      vm.courseAssignment = vm.ca.filter(function(student) {
         return student.user.id === studentId;
       })[0];
     };
