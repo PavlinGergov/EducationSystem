@@ -58,11 +58,10 @@
             }
           });
         });
-      
+
       vm.courseAssignment = vm.ca.filter(function(student) {
         return student.user.id === studentId;
       })[0];
-      console.log(vm.currentStudent);
     };
     
     activate();

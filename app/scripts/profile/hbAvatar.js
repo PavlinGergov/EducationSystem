@@ -5,6 +5,7 @@
     .module('educationSystemApp.profile')
     .directive('hbAvatar', hbAvatar);
 
+<<<<<<< HEAD
   var setDefaultImage = function (el) {
     el.attr('src', "/images/no-avatar.png");
   };
@@ -35,4 +36,18 @@
       });
     }
   };
+=======
+  function hbAvatar() {
+    var directive = {
+      template: '<img class="img-thumbnail" src={{ avatar }}>',
+      link: link
+    };
+    return directive;
+
+    function link(scope, element, attrs, ctrl) {
+      console.log(scope);
+      
+    }
+  }
+>>>>>>> fix checkins
 })();

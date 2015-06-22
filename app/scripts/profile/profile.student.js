@@ -43,7 +43,6 @@
     };
 
     vm.user = user;
-    console.log(vm.user);
     vm.events = events;
     vm.obj = {
       'src': '',

@@ -87,7 +87,6 @@
     }
 
     function lectureWeek(lectures, lectureDays) {
-      //TODO: GET rid of undefined
       var data = {};
 
       lectures.forEach(function(lecture) {
@@ -95,7 +94,6 @@
         if (!data[numberOfWeek]) {
           data[numberOfWeek] = Array.apply(null, Array(lectureDays.length)).map(String.prototype.valueOf, ' ');
         }
-
         var index = lectureDays.indexOf(getWeekDay(lecture));
         data[getNumberOfWeek(lecture)][index] = {'date': lecture, 'presence': false};
       });
