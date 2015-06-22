@@ -1,13 +1,14 @@
 (function() {
   'use strict';
-  
+
   angular
     .module('educationSystemApp', [
       'ui.router',
       'educationSystemApp.auth',
       'educationSystemApp.profile',
       'educationSystemApp.nav',
-      'permission'
+      'permission',
+      'ngImgCrop'
     ])
     .config(function ($urlRouterProvider) {
       $urlRouterProvider.otherwise(function($injector) {
