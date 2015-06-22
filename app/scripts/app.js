@@ -30,20 +30,15 @@
       });
 
       Permission.defineRole('teacher', function () {
-        console.log(Permission);
         if(localStorage.getItem('token')) {
           return profileService.getProfileData()
             .then(function(response) {
               if(response.teacher) {
-                console.log('teacher');
-                console.log(response.teacher);
                 return true;
               }
-              console.log('not teacher');
               return false;
             });
         }
-        console.log('not teacher');
         return false;
       });
     });

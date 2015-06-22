@@ -26,9 +26,11 @@
 
 
     function lectures(courseId) {
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       var data = {'course_id' : courseId };
-      return $http.get(EDUCATION_URL + 'get-lectures/?course_id=' + courseId)
+      return $http.get(EDUCATION_URL + 'get-lectures/?course_id=' + courseId, options)
         .then(function(response) {
+          console.log(response.data);
           return response.data.map(function(lecture) {
             return lecture.date;
           }).sort();
@@ -44,14 +46,16 @@
     // }
 
     function students(courseId) {
-      return $http.get(EDUCATION_URL + 'get-students-for-course/?course_id=' + courseId)
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      return $http.get(EDUCATION_URL + 'get-students-for-course/?course_id=' + courseId, options)
         .then(function(response) {
           return response.data;
         });
     }
 
     function getCheckins(studentId, courseId) {
-      return $http.get(EDUCATION_URL + 'get-check-ins/?student_id=' + studentId + '&course_id=' + courseId)
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      return $http.get(EDUCATION_URL + 'get-check-ins/?student_id=' + studentId + '&course_id=' + courseId, options)
         .then(function(response) {
           return response.data;
         });
