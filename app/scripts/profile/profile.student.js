@@ -3,7 +3,6 @@
 
   angular
     .module('educationSystemApp.profile')
-
     .directive("fileread", [function () {
       return {
         scope: {
