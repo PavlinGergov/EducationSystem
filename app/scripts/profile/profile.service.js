@@ -41,6 +41,7 @@
       var data = {'course_id' : courseId };
       return $http.get(EDUCATION_URL + 'get-lectures/?course_id=' + courseId, options)
         .then(function(response) {
+          console.log(response.data);
           return response.data.map(function(lecture) {
             return lecture.date;
           }).sort();

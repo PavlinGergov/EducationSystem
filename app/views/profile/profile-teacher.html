@@ -9,23 +9,12 @@
       </button>
       <a class="navbar-brand" href="#">HackBulgaria</a>
     </div>
-<<<<<<< HEAD
     <angled-navbar menus="vm.menu"></angled-navbar>
-=======
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="">Dashboard</a></li>
-        <li><a href="#/profile">Профил</a></li>
-        <li><a href="#/logout">Изход</a></li>
-      </ul>
-    </div>
->>>>>>> Move side panel to directive
   </div>
 </nav>
 
 <div class="container-fluid">
   <div class="row">
-<<<<<<< HEAD
     <div class="col-sm-2 sidebar">
       <ul class="nav nav-sidebar">
         <li ng-repeat="course in vm.teachedCourses" ng-class="{active: course.id==vm.currentId}" >
@@ -33,8 +22,7 @@
         </li>
       </ul>
     </div>
-
-
+    
     <div class="row">
       <div class="col-xs-3 col-sm-offset-2">
         <input type="text" placeholder="Търси курсист"  ng-model="studentSearch" id="students-search">
@@ -44,28 +32,10 @@
           <img hb-avatar ng-src="{{ca.user.avatar}}" class="student-avatar">
           <p>{{ca.user.first_name}} {{ca.user.last_name}}</p>  
           <p class="badge">Коментари: {{ca.studentnote_set.length}}</p>
-=======
-    <hb-side-panel teached-courses="vm.teachedCourses"></hb-side-panel>
-
-    <div class="row" style="padding-top: 20px;">
-      <div class="col-xs-3 col-sm-offset-2 sidebar" id="student-list">
-        <div class="student-item">
-          <img src="https://hackbulgaria.com/static/img/no-avatar.png" class="student-avatar">
-          Ivaylo Bachvarov  <span class="badge">2</span>
-        </div>
-        <div class="student-item">
-          <img src="https://hackbulgaria.com/static/img/no-avatar.png" class="student-avatar">
-          Ivaylo Bachvarov <span class="badge">2</span>
-        </div>
-        <div class="student-item">
-          <img src="https://hackbulgaria.com/static/img/no-avatar.png" class="student-avatar">
-          Ivaylo Bachvarov <span class="badge">2</span>
->>>>>>> Move side panel to directive
         </div>
       </div>
     </div>
     
-<<<<<<< HEAD
     <div class="col-sm-7 col-sm-offset-5 main" ng-show="vm.courseAssignment">
       <div class="col-sm-4">
         <img hb-avatar ng-src="{{ vm.courseAssignment.user.avatar}}" class="img-thumbnail">
@@ -112,35 +82,6 @@
 
       </div>
     
-=======
-
-
-    <div class="col-sm-9 col-sm-offset-5 main">
-    daaaaaaaaaaaaaaaaaaaaaaaaa
-    daaaaaaaaaaaaaaaaaaaaaaaaa
-    daaaaaaaaaaaaaaaaaaaaaaaaa
-    daaaaaaaaaaaaaaaaaaaaaaaaa
-      <ul>
-        <li ng-repeat="student in vm.students" ng-click="vm.getCheckins(student.id)">{{student.first_name}} {{student.last_name}}</li>
-      </ul>
-      <table border="1">
-        <caption>Presence</caption>
-        <thead>
-          <tr>
-            <th></th>
-            <th ng-repeat="day in vm.lectureDays">{{day}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="(week, date) in vm.tempData">
-            <td>{{'week' + ($index + 1)}}</td>
-            <td ng-repeat="day in vm.lectureDays">{{date[$index].presence}}</td>
-          </tr>
-        </tbody>
-      </table>
->>>>>>> Move side panel to directive
-    </div>
-
   </div>
     
     <div class="col-sm-7 col-sm-offset-5 main" ng-show="vm.courseAssignment">

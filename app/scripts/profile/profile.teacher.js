@@ -51,7 +51,6 @@
             var weekNumber = profileService.getNumberOfWeek(checkin.date);
             if(vm.tempData[weekNumber]) {
               vm.tempData[weekNumber].map(function(lec) {
-                
                 if(lec.date == checkin.date) {
                   lec.presence = true;
                 }
