@@ -43,10 +43,11 @@
 
     vm.user = user;
     vm.events = events;
-    vm.obj = {};
-    vm.obj.src = '';
-    vm.obj.selection = [0, 0, 300, 300, 0, 0];
-    vm.obj.thumbnail = false;
+    vm.obj = {
+      'src': '',
+      'selection': [0, 0, 300, 300, 0, 0],
+      'thumbnail': false
+    };
 
     if(vm.user.teacher) {
       vm.menu = navbar.teacher();
@@ -54,7 +55,7 @@
     else {
       vm.menu = navbar.student();
     }
-    
+
     vm.buyTicket = function(eventId) {
       profileService.buyTicket(eventId)
         .then(function(response) {
