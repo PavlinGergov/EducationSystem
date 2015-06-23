@@ -9,6 +9,7 @@
     var vm = this;
 
     vm.menu = navbar.teacher();
+
     vm.showStudents = function(courseId) {
       vm.currentId = courseId;
       profileService.students(courseId)
