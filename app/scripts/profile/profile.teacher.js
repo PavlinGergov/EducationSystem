@@ -8,14 +8,14 @@
   function teacherCtrl(user, profileService, URL) {
     var vm = this;
 
-    vm.showStudents = function(id) {
-      vm.currentId = id;
-      profileService.students(id)
+    vm.showStudents = function(courseId) {
+      vm.currentId = courseId;
+      profileService.students(courseId)
         .then(function(response) {
           vm.ca =  response;
         });
 
-      profileService.lectures(id)
+      profileService.lectures(courseId)
         .then(function(response) {
           vm.lectures = response;
           vm.lectureDays = profileService.getWeekDays(vm.lectures);
@@ -69,9 +69,7 @@
     function activate() {
       vm.url = URL;
       vm.user = user;
-      vm.teachedCourses = vm.user.teacher.teached_courses;
-      // TODO:
-      // sort teachedCourses
+      vm.teachedCourses = vm.user.teacher.teached_courses.reverse();
       vm.showStudents(vm.teachedCourses[0].id);
     }
   }

@@ -119,26 +119,42 @@ body {
     padding: 10px;
     cursor: pointer;
   }
-  .student-item:hover {
+  .student-item:hover, .active {
     background-color: #E5E5E5;
   }
   .student-avatar {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border: 1px solid;
+    float: left;
+    margin-right: 10px;
   }
+}
+.socials {
+  list-style-type: none;
+  margin-left: 5px;
+  padding: 0px;
+
 }
 
 #presence-table {
   width: 100%;
+  margin-top: 10px;
   tr, th, td {
     text-align: center;
-    padding: 4px;
+    padding: 1px;
+  }
+  .true {
+    background-color: #dff0d8;
+  }
+
+  .false {
+    background-color: #EDCECE;
   }
 }
 
 #student-name {
   padding: 0px;
   margin: 0px;
-  padding-top: -20px;
+  padding: -20px;
 }
