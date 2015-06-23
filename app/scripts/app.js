@@ -10,8 +10,8 @@
       'permission',
       'ngJcrop',
       'ngFileUpload'
-    ])  
-    .config(function ($urlRouterProvider, ngJcropConfigProvider) {
+    ])
+    .config(function ($urlRouterProvider) {
       $urlRouterProvider.otherwise(function($injector) {
         var $state = $injector.get("$state");
         $state.go('check');

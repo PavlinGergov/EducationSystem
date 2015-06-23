@@ -72,6 +72,13 @@
         });
     };
 
+    if(vm.user.teacher) {
+      vm.menu = navbar.teacher();
+    }
+    else {
+      vm.menu = navbar.student();
+    }
+    
     vm.buyTicket = function(eventId) {
       profileService.buyTicket(eventId)
         .then(function(response) {
