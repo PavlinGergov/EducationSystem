@@ -24,7 +24,8 @@
     }])
     .controller('profileCtrl', profileCtrl);
 
-      function profileCtrl(user, events, ngDialog, profileService, URL, Upload, navbar) {
+    //TODO:Iznasqne na direktivata v otdelen fail
+  function profileCtrl(user, events, ngDialog, profileService, URL, Upload, EDUCATION_URL, navbar) {
 
     var vm = this;
     vm.icon = function(status) {
@@ -58,11 +59,11 @@
 
     vm.uploadAvatar = function(file) {
       Upload.upload({
-        url: URL,
-        method: 'PUT',
+        url: EDUCATION_URL +'base-user-update/',
+        method: 'PATCH',
         fields: {'selection': vm.obj.selection},
         file: file,
-        headers: {'Authorization': 'Token ' + localStorage.getIteem('token')}
+        headers: {'Authorization': 'Token ' + localStorage.getItem('token')}
       });
     };
 
@@ -80,7 +81,7 @@
         data: angular.copy(vm.user.socialLinks),
         showClose: false,
         controller: ['$scope', function($scope) {
-          
+
           $scope.socialLinks = $scope.ngDialogData;
           $scope.editSocial = function(isValid) {
             if(isValid === true) {
