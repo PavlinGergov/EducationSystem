@@ -19,6 +19,7 @@
       getWeekDay: getWeekDay,
       getNumberOfWeek: getNumberOfWeek,
       lectureWeek: lectureWeek,
+      notification: toast,
       addNote: addNote
     };
 

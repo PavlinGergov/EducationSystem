@@ -20,7 +20,7 @@
             reader.readAsDataURL(changeEvent.target.files[0]);
           });
         }
-      }
+      };
     }])
     .controller('profileCtrl', profileCtrl);
 
@@ -64,7 +64,13 @@
         fields: {'selection': vm.obj.selection},
         file: file,
         headers: {'Authorization': 'Token ' + localStorage.getItem('token')}
-      });
+      })
+        .success(function(response) {
+          $('#myModal').modal('hide');
+          var msg = 'Успешно промени аватара си!';
+          profileService.notification('success', 'toast-top-right', msg);
+          vm.user.avatar = response;
+        });
     };
 
     vm.buyTicket = function(eventId) {
