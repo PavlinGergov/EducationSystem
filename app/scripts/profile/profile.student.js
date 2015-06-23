@@ -59,8 +59,10 @@
     vm.uploadAvatar = function(file) {
       Upload.upload({
         url: URL,
+        method: 'PUT',
         fields: {'selection': vm.obj.selection},
-        file: file
+        file: file,
+        headers: {'Authorization': 'Token ' + localStorage.getIteem('token')}
       });
     };
 
