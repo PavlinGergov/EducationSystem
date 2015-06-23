@@ -12,7 +12,7 @@
           profileService.getProfileData()
             .then(function(response) {
               if(response.teacher) {
-                $state.go('teacher');
+                $state.go('teacherDashboard');
               }
               else {
                 $state.go('profile');
@@ -36,7 +36,7 @@
           events: eventsPrep
         }
       })
-      .state('teacher', {
+      .state('teacherDashboard', {
         url: '/teacher',
         controller: 'teacherCtrl',
         controllerAs: 'vm',

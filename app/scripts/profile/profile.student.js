@@ -5,7 +5,7 @@
     .module('educationSystemApp.profile')
     .controller('profileCtrl', profileCtrl);
 
-  function profileCtrl(user, events, ngDialog, profileService) {
+  function profileCtrl(user, events, ngDialog, profileService, navbar) {
     var vm = this;
     vm.icon = function(status) {
       switch(status) {
@@ -24,6 +24,13 @@
     vm.user = user;
     vm.events = events;
 
+    if(vm.user.teacher) {
+      vm.menu = navbar.teacher();
+    }
+    else {
+      vm.menu = navbar.student();
+    }
+    
     vm.buyTicket = function(eventId) {
       profileService.buyTicket(eventId)
         .then(function(response) {

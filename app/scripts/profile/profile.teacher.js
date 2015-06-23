@@ -5,9 +5,10 @@
     .module('educationSystemApp.auth')
     .controller('teacherCtrl', teacherCtrl);
 
-  function teacherCtrl(user, profileService, URL) {
+  function teacherCtrl(user, profileService, URL, navbar) {
     var vm = this;
 
+    vm.menu = navbar.teacher();
     vm.showStudents = function(courseId) {
       vm.currentId = courseId;
       profileService.students(courseId)

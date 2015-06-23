@@ -6,6 +6,7 @@
       'ui.router',
       'educationSystemApp.auth',
       'educationSystemApp.profile',
+      'educationSystemApp.nav',
       'permission'
     ])
     .config(function ($urlRouterProvider) {
