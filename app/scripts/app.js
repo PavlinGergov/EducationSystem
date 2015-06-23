@@ -8,7 +8,8 @@
       'educationSystemApp.profile',
       'educationSystemApp.nav',
       'permission',
-      'ngJcrop'
+      'ngJcrop',
+      'ngFileUpload'
     ])  
     .config(function ($urlRouterProvider, ngJcropConfigProvider) {
       $urlRouterProvider.otherwise(function($injector) {

@@ -24,7 +24,7 @@
 
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  launch modal
+            Промени аватара
           </button>
 
           <div class="col-xs-8">
@@ -133,29 +133,17 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Modal title</h4>
+        <h4 class="modal-title">Качи снимка</h4>
       </div>
       <div class="modal-body">
-        <input  type="file" fileread="vm.obj.src"/>
+        <form name="avatarForm">
+        <input  type="file" fileread="vm.obj.src" ng-model="picFile" name="file" accept="image/*" ngf-select=""/>
         <div ng-show="vm.obj.src" ng-jcrop="vm.obj.src" selection="vm.obj.selection" thumbnail="obj.thumbnail"></div>
         <!-- <img src="{{vm.obj.src}}"> -->
-
-        <table>
-          <tbody>
-            <tr>
-              <td><strong>x</strong>: <span ng-bind="vm.obj.selection[0]"></span></td>
-              <td><strong>y</strong>: <span ng-bind="vm.obj.selection[1]"></span></td>
-              <td><strong>x2</strong>: <span ng-bind="vm.obj.selection[2]"></span></td>
-              <td><strong>y2</strong>: <span ng-bind="vm.obj.selection[3]"></span></td>
-              <td><strong>w</strong>: <span ng-bind="vm.obj.selection[4]"></span></td>
-              <td><strong>h</strong>: <span ng-bind="vm.obj.selection[5]"></span></td>
-            </tr>
-          </tbody>
-        </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" ng-click="vm.uploadAvatar(picFile)">Save changes</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

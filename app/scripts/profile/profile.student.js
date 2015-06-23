@@ -15,7 +15,6 @@
             reader.onload = function (loadEvent) {
               scope.$apply(function () {
                 scope.fileread = loadEvent.target.result;
-                console.log();
               });
             };
             reader.readAsDataURL(changeEvent.target.files[0]);
@@ -25,7 +24,8 @@
     }])
     .controller('profileCtrl', profileCtrl);
 
-  function profileCtrl(user, events, ngDialog, profileService, navbar) {
+      function profileCtrl(user, events, ngDialog, profileService, URL, Upload, navbar) {
+
     var vm = this;
     vm.icon = function(status) {
       switch(status) {
@@ -55,6 +55,14 @@
     else {
       vm.menu = navbar.student();
     }
+
+    vm.uploadAvatar = function(file) {
+      Upload.upload({
+        url: URL,
+        fields: {'selection': vm.obj.selection},
+        file: file
+      });
+    };
 
     vm.buyTicket = function(eventId) {
       profileService.buyTicket(eventId)

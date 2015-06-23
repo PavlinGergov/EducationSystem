@@ -29,6 +29,7 @@ module.exports = function(config) {
       'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/ng-jcrop/ng-jcrop.js',
+      'bower_components/ng-file-upload/ng-file-upload.js',
       // endbower
       'app/scripts/app.js',
       'app/scripts/auth/auth.module.js',
