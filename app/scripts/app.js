@@ -8,12 +8,18 @@
       'educationSystemApp.profile',
       'educationSystemApp.nav',
       'permission',
-      'ngImgCrop'
-    ])
-    .config(function ($urlRouterProvider) {
+      'ngJcrop'
+    ])  
+    .config(function ($urlRouterProvider, ngJcropConfigProvider) {
       $urlRouterProvider.otherwise(function($injector) {
         var $state = $injector.get("$state");
         $state.go('check');
+      });
+      ngJcropConfigProvider.setJcropConfig({
+        bgColor: 'black',
+        bgOpacity: .4,
+        aspectRatio: 1,
+        maxWidth: 300
       });
     })
     .run(function (Permission, profileService, $rootScope, $q) {
