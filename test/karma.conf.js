@@ -26,10 +26,10 @@ module.exports = function(config) {
       'bower_components/ngDialog/js/ngDialog.js',
       'bower_components/angular-permission/dist/angular-permission.js',
       'bower_components/toastr/toastr.js',
+      'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/ng-jcrop/ng-jcrop.js',
       'bower_components/ng-file-upload/ng-file-upload.js',
-      'bower_components/bootstrap/dist/js/bootstrap.js',
       // endbower
       'app/scripts/app.js',
       'app/scripts/auth/auth.module.js',

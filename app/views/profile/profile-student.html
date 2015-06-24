@@ -14,118 +14,114 @@
 </nav>
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-12 main">
+  <div class="col-sm-12 main">
+    <div class="row">
       <h1 class="page-header">{{vm.user.first_name}} {{vm.user.last_name}}</h1>
-        <div class="row">
-          <div class="col-xs-3 text-center">
-            <img hb-avatar ng-src="{{vm.user.avatar}}"  class="img-thumbnail">
-          </div>
+      <div class="col-xs-3 text-center">
+        <img hb-avatar ng-src="{{vm.user.avatar}}"  class="img-thumbnail">
+
+        <button type="button" id="change-avatar-btn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+          Промени аватара
+        </button>
+      </div>
+
+      <div class="col-xs-8">
+        <p ng-show="vm.user.socialLinks.github_account">
+          <i class="fa fa-github icon-text"></i> <a href='{{vm.user.socialLinks.github_account}}' target="_blank">{{vm.user.socialLinks.github_account}}</a>
+        </p>
+        <p ng-show="vm.user.socialLinks.twitter_account">
+          <i class="fa fa-twitter icon-text"></i> <a href='{{vm.user.socialLinks.twitter_account}}' target="_blank">{{vm.user.socialLinks.twitter_account}}</a>
+        </p>
+        <p ng-show="vm.user.socialLinks.linkedin_account"> 
+          <i class="fa fa-linkedin icon-text"></i> <a href='{{vm.user.socialLinks.linkedin_account}}' target="_blank">{{vm.user.socialLinks.linkedin_account}}</a>
+        </p>
+        <button type="button" class="btn btn-primary" ng-click="vm.social()">Промени socials</button>
+
+        <div ng-show="vm.user.student" id="mac-div">
+          <strong>MAC адрес: </strong> <span>{{vm.user.student.mac}} </span>
         </div>
+        <button ng-show="vm.user.student" type="button" class="btn btn-primary" ng-click="vm.mac()" id="change-mac">Промени MAC</button>
+      </div>
 
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-            Промени аватара
-          </button>
-
-          <div class="col-xs-8">
+      <div class="col-md-12" ng-show="vm.events.length !== 0 && vm.user.ticket_set.length !== 1">
+        <hr>
+        <h3>Идващи събития:</h3>
+        <div  ng-repeat="event in vm.events">
+          <div class="alert alert-success">
             <p>
-              <i class="fa fa-github icon-text"></i> <a href='{{vm.user.socialLinks.github_account}}' target="_blank">{{vm.user.socialLinks.github_account}}</a>
+              <strong>
+                {{event.name}}
+              </strong> - Безплатна, двудневна конференция за IT образование в НДК.
             </p>
             <p>
-              <i class="fa fa-twitter icon-text"></i> <a href='{{vm.user.socialLinks.twitter_account}}' target="_blank">{{vm.user.socialLinks.twitter_account}}</a>
+              Дати: 19-20-ти Септември.
             </p>
-            <p> 
-              <i class="fa fa-linkedin icon-text"></i> <a href='{{vm.user.socialLinks.linkedin_account}}' target="_blank">{{vm.user.socialLinks.linkedin_account}}</a>
+            <p>
+              Прочети повече на:
+              <a href="{{event.url}}" target="_blank" class="alert-link">
+                {{event.url}}
+              </a>
             </p>
-            <button type="button" class="btn btn-primary" ng-click="vm.social()">Промени socials</button>
-
-            <div ng-show="vm.user.student">
-              <strong>MAC адрес: </strong> <span>{{vm.user.student.mac}} </span>
-
-            </div>
-            <button ng-show="vm.user.student" type="button" class="btn btn-primary" ng-click="vm.mac()">Промени MAC</button>
-          </div>
-
-          <div class="col-md-12" ng-show="vm.events.length !== 0 && vm.user.ticket_set.length !== 1">
-            <hr>
-            <h3>Идващи събития:</h3>
-            <div  ng-repeat="event in vm.events">
-              <div class="alert alert-success">
-                <p>
-                  <strong>
-                    {{event.name}}
-                  </strong> - Безплатна, двудневна конференция за IT образование в НДК.
-                </p>
-                <p>
-                  Дати: 19-20-ти Септември.
-                </p>
-                <p>
-                  Прочети повече на:
-                  <a href="{{event.url}}" target="_blank" class="alert-link">
-                    {{event.url}}
-                  </a>
-                </p>
-                <br>
-                <button type="button" class="btn btn-primary" ng-click="vm.buyTicket(event.id)">Вземи билет</button>
-              </div>
-            </div>
+            <br>
+            <button type="button" class="btn btn-primary" ng-click="vm.buyTicket(event.id)">Вземи билет</button>
           </div>
         </div>
-        <br>
-        <div class="alert alert-warning" role="alert"  ng-show="vm.user.ticket_set.length === 1">
-          <div>Успешно се записа за <strong>HackConf 2015</strong>. Чакаме те на 19-20-ти Септември в НДК София от 9:30 часа!</div>
-        </div>
-
-
-        <div class="col-md-12" ng-show="vm.user.student">
-          <hr>
-          <h3>Курсове:</h3>
-          <table ng-show="vm.user.student" class="table table-bordered">
-            <tr>
-              <th>Статус</th>
-              <th>Курс</th>
-              <th>Период</th>
-              <th>Сертификат</th>
-              <th></th>
-            </tr>
-
-            <tr ng-repeat="course in vm.user.student.courses">
-              <td class="text-center"><i class="{{vm.icon(course.status)}} icon-text" ></i>{{course.status}}</td>
-              <td>{{course.course.name}}</td>
-              <td>{{course.course.start_time | date : "dd.MM.yyyy"}} - {{course.course.end_time | date : "dd.MM.yyyy"}}</td>
-              <td><a href='{{course.certificate}}' ng-show="course.certificate">Link - {{course.certificate_p}}%</a><span ng-hide="course.certificate">N/A</span></td>
-              <td>
-                <span ng-show="course.notes">
-                  <a ui-sref="home" class="btn btn-primary">{{course.notes}}</a>
-                </span>
-                <span ng-hide="course.notes">N/A</span>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="col-md-12" ng-show="vm.user.competitor">
-          <hr>
-          <h3>Състезания:</h3>
-          <table ng-show="vm.user.competitor" class="table table-bordered">
-            <tr>
-              <th>Състезание</th>
-              <th>Име на отбора</th>
-              <th>Описание на идеята</th>
-              <th>Място</th>
-            </tr>
-            <tr ng-repeat="challenge in vm.user.competitor.teammembership_set">
-              <td>{{challenge.team.season.name}}</td>
-              <td>{{challenge.team.name}}</td>
-              <td>{{challenge.team.idea_description}}</td>
-              <td>{{challenge.team.place}}</td>
-            </tr>
-          </table>
-        </div>
-
       </div>
     </div>
+    <br>
+
+    <div class="alert alert-warning" role="alert"  ng-show="vm.user.ticket_set.length === 1">
+      <div>Успешно се записа за <strong>HackConf 2015</strong>. Чакаме те на 19-20-ти Септември в НДК София от 9:30 часа!</div>
+    </div>
+
+    <div class="col-md-12" ng-show="vm.user.student">
+      <hr>
+      <h3>Курсове:</h3>
+      <table ng-show="vm.user.student" class="table table-bordered">
+        <tr>
+          <th>Статус</th>
+          <th>Курс</th>
+          <th>Период</th>
+          <th>Сертификат</th>
+          <th></th>
+        </tr>
+
+        <tr ng-repeat="course in vm.user.student.courses">
+          <td class="text-center"><i class="{{vm.icon(course.status)}} icon-text" ></i>{{course.status}}</td>
+          <td>{{course.course.name}}</td>
+          <td>{{course.course.start_time | date : "dd.MM.yyyy"}} - {{course.course.end_time | date : "dd.MM.yyyy"}}</td>
+          <td><a href='{{course.certificate}}' ng-show="course.certificate">Link - {{course.certificate_p}}%</a><span ng-hide="course.certificate">N/A</span></td>
+          <td>
+            <span ng-show="course.notes">
+              <a ui-sref="home" class="btn btn-primary">{{course.notes}}</a>
+            </span>
+            <span ng-hide="course.notes">N/A</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-12" ng-show="vm.user.competitor">
+      <hr>
+      <h3>Състезания:</h3>
+      <table ng-show="vm.user.competitor" class="table table-bordered">
+        <tr>
+          <th>Състезание</th>
+          <th>Име на отбора</th>
+          <th>Описание на идеята</th>
+          <th>Място</th>
+        </tr>
+        <tr ng-repeat="challenge in vm.user.competitor.teammembership_set">
+          <td>{{challenge.team.season.name}}</td>
+          <td>{{challenge.team.name}}</td>
+          <td>{{challenge.team.idea_description}}</td>
+          <td>{{challenge.team.place}}</td>
+        </tr>
+      </table>
+    </div>
+
   </div>
+</div>
+</div>
 </div>
 
 
@@ -138,14 +134,14 @@
       </div>
       <div class="modal-body">
         <form name="avatarForm">
-        <input  type="file" fileread="vm.obj.src" ng-model="picFile" name="file" accept="image/*" ngf-select=""/>
-        <div ng-show="vm.obj.src" ng-jcrop="vm.obj.src" selection="vm.obj.selection" thumbnail="obj.thumbnail"></div>
-        <!-- <img src="{{vm.obj.src}}"> -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" ng-click="vm.uploadAvatar(picFile)">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+          <input  type="file" fileread="vm.obj.src" ng-model="picFile" name="file" accept="image/*" ngf-select=""/>
+          <div ng-show="vm.obj.src" ng-jcrop="vm.obj.src" selection="vm.obj.selection" thumbnail="obj.thumbnail"></div>
+          <!-- <img src="{{vm.obj.src}}"> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" ng-click="vm.uploadAvatar(picFile)">Save changes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->

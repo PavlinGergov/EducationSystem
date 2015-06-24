@@ -24,7 +24,7 @@
     .controller('profileCtrl', profileCtrl);
 
     //TODO:Iznasqne na direktivata v otdelen fail
-  function profileCtrl(user, events, ngDialog, profileService, URL, Upload, EDUCATION_URL, navbar) {
+  function profileCtrl(user, events, ngDialog, profileService, URL, Upload, BASE_URL, navbar) {
 
     var vm = this;
     vm.icon = function(status) {
@@ -58,7 +58,7 @@
 
     vm.uploadAvatar = function(file) {
       Upload.upload({
-        url: EDUCATION_URL +'base-user-update/',
+        url: BASE_URL +'base-user-update/',
         method: 'PATCH',
         fields: {'selection': vm.obj.selection},
         file: file,
