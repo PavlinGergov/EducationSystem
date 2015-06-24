@@ -1,0 +1,7 @@
+<div id="navbar" class="navbar-collapse collapse">
+  <ul class="nav navbar-nav navbar-right">
+    <li ng-repeat="menu in menus" id="{{menu.action}}">
+      <a ui-sref="{{menu.action}}">{{menu.title}}</a>
+    </li>
+  </ul>
+</div>

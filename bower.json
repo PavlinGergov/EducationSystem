@@ -8,7 +8,7 @@
     "ngDialog": "~0.4.0",
     "angular-permission": "~0.2.0",
     "toastr": "~2.1.1",
-    "bootstrap": "~3.3.4",
+    "bootstrap": "~3.3.5",
     "font-awesome": "~4.3.0"
   },
   "devDependencies": {

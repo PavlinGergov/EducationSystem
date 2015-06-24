@@ -9,30 +9,17 @@
       </button>
       <a class="navbar-brand" href="#">HackBulgaria</a>
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#/logout">Изход</a></li>
-      </ul>
-    </div>
+    <angled-navbar menus="vm.menu"></angled-navbar>
   </div>
 </nav>
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-3 col-md-2 sidebar">
-      <ul class="nav nav-sidebar">
-        <li class="active">
-          <a href="#"><i class="fa fa-user fa-1x icon-text"></i> Profile <span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-      <h1 class="page-header">{{vm.user.name}}</h1>
+    <div class="col-sm-12 main">
+      <h1 class="page-header">{{vm.user.first_name}} {{vm.user.last_name}}</h1>
         <div class="row">
           <div class="col-xs-3 text-center">
-            <img ng-show="vm.user.avatar !== null" class="img-thumbnail" src='{{vm.MEDIA_URL}}{{vm.user.avatar}}'>
-            <img ng-hide="vm.user.avatar !== null" class="img-thumbnail" src='/images/no-avatar.png'>
-
+            <img hb-avatar ng-src="{{vm.user.avatar}}"  class="img-thumbnail">
           </div>
 
           <div class="col-xs-8">
@@ -42,7 +29,7 @@
             <p>
               <i class="fa fa-twitter icon-text"></i> <a href='{{vm.user.socialLinks.twitter_account}}' target="_blank">{{vm.user.socialLinks.twitter_account}}</a>
             </p>
-            <p>
+            <p> 
               <i class="fa fa-linkedin icon-text"></i> <a href='{{vm.user.socialLinks.linkedin_account}}' target="_blank">{{vm.user.socialLinks.linkedin_account}}</a>
             </p>
             <button type="button" class="btn btn-primary" ng-click="vm.social()">Промени socials</button>

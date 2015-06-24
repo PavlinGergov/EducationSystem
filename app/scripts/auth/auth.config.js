@@ -43,7 +43,7 @@
         data: {
           permissions: {
             only: ['anonymous'],
-            redirectTo: 'profile'
+            redirectTo: 'check'
           }
         }
       })
@@ -63,7 +63,7 @@
         data: {
           permissions: {
             only: ['anonymous'],
-            redirectTo: 'profile'
+            redirectTo: 'check'
           }
         }
       })
@@ -74,7 +74,7 @@
         data: {
           permissions: {
             only: ['anonymous'],
-            redirectTo: 'profile'
+            redirectTo: 'check'
           }
         }
       })
@@ -86,7 +86,7 @@
         data: {
           permissions: {
             only: ['anonymous'],
-            redirectTo: 'profile'
+            redirectTo: 'check'
           }
         }
       })
@@ -98,7 +98,7 @@
         data: {
           permissions: {
             only: ['anonymous'],
-            redirectTo: 'profile'
+            redirectTo: 'check'
           }
         }
       });

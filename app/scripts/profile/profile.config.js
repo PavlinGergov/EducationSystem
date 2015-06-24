@@ -12,7 +12,7 @@
           profileService.getProfileData()
             .then(function(response) {
               if(response.teacher) {
-                $state.go('teacher');
+                $state.go('teacherDashboard');
               }
               else {
                 $state.go('profile');
@@ -25,24 +25,30 @@
         controller: 'profileCtrl',
         controllerAs: 'vm',
         templateUrl: 'views/profile/profile-student.html',
+        data: {
+          permissions: {
+            except: ['anonymous'],
+            redirectTo: 'login'
+          }
+        },
         resolve: {
           user: profileData,
           events: eventsPrep
-        },
-        data: {
-          permissions: {
-            except: ['anonymous'],
-            redirectTo: 'login'
-          }
         }
       })
-      .state('teacher', {
+      .state('teacherDashboard', {
         url: '/teacher',
+        controller: 'teacherCtrl',
+        controllerAs: 'vm',
+        templateUrl: 'views/profile/profile-teacher.html',
         data: {
           permissions: {
-            except: ['anonymous'],
+            only: ['teacher'],
             redirectTo: 'login'
-          }
+          } 
+        },
+        resolve: {
+          user: profileData
         }
       });
 
