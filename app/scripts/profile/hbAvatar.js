@@ -22,7 +22,7 @@
         return attr.ngSrc;
       }, function() {
         var src = attr.ngSrc;
-        if(!src) {
+        if(typeof(src) === 'undefined') {
           setDefaultImage(el);
         }
         else {
