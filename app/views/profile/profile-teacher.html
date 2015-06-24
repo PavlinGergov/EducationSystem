@@ -29,17 +29,17 @@
       <div class="col-xs-3 col-sm-offset-2 sidebar" id="student-list">
         <div class="student-item" ng-class="{active: ca == vm.courseAssignment}" ng-repeat="ca in vm.ca | filter:studentSearch" ng-click="vm.getCheckins(ca.user.id)">
           <img hb-avatar ng-src="{{ca.user.avatar}}" class="student-avatar">
-          <p>{{ca.user.first_name}} {{ca.user.last_name}}</p>  
+          <p>{{ca.user.first_name}} {{ca.user.last_name}}</p>
           <p class="badge">Коментари: {{ca.studentnote_set.length}}</p>
         </div>
       </div>
     </div>
-    
+
     <div class="col-sm-7 col-sm-offset-5 main" ng-show="vm.courseAssignment">
       <div class="col-sm-4">
         <img hb-avatar ng-src="{{ vm.courseAssignment.user.avatar}}" class="img-thumbnail">
       </div>
-    
+
       <div class="col-sm-8">
         <h3 id="student-name">{{ vm.courseAssignment.user.first_name }} {{ vm.courseAssignment.user.last_name }}</h3>
         <ul class="socials">
@@ -49,11 +49,11 @@
               {{ vm.courseAssignment.user.github_account }}
             </a>
             <span ng-hide="vm.courseAssignment.user.github_account">
-              Няма пратен GitHub 
+              Няма пратен GitHub
             </span>
           </li>
           <li>
-            <i class="fa fa-envelope-o"></i> 
+            <i class="fa fa-envelope-o"></i>
             {{ vm.courseAssignment.user.email }}
           </li>
         </ul>
@@ -72,7 +72,7 @@
             </tr>
           </tbody>
         </table>
-        
+
         <div class="alert alert-danger" role="alert"  ng-show="!vm.courseAssignment.user.mac">
           <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
           <span class="sr-only">Error:</span>
@@ -80,7 +80,7 @@
         </div>
 
       </div>
-   
+
   </div>
     
     <div class="col-sm-7 col-sm-offset-5 main" ng-show="vm.courseAssignment">
@@ -107,3 +107,4 @@
     </div>
   </div>
 </div>
+
