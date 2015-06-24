@@ -17,6 +17,9 @@
               else {
                 $state.go('profile');
               }
+            })
+            .catch(function(error) {
+              $state.go('login');
             });
         }
       })
