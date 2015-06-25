@@ -68,7 +68,7 @@
           <tbody>
             <tr ng-repeat="(week, date) in vm.tempData">
               <td>{{'week' + ($index + 1)}}</td>
-              <td ng-repeat="day in vm.lectureDays" class="{{date[$index].presence}}">{{ date[$index].date }}</td>
+              <td ng-repeat="day in vm.lectureDays" class="{{date[$index].presence}}">{{ date[$index].date | date:'dd MMM yyyy' }}</td>
             </tr>
           </tbody>
         </table>
