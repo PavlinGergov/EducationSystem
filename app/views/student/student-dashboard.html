@@ -1,0 +1,33 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li ng-repeat="course in vm.courses">
+          <a ui-sref="studentDashboard.overview({courseId: '{{course.course.id}}'})"><i class="fa fa-info fa-1x icon-text"></i> {{ course.course.name }}</a>
+          <ul>
+            <li>
+              <a ui-sref="studentDashboard.overview({courseId: '{{course.course.id}}'})">
+                <i class="fa fa-info fa-1x icon-text"></i>
+                Overview
+              </a>
+            </li>
+            <li>
+              <a ui-sref="studentDashboard.tasks({courseId: '{{course.course.id}}'})">
+                <i class="fa fa-info fa-1x icon-text"></i>
+                Tasks
+              </a>
+            </li>
+            <li>
+              <a ui-sref="studentDashboard.otherStudents({courseId: '{{course.course.id}}'})">
+                <i class="fa fa-info fa-1x icon-text"></i>
+                OtherStudents
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div ui-view></div>
+  </div>
+</div>

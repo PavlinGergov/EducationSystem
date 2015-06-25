@@ -39,12 +39,6 @@
           events: eventsPrep
         }
       })
-      .state('studentDashboard', {
-        url: '/student',
-        controller: 'studentDashboardCtrl',
-        controllerAs: 'vm',
-        templateUrl: 'views/profile/profile-student-dashboard.html'
-      })
       .state('teacherDashboard', {
         url: '/teacher',
         controller: 'teacherCtrl',
