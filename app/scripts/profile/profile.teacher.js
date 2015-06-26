@@ -37,7 +37,7 @@
             'first_name': vm.user.first_name,
             'last_name': vm.user.last_name
           };
-          
+
           vm.courseAssignment.studentnote_set.push(data);
         });
     };
@@ -64,7 +64,7 @@
         return student.user.id === studentId;
       })[0];
     };
-    
+
     activate();
 
     function activate() {
