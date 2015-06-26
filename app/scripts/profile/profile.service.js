@@ -35,7 +35,7 @@
         .error(function(error) {
         });
     }
-    
+
     function lectures(courseId) {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       var data = {'course_id' : courseId };
@@ -43,7 +43,10 @@
         .then(function(response) {
           return response.data.map(function(lecture) {
             return lecture.date;
-          }).sort();
+          }).filter(function(lectureDate) {
+            return new Date(lectureDate) <= new Date();
+          })
+          .sort();
         });
       }
 
