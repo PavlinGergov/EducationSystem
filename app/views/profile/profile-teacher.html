@@ -98,7 +98,7 @@
       </form>
 
       <hr>
-      <p ng-repeat="note in vm.courseAssignment.studentnote_set">
+      <p ng-repeat="note in vm.courseAssignment.studentnote_set | orderBy:'post_time':true">
         <span>
           {{note.post_time | date:'dd/MM/yyyy @ h:mma'}}
         </span>
