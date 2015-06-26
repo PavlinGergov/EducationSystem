@@ -56,6 +56,10 @@
             <i class="fa fa-envelope-o"></i>
             {{ vm.courseAssignment.user.email }}
           </li>
+          <li>
+            <i class="fa fa-circle {{vm.colorCoding}}"></i>
+            <span>{{ vm.presencePercentage }}%</span>
+          </li>
         </ul>
 
         <table class="table-bordered" id="presence-table" ng-show="vm.courseAssignment.user.mac && vm.lectureDays.length > 0">

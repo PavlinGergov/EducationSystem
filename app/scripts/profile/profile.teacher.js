@@ -45,6 +45,7 @@
     vm.getCheckins = function (studentId) {
       // TODO:
       // fix tempData[weekNumber] undefined (out of range)
+      var lectureAttendance = 0;
       vm.tempData = angular.copy(vm.data);
       profileService.getCheckins(studentId, vm.currentId)
         .then(function(checkins){
@@ -54,11 +55,24 @@
               vm.tempData[weekNumber].map(function(lec) {
                 if(lec.date == checkin.date) {
                   lec.presence = true;
+                  lectureAttendance += 1;
                 }
               });
             }
           });
-        });
+        })
+          .then(function() {
+            vm.presencePercentage = Math.round((lectureAttendance / vm.lectures.length) * 100);
+            if (vm.presencePercentage < 50) {
+              vm.colorCoding = 'red';
+            }
+            else if(vm.presencePercentage >= 50 && vm.presencePercentage <= 70) {
+              vm.colorCoding = 'yellow';
+            }
+            else {
+              vm.colorCoding = 'green';
+            }
+          });
 
       vm.courseAssignment = vm.ca.filter(function(student) {
         return student.user.id === studentId;
