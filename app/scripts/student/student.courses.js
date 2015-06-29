@@ -5,16 +5,16 @@
     .module('educationSystemApp.student')
     .controller('coursesCtrl', coursesCtrl);
   
-  function coursesCtrl(user, studentService) {
+  function coursesCtrl(user, studentService, navbar, $state) {
     var vm = this;
     
     activate();
     
-    console.log(vm.courses);
-    
     function activate() {
+      vm.menu = navbar.student();
       vm.user = user;
       vm.courses = studentService.getCourses(vm.user);
+      vm.currentCourse = vm.courses[0];
     };
   };
 })();
