@@ -66,7 +66,7 @@
             if (vm.presencePercentage < 50) {
               vm.colorCoding = 'red';
             }
-            else if(vm.presencePercentage >= 50 && vm.presencePercentage <= 70) {
+            else if(vm.presencePercentage >= 50 && vm.presencePercentage <= 80) {
               vm.colorCoding = 'yellow';
             }
             else {
