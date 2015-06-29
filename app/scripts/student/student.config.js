@@ -42,14 +42,20 @@
     function profileData(profileService) {
       return profileService.getProfileData()
         .then(function(response) {
-          console.log(response);
           return response;
         });
     }
 
-    function tableData(studentService, $stateParams) {
-      console.log($stateParams);
-      return studentService.getLecturesForCourse($stateParams.courseId)
+    function tableData(user, studentService, $stateParams) {
+      var courseId;
+      if(!$stateParams.courseId) {
+        courseId = user.student.courseassignment_set[0].course.id;
+      }
+      else {
+        courseId = $stateParams.courseId;
+      }
+
+      return studentService.getLecturesForCourse(courseId)
         .then(function(response) {
           return response;
         });

@@ -50,7 +50,7 @@
       var menu = [
         {
           title: "Dashboard",
-          action: 'studentDashboard'
+          action: 'studentDashboard.overview'
         },
         {
           title: "Профил",

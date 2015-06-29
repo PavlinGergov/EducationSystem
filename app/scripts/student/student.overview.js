@@ -7,18 +7,24 @@
   
   function overviewCtrl(tableData, user, studentService, $stateParams) {
     var vm = this;
+    
+
+    var studentId = user.student.id;
+    var emptyTable = tableData.data;
+    vm.weekdays = tableData.weekdays;
+    
 
     activate();
-    console.log(user);
-    console.log($stateParams);
     
     function activate() {
-      var courseId = $stateParams.courseId;
-      var studentId = user.student.id;
-      var emptyTable = tableData.data;
-      vm.weekdays = tableData.weekdays;
-
-      studentService.getStudentCheckins(studentId, courseId)
+      if(!$stateParams.courseId) {
+        var currentCourse = studentService.getCourses(user)[0];
+        vm.courseId = currentCourse.course.id;
+      }
+      else {
+        vm.courseId = $stateParams.courseId;
+      }
+      studentService.getStudentCheckins(studentId, vm.courseId)
         .then(function(checkins) {
           vm.presence = studentService.getPresenceTable(emptyTable, checkins);
         });
