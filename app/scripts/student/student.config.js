@@ -20,7 +20,11 @@
         url: '/overview/:courseId',
         controller: 'overviewCtrl',
         controllerAs: 'ovm',
-        templateUrl: 'views/student/student-course-overview.html'
+        templateUrl: 'views/student/student-course-overview.html',
+        resolve: {
+          user: profileData,
+          tableData: tableData
+        }
       })
       .state('studentDashboard.tasks', {
         url: '/tasks/:courseId',
@@ -37,6 +41,15 @@
 
     function profileData(profileService) {
       return profileService.getProfileData()
+        .then(function(response) {
+          console.log(response);
+          return response;
+        });
+    }
+
+    function tableData(studentService, $stateParams) {
+      console.log($stateParams);
+      return studentService.getLecturesForCourse($stateParams.courseId)
         .then(function(response) {
           return response;
         });
