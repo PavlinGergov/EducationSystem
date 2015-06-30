@@ -11,11 +11,20 @@
       getCourseById: getCourseById,
       getPresenceTable: getPresenceTable,
       getStudentCheckins: getStudentCheckins,
-      getLecturesForCourse: getLecturesForCourse
+      getLecturesForCourse: getLecturesForCourse,
+      getStudentsForCourse: getStudentsForCourse
     };
     
     return service;
-
+    
+    function getStudentsForCourse(courseId) {
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      return $http.get(EDUCATION_URL + 'get-students-for-course/?course_id=' + courseId, options)
+        .then(function(response) {
+          return response.data;
+        });
+    }
+    
     function getCourseById(courseId, user) {
       return user.student.courseassignment_set.filter(function(course) {
         console.log(course.course);

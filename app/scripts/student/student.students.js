@@ -5,13 +5,15 @@
     .module('educationSystemApp.student')
     .controller('otherStudentsCtrl', otherStudentsCtrl);
   
-  function otherStudentsCtrl() {
+  function otherStudentsCtrl(students, studentService) {
     var vm = this;
+    vm.students = students;
+    console.log(vm.students);
     
     activate();
     
     function activate() {
-      
+
     };
   };
 })();

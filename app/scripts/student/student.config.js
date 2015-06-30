@@ -36,8 +36,19 @@
         url: '/other-students/:courseId',
         controller: 'otherStudentsCtrl',
         controllerAs: 'svm',
-        templateUrl: 'views/student/student-course-students.html'
+        templateUrl: 'views/student/student-course-students.html',
+        resolve: {
+          students: students
+        }
       });
+
+    function students(studentService, $stateParams) {
+      return studentService.getStudentsForCourse($stateParams.courseId)
+        .then(function(response) {
+          console.log(response);
+          return response;
+        });
+    }
 
     function profileData(profileService) {
       return profileService.getProfileData()
