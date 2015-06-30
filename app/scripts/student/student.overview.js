@@ -24,10 +24,13 @@
       else {
         vm.courseId = $stateParams.courseId;
       }
+      
       studentService.getStudentCheckins(studentId, vm.courseId)
         .then(function(checkins) {
           vm.presence = studentService.getPresenceTable(emptyTable, checkins);
+          vm.presencePercentage = studentService.getPresencePercentage(vm.presence);
         });
+      
     };
   };
 })();

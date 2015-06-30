@@ -12,10 +12,29 @@
       getPresenceTable: getPresenceTable,
       getStudentCheckins: getStudentCheckins,
       getLecturesForCourse: getLecturesForCourse,
-      getStudentsForCourse: getStudentsForCourse
+      getStudentsForCourse: getStudentsForCourse,
+      getPresencePercentage: getPresencePercentage
     };
     
     return service;
+
+    function getPresencePercentage(presence) {
+      console.log(presence);
+      var lecturesCount = 0;
+      var presenceCount = 0;
+      Object.keys(presence).forEach(function(week) {
+       presence[week].forEach(function(lecture) {
+
+         if(lecture !== '') {
+           lecturesCount += 1;
+           if(lecture.presence) {
+             presenceCount += 1;
+           }
+         }
+       });
+      });
+      return Math.round((presenceCount / lecturesCount) * 100);
+    };
     
     function getStudentsForCourse(courseId) {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
