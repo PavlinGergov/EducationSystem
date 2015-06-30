@@ -16,12 +16,14 @@
     
     function activate() {
       if(!$stateParams.courseId) {
-        var currentCourse = studentService.getCourses(user)[0];
-        vm.courseId = currentCourse.course.id;
+        vm.currentCourse = studentService.getCourses(user)[0];
+        vm.courseId = vm.currentCourse.course.id;
       }
       else {
         vm.courseId = $stateParams.courseId;
       }
+
+      console.log(vm.currentCourse);
       
       studentService.getStudentCheckins(studentId, vm.courseId)
         .then(function(checkins) {

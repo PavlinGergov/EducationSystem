@@ -1,4 +1,25 @@
 <div class="col-sm-10 col-sm-offset-3 main">
+  
+  <div ng-class-even="'col-md-offset-1'" class="col-sm-5 teacher-card" ng-repeat="teacher in vm.currentCourse.course.teacher_set">
+    <img class="img-thumbnail avatar" hb-avatar ng-src="{{ teacher.avatar }}">
+    <div class="card-text">
+      <p class="name">{{teacher.first_name}} {{teacher.last_name}}</p>
+      <p ng-show="teacher.email">
+        <i class="fa fa-envelope-o"></i>
+            {{ teacher.email }}
+      </p>
+      <p ng-show="teacher.github_account">
+        <i class="fa fa-github icon-text"></i> <a href='{{teacher.github_account}}' target="_blank">{{teacher.github_account}}</a>
+      </p>
+      <p ng-show="teacher.linkedin_account">
+        <i class="fa fa-linkedin icon-text"></i> <a href='{{teacher.linkedin_account}}' target="_blank">{{teacher.linkedin_account}}</a>
+      </p>
+      <p ng-show="teacher.twitter_account">
+        <i class="fa fa-twitter icon-text"></i> <a href='{{teacher.twitter_account}}' target="_blank">{{teacher.twitter_account}}</a>
+      </p>
+    </div>
+  </div>
+  
   <div class="col-sm-8">
     <p>Facebook група на курса: <a href="{{vm.currentCourse.course.fb_group}}" target="_blank" ng-show="vm.currentCourse.course.fb_group">{{vm.currentCourse.course.fb_group}}</a></p>
 
