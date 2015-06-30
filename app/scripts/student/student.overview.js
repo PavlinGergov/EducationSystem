@@ -21,10 +21,9 @@
       }
       else {
         vm.courseId = $stateParams.courseId;
+        vm.currentCourse = studentService.getCourseById(vm.courseId, user);
       }
 
-      console.log(vm.currentCourse);
-      
       studentService.getStudentCheckins(studentId, vm.courseId)
         .then(function(checkins) {
           vm.presence = studentService.getPresenceTable(emptyTable, checkins);

@@ -44,9 +44,10 @@
     }
     
     function getCourseById(courseId, user) {
-      return user.student.courseassignment_set.filter(function(course) {
+      var currentCourse =  user.student.courseassignment_set.filter(function(course) {
         return course.course.id == courseId;
-      })[0];
+      });
+      return currentCourse[0];
     }
     
     function getCourses(user) {
