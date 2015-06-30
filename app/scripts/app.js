@@ -8,6 +8,7 @@
       'educationSystemApp.profile',
       'educationSystemApp.nav',
       'educationSystemApp.student',
+      'educationSystemApp.teacher',
       'permission',
       'ngJcrop',
       'ngFileUpload'
