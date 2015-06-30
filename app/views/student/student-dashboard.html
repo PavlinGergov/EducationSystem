@@ -17,19 +17,19 @@
   <div class="row">
     <div class="col-sm-2 sidebar">
       <ul class="nav nav-sidebar">
-        <li ng-repeat="course in vm.courses" ng-class="{active: course.course.id==vm.currentCourse.course.id}">
+        <li ng-repeat="course in vm.courses">
           <a ui-sref="studentDashboard.overview({courseId: '{{course.course.id}}'})"><i class="fa fa-info fa-1x icon-text"></i> {{ course.course.name }}</a>
-          <ul>
+          <ul><!-- 
             <li>
               <a ui-sref="studentDashboard.overview({courseId: '{{course.course.id}}'})">
                 <i class="fa fa-info fa-1x icon-text"></i>
                 Overview
               </a>
-            </li>
+            </li> -->
             <li>
               <a ui-sref="studentDashboard.otherStudents({courseId: '{{course.course.id}}'})">
                 <i class="fa fa-info fa-1x icon-text"></i>
-                OtherStudents
+                Всички от курса
               </a>
             </li>
           </ul>

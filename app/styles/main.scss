@@ -242,3 +242,20 @@ body {
 #change-avatar-btn, #change-mac, #mac-div {
   margin-top: 10px;
 }
+
+.student-card {
+  .avatar {
+    width: 120px;
+    height: 120px;
+    float: left;
+    margin: 10px 10px 10px 0;
+  }
+
+  .name {
+    font-weight: 600;
+  }
+
+  .card-text {
+    margin: 10px;
+  }
+}

@@ -1,11 +1,12 @@
-
-  <div class="col-sm-10 col-sm-offset-2 main">
-    <div class="col-sm-3" ng-repeat="student in svm.students">
-      <img class="img-thumbnail" hb-avatar ng-src="{{student.avatar}}">
-      <p>{{student.first_name}} {{student.last_name}}</p>
-      <p>Работи в: {{student.works_at}}</p>
-      <p>Учи в: {{student.studies_at}}</p>
-      <p>Github: {{student.github_account}}</p>
+<div class="col-sm-10 col-sm-offset-2 main">
+  <div ng-class-even="'col-md-offset-1'" class="col-sm-5 student-card" ng-repeat="student in svm.students">
+    <img class="img-thumbnail avatar" hb-avatar ng-src="{{ student.avatar }}">
+    <div class="card-text">
+      <p class="name">{{student.first_name}} {{student.last_name}}</p>
+      <p ng-show="student.works_at">Работи в: {{student.works_at}}</p>
+      <p ng-show="student.studies_at">Учи в: {{student.studies_at}}</p>
+      <p ng-show="student.github_account">Github: <a href="{{ student.github_account }}" target="_blank">{{ student.github_account }}</a></p>
     </div>
   </div>
+</div>
 
