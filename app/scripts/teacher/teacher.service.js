@@ -1,20 +1,21 @@
 (function() {
   'use strict';
-  
+
   angular
     .module('educationSystemApp.teacher')
     .factory('teacherService', teacherService);
-  
+
   function teacherService($http) {
     var service = {
-      serviceMethod: serviceMethod
+      getCourses: getCourses
     };
-    
+
     return service;
-    
-    //def service methods here
-    function serviceMethod() {
-      
+
+    function getCourses(user) {
+      console.log(user);
+      return user.teacher.teached_courses.reverse();
     }
+
   }
 })();

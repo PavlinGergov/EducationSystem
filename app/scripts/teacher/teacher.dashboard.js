@@ -1,17 +1,21 @@
 (function() {
   'use strict';
-  
+
   angular
     .module('educationSystemApp.teacher')
     .controller('teacherDashboardCtrl', teacherDashboardCtrl);
-  
-  function teacherDashboardCtrl() {
+
+  function teacherDashboardCtrl(user, navbar, teacherService) {
     var vm = this;
-    
+
+    vm.menu = navbar.teacher();
+
     activate();
-    
+
     function activate() {
-      
-    };
-  };
+      vm.user = user;
+      vm.teachedCourses = teacherService.getCourses(vm.user);
+      console.log(vm.teachedCourses);
+    }
+  }
 })();

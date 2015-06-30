@@ -32,7 +32,7 @@
       var menu = [
         {
           title: "Dashboard",
-          action: 'teacherDashboard'
+          action: 'teachersDashboard'
         },
         {
           title: "Профил",

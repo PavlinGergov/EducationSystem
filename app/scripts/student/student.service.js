@@ -1,10 +1,10 @@
 (function() {
   'use strict';
-  
+
   angular
     .module('educationSystemApp.student')
     .factory('studentService', studentService);
-  
+
   function studentService($http, $filter, EDUCATION_URL) {
     var service = {
       getCourses: getCourses,
@@ -15,7 +15,7 @@
       getStudentsForCourse: getStudentsForCourse,
       getPresencePercentage: getPresencePercentage
     };
-    
+
     return service;
 
     function getPresencePercentage(presence) {
@@ -33,8 +33,8 @@
        });
       });
       return Math.round((presenceCount / lecturesCount) * 100);
-    };
-    
+    }
+
     function getStudentsForCourse(courseId) {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       return $http.get(EDUCATION_URL + 'get-students-for-course/?course_id=' + courseId, options)
@@ -42,14 +42,14 @@
           return response.data;
         });
     }
-    
+
     function getCourseById(courseId, user) {
       var currentCourse =  user.student.courseassignment_set.filter(function(course) {
         return course.course.id == courseId;
       });
       return currentCourse[0];
     }
-    
+
     function getCourses(user) {
       return user.student.courseassignment_set;
     }
@@ -117,11 +117,11 @@
 
       return weekdays;
     }
-    
+
     function weekNumber(date) {
       var weekBigNumber = parseInt($filter('date')(date, 'w')) + 52 * $filter('date')(date, 'y');
       return 'w' + weekBigNumber;
-    };
+    }
 
 
     function transformLectures(lectures) {

@@ -1,17 +1,20 @@
 (function() {
   'use strict';
-  
+
   angular
     .module('educationSystemApp.teacher')
     .config(configure);
-  
+
   function configure($stateProvider) {
     $stateProvider
       .state('teachersDashboard', {
-        url: '/teachers-dashboard/:view/:courseId',
+        url: '/teachers-dashboard',
         controller: 'teacherDashboardCtrl',
         controllerAs: 'vm',
-        templateUrl: 'views/teacher/teacher-dashboard.html'
+        templateUrl: 'views/teacher/teacher-dashboard.html',
+        resolve: {
+          user: profileData
+        }
       })
       .state('teachersDashboard.statistics', {
         url: '/statistics/:courseId',
@@ -31,5 +34,12 @@
         controllerAs: 'vm',
         templateUrl: 'views/teacher/teacher-student-statistics.html'
       });
-  };
+
+    function profileData(profileService) {
+      return profileService.getProfileData()
+        .then(function(response) {
+          return response;
+        });
+    }
+  }
 })();

@@ -1,10 +1,10 @@
 (function() {
   'use strict';
-  
+
   angular
     .module('educationSystemApp.profile')
     .config(configure);
-  
+
   function configure($stateProvider) {
     $stateProvider
       .state('check', {
@@ -12,7 +12,7 @@
           profileService.getProfileData()
             .then(function(response) {
               if(response.teacher) {
-                $state.go('teacherDashboard');
+                $state.go('teachersDashboard');
               }
               else {
                 $state.go('profile');
@@ -28,12 +28,6 @@
         controller: 'profileCtrl',
         controllerAs: 'vm',
         templateUrl: 'views/profile/profile-student.html',
-        data: {
-          permissions: {
-            except: ['anonymous'],
-            redirectTo: 'login'
-          }
-        },
         resolve: {
           user: profileData,
           events: eventsPrep
@@ -44,12 +38,6 @@
         controller: 'teacherCtrl',
         controllerAs: 'vm',
         templateUrl: 'views/profile/profile-teacher.html',
-        data: {
-          permissions: {
-            only: ['teacher'],
-            redirectTo: 'login'
-          } 
-        },
         resolve: {
           user: profileData
         }
@@ -68,5 +56,5 @@
           return response;
         });
     }
-  };
+  }
 })();
