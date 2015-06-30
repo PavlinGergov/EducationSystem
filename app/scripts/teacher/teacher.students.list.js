@@ -7,19 +7,21 @@
   
   function studentsListCtrl($stateParams, teacherService) {
     var vm = this;
-
+    activate();
     
 
     teacherService.getCAsForCourse($stateParams.courseId)
       .then(function(response) {
-        console.log(response);
+        console.log($stateParams);
+        console.log(vm.currentCourseId);
         vm.courseAssignments = response;
       });
 
-    activate();
+
     
     function activate() {
-      if(!$stateParams.couseId) {
+      if(!$stateParams.courseId) {
+        vm.currentCourseId = 3;
       }
       else {
         vm.currentCourseId = $stateParams.courseId;

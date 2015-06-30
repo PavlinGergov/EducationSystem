@@ -29,7 +29,7 @@
         templateUrl: 'views/teacher/teacher-student-list.html'
       })
       .state('teachersDashboard.students.statistics', {
-        url: ':courseId/:studentId',
+        url: '/:studentId',
         controller: 'studentStatisticsCtrl',
         controllerAs: 'vm',
         templateUrl: 'views/teacher/teacher-student-statistics.html'
