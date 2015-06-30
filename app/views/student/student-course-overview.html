@@ -10,10 +10,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="(week, date) in ovm.presence">
+        <tr ng-repeat="week in ovm.presence">
           <td>{{'week' + ($index + 1)}}</td>
-          <td ng-repeat="day in ovm.weekdays" class="{{date[$index].presence}}">{{ date[$index].date }}</td>
+          <td ng-repeat="d in week" class="{{d.presence}}">{{ d.date }}</td>
         </tr>
+        <tr></tr>
       </tbody>
     </table>
   </div>

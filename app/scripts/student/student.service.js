@@ -19,7 +19,6 @@
     return service;
 
     function getPresencePercentage(presence) {
-      console.log(presence);
       var lecturesCount = 0;
       var presenceCount = 0;
       Object.keys(presence).forEach(function(week) {
@@ -46,7 +45,6 @@
     
     function getCourseById(courseId, user) {
       return user.student.courseassignment_set.filter(function(course) {
-        console.log(course.course);
         return course.course.id == courseId;
       })[0];
     }
@@ -109,10 +107,13 @@
       var days = ['Неделя', 'Понеделник', 'Вторник', 'Сряда', 'Четвъртък', 'Петък', 'Събота'];
       lectures.forEach(function(lecture) {
         var day = new Date(lecture);
-        if(!weekdays[day.getDay()]) {
-          weekdays.push(days[day.getDay()]);
-        };
+        weekdays.push(days[day.getDay()]);
       });
+
+      weekdays = weekdays.filter(function(weekday, pos) {
+        return weekdays.indexOf(weekday) == pos;
+      });
+
       return weekdays;
     }
     
