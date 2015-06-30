@@ -243,14 +243,20 @@ body {
   margin-top: 10px;
 }
 
-.student-card {
+.student-card, .teacher-card {
   .avatar {
     width: 120px;
     height: 120px;
     float: left;
     margin: 10px 10px 10px 0;
   }
-
+  .teacher-avatar {
+    width: 160px;
+    height: 160px;
+    float: left;
+    margin: 10px 10px 10px 0;
+    
+  }
   .name {
     font-weight: 600;
   }
@@ -258,4 +264,8 @@ body {
   .card-text {
     margin: 10px;
   }
+}
+
+.sub-ul {
+  list-style-type: none;
 }

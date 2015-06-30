@@ -3,9 +3,9 @@
     <img class="img-thumbnail avatar" hb-avatar ng-src="{{ student.avatar }}">
     <div class="card-text">
       <p class="name">{{student.first_name}} {{student.last_name}}</p>
-      <p ng-show="student.works_at">Работи в: {{student.works_at}}</p>
-      <p ng-show="student.studies_at">Учи в: {{student.studies_at}}</p>
-      <p ng-show="student.github_account">Github: <a href="{{ student.github_account }}" target="_blank">{{ student.github_account }}</a></p>
+      <p ng-show="student.works_at"><i class="fa fa-cog"></i> {{student.works_at}}</p>
+      <p ng-show="student.studies_at"><i class="fa fa-graduation-cap"></i> {{student.studies_at}}</p>
+      <p ng-show="student.github_account"><i class="fa fa-github"></i> <a href="{{ student.github_account }}" target="_blank">{{ student.github_account }}</a></p>
     </div>
   </div>
 </div>

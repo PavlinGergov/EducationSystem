@@ -19,7 +19,7 @@
       <ul class="nav nav-sidebar">
         <li ng-repeat="course in vm.courses">
           <a ui-sref="studentDashboard.overview({courseId: '{{course.course.id}}'})"><i class="fa fa-info fa-1x icon-text"></i> {{ course.course.name }}</a>
-          <ul><!-- 
+          <ul class="sub-ul"><!-- 
             <li>
               <a ui-sref="studentDashboard.overview({courseId: '{{course.course.id}}'})">
                 <i class="fa fa-info fa-1x icon-text"></i>
@@ -27,8 +27,8 @@
               </a>
             </li> -->
             <li>
+              <i class="fa fa-caret-right"></i>
               <a ui-sref="studentDashboard.otherStudents({courseId: '{{course.course.id}}'})">
-                <i class="fa fa-info fa-1x icon-text"></i>
                 Всички от курса
               </a>
             </li>
