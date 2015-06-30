@@ -1,8 +1,8 @@
 <div class="col-sm-9 col-sm-offset-2 main">
   <h3>Преподаватели на курса:</h3>
   
-
   <div class="col-sm-6 teacher-card" ng-repeat="teacher in ovm.currentCourse.course.teacher_set">
+
     <img class="img-thumbnail teacher-avatar" hb-avatar ng-src="{{ teacher.avatar }}">
     <div class="card-text">
       <p class="name">{{teacher.first_name}} {{teacher.last_name}}</p>
@@ -15,12 +15,13 @@
       <p ng-show="teacher.twitter_account"><i class="fa fa-twitter icon-text"></i> <a href='{{teacher.twitter_account}}' target="_blank">{{teacher.twitter_account}}</a></p>
     </div>
   </div>
-  
+
   <div class="col-sm-12">
     <hr>
     <p ng-show="ovm.currentCourse.course.fb_group">
       <strong>Facebook група на курса:</strong> 
       <a href="{{ovm.currentCourse.course.fb_group}}" target="_blank" ng-show="ovm.currentCourse.course.fb_group">{{ovm.currentCourse.course.fb_group}}</a>
+
     </p>
 
     <div ng-show="ovm.weekdays.length">
