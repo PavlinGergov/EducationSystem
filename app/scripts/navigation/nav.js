@@ -49,6 +49,10 @@
     function student() {
       var menu = [
         {
+          title: "Dashboard",
+          action: 'studentDashboard.overview'
+        },
+        {
           title: "Профил",
           action: 'profile'
         },

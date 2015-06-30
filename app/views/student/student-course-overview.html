@@ -1,0 +1,20 @@
+<div class="col-sm-10 col-sm-offset-3 main">
+  <div class="col-sm-8">
+    <p>FB група на курса: <a href="{{vm.currentCourse.course.fb_group}}" target="_blank" ng-show="vm.currentCourse.course.fb_group">{{vm.currentCourse.course.fb_group}}</a></p>
+    <p>Процент присъствия: {{ovm.presencePercentage}}% </p>
+    <table class="table-bordered" id="presence-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th ng-repeat="day in ovm.weekdays">{{day}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="(week, date) in ovm.presence">
+          <td>{{'week' + ($index + 1)}}</td>
+          <td ng-repeat="day in ovm.weekdays" class="{{date[$index].presence}}">{{ date[$index].date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
