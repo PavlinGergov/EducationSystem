@@ -45,7 +45,6 @@
     function students(studentService, $stateParams) {
       return studentService.getStudentsForCourse($stateParams.courseId)
         .then(function(response) {
-          console.log(response);
           return response;
         });
     }

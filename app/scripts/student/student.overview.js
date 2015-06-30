@@ -8,12 +8,10 @@
   function overviewCtrl(tableData, user, studentService, $stateParams) {
     var vm = this;
     
-
     var studentId = user.student.id;
     var emptyTable = tableData.data;
     vm.weekdays = tableData.weekdays;
     
-
     activate();
     
     function activate() {

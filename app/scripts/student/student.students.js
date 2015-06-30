@@ -8,7 +8,6 @@
   function otherStudentsCtrl(students, studentService) {
     var vm = this;
     vm.students = students;
-    console.log(vm.students);
     
     activate();
     
