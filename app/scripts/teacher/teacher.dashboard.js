@@ -14,7 +14,7 @@
 
     function activate() {
       vm.user = user;
-      vm.teachedCourses = teacherService.getCourses(vm.user);
+      vm.teachedCourses = teacherService.getTeachedCourses(vm.user);
       console.log(vm.teachedCourses);
     }
   }

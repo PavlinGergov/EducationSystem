@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-xs-3 col-sm-offset-2">
+    <input type="text" placeholder="Търси курсист"  ng-model="studentSearch" id="students-search">
+  </div>
+  <div class="col-xs-3 col-sm-offset-2 sidebar" id="student-list">
+    <div class="student-item" ng-class="{active: ca == vm.courseAssignment}" ng-repeat="ca in vm.courseAssignments | filter:studentSearch" ui-sref="teachersDashboard.students.statistics({courseId: vm.currentCourseId, studentId: ca.user.id})">
+      <img hb-avatar ng-src="{{ca.user.avatar}}" class="student-avatar">
+      <p>{{ca.user.first_name}} {{ca.user.last_name}}</p>
+      <p class="badge">Коментари: {{ca.studentnote_set.length}}</p>
+      <p class="badge">Присъствие: <span ng-class="{red: ca.student_presence < 50, yellow: ca.student_presence >= 50 && ca.student_presence <= 80, green: ca.student_presence > 80}">{{ca.student_presence}}%</span></p>
+    </div>
+  </div>
+</div>
