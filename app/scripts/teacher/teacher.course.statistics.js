@@ -13,7 +13,7 @@
     function activate() {
 
       if(!$stateParams.courseId) {
-        vm.courseId = user.teacher.teached_courses.reverse()[0].course.id;
+        vm.courseId = teacherService.getTeachedCourses(user)[0].id;
       }
       else {
         vm.courseId = $stateParams.courseId;        
