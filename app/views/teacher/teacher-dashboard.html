@@ -19,13 +19,13 @@
     <div class="col-sm-2 sidebar">
       <ul class="nav nav-sidebar">
         <li ng-repeat="course in vm.teachedCourses">
-          <a href="">{{ course.name }}</a>
+          <a ui-sref="teachersDashboard.students({courseId: course.id})">{{ course.name }}</a>
           <ul>
             <li>
-              <a href="">statistics</a>
+              <a ui-sref="teachersDashboard.statistics({courseId: course.id})">statistics</a>
             </li>
             <li>
-              <a href="">students</a>
+              <a ui-sref="teachersDashboard.students({courseId: course.id})">students</a>
             </li>
           </ul>
         </li>
