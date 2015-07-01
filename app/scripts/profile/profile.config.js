@@ -12,7 +12,7 @@
           profileService.getProfileData()
             .then(function(response) {
               if(response.teacher) {
-                $state.go('teachersDashboard');
+                $state.go('teachersDashboard.statistics');
               }
               else {
                 $state.go('profile');
