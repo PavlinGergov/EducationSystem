@@ -20,7 +20,10 @@
         url: '/statistics/:courseId',
         controller: 'courseStatisticsCtrl',
         controllerAs: 'vm',
-        templateUrl: 'views/teacher/teacher-course-statistics.html'
+        templateUrl: 'views/teacher/teacher-course-statistics.html',
+        resolve: {
+          user: profileData
+        }
       })
       .state('teachersDashboard.students', {
         url: '/students/:courseId',

@@ -5,13 +5,20 @@
     .module('educationSystemApp.teacher')
     .controller('courseStatisticsCtrl', courseStatisticsCtrl);
 
-  function courseStatisticsCtrl($stateParams, studentService, teacherService) {
+  function courseStatisticsCtrl(user, $stateParams, studentService, teacherService) {
     var vm = this;
 
     activate();
 
     function activate() {
-      vm.courseId = $stateParams.courseId;
+
+      if(!$stateParams.courseId) {
+        vm.courseId = user.teacher.teached_courses.reverse()[0].course.id;
+      }
+      else {
+        vm.courseId = $stateParams.courseId;        
+      }
+      
 
       teacherService.getAvgPresenceForCourseWithDropped(vm.courseId)
         .then(function(avgPresence) {
