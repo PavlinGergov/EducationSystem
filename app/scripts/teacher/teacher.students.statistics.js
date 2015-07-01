@@ -5,18 +5,37 @@
     .module('educationSystemApp.teacher')
     .controller('studentStatisticsCtrl', studentStatisticsCtrl);
   
-  function studentStatisticsCtrl($stateParams, tableData, studentService) {
+  function studentStatisticsCtrl($state,user, courseAssignments, tableData, studentService, profileService) {
     var vm = this;
-    console.log($stateParams);
+
     activate();
     var emptyTable = tableData.data;
     vm.weekdays = tableData.weekdays;
+    vm.currentCA = courseAssignments.filter(function(ca) {
+      return ca.user.id == $state.params.studentId;
+    })[0];
+
+    vm.addNote = function(caId) {
+      var data = {
+        'text': vm.newNote,
+        'ca_id': caId
+      };
+      profileService.addNote(data)
+        .success(function(response) {
+          vm.newNote = '';
+          data.author = {
+            'first_name': user.first_name,
+            'last_name': user.last_name
+          };
+
+          vm.currentCA.studentnote_set.push(data);
+        });
+    };
     
     function activate() {
-      vm.courseId = $stateParams.courseId;
-      vm.studentId = $stateParams.studentId;
-      
-      
+
+      vm.studentId = $state.params.studentId;
+      vm.courseId = $state.params.courseId;
       studentService.getStudentCheckins(vm.studentId, vm.courseId)
         .then(function(checkins) {
           vm.presence = studentService.getPresenceTable(emptyTable, checkins);
