@@ -32,12 +32,26 @@
         url: '/:studentId',
         controller: 'studentStatisticsCtrl',
         controllerAs: 'vm',
-        templateUrl: 'views/teacher/teacher-student-statistics.html'
+        templateUrl: 'views/teacher/teacher-student-statistics.html',
+        resolve: {
+          tableData: tableData
+        }
       });
 
     function profileData(profileService) {
       return profileService.getProfileData()
         .then(function(response) {
+          return response;
+        });
+    }
+
+    function tableData($stateParams, studentService) {
+      var courseId;
+      courseId = $stateParams.courseId;
+     
+      return studentService.getLecturesForCourse(courseId)
+        .then(function(response) {
+          console.log(response);
           return response;
         });
     }
