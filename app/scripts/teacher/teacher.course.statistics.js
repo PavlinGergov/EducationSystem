@@ -30,7 +30,7 @@
           cas.forEach(function(ca) {
             if (!ca.is_attending) { vm.studentsDropped += 1; }
           });
-          vm.dropRate = vm.studentsDropped / vm.studentsStarted;
+          vm.dropRate = vm.studentsDropped / vm.studentsStarted * 100;
         });
 
 
