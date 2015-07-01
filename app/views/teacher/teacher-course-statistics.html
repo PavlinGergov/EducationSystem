@@ -1,22 +1,23 @@
 <div class="col-sm-10 col-sm-offset-2 main">
-		  <div class="statbox">
-		    <p class="title">Students course started with:</p>
-		    <p class="info">{{vm.studentsStarted}}</p>
-		  </div>
-		  <div class="statbox">
-		    <p class="title">Students droped the course:</p>
-		    <p class="info">{{vm.studentsDropped}}</p>
-		  </div>
-		  <div class="statbox">
-		    <p class="title">Drop rate of the course:</p>
-		    <p class="info">{{vm.dropRate | number:1}}%</p>
-		  </div>
-		  <div class="statbox">
-		    <p class="title">Attendance Rate With Dropped Students:</p>
-		    <p class="info">{{vm.avgPresenceWithDropped | number:2}}%</p>
-		  </div>
-		  <div class="statbox">
-		    <p class="title">Attendance Rate Without Dropped Students:</p>
-		    <p class="info">{{vm.avgPresenceWithoutDropped | number:2}}%</p>
-		  </div>
+  <h1 class="text-center">{{vm.currentCourse.name}}</h1>
+  <div class="statbox">
+    <p class="title">Students course started with:</p>
+    <p class="info">{{vm.studentsStarted}}</p>
+  </div>
+  <div class="statbox">
+    <p class="title">Students droped the course:</p>
+    <p class="info">{{vm.studentsDropped}}</p>
+  </div>
+  <div class="statbox">
+    <p class="title">Drop rate of the course:</p>
+    <p class="info">{{vm.dropRate | number:1}}%</p>
+  </div>
+  <div class="statbox">
+    <p class="title">Attendance Rate With Dropped Students:</p>
+    <p class="info">{{vm.avgPresenceWithDropped | number:2}}%</p>
+  </div>
+  <div class="statbox">
+    <p class="title">Attendance Rate Without Dropped Students:</p>
+    <p class="info">{{vm.avgPresenceWithoutDropped | number:2}}%</p>
+  </div>
 </div>

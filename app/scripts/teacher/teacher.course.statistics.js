@@ -11,14 +11,15 @@
     activate();
 
     function activate() {
-
+      vm.user = user;
       if(!$stateParams.courseId) {
-        vm.courseId = teacherService.getTeachedCourses(user)[0].id;
+        vm.courseId = teacherService.getTeachedCourses(vm.user)[0].id;
       }
       else {
         vm.courseId = $stateParams.courseId;        
       }
-      
+
+      vm.currentCourse = teacherService.getCourseById(vm.user, vm.courseId);
 
       teacherService.getAvgPresenceForCourseWithDropped(vm.courseId)
         .then(function(avgPresence) {

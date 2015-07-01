@@ -10,7 +10,8 @@
       getTeachedCourses: getTeachedCourses,
       getCAsForCourse: getCAsForCourse,
       getAvgPresenceForCourseWithDropped: getAvgPresenceForCourseWithDropped,
-      getAvgPresenceForCourseWithoutDropped: getAvgPresenceForCourseWithoutDropped
+      getAvgPresenceForCourseWithoutDropped: getAvgPresenceForCourseWithoutDropped,
+      getCourseById: getCourseById
 
     };
 
@@ -19,6 +20,13 @@
     function getTeachedCourses(user) {
       console.log(user);
       return user.teacher.teached_courses.reverse();
+    }
+
+    function getCourseById(user, courseId) {
+      var result = user.teacher.teached_courses.filter(function(course) {
+        return course.id == courseId;
+      });
+      return result[0];
     }
 
     function getCAsForCourse(courseId) {

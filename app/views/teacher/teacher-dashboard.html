@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">HackBulgaria</a>
+      <a class="navbar-brand">HackBulgaria</a>
     </div>
     <angled-navbar menus="vm.menu"></angled-navbar>
   </div>
@@ -19,13 +19,13 @@
     <div class="col-sm-2 sidebar">
       <ul class="nav nav-sidebar">
         <li ng-repeat="course in vm.teachedCourses">
-          <a ui-sref="teachersDashboard.students({courseId: course.id})">{{ course.name }}</a>
-          <ul>
-            <li>
-              <a ui-sref="teachersDashboard.statistics({courseId: course.id})">statistics</a>
+          <a ui-sref="teachersDashboard.statistics({courseId: course.id})">{{ course.name }}</a>
+          <ul class="nav nav-sub">
+            <li ui-sref-active="active" ui-sref-active-includes="teachersDashboard.statistics">
+              <a ui-sref="teachersDashboard.statistics({courseId: course.id})" >Статистика</a>
             </li>
-            <li>
-              <a ui-sref="teachersDashboard.students({courseId: course.id})">students</a>
+            <li ui-sref-active="active" ui-sref-active-includes="teachersDashboard.students">
+              <a ui-sref="teachersDashboard.students({courseId: course.id})" >Студенти</a>
             </li>
           </ul>
         </li>
