@@ -25,19 +25,32 @@
       .state('teachersDashboard.students', {
         url: '/students/:courseId',
         controller: 'studentsListCtrl',
-        controllerAs: 'vm',
-        templateUrl: 'views/teacher/teacher-student-list.html'
+        controllerAs: 'slvm',
+        templateUrl: 'views/teacher/teacher-student-list.html',
+        resolve: {
+          courseAssignments: courseAssignmentsData
+        }
       })
       .state('teachersDashboard.students.statistics', {
         url: '/:studentId',
         controller: 'studentStatisticsCtrl',
-        controllerAs: 'vm',
+        controllerAs: 'ssvm',
         templateUrl: 'views/teacher/teacher-student-statistics.html',
+        
         resolve: {
-          tableData: tableData
+          user: profileData,
+          tableData: tableData,
+          courseAssignments: courseAssignmentsData
         }
       });
 
+    function courseAssignmentsData(teacherService, $stateParams) {
+      return teacherService.getCAsForCourse($stateParams.courseId)
+      .then(function(response) {
+        return response;
+      });
+    }
+    
     function profileData(profileService) {
       return profileService.getProfileData()
         .then(function(response) {
