@@ -1,0 +1,27 @@
+<div class="col-sm-10 col-sm-offset-2 main">
+		  <div class="thumbnail">
+		    <img data-src="holder.js/300x200" alt="">
+		    <h3>Attendance Rate With Dropped Students:</h3>
+		    <p>{{vm.avgPresenceWithDropped | number:2}}%</p>
+		  </div>
+		  <div class="thumbnail">
+		    <img data-src="holder.js/300x200" alt="">
+		    <h3>Attendance Rate Without Dropped Students:</h3>
+		    <p>{{vm.avgPresenceWithoutDropped | number:2}}%</p>
+		  </div>
+		  <div class="thumbnail">
+		    <img data-src="holder.js/300x200" alt="">
+		    <h3>Students course started with:</h3>
+		    <p>{{vm.studentsStarted}}</p>
+		  </div>
+		  <div class="thumbnail">
+		    <img data-src="holder.js/300x200" alt="">
+		    <h3>Students droped the course:</h3>
+		    <p>{{vm.studentsDropped}}</p>
+		  </div>
+		  <div class="thumbnail">
+		    <img data-src="holder.js/300x200" alt="">
+		    <h3>Drop rate of the course:</h3>
+		    <p>{{vm.dropRate | number:2}}%</p>
+		  </div>
+</div>
