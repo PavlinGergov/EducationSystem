@@ -1,52 +1,76 @@
 <div class="col-sm-7 col-sm-offset-5 main">
-  <!-- <div class="col-sm-4"> -->
-  <!--   <img hb-avatar ng-src="{{ vm.courseAssignment.user.avatar}}" class="img-thumbnail"> -->
-  <!-- </div> -->
+  
+  <div class="col-sm-4">
+    <img hb-avatar ng-src="{{ ssvm.currentCA.user.avatar}}" class="img-thumbnail">
+  </div>
 
-  <!-- <div class="col-sm-8"> -->
-  <!--   <h3 id="student-name">{{ vm.courseAssignment.user.first_name }} {{ vm.courseAssignment.user.last_name }}</h3> -->
-  <!--   <ul class="socials"> -->
-  <!--     <li> -->
-  <!--       <i class="fa fa-github"></i> -->
-  <!--       <a href="{{ vm.courseAssignment.user.github_account }}" target="_blank" ng-show="vm.courseAssignment.user.github_account"> -->
-  <!--         {{ vm.courseAssignment.user.github_account }} -->
-  <!--       </a> -->
-  <!--       <span ng-hide="vm.courseAssignment.user.github_account"> -->
-  <!--         Няма пратен GitHub -->
-  <!--       </span> -->
-  <!--     </li> -->
-  <!--     <li> -->
-  <!--       <i class="fa fa-envelope-o"></i> -->
-  <!--       {{ vm.courseAssignment.user.email }} -->
-  <!--     </li> -->
-  <!--     <li> -->
-  <!--       <i class="fa fa-circle {{vm.colorCoding}}"></i> -->
-  <!--       <span>{{ vm.presencePercentage }}%</span> -->
-  <!--     </li> -->
-  <!--   </ul> -->
-    
-    <div ng-show="vm.weekdays.length">
-      <p>Процент присъствия: {{vm.presencePercentage}}% </p>
+  <div class="col-sm-8">
+    <h3 id="student-name">{{ ssvm.currentCA.user.first_name }} {{ ssvm.currentCA.user.last_name }}</h3>
+    <ul class="socials">
+      <li>
+        <i class="fa fa-github"></i>
+        <a href="{{ ssvm.currentCA.user.github_account }}" target="_blank" ng-show="ssvm.currentCA.user.github_account">
+          {{ ssvm.currentCA.user.github_account }}
+        </a>
+        <span ng-hide="ssvm.currentCA.user.github_account">
+          Няма пратен GitHub
+        </span>
+      </li>
+      <li>
+        <i class="fa fa-envelope-o"></i>
+        {{ ssvm.currentCA.user.email }}
+      </li>
+      <li>
+        <i class="fa fa-circle {{vm.colorCoding}}"></i>
+        <span>{{ ssvm.presencePercentage }}%</span>
+      </li>
+    </ul>
+
+    <div ng-show="ssvm.weekdays.length">
       <table class="table-bordered" id="presence-table">
         <thead>
           <tr>
             <th></th>
-            <th ng-repeat="day in vm.weekdays">{{day}}</th>
+            <th ng-repeat="day in ssvm.weekdays">{{day}}</th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="week in vm.presence">
+          <tr ng-repeat="week in ssvm.presence">
             <td>{{'week' + ($index + 1)}}</td>
             <td ng-repeat="d in week track by $index" class="{{d.presence}}">{{ d.date }}</td>
           </tr>
         </tbody>
       </table>
     </div>
-    
-    <div class="alert alert-danger" role="alert"  ng-show="!vm.courseAssignment.user.mac">
+    <div class="alert alert-danger" role="alert"  ng-show="!ssvm.currentCA.user.mac">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
       <span class="sr-only">Error:</span>
       Не е вкаран MAC адрес!
     </div>
-
   </div>
+</div>
+<div class="col-sm-7 col-sm-offset-5 main" ng-show="ssvm.currentCA">
+  <h3>Коментари от преподавател</h3>
+  
+  <form ng-submit="ssvm.addNote(ssvm.currentCA.id)" novalidate>
+    <div class="form-group">
+      <textarea name="new_note" class="form-control" ng-model="ssvm.newNote" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">
+        Добави коментар
+      </button>
+    </div>
+  </form>
+
+  <hr>
+  <p ng-repeat="note in ssvm.currentCA.studentnote_set | orderBy:'post_time':true">
+    <span>
+      {{note.post_time | date:'dd/MM/yyyy @ h:mma'}}
+    </span>
+    <strong>
+      {{note.author.first_name}} {{note.author.last_name}}: 
+    </strong>
+    {{note.text}}
+  </p>
+</div>
