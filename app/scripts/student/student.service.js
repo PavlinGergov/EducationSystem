@@ -51,7 +51,7 @@
     }
 
     function getCourses(user) {
-      return user.student.courseassignment_set;
+      return user.student.courseassignment_set.reverse();
     }
 
     function getPresenceTable(tableData, checkins) {
