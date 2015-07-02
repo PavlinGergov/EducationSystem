@@ -36,7 +36,7 @@
         <tbody>
           <tr ng-repeat="week in ovm.presence">
             <td>{{'week' + ($index + 1)}}</td>
-            <td ng-repeat="lectureDay in week track by $index" class="{{lectureDay.presence}}">{{ lectureDay.date }}</td>
+            <td ng-repeat="lectureDay in week track by $index" class="{{lectureDay.presence}}">{{ lectureDay.date | date: "d-MM-yyyy" }}</td>
           </tr>
         </tbody>
       </table>      

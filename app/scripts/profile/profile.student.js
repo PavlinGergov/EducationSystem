@@ -51,7 +51,7 @@
     };
 
     if(vm.user.teacher) {
-      vm.courseId = vm.user.teacher.teached_courses.reverse()[0].id;
+      vm.courseId = vm.user.teacher.teached_courses[0].id;
       vm.menu = navbar.teacher(vm.courseId);
     }
     else {
