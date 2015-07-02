@@ -18,8 +18,7 @@
     return service;
 
     function getTeachedCourses(user) {
-      console.log(user);
-      return user.teacher.teached_courses.reverse();
+      return user.teacher.teached_courses;
     }
 
     function getCourseById(user, courseId) {

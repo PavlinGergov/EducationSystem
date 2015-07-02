@@ -8,7 +8,7 @@
   function teacherCtrl(user, profileService, URL, navbar) {
     var vm = this;
 
-    vm.menu = navbar.teacher();
+
 
     vm.showStudents = function(courseId) {
       vm.currentId = courseId;
@@ -86,6 +86,7 @@
       vm.user = user;
       vm.teachedCourses = vm.user.teacher.teached_courses.reverse();
       vm.showStudents(vm.teachedCourses[0].id);
+      vm.menu = navbar.teacher(vm.teachedCourses[0].id);
     }
   }
 

@@ -11,10 +11,11 @@
     activate();
     
     function activate() {
-      vm.menu = navbar.student();
+      
       vm.user = user;
       vm.courses = studentService.getCourses(vm.user);
       vm.currentCourse = vm.courses[0];
+      vm.menu = navbar.student(vm.currentCourse.course.id);
     };
   };
 })();

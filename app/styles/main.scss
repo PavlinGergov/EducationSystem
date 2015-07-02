@@ -66,17 +66,6 @@ body {
   background-color: #428bca;
 }
 
-.nav-sub > .active > a,
-.nav-sub > .active > a:hover,
-.nav-sub > .active > a:focus {
-  color: #fff;
-  background-color: #428bca;
-}
-
-.nav-sub > li > a {
-  padding-left: 40px;
-}
-
 /*
  * Main content
  */
@@ -296,4 +285,9 @@ body {
 
 .sub-ul {
   list-style-type: none;
+}
+
+.sub-ul > .active > a {
+  color: #fff;
+  background-color: #428bca;
 }

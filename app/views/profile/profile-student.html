@@ -86,7 +86,7 @@
           <th></th>
         </tr>
 
-        <tr ng-repeat="course in vm.user.student.courses">
+        <tr ng-repeat="course in vm.user.student.courseassignment_set">
           <td class="text-center"><i class="{{vm.icon(course.status)}} icon-text" ></i>{{course.status}}</td>
           <td>{{course.course.name}}</td>
           <td>{{course.course.start_time | date : "dd.MM.yyyy"}} - {{course.course.end_time | date : "dd.MM.yyyy"}}</td>

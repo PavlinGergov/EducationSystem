@@ -7,15 +7,15 @@
 
   function teacherDashboardCtrl(user, navbar, teacherService) {
     var vm = this;
+    vm.user = user;
 
-    vm.menu = navbar.teacher();
+    vm.menu = navbar.teacher(vm.user.teacher.teached_courses[0].id);
 
     activate();
 
     function activate() {
-      vm.user = user;
-      vm.teachedCourses = vm.user.teacher.teached_courses.reverse();
-      console.log(vm.teachedCourses);
+
+      vm.teachedCourses = vm.user.teacher.teached_courses;
     }
   }
 })();

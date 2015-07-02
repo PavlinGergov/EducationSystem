@@ -24,7 +24,7 @@
     .controller('profileCtrl', profileCtrl);
 
     //TODO:Iznasqne na direktivata v otdelen fail
-  function profileCtrl(user, events, ngDialog, profileService, URL, Upload, BASE_URL, navbar) {
+  function profileCtrl(user, events, ngDialog, profileService, URL, Upload, BASE_URL, navbar, studentService) {
 
     var vm = this;
     vm.icon = function(status) {
@@ -40,7 +40,8 @@
         break;
       }
     };
-
+    activate();
+    
     vm.user = user;
     vm.events = events;
     vm.obj = {
@@ -50,10 +51,12 @@
     };
 
     if(vm.user.teacher) {
-      vm.menu = navbar.teacher();
+      vm.courseId = vm.user.teacher.teached_courses.reverse()[0].id;
+      vm.menu = navbar.teacher(vm.courseId);
     }
     else {
-      vm.menu = navbar.student();
+      vm.courseId = studentService.getCourses(vm.user)[0].course.id;
+      vm.menu = navbar.student(vm.courseId);
     }
 
     vm.uploadAvatar = function(file) {
@@ -71,13 +74,6 @@
           vm.user.avatar = response;
         });
     };
-
-    if(vm.user.teacher) {
-      vm.menu = navbar.teacher();
-    }
-    else {
-      vm.menu = navbar.student();
-    }
     
     vm.buyTicket = function(eventId) {
       profileService.buyTicket(eventId)
@@ -124,5 +120,9 @@
         }]
       });
     };
+
+    function activate() {
+      
+    }
   }
 })();

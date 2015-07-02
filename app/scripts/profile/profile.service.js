@@ -202,9 +202,15 @@
       };
 
       if(result.student !== null) {
-        result.student.courses = status(user.student.courseassignment_set);
+        result.student.courseassignment_set = status(user.student.courseassignment_set);
+        result.student.courseassignment_set = $filter('orderBy')(result.student.courseassignment_set, 'course.start_time', true);
       }
 
+      if(result.teacher !== null) {
+        result.teacher.teached_courses = $filter('orderBy')(result.teacher.teached_courses, 'start_time', true);
+        console.log(result.teacher.teached_courses);
+      }
+      
       return result;
     }
 

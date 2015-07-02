@@ -8,11 +8,12 @@
   function configure($stateProvider) {
     $stateProvider
       .state('check', {
-        controller: function(profileService, $state) {
+        controller: function(profileService, $state, teacherService) {
           profileService.getProfileData()
             .then(function(response) {
               if(response.teacher) {
-                $state.go('teachersDashboard.statistics');
+                var firstCourseId = teacherService.getTeachedCourses(response)[0].id;
+                $state.go('teachersDashboard.statistics', { courseId: firstCourseId});
               }
               else {
                 $state.go('profile');

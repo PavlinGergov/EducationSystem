@@ -28,11 +28,11 @@
       return menu;
     };
 
-    function teacher() {
+    function teacher(firstCourseId) {
       var menu = [
         {
           title: "Dashboard",
-          action: 'teachersDashboard.statistics'
+          action: 'teachersDashboard.statistics({ courseId: '+ firstCourseId +'})'
         },
         {
           title: "Профил",
@@ -46,11 +46,11 @@
       return menu;
     };
 
-    function student() {
+    function student(firstCourseId) {
       var menu = [
         {
           title: "Dashboard",
-          action: 'studentDashboard.overview'
+          action: 'studentDashboard.overview({courseId: '+ firstCourseId +'})'
         },
         {
           title: "Профил",
