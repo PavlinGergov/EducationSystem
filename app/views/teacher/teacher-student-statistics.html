@@ -24,6 +24,9 @@
         <i class="fa fa-circle {{vm.colorCoding}}"></i>
         <span>{{ ssvm.presencePercentage }}%</span>
       </li>
+      <li>
+        <a class="btn" ng-click="ssvm.dropStudent(ssvm.currentCA)">Click!</a>
+      </li>
     </ul>
 
     <div ng-show="ssvm.weekdays.length && ssvm.currentCA.user.mac">

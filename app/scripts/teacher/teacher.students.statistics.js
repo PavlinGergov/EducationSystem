@@ -1,11 +1,11 @@
 (function() {
   'use strict';
-  
+
   angular
     .module('educationSystemApp.teacher')
     .controller('studentStatisticsCtrl', studentStatisticsCtrl);
-  
-  function studentStatisticsCtrl($state,user, courseAssignments, tableData, studentService, profileService) {
+
+  function studentStatisticsCtrl($state,user, courseAssignments, tableData, studentService, profileService, teacherService) {
     var vm = this;
 
     activate();
@@ -33,7 +33,19 @@
           vm.currentCA.studentnote_set.push(data);
         });
     };
-    
+
+    vm.dropStudent = function(cdId) {
+      console.log("viknaha me");
+      var data = {
+        'ca_id': cdId.id,
+        'is_attending': !cdId.is_attending
+      };
+      teacherService.dropStudent(data)
+        .then(function(){
+          vm.currentCA.is_attending = !cdId.is_attending;
+        });
+    };
+
     function activate() {
 
       vm.studentId = $state.params.studentId;
