@@ -5,12 +5,13 @@
     .module('educationSystemApp.teacher')
     .factory('teacherService', teacherService);
 
-  function teacherService($http, EDUCATION_URL) {
+  function teacherService($http, EDUCATION_URL, $q, profileService) {
     var service = {
       getTeachedCourses: getTeachedCourses,
       getCAsForCourse: getCAsForCourse,
       getCourseById: getCourseById,
-      getStatistics: getStatistics
+      getStatistics: getStatistics,
+      dropStudent: dropStudent
     };
 
     return service;
@@ -60,5 +61,17 @@
 
       return statistics;
     }
+
+    function dropStudent(data) {
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      return $http.patch(EDUCATION_URL + 'drop-student/', data, options)
+       .then(function() {
+         profileService.notification('success', 'toast-top-right', 'Успешно променихте статуса на студента!');
+       })
+       .catch(function() {
+         return $q.reject();
+       });
+    }
   }
 })();
+
