@@ -1,20 +1,18 @@
 <angled-navbar menus="vm.menu"></angled-navbar>
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-2 sidebar">
-      <ul class="nav nav-sidebar">
-        <li ng-repeat="course in vm.teachedCourses" ui-sref-active="active" ui-sref-active-includes="teachersDashboard.statistics">
-          <a ui-sref="teachersDashboard.statistics({courseId: course.id})"><i class="fa fa-info fa-1x icon-text"></i> {{ course.name }}</a>
-          <ul class="sub-ul">
-            <li ui-sref-active="active" ui-sref-active-includes="teachersDashboard.students">
-              
-              <a ui-sref="teachersDashboard.students({courseId: course.id})" ><i class="fa fa-caret-right"></i> Студенти</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div ui-view></div>
+  <div class="col-sm-2 sidebar">
+    <ul class="nav nav-sidebar">
+      <li ng-repeat="course in vm.teachedCourses" ui-sref-active="active" ui-sref-active-includes="teachersDashboard.statistics">
+        <a ui-sref="teachersDashboard.statistics({courseId: course.id})"><i class="fa fa-info fa-1x icon-text"></i> {{ course.name }}</a>
+        <ul class="sub-ul">
+          <li ui-sref-active="active" ui-sref-active-includes="teachersDashboard.students">
+            
+            <a ui-sref="teachersDashboard.students({courseId: course.id})" ><i class="fa fa-caret-right"></i> Студенти</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </div>
+  <div ui-view></div>
 </div>
