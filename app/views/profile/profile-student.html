@@ -123,12 +123,11 @@
       <div class="modal-body">
         <form name="avatarForm">
           <input  type="file" fileread="vm.obj.src" ng-model="picFile" name="file" accept="image/*" ngf-select=""/>
-          <div ng-show="vm.obj.src" ng-jcrop="vm.obj.src" selection="vm.obj.selection" thumbnail="obj.thumbnail"></div>
-          <!-- <img src="{{vm.obj.src}}"> -->
+          <div ng-show="vm.obj.src" ng-jcrop="vm.obj.src" width="400" selection="vm.obj.selection" thumbnail="obj.thumbnail"></div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" ng-click="vm.uploadAvatar(picFile)">Save changes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
+          <button type="button" class="btn btn-primary" ng-click="vm.uploadAvatar(picFile)">Качи снимка</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
