@@ -10,7 +10,6 @@
 
     activate();
     vm.state = $state;
-    console.log($state.includes('teachersDashboard.students.statistics', {studentId: 308}));
     var emptyTable = tableData.data;
     vm.weekdays = tableData.weekdays;
     vm.currentCA = courseAssignments.filter(function(ca) {
