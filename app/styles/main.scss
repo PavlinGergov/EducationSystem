@@ -242,6 +242,22 @@ body {
   margin-top: 10px;
 }
 
+.btn-primary {
+  background-color: #EFAC26;
+  border-color: #C78434;
+}
+
+.btn-primary:hover {
+  background-color: #777777;
+  border-color: #1B1B1B;
+}
+
+.navbar {
+  a {
+    color: #EFAC26 !important;
+  }
+}
+
 .student-card, .teacher-card {
   .avatar {
     width: 120px;
