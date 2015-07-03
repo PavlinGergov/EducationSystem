@@ -33,15 +33,6 @@
           user: profileData,
           events: eventsPrep
         }
-      })
-      .state('teacherDashboard', {
-        url: '/teacher',
-        controller: 'teacherCtrl',
-        controllerAs: 'vm',
-        templateUrl: 'views/profile/profile-teacher.html',
-        resolve: {
-          user: profileData
-        }
       });
 
     function eventsPrep(profileService) {

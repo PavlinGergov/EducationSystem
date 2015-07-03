@@ -9,10 +9,8 @@
     var service = {
       getTeachedCourses: getTeachedCourses,
       getCAsForCourse: getCAsForCourse,
-      getAvgPresenceForCourseWithDropped: getAvgPresenceForCourseWithDropped,
-      getAvgPresenceForCourseWithoutDropped: getAvgPresenceForCourseWithoutDropped,
-      getCourseById: getCourseById
-
+      getCourseById: getCourseById,
+      getStatistics: getStatistics
     };
 
     return service;
@@ -36,32 +34,31 @@
         });
     }
 
-    function getAvgPresenceForCourseWithDropped(courseId) {
-      return getCAsForCourse(courseId)
-        .then(function(cas) {
-          var totalPresence = 0;
-          var students = cas.length;
-          cas.forEach(function(ca) {
-            totalPresence += Number(ca.student_presence);
-          });
-          return totalPresence / students;
-        });
-    }
+    function getStatistics(courseAssignments) {
+      var studentsStarted = courseAssignments.length;
+      var studentsDropped = 0;
+      var presenceWithoutDropped = 0;
+      var totalPresence = 0;
 
-    function getAvgPresenceForCourseWithoutDropped(courseId) {
-      return getCAsForCourse(courseId)
-        .then(function(cas) {
-          var totalPresence = 0;
-          var students = 0;
-          cas.forEach(function(ca) {
-            if (ca.is_attending) {
-              totalPresence += Number(ca.student_presence);
-              students += 1;
-            }
-          });
-          return totalPresence / students;
-        });
-    }
+      courseAssignments.forEach(function(CA) {
+        if(CA.is_attending) {
+          presenceWithoutDropped += Number(CA.student_presence);
+        }
+        else {
+          studentsDropped += 1;
+        }
+        totalPresence += Number(CA.student_presence);
+      });
 
+      var statistics = {
+        started: studentsStarted,
+        dropped: studentsDropped,
+        dropRate: (studentsDropped / studentsStarted) * 100,
+        attendanceRate: totalPresence / studentsStarted,
+        attendanceRateWithoutDropped: totalPresence / (studentsStarted - studentsDropped)
+      };
+
+      return statistics;
+    }
   }
 })();

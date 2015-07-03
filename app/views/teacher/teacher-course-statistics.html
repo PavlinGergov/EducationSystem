@@ -2,22 +2,22 @@
   <h1 class="text-center">{{vm.currentCourse.name}}</h1>
   <div class="statbox">
     <p class="title">Students course started with:</p>
-    <p class="info">{{vm.studentsStarted}}</p>
+    <p class="info">{{vm.stat.started}}</p>
   </div>
   <div class="statbox">
     <p class="title">Students droped the course:</p>
-    <p class="info">{{vm.studentsDropped}}</p>
+    <p class="info">{{vm.stat.dropped}}</p>
   </div>
   <div class="statbox">
     <p class="title">Drop rate of the course:</p>
-    <p class="info">{{vm.dropRate | number:1}}%</p>
+    <p class="info">{{vm.stat.dropRate | number:1}}%</p>
   </div>
   <div class="statbox">
     <p class="title">Attendance Rate With Dropped Students:</p>
-    <p class="info">{{vm.avgPresenceWithDropped | number:2}}%</p>
+    <p class="info">{{vm.stat.attendanceRate | number:2}}%</p>
   </div>
   <div class="statbox">
     <p class="title">Attendance Rate Without Dropped Students:</p>
-    <p class="info">{{vm.avgPresenceWithoutDropped | number:2}}%</p>
+    <p class="info">{{vm.stat.attendanceRateWithoutDropped | number:2}}%</p>
   </div>
 </div>

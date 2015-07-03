@@ -12,13 +12,7 @@
       changeSocialLinks: changeSocialLinks,
       getEvents: getEvents,
       buyTicket: buyTicket,
-      students: students,
-      lectures: lectures,
-      getCheckins: getCheckins,
-      getWeekDays: getWeekDays,
-      getWeekDay: getWeekDay,
-      getNumberOfWeek: getNumberOfWeek,
-      lectureWeek: lectureWeek,
+      
       notification: toast,
       addNote: addNote
     };
@@ -34,73 +28,6 @@
         })
         .error(function(error) {
         });
-    }
-
-    function lectures(courseId) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      var data = {'course_id' : courseId };
-      return $http.get(EDUCATION_URL + 'get-lectures/?course_id=' + courseId, options)
-        .then(function(response) {
-          return response.data.map(function(lecture) {
-            return lecture.date;
-          }).filter(function(lectureDate) {
-            return new Date(lectureDate) <= new Date();
-          })
-          .sort();
-        });
-      }
-
-    function students(courseId) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(EDUCATION_URL + 'get-cas-for-course/?course_id=' + courseId, options)
-        .then(function(response) {
-          return response.data;
-        });
-    }
-
-    function getCheckins(studentId, courseId) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(EDUCATION_URL + 'get-check-ins/?student_id=' + studentId + '&course_id=' + courseId, options)
-        .then(function(response) {
-          return response.data;
-        });
-    }
-
-    function getWeekDays(lectures) {
-      var days = ['Monday', 'Tuesday', 'Wednesday',
-       'Thursday', 'Friday', 'Saturday', 'Sunday'];
-      var lectureDays = lectures.map(function(lecture) {
-        return $filter('date')(new Date(lecture), 'EEEE');
-      }).filter(function (v, i, a) {
-        return a.indexOf(v) === i;
-      });
-      return days.filter(function(day) {
-        return lectureDays.indexOf(day) !== -1;
-      });
-    }
-
-    function getWeekDay(date) {
-      return $filter('date')(new Date(date), 'EEEE');
-    }
-
-    function getNumberOfWeek(date) {
-      var date = new Date(date);
-      return 'w' + $filter('date')(date, 'w') + 52 *
-          $filter('date')(date, 'y');
-    }
-
-    function lectureWeek(lectures, lectureDays) {
-      var data = {};
-
-      lectures.forEach(function(lecture) {
-        var numberOfWeek = getNumberOfWeek(lecture);
-        if (!data[numberOfWeek]) {
-          data[numberOfWeek] = Array.apply(null, Array(lectureDays.length)).map(String.prototype.valueOf, ' ');
-        }
-        var index = lectureDays.indexOf(getWeekDay(lecture));
-        data[getNumberOfWeek(lecture)][index] = {'date': lecture, 'presence': false};
-      });
-      return data;
     }
 
     function toast(type, css, msg) {
