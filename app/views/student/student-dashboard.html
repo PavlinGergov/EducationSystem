@@ -1,17 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">HackBulgaria</a>
-    </div>
-    <angled-navbar menus="vm.menu"></angled-navbar>
-  </div>
-</nav>
+<angled-navbar menus="vm.menu"></angled-navbar>
 
 <div class="container-fluid">
   <div class="row">
@@ -19,15 +6,8 @@
       <ul class="nav nav-sidebar">
         <li ng-repeat="course in vm.courses" ui-sref-active="active" ui-sref-active-includes="studentDashboard.overview">
           <a ui-sref="studentDashboard.overview({courseId: '{{course.course.id}}'})"><i class="fa fa-info fa-1x icon-text"></i> {{ course.course.name }}</a>
-          <ul class="sub-ul"><!-- 
-            <li>
-              <a ui-sref="studentDashboard.overview({courseId: '{{course.course.id}}'})">
-                <i class="fa fa-info fa-1x icon-text"></i>
-                Overview
-              </a>
-            </li> -->
+          <ul class="sub-ul">
             <li  ui-sref-active="active" ui-sref-active-includes="studentDashboard.otherStudents">
-              
               <a ui-sref="studentDashboard.otherStudents({courseId: '{{course.course.id}}'})">
                 <i class="fa fa-caret-right"></i> Всички от курса
               </a>
