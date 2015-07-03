@@ -37,7 +37,7 @@
         <tbody>
           <tr ng-repeat="week in ssvm.presence">
             <td>{{'week' + ($index + 1)}}</td>
-            <td ng-repeat="d in week track by $index" class="{{d.presence}}">{{ d.date | date: "d-MM-yyyy" }}</td>
+            <td ng-repeat="d in week track by $index" class="{{d.presence}}">{{ d.date | date: "dd-MM-yyyy" }}</td>
           </tr>
         </tbody>
       </table>
