@@ -208,7 +208,6 @@
 
       if(result.teacher !== null) {
         result.teacher.teached_courses = $filter('orderBy')(result.teacher.teached_courses, 'start_time', true);
-        console.log(result.teacher.teached_courses);
       }
       
       return result;

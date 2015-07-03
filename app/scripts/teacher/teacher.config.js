@@ -67,7 +67,6 @@
      
       return studentService.getLecturesForCourse(courseId)
         .then(function(response) {
-          console.log(response);
           return response;
         });
     }

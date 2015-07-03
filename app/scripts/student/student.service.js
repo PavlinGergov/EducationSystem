@@ -23,7 +23,6 @@
       var presenceCount = 0;
       Object.keys(presence).forEach(function(week) {
        presence[week].forEach(function(lecture) {
-
          if(lecture !== '') {
            lecturesCount += 1;
            if(lecture.presence) {
@@ -32,7 +31,14 @@
          }
        });
       });
-      return Math.round((presenceCount / lecturesCount) * 100);
+
+      var result = Math.round((presenceCount / lecturesCount) * 100);
+      if(result) {        
+        return result;
+      }
+      else {
+        return 0;
+      }
     }
 
     function getStudentsForCourse(courseId) {

@@ -126,7 +126,7 @@ body {
     cursor: pointer;
   }
   .student-item:hover, .active {
-    background-color: #E5E5E5;
+    background-color: #b9b9b9;
   }
   .student-avatar {
     width: 60px;
@@ -172,37 +172,7 @@ body {
   height:350px;
 }
 
-#students-search {
-  height: 30px;
-  width: 106%;
-  margin: 0px;
-  padding: 5px;
-  margin-left: -4px;
-}
-#student-list {
-  padding: 0px;
-  margin-top: 30px;
-  .student-item {
-    padding: 10px;
-    cursor: pointer;
-  }
-  .student-item:hover, .active {
-    background-color: #E5E5E5;
-  }
-  .student-avatar {
-    width: 60px;
-    height: 60px;
-    border: 1px solid;
-    float: left;
-    margin-right: 10px;
-  }
-}
-.socials {
-  list-style-type: none;
-  margin-left: 5px;
-  padding: 0px;
 
-}
 
 .green {
   color: green;
@@ -216,27 +186,6 @@ body {
   color: yellow;
 }
 
-#presence-table {
-  width: 100%;
-  margin-top: 10px;
-  tr, th, td {
-    text-align: center;
-    padding: 1px;
-  }
-  .true {
-    background-color: #dff0d8;
-  }
-
-  .false {
-    background-color: #EDCECE;
-  }
-}
-
-#student-name {
-  padding: 0px;
-  margin: 0px;
-  padding: -20px;
-}
 
 #change-avatar-btn, #change-mac, #mac-div {
   margin-top: 10px;
@@ -256,6 +205,9 @@ body {
   a {
     color: #EFAC26 !important;
   }
+
+.student-card {
+  height: 160px;
 }
 
 .student-card, .teacher-card {

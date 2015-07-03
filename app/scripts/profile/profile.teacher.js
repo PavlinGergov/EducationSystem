@@ -85,7 +85,6 @@
       vm.url = URL;
       vm.user = user;
       vm.teachedCourses = vm.user.teacher.teached_courses;
-      console.log(vm.teachedCourses);
       vm.showStudents(vm.teachedCourses[0].id);
       vm.menu = navbar.teacher(vm.teachedCourses[0].id);
     }
