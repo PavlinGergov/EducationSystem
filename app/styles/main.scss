@@ -121,7 +121,12 @@ body {
 #student-list {
   padding: 0px;
   margin-top: 30px;
-  .student-item {
+  .active-student {
+    padding: 10px;
+    cursor: pointer;
+  }
+  .inactive-student {
+    opacity: 0.4;
     padding: 10px;
     cursor: pointer;
   }

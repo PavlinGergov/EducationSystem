@@ -10,7 +10,7 @@
 
     activate();
     vm.state = $state;
-    console.log($state.includes('teachersDashboard.students.statistics', {studentId: 308}));
+    // console.log($state.includes('teachersDashboard.students.statistics', {studentId: 308}));
     var emptyTable = tableData.data;
     vm.weekdays = tableData.weekdays;
     vm.currentCA = courseAssignments.filter(function(ca) {
@@ -35,7 +35,7 @@
     };
 
     vm.dropStudent = function(cdId) {
-      console.log("viknaha me");
+      // console.log("viknaha me");
       var data = {
         'ca_id': cdId.id,
         'is_attending': !cdId.is_attending
