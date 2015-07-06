@@ -3,9 +3,6 @@
 
   angular
     .module('educationSystemApp.auth')
-    .constant('BASE_URL', 'https://data.hackbulgaria.com/base/api/')
-    .constant('EDUCATION_URL', 'https://data.hackbulgaria.com/education/api/')
-    .constant('URL', 'https://data.hackbulgaria.com')
     .config(configure);
 
   function configure($stateProvider) {
