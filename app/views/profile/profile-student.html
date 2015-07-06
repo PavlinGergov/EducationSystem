@@ -14,16 +14,25 @@
       </div>
 
       <div class="col-xs-8">
-        <p ng-show="vm.user.socialLinks.github_account">
-          <i class="fa fa-github icon-text"></i> <a href='{{vm.user.socialLinks.github_account}}' target="_blank">{{vm.user.socialLinks.github_account}}</a>
+        <p ng-show="vm.user.personalInfo.github_account">
+          <i class="fa fa-github icon-text"></i> <a href='{{vm.user.personalInfo.github_account}}' target="_blank"> {{vm.user.personalInfo.github_account}}</a>
         </p>
-        <p ng-show="vm.user.socialLinks.twitter_account">
-          <i class="fa fa-twitter icon-text"></i> <a href='{{vm.user.socialLinks.twitter_account}}' target="_blank">{{vm.user.socialLinks.twitter_account}}</a>
+        <p ng-show="vm.user.personalInfo.twitter_account">
+          <i class="fa fa-twitter icon-text"></i> <a href='{{vm.user.personalInfo.twitter_account}}' target="_blank">{{vm.user.personalInfo.twitter_account}}</a>
         </p>
-        <p ng-show="vm.user.socialLinks.linkedin_account"> 
-          <i class="fa fa-linkedin icon-text"></i> <a href='{{vm.user.socialLinks.linkedin_account}}' target="_blank">{{vm.user.socialLinks.linkedin_account}}</a>
+        <p ng-show="vm.user.personalInfo.linkedin_account"> 
+          <i class="fa fa-linkedin icon-text"></i> <a href='{{vm.user.personalInfo.linkedin_account}}' target="_blank"> {{vm.user.personalInfo.linkedin_account}}</a>
         </p>
-        <button type="button" class="btn btn-primary" ng-click="vm.social()">Промени socials</button>
+
+        <p ng-show="vm.user.personalInfo.studies_at">
+          <i class="fa fa-graduation-cap icon-text"></i> {{vm.user.personalInfo.studies_at}}
+        </p>
+
+        <p ng-show="vm.user.personalInfo.works_at">
+          <i class="fa fa-cog icon-text"></i> {{vm.user.personalInfo.works_at}}</a>
+        </p>
+
+        <button type="button" class="btn btn-primary" ng-click="vm.info()">Промени информацията</button>
 
         <div ng-show="vm.user.student" id="mac-div">
           <strong>MAC адрес: </strong> <span>{{vm.user.student.mac}} </span>

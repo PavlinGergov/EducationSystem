@@ -83,18 +83,18 @@
         });
     };
 
-    vm.social = function() {
+    vm.info = function() {
       ngDialog.open({
         template: 'views/profile/profile-social-dialog.html',
-        data: angular.copy(vm.user.socialLinks),
+        data: angular.copy(vm.user.personalInfo),
         showClose: false,
         controller: ['$scope', function($scope) {
 
-          $scope.socialLinks = $scope.ngDialogData;
-          $scope.editSocial = function(isValid) {
+          $scope.personalInfo = $scope.ngDialogData;
+          $scope.editInfo = function(isValid) {
             if(isValid === true) {
-              profileService.changeSocialLinks($scope.socialLinks);
-              vm.user.socialLinks = $scope.socialLinks;
+              profileService.changePersonalInfo($scope.personalInfo);
+              vm.user.personalInfo = $scope.personalInfo;
               $scope.closeThisDialog();
             }
           };

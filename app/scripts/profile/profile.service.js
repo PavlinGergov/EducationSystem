@@ -9,7 +9,7 @@
     var service = {
       getProfileData: getProfileData,
       changeMac: changeMac,
-      changeSocialLinks: changeSocialLinks,
+      changePersonalInfo: changePersonalInfo,
       getEvents: getEvents,
       buyTicket: buyTicket,
       
@@ -112,16 +112,19 @@
     }
 
     function userData(user) {
+      console.log(user);
       var result = {
         'first_name': user.first_name,
         'last_name': user.last_name,
         'email': user.email,
         'avatar': user.avatar,
         'ticket_set': user.ticket_set,
-        'socialLinks': {
+        'personalInfo': {
           'github_account': user.github_account,
           'linkedin_account': user.linkedin_account,
-          'twitter_account': user.twitter_account
+          'twitter_account': user.twitter_account,
+          'works_at': user.works_at,
+          'studies_at': user.studies_at
         },
         'teacher': user.teacher,
         'competitor': user.competitor,
@@ -154,12 +157,12 @@
        });
     }
 
-    function changeSocialLinks(data) {
+    function changePersonalInfo(data) {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
 
       $http.patch(BASE_URL + 'baseuser-update/', data, options)
         .success(function(data) {
-          toast('success', 'toast-top-right', 'Успешно редактира социалните си линкове!');
+          toast('success', 'toast-top-right', 'Успешно редактира информацията си!');
         })
         .error(function(error) {
           return error;
