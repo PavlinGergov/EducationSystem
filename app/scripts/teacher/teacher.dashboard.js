@@ -9,7 +9,7 @@
     var vm = this;
     vm.user = user;
 
-    vm.menu = navbar.teacher(vm.user.teacher.teached_courses[0].id);
+    vm.menu = navbar.getMenu(vm.user);
 
     activate();
 

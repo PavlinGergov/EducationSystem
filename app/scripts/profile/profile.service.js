@@ -12,7 +12,7 @@
       changePersonalInfo: changePersonalInfo,
       getEvents: getEvents,
       buyTicket: buyTicket,
-      
+      getMe: getMe,
       notification: toast,
       addNote: addNote
     };
@@ -112,7 +112,6 @@
     }
 
     function userData(user) {
-      console.log(user);
       var result = {
         'first_name': user.first_name,
         'last_name': user.last_name,
@@ -131,16 +130,23 @@
         'student': user.student
       };
 
-      if(result.student !== null) {
+      if(!!user.student) {
         result.student.courseassignment_set = status(user.student.courseassignment_set);
         result.student.courseassignment_set = $filter('orderBy')(result.student.courseassignment_set, 'course.start_time', true);
       }
 
-      if(result.teacher !== null) {
+      if(result.teacher) {
         result.teacher.teached_courses = $filter('orderBy')(result.teacher.teached_courses, 'start_time', true);
       }
-      
       return result;
+    }
+
+    function getMe() {
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      return $http.get(BASE_URL + 'me/', options)
+        .then(function(response) {
+          return response.data;
+        });
     }
 
     function changeMac(mac) {

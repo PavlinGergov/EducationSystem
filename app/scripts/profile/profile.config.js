@@ -11,7 +11,7 @@
         controller: function(profileService, $state, teacherService) {
           profileService.getProfileData()
             .then(function(response) {
-              if(response.teacher) {
+              if(!!response.teacher) {
                 var firstCourseId = teacherService.getTeachedCourses(response)[0].id;
                 $state.go('teachersDashboard.statistics', { courseId: firstCourseId});
               }
@@ -29,6 +29,12 @@
         controller: 'profileCtrl',
         controllerAs: 'vm',
         templateUrl: 'views/profile/profile-student.html',
+        data: {
+          permissions: {
+            except: ['anonymous'],
+            redirectTo: 'login'
+          }
+        },
         resolve: {
           user: profileData,
           events: eventsPrep

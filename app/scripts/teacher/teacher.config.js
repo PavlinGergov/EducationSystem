@@ -12,6 +12,12 @@
         controller: 'teacherDashboardCtrl',
         controllerAs: 'vm',
         templateUrl: 'views/teacher/teacher-dashboard.html',
+        data: {
+          permissions: {
+            only: ['teacher', 'studentAndTeacher'],
+            redirectTo: 'check'
+          }
+        },
         resolve: {
           user: profileData
         }
@@ -21,6 +27,12 @@
         controller: 'courseStatisticsCtrl',
         controllerAs: 'vm',
         templateUrl: 'views/teacher/teacher-course-statistics.html',
+        data: {
+          permissions: {
+            only: ['teacher', 'studentAndTeacher'],
+            redirectTo: 'check'
+          }
+        },
         resolve: {
           user: profileData
         }
@@ -30,6 +42,12 @@
         controller: 'studentsListCtrl',
         controllerAs: 'slvm',
         templateUrl: 'views/teacher/teacher-student-list.html',
+        data: {
+          permissions: {
+            only: ['teacher', 'studentAndTeacher'],
+            redirectTo: 'check'
+          }
+        },
         resolve: {
           courseAssignments: courseAssignmentsData
         }
@@ -39,7 +57,12 @@
         controller: 'studentStatisticsCtrl',
         controllerAs: 'ssvm',
         templateUrl: 'views/teacher/teacher-student-statistics.html',
-        
+        data: {
+          permissions: {
+            only: ['teacher', 'studentAndTeacher'],
+            redirectTo: 'check'
+          }
+        },
         resolve: {
           user: profileData,
           tableData: tableData,

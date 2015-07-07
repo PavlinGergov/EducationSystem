@@ -24,7 +24,7 @@
     .controller('profileCtrl', profileCtrl);
 
     //TODO:Iznasqne na direktivata v otdelen fail
-  function profileCtrl(user, events, ngDialog, profileService, URL, Upload, BASE_URL, navbar, studentService) {
+  function profileCtrl(user, events, ngDialog, profileService, URL, Upload, BASE_URL, navbar, studentService, teacherService) {
 
     var vm = this;
     vm.icon = function(status) {
@@ -50,15 +50,7 @@
       'thumbnail': false
     };
 
-    if(vm.user.teacher) {
-      vm.courseId = vm.user.teacher.teached_courses[0].id;
-      vm.menu = navbar.teacher(vm.courseId);
-    }
-    else {
-      vm.courseId = studentService.getCourses(vm.user)[0].course.id;
-      vm.menu = navbar.student(vm.courseId);
-    }
-
+    vm.menu = navbar.getMenu(vm.user);
     vm.uploadAvatar = function(file) {
       Upload.upload({
         url: BASE_URL +'base-user-update/',

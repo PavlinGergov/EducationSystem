@@ -2,6 +2,7 @@
   'use strict';
   
   angular.module('educationSystemApp.teacher', [
-    'ui.router'
+    'ui.router',
+    'permission'
   ]);
 })();
