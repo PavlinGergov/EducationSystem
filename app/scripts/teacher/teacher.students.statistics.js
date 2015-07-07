@@ -5,15 +5,14 @@
     .module('educationSystemApp.teacher')
     .controller('studentStatisticsCtrl', studentStatisticsCtrl);
 
-  function studentStatisticsCtrl($state,user, courseAssignments, tableData, studentService, profileService, teacherService) {
+  function studentStatisticsCtrl($state,user, tableData, studentService, profileService, teacherService, $scope, $filter) {
     var vm = this;
 
     activate();
     vm.state = $state;
-    // console.log($state.includes('teachersDashboard.students.statistics', {studentId: 308}));
     var emptyTable = tableData.data;
     vm.weekdays = tableData.weekdays;
-    vm.currentCA = courseAssignments.filter(function(ca) {
+    vm.currentCA = $scope.slvm.courseAssignments.filter(function(ca) {
       return ca.user.id == $state.params.studentId;
     })[0];
 
@@ -35,14 +34,18 @@
     };
 
     vm.dropStudent = function(cdId) {
-      // console.log("viknaha me");
       var data = {
-        'ca_id': cdId.id,
+        'ca_id': cdId.id, 
         'is_attending': !cdId.is_attending
       };
       teacherService.dropStudent(data)
         .then(function(){
           vm.currentCA.is_attending = !cdId.is_attending;
+          $scope.slvm.courseAssignments.forEach(function(ca) {
+            if(ca.id === data.ca_id) {
+              ca.is_attending = data.is_attending;
+            }
+          });
         });
     };
 

@@ -42,8 +42,7 @@
         
         resolve: {
           user: profileData,
-          tableData: tableData,
-          courseAssignments: courseAssignmentsData
+          tableData: tableData
         }
       });
 
