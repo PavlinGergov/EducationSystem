@@ -25,7 +25,7 @@
         <span>{{ ssvm.presencePercentage }}%</span>
       </li>
       <li>
-        <a class="btn" ng-click="ssvm.dropStudent(ssvm.currentCA)">Click!</a>
+        <a class="btn btn-primary" ng-click="ssvm.dropStudent(ssvm.currentCA)">{{ ssvm.currentCA.is_attending ? 'Изритай':'Върни' }}</a>
       </li>
     </ul>
 
