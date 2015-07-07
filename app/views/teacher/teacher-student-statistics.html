@@ -5,7 +5,7 @@
   </div>
 
   <div class="col-sm-8">
-    <h3 id="student-name">{{ ssvm.currentCA.user.first_name }} {{ ssvm.currentCA.user.last_name }}</h3>
+    <h3 id="student-name">{{ ssvm.currentCA.user.first_name }} {{ ssvm.currentCA.user.last_name }} </h3> <strong>{{ !ssvm.currentCA.is_attending ? ' - Изключен': ' '}}</strong>
     <ul class="socials">
       <li>
         <i class="fa fa-github"></i>
@@ -23,6 +23,9 @@
       <li>
         <i class="fa fa-circle {{vm.colorCoding}}"></i>
         <span>{{ ssvm.presencePercentage }}%</span>
+      </li>
+      <li>
+        <a class="btn btn-primary" ng-click="ssvm.dropStudent(ssvm.currentCA)">{{ ssvm.currentCA.is_attending ? 'Изключи от курса':'Върни в курса' }}</a>
       </li>
     </ul>
 
