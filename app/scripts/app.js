@@ -40,17 +40,68 @@
         return false;
       });
 
-      Permission.defineRole('teacher', function () {
+      Permission.defineRole('teacher', function (stateParams) {
+        var deferred = $q.defer();
         if(localStorage.getItem('token')) {
-          return profileService.getProfileData()
+          profileService.getMe()
             .then(function(response) {
-              if(response.teacher) {
-                return true;
+              if(!!response.teacher && !response.student) {
+                deferred.resolve();
               }
-              return false;
+              deferred.reject();
+            }, function() {
+              deferred.reject();
             });
         }
-        return false;
+        return deferred.promise;
+      });
+
+      Permission.defineRole('studentAndTeacher', function (stateParams) {
+        var deferred = $q.defer();
+        if(localStorage.getItem('token')) {
+          profileService.getMe()
+            .then(function(response) {
+              if(!!response.teacher && !!response.student) {
+                deferred.resolve();
+              }
+              deferred.reject();
+            }, function() {
+              deferred.reject();
+            });
+        }
+        return deferred.promise;
+      });
+
+      Permission.defineRole('student', function (stateParams) {
+        var deferred = $q.defer();
+        if(localStorage.getItem('token')) {
+          profileService.getMe()
+            .then(function(response) {
+              if(!!response.student && !response.teacher) {
+                deferred.resolve();
+              }
+              deferred.reject();
+            }, function() {
+              deferred.reject();
+            });
+        }
+        return deferred.promise;
+      });
+
+      Permission.defineRole('user', function (stateParams) {
+        var deferred = $q.defer();
+        if(localStorage.getItem('token')) {
+          profileService.getMe()
+            .then(function(response) {
+              if(!!response.student && !!response.teacher) {
+                deferred.resolve();
+              }
+              deferred.reject();
+            }, function() {
+              deferred.reject();
+            });
+        }
+        return deferred.promise;
       });
     });
 })();

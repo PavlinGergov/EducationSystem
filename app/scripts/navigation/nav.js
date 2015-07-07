@@ -5,24 +5,47 @@
     .module('educationSystemApp.nav')
     .factory('navbar', navbar);
 
-  function navbar($state) {
+  function navbar($state, teacherService, studentService) {
     var service = {
-      anonymous: anonymous,
-      teacher: teacher,
-      student: student
+      getMenu: getMenu
     };
 
     return service;
 
-    function anonymous() {
+    function getMenu(user) {
+      var courseId;
+      var menu;
+      //if isTeacher
+      if(!!user.teacher && !user.student) {
+        courseId = user.teacher.teached_courses[0].id;
+        menu = teacher(courseId);
+      }
+      //if isStudent
+      else if(!user.teacher && !!user.student) {
+        courseId = studentService.getCourses(user)[0].course.id;
+        menu = student(courseId);
+      }
+      //if isUser
+      else if(!user.teacher && !user.student) {
+        menu = userMenu();
+      }
+      //if isStudentAndTeacher
+      else if(!!user.teacher && !!user.student) {
+        courseId = user.teacher.teached_courses[0].id;
+        menu = studentAndTeacher(courseId);
+      }
+      return menu;
+    };
+
+    function userMenu() {
       var menu = [
         {
-          title: "Регистрация",
-          action: 'register'
+          title: "Профил",
+          action: 'profile'
         },
         {
-          title: "Вход",
-          action: 'login'
+          title: "Изход",
+          action: 'logout'
         }
       ];
       return menu;
@@ -51,6 +74,28 @@
         {
           title: "Dashboard",
           action: 'studentDashboard.overview({courseId: '+ firstCourseId +'})'
+        },
+        {
+          title: "Профил",
+          action: 'profile'
+        },
+        {
+          title: "Изход",
+          action: 'logout'
+        }
+      ];
+      return menu;
+    };
+
+    function studentAndTeacher(firstCourseId) {
+      var menu = [
+        {
+          title: "StudentDashboard",
+          action: 'studentDashboard.overview({courseId: '+ firstCourseId +'})'
+        },
+        {
+          title: "TeachersDashboard",
+          action: 'teachersDashboard.statistics({ courseId: '+ firstCourseId +'})'
         },
         {
           title: "Профил",

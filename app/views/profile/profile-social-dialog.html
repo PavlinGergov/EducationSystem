@@ -1,19 +1,27 @@
 <div id="selectme" class="edit-dialog">
-  <form class="form-horizontal" name="social_form" ng-submit="editSocial(social_form.$valid)" novalidate>
+  <form class="form-horizontal" name="social_form" ng-submit="editInfo(social_form.$valid)" novalidate>
     <div>
       <label>GitHub:</label>
       <span ng-show="social_form.github.$error.url">невалиден URL</span>
-      <input type="url" name="github" class="form-control" ng-model="socialLinks.github_account">
+      <input type="url" name="github" class="form-control" ng-model="personalInfo.github_account">
     </div>
     <div>
       <label>Twitter:</label>
       <span ng-show="social_form.twitter.$error.url">невалиден URL</span>
-      <input type="url" name="twitter" class="form-control" ng-model="socialLinks.twitter_account">
+      <input type="url" name="twitter" class="form-control" ng-model="personalInfo.twitter_account">
     </div>
     <div>
       <label>LinkedIn:</label>
       <span ng-show="social_form.linkedIn.$error.url">невалиден URL</span>
-      <input type="url" name="linkedIn" class="form-control" ng-model="socialLinks.linkedin_account">
+      <input type="url" name="linkedIn" class="form-control" ng-model="personalInfo.linkedin_account">
+    </div>
+    <div>
+      <label>Kъде учиш?</label>
+      <input type="text" name="studiesAt" class="form-control" ng-model="personalInfo.studies_at">
+    </div>
+    <div>
+      <label>Kъде работиш?</label>
+      <input type="text" name="studiesAt" class="form-control" ng-model="personalInfo.works_at">
     </div>
     <div class="text-center">
       <button type="submit" class="btn btn-primary">

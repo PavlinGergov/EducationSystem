@@ -12,6 +12,12 @@
         controller: 'coursesCtrl',
         controllerAs: 'vm',
         templateUrl: 'views/student/student-dashboard.html',
+        data: {
+          permissions: {
+            only: ['student', 'studentAndTeacher'],
+            redirectTo: 'check'
+          }
+        },
         resolve: {
           user: profileData
         }
@@ -21,6 +27,12 @@
         controller: 'overviewCtrl',
         controllerAs: 'ovm',
         templateUrl: 'views/student/student-course-overview.html',
+        data: {
+          permissions: {
+            only: ['student', 'studentAndTeacher'],
+            redirectTo: 'check'
+          }
+        },
         resolve: {
           user: profileData,
           tableData: tableData
@@ -30,13 +42,25 @@
         url: '/tasks/:courseId',
         controller: 'tasksCtrl',
         controllerAs: 'tvm',
-        templateUrl: 'views/student/student-course-tasks.html'
+        templateUrl: 'views/student/student-course-tasks.html',
+        data: {
+          permissions: {
+            only: ['student', 'studentAndTeacher'],
+            redirectTo: 'check'
+          }
+        }
       })
       .state('studentDashboard.otherStudents', {
         url: '/other-students/:courseId',
         controller: 'otherStudentsCtrl',
         controllerAs: 'svm',
         templateUrl: 'views/student/student-course-students.html',
+        data: {
+          permissions: {
+            only: ['student', 'studentAndTeacher'],
+            redirectTo: 'check'
+          }
+        },
         resolve: {
           students: students
         }
