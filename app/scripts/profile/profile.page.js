@@ -131,7 +131,10 @@
       vm.worksAt.location = vm.worksAt.location.originalObject;
       profileService.addPosition(vm.worksAt)
         .then(function(response) {
-          $('#worskAtDialog').modal('hide');
+          $('#worksAtDialog').modal('hide');
+          $('#worksAtDialog').on('hidden', function () {
+            $(this).removeData('modal');
+          });
           var msg = 'Успешно добави работа!';
           profileService.notification('success', 'toast-top-right', msg);
           console.log(response);
