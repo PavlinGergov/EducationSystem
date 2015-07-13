@@ -13,7 +13,7 @@
         </button>
       </div>
 
-      <div class="col-xs-8">
+      <div class="col-xs-4">
         <p ng-show="vm.user.personalInfo.github_account">
           <i class="fa fa-github icon-text"></i> <a href='{{vm.user.personalInfo.github_account}}' target="_blank"> {{vm.user.personalInfo.github_account}}</a>
         </p>
@@ -28,17 +28,26 @@
           <i class="fa fa-graduation-cap icon-text"></i> {{vm.user.personalInfo.studies_at}}
         </p>
 
-        <p ng-show="vm.user.personalInfo.works_at">
-          <i class="fa fa-cog icon-text"></i> {{vm.user.personalInfo.works_at}}</a>
-        </p>
-
         <button type="button" class="btn btn-primary" ng-click="vm.info()">Промени информацията</button>
-
         <div ng-show="vm.user.student" id="mac-div">
           <strong>MAC адрес: </strong> <span>{{vm.user.student.mac}} </span>
         </div>
         <button ng-show="vm.user.student" type="button" class="btn btn-primary" ng-click="vm.mac()" id="change-mac">Промени MAC</button>
       </div>
+
+
+      <div class="col-xs-4">
+        <button ng-show="!!vm.user.student" type="button" class="btn btn-primary" data-toggle="modal" data-target="#worskAtDialog">
+          Add position
+        </button>
+        <div class="student-job" ng-show="!!vm.lastPosition">
+          <p class="student-position"><strong>{{vm.lastPosition.title}}</strong></p>
+          <p class="student-company-name">{{vm.lastPosition.company.name}}</p>
+          <p class="student-date">{{vm.lastPosition.start_date | date: "MMMM yyyy"}} <span ng-show="vm.lastPosition.end_date"> - {{vm.lastPosition.end_date | date: "MMMM yyyy"}} </span><span ng-hide="vm.lastPosition.end_date"> - Present </span> | {{vm.lastPosition.location.name}}</p>
+        </div>
+        
+      </div>
+
 
       <div class="col-md-12" ng-show="vm.events.length !== 0 && vm.user.ticket_set.length !== 1">
         <hr>
@@ -133,11 +142,80 @@
         <form name="avatarForm">
           <input  type="file" fileread="vm.obj.src" ng-model="picFile" name="file" accept="image/*" ngf-select=""/>
           <div ng-show="vm.obj.src" ng-jcrop="vm.obj.src" width="400" selection="vm.obj.selection" thumbnail="obj.thumbnail"></div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
-          <button type="button" class="btn btn-primary" ng-click="vm.uploadAvatar(picFile)">Качи снимка</button>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
+        <button type="button" class="btn btn-primary" ng-click="vm.uploadAvatar(picFile)">Качи снимка</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="worskAtDialog" tabindex="-1" role="dialog" aria-labelledby="worksAtDialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Кажи ни къде работиш</h4>
+      </div>
+      <div class="modal-body">
+        <form name="worksAtForm" class="form-horizontal">
+          <div  class="form-group works-at">
+            <label class="control-label">Име на компанията: *</label>
+            <div angucomplete-alt id="company" pause="100" selected-object="vm.worksAt.company" local-data="vm.companies" search-fields="name" title-field="name" minlength="1" input-name="company" input-class="form-control" input-changed="vm.worksAt.company" field-required-class="errCompany" field-required="true"></div>
+            <div ng-show="worksAtForm.company.$touched && !worksAtForm.company.$modelValue">
+              <span class="help-block">Tова поле е задължително!</span>
+          </div>
+          <div class="form-group works-at">
+            <label class="control-label">Позиция: *</label>
+            <input type="text" name="position" class="form-control error" ng-model="vm.worksAt.position" required>
+            <div ng-show="worksAtForm.position.$error.required && worksAtForm.position.$touched">
+              <span class="help-block">Tова поле е задължително!</span>
+            </div>
+          </div>
+
+          <div class="form-group works-at">
+            <label class="control-label">Град: *</label>
+            <div angucomplete-alt id="city" pause="100" selected-object="vm.worksAt.city" local-data="vm.cities" search-fields="name" title-field="name" minlength="1" input-name="city" input-class="form-control" field-required-class="err" field-required="true"></div>
+            
+            <div ng-show="worksAtForm.city.$touched && !worksAtForm.city.$modelValue">
+              <span class="help-block">Tова поле е задължително!</span>
+            </div>
+          </div>
+          <div class="form-group works-at">
+            <label class="control-label">Time period:</label>
+            <div>
+              <div class="works-at-date">
+                <span>От: *</span>
+                <select name="startMonth" ng-model="vm.worksAt.startMonth" ng-options="currMonth.number as currMonth.name for currMonth in vm.months" required></select>
+                <input type="number" name="number" class="form-control works-at-year" ng-model="vm.worksAt.startYear" ng-minlength="4" ng-maxlength="4" min="1990" max="2050" required>
+                <span ng-hide="vm.isCurrent" id="endMonth">До: </span>
+                <select  ng-hide="vm.isCurrent" ng-model="vm.worksAt.endMonth" ng-options="currMonth.number as currMonth.name for currMonth in vm.months"></select>
+                <input  ng-hide="vm.isCurrent" type="number" name="endYear" class="form-control works-at-year" ng-model="vm.worksAt.endYear" ng-maxlength="4" min="1990" max="2050">
+              </div>
+              <div>
+                <span>Още работя тук: </span>
+                <input type="checkbox" name="isCurrent" ng-model="vm.isCurrent">
+              </div>
+              <div ng-show="worksAtForm.startMonth.$touched && worksAtForm.startMonth.$error.required">
+                <span class="help-block">Tова поле е задължително!</span>
+              </div>
+              <div ng-show="worksAtForm.startYear.$touched && worksAtForm.startYear.$error.required">
+                <span class="help-block">Tова поле е задължително!</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group works-at">
+            <label class="control-label">Oписание:</label>
+            <textarea name="description" class="form-control" ng-model="vm.worksAt.description" rows="3"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
+        <button type="button" ng-disabled="worksAtForm.$invalid" class="btn btn-primary" ng-click="vm.updateWork()">Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
