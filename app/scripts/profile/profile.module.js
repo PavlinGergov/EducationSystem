@@ -4,6 +4,7 @@
   angular.module('educationSystemApp.profile', [
     'ui.router',
     'ngDialog',
-    'permission'
+    'permission',
+    'angucomplete-alt'
   ]);
 })();

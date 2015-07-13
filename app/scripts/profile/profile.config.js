@@ -37,9 +37,25 @@
         },
         resolve: {
           user: profileData,
-          events: eventsPrep
+          events: eventsPrep,
+          companies: companies,
+          cities: cities
         }
       });
+
+    function companies(profileService) {
+      return profileService.getCompanies()
+        .then(function(response) {
+          return response;
+        });
+    }
+
+    function cities(profileService) {
+      return profileService.getCities()
+        .then(function(response) {
+          return response;
+        });
+    }
 
     function eventsPrep(profileService) {
       return profileService.getEvents()

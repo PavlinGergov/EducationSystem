@@ -12,7 +12,8 @@
       'educationSystemApp.config',
       'permission',
       'ngJcrop',
-      'ngFileUpload'
+      'ngFileUpload',
+      'angucomplete-alt'
     ])
     .config(function ($urlRouterProvider, ngJcropConfigProvider) {
       $urlRouterProvider.otherwise(function($injector) {

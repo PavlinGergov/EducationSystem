@@ -14,10 +14,78 @@
       buyTicket: buyTicket,
       getMe: getMe,
       notification: toast,
-      addNote: addNote
+      addNote: addNote,
+      getCompanies: getCompanies,
+      getCities: getCities,
+      getMonths: getMonths,
+      addPosition: addPosition
     };
 
     return service;
+
+    function getMonths() {
+      var months = [
+      {"number":'01',
+       "name": "Януари"},
+        {"number": "02",
+       "name": "Февруари"},
+        {"number": "03",
+       "name": "Март"},
+        {"number": "04",
+       "name": "Април"},
+        {"number": "05",
+         "name": "Май"},
+        {"number": "06",
+         "name": "Юни"},
+        {"number": "07",
+         "name": "Юли"},
+        {"number": "08",
+         "name": "Август"},
+        {"number": "09",
+         "name": "Септември"},
+        {"number": "10",
+         "name": "Октомври"},
+        {"number": "11",
+         "name": "Ноември"},
+        {"number": "12",
+         "name": "Декември"},
+      ];
+      return months;
+    }
+
+    function addPosition(worksAt) {
+      if(typeof worksAt.company === 'object') {
+        worksAt.company = worksAt.company.originalObject.name;
+      }
+      var data = {
+        'company_name': worksAt.company,
+        'location': worksAt.location.id,
+        'start_date': worksAt.startYear.toString() + '-' + worksAt.startMonth + '-' + '01',
+        'title': worksAt.position
+      };
+      
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      return $http.post(EDUCATION_URL + 'working_at/', data, options)
+        .then(function(response) {
+          console.log(response);
+        });
+    }
+
+    function getCities() {
+      return $http.get(EDUCATION_URL + 'get-cities/')
+        .then(function(response) {
+          console.log(response.data);
+          return response.data;
+        });
+    }
+
+    function getCompanies() {
+      return $http.get(EDUCATION_URL + 'get-companies/')
+        .then(function(response) {
+          console.log(response.data);
+          return response.data;
+        });
+    }
 
     function addNote(data) {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
@@ -122,7 +190,6 @@
           'github_account': user.github_account,
           'linkedin_account': user.linkedin_account,
           'twitter_account': user.twitter_account,
-          'works_at': user.works_at,
           'studies_at': user.studies_at
         },
         'teacher': user.teacher,
@@ -138,6 +205,7 @@
       if(result.teacher) {
         result.teacher.teached_courses = $filter('orderBy')(result.teacher.teached_courses, 'start_time', true);
       }
+      console.log(result);
       return result;
     }
 

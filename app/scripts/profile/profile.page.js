@@ -24,9 +24,12 @@
     .controller('profileCtrl', profileCtrl);
 
     //TODO:Iznasqne na direktivata v otdelen fail
-  function profileCtrl(user, events, ngDialog, profileService, URL, Upload, BASE_URL, navbar, studentService, teacherService) {
+  function profileCtrl(user, events, companies, cities, ngDialog, profileService, URL, Upload, BASE_URL, navbar, studentService, teacherService) {
 
     var vm = this;
+    vm.companies = companies;
+    vm.cities = cities;
+    vm.months = profileService.getMonths();
     vm.icon = function(status) {
       switch(status) {
       case 'taking':
@@ -43,6 +46,11 @@
     activate();
     
     vm.user = user;
+    if(vm.user.student.workingat_set.length > 0) {
+      vm.lastPosition = vm.user.student.workingat_set[vm.user.student.workingat_set.length - 1];
+      console.log(vm.lastPosition);
+    }
+    
     vm.events = events;
     vm.obj = {
       'src': '',
@@ -113,6 +121,35 @@
       });
     };
 
+    vm.worksAt = {};
+    vm.currentYear = new Date().getFullYear();
+
+    vm.inputChanged = function(str) {
+      vm.worksAt.company = str;
+    };
+    vm.updateWork = function() {
+      vm.worksAt.location = vm.worksAt.location.originalObject;
+      profileService.addPosition(vm.worksAt)
+        .then(function(response) {
+          $('#worskAtDialog').modal('hide');
+          var msg = 'Успешно добави работа!';
+          profileService.notification('success', 'toast-top-right', msg);
+          vm.lastPosition = {
+            'title': vm.worksAt.position,
+            'company_name': vm.worksAt.company,
+            'start_date': vm.worksAt.startYear.toString() + '-' + vm.worksAt.startMonth + '-' + '01',
+            'location_full': vm.worksAt.location
+          };
+          
+          if(vm.isCurrent) {
+            vm.lastPosition.end_date = null;
+          }
+          else {
+            vm.lastPosition.end_date =  vm.worksAt.endYear.toString() + '-' + vm.worksAt.endMonth + '-' + '01';
+          };
+        });
+    };
+    
     function activate() {
       
     }
