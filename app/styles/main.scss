@@ -290,3 +290,46 @@ body {
 .jcrop-keymgr {
   opacity: 0;
 }
+
+.works-at-year {
+  width: 70px;
+}
+
+.works-at-date {
+    display: inline-flex;
+    span {
+      margin-left: 5px;
+      margin-right: 5px;
+      padding-top: 8px;
+    }
+    #endMonth {
+      margin-left: 10px;
+    }
+}
+
+.works-at {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.student-job {
+    margin-top: 15px;
+    .student-position {
+        font-size: 18px;
+    }
+    .student-company-name {
+        font-size: 16px;
+    }
+    .student-date {
+        font-size: 14px;
+    }
+}
