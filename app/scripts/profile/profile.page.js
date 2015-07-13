@@ -46,9 +46,10 @@
     activate();
     
     vm.user = user;
-    if(vm.user.student.workingat_set.length > 0) {
+    if(vm.user.student && vm.user.student.workingat_set.length > 0) {
       vm.lastPosition = vm.user.student.workingat_set[0];
     }
+    console.log(vm.lastPosition);
     
     vm.events = events;
     vm.obj = {
