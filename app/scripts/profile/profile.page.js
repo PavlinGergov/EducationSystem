@@ -48,18 +48,6 @@
     vm.user = user;
     if(vm.user.student.workingat_set.length > 0) {
       vm.lastPosition = vm.user.student.workingat_set[vm.user.student.workingat_set.length - 1];
-      console.log(vm.lastPosition);
-      vm.lastPosition = {
-        company: {
-          name: 'Hack Bulgaria'
-        },
-        title: 'Junior Software Developer',
-        start_date: '2015-03-01',
-        end_date: null,
-        location: {
-          name: 'Sofia'
-        }
-      };
     }
     
     vm.events = events;
@@ -137,6 +125,9 @@
       vm.worksAt.city = vm.worksAt.city.originalObject;
       profileService.addPosition(vm.worksAt)
         .then(function(response) {
+           $('#worskAtDialog').modal('hide');
+          var msg = 'Успешно добави работа!';
+          profileService.notification('success', 'toast-top-right', msg);
           vm.lastPosition = [vm.worksAt];
         });
     };
