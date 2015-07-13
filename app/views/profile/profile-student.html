@@ -42,8 +42,8 @@
         </button>
         <div class="student-job" ng-show="!!vm.lastPosition">
           <p class="student-position"><strong>{{vm.lastPosition.title}}</strong></p>
-          <p class="student-company-name">{{vm.lastPosition.company.name}}</p>
-          <p class="student-date">{{vm.lastPosition.start_date | date: "MMMM yyyy"}} <span ng-show="vm.lastPosition.end_date"> - {{vm.lastPosition.end_date | date: "MMMM yyyy"}} </span><span ng-hide="vm.lastPosition.end_date"> - Present </span> | {{vm.lastPosition.location.name}}</p>
+          <p class="student-company-name">{{vm.lastPosition.company_name}}</p>
+          <p class="student-date">{{vm.lastPosition.start_date | date: "MMMM yyyy"}} <span ng-show="vm.lastPosition.end_date"> - {{vm.lastPosition.end_date | date: "MMMM yyyy"}} </span><span ng-hide="vm.lastPosition.end_date"> - Present </span> | {{vm.lastPosition.location_full.name}}</p>
         </div>
         
       </div>
@@ -163,7 +163,7 @@
         <form name="worksAtForm" class="form-horizontal">
           <div  class="form-group works-at">
             <label class="control-label">Име на компанията: *</label>
-            <div angucomplete-alt id="company" pause="100" selected-object="vm.worksAt.company" local-data="vm.companies" search-fields="name" title-field="name" minlength="1" input-name="company" input-class="form-control" input-changed="vm.worksAt.company" field-required-class="errCompany" field-required="true"></div>
+            <div angucomplete-alt id="company" pause="100" selected-object="vm.worksAt.company" local-data="vm.companies" search-fields="name" title-field="name" minlength="1" input-name="company" input-class="form-control" input-changed="vm.inputChanged"></div>
             <div ng-show="worksAtForm.company.$touched && !worksAtForm.company.$modelValue">
               <span class="help-block">Tова поле е задължително!</span>
           </div>
@@ -177,7 +177,7 @@
 
           <div class="form-group works-at">
             <label class="control-label">Град: *</label>
-            <div angucomplete-alt id="city" pause="100" selected-object="vm.worksAt.city" local-data="vm.cities" search-fields="name" title-field="name" minlength="1" input-name="city" input-class="form-control" field-required-class="err" field-required="true"></div>
+            <div angucomplete-alt id="city" pause="100" selected-object="vm.worksAt.location" local-data="vm.cities" search-fields="name" title-field="name" minlength="1" input-name="city" input-class="form-control" field-required-class="err" field-required="true"></div>
             
             <div ng-show="worksAtForm.city.$touched && !worksAtForm.city.$modelValue">
               <span class="help-block">Tова поле е задължително!</span>

@@ -48,6 +48,7 @@
     vm.user = user;
     if(vm.user.student.workingat_set.length > 0) {
       vm.lastPosition = vm.user.student.workingat_set[vm.user.student.workingat_set.length - 1];
+      console.log(vm.lastPosition);
     }
     
     vm.events = events;
@@ -121,14 +122,29 @@
     };
 
     vm.worksAt = {};
+    vm.inputChanged = function(str) {
+      vm.worksAt.company = str;
+    };
     vm.updateWork = function() {
-      vm.worksAt.city = vm.worksAt.city.originalObject;
+      vm.worksAt.location = vm.worksAt.location.originalObject;
       profileService.addPosition(vm.worksAt)
         .then(function(response) {
-           $('#worskAtDialog').modal('hide');
+          $('#worskAtDialog').modal('hide');
           var msg = 'Успешно добави работа!';
           profileService.notification('success', 'toast-top-right', msg);
-          vm.lastPosition = [vm.worksAt];
+          vm.lastPosition = {
+            'title': vm.worksAt.position,
+            'company_name': vm.worksAt.company,
+            'start_date': vm.worksAt.startYear.toString() + '-' + vm.worksAt.startMonth + '-' + '01',
+            'location_full': vm.worksAt.location
+          };
+          
+          if(vm.isCurrent) {
+            vm.lastPosition.end_date = null;
+          }
+          else {
+            vm.lastPosition.end_date =  vm.worksAt.endYear.toString() + '-' + vm.worksAt.endMonth + '-' + '01';
+          };
         });
     };
     

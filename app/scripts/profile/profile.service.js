@@ -59,12 +59,11 @@
       }
       var data = {
         'company_name': worksAt.company,
-        'location': worksAt.city.id,
+        'location': worksAt.location.id,
         'start_date': worksAt.startYear.toString() + '-' + worksAt.startMonth + '-' + '01',
         'title': worksAt.position
       };
       
-      console.log(data);
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       return $http.post(EDUCATION_URL + 'working_at/', data, options)
         .then(function(response) {
@@ -206,6 +205,7 @@
       if(result.teacher) {
         result.teacher.teached_courses = $filter('orderBy')(result.teacher.teached_courses, 'start_time', true);
       }
+      console.log(result);
       return result;
     }
 
