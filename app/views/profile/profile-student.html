@@ -37,7 +37,7 @@
 
 
       <div class="col-xs-4">
-        <button ng-show="!!vm.user.student" type="button" class="btn btn-primary" data-toggle="modal" data-target="#worskAtDialog">
+        <button  ng-show="!vm.lastPosition" type="button" class="btn btn-primary" data-toggle="modal" data-target="#worskAtDialog">
           Add position
         </button>
         <div class="student-job" ng-show="!!vm.lastPosition">
@@ -189,14 +189,14 @@
               <div class="works-at-date">
                 <span>От: *</span>
                 <select name="startMonth" ng-model="vm.worksAt.startMonth" ng-options="currMonth.number as currMonth.name for currMonth in vm.months" required></select>
-                <input type="number" name="number" class="form-control works-at-year" ng-model="vm.worksAt.startYear" ng-minlength="4" ng-maxlength="4" min="1990" max="{{vm.currentYear}}" required>
+                <input type="number" name="number" class="form-control works-at-year" ng-model="vm.worksAt.startYear" ng-minlength="4" ng-maxlength="4" min="1990" max="{{vm.currentYear}}" placeholder="година" required>
                 <span ng-hide="vm.isCurrent" id="endMonth">До: </span>
-                <select  ng-hide="vm.isCurrent" ng-model="vm.worksAt.endMonth" ng-options="currMonth.number as currMonth.name for currMonth in vm.months"></select>
-                <input  ng-hide="vm.isCurrent" type="number" name="endYear" class="form-control works-at-year" ng-model="vm.worksAt.endYear" ng-maxlength="4" min="1990" max="{{vm.currentYear}}">
+                <select  ng-hide="vm.worksAt.isCurrent" ng-model="vm.worksAt.endMonth" ng-options="currMonth.number as currMonth.name for currMonth in vm.months"></select>
+                <input  ng-hide="vm.worksAt.isCurrent" type="number" name="endYear" class="form-control works-at-year" ng-model="vm.worksAt.endYear" placeholder="година" ng-maxlength="4" min="1990" max="{{vm.currentYear}}">
               </div>
               <div>
                 <span>Още работя тук: </span>
-                <input type="checkbox" name="isCurrent" ng-model="vm.isCurrent">
+                <input type="checkbox" name="isCurrent" ng-model="vm.worksAt.isCurrent">
               </div>
               <div ng-show="worksAtForm.startMonth.$touched && worksAtForm.startMonth.$error.required">
                 <span class="help-block">Tова поле е задължително!</span>

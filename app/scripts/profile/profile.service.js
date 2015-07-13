@@ -63,18 +63,21 @@
         'start_date': worksAt.startYear.toString() + '-' + worksAt.startMonth + '-' + '01',
         'title': worksAt.position
       };
+      if(!worksAt.isCurrent) {
+        data.end_date =  worksAt.endYear.toString() + '-' + worksAt.endMonth + '-' + '01';
+      };
       
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       return $http.post(EDUCATION_URL + 'working_at/', data, options)
         .then(function(response) {
           console.log(response);
+          return response.data;
         });
     }
 
     function getCities() {
       return $http.get(EDUCATION_URL + 'get-cities/')
         .then(function(response) {
-          console.log(response.data);
           return response.data;
         });
     }
@@ -82,7 +85,6 @@
     function getCompanies() {
       return $http.get(EDUCATION_URL + 'get-companies/')
         .then(function(response) {
-          console.log(response.data);
           return response.data;
         });
     }
