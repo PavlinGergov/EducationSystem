@@ -189,10 +189,10 @@
               <div class="works-at-date">
                 <span>От: *</span>
                 <select name="startMonth" ng-model="vm.worksAt.startMonth" ng-options="currMonth.number as currMonth.name for currMonth in vm.months" required></select>
-                <input type="number" name="number" class="form-control works-at-year" ng-model="vm.worksAt.startYear" ng-minlength="4" ng-maxlength="4" min="1990" max="2050" required>
+                <input type="number" name="number" class="form-control works-at-year" ng-model="vm.worksAt.startYear" ng-minlength="4" ng-maxlength="4" min="1990" max="{{vm.currentYear}}" required>
                 <span ng-hide="vm.isCurrent" id="endMonth">До: </span>
                 <select  ng-hide="vm.isCurrent" ng-model="vm.worksAt.endMonth" ng-options="currMonth.number as currMonth.name for currMonth in vm.months"></select>
-                <input  ng-hide="vm.isCurrent" type="number" name="endYear" class="form-control works-at-year" ng-model="vm.worksAt.endYear" ng-maxlength="4" min="1990" max="2050">
+                <input  ng-hide="vm.isCurrent" type="number" name="endYear" class="form-control works-at-year" ng-model="vm.worksAt.endYear" ng-maxlength="4" min="1990" max="{{vm.currentYear}}">
               </div>
               <div>
                 <span>Още работя тук: </span>

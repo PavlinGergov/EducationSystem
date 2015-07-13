@@ -122,6 +122,8 @@
     };
 
     vm.worksAt = {};
+    vm.currentYear = new Date().getFullYear();
+
     vm.inputChanged = function(str) {
       vm.worksAt.company = str;
     };
