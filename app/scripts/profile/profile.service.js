@@ -63,14 +63,13 @@
         'start_date': worksAt.startYear.toString() + '-' + worksAt.startMonth + '-' + '01',
         'title': worksAt.position
       };
-      if(!worksAt.isCurrent) {
+      if(!!worksAt.endMonth && !!worksAt.endYear) {
         data.end_date =  worksAt.endYear.toString() + '-' + worksAt.endMonth + '-' + '01';
       };
       
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       return $http.post(EDUCATION_URL + 'working_at/', data, options)
         .then(function(response) {
-          console.log(response);
           return response.data;
         });
     }
@@ -207,7 +206,6 @@
       if(result.teacher) {
         result.teacher.teached_courses = $filter('orderBy')(result.teacher.teached_courses, 'start_time', true);
       }
-      console.log(result);
       return result;
     }
 

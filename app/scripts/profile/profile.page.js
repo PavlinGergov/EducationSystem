@@ -49,7 +49,6 @@
     if(vm.user.student && vm.user.student.workingat_set.length > 0) {
       vm.lastPosition = vm.user.student.workingat_set[0];
     }
-    console.log(vm.lastPosition);
     
     vm.events = events;
     vm.obj = {
@@ -137,7 +136,7 @@
           });
           var msg = 'Успешно добави работа!';
           profileService.notification('success', 'toast-top-right', msg);
-          console.log(response);
+
           vm.lastPosition = response;
         });
     };
