@@ -51,17 +51,17 @@
 
       <div class="form-group works-at"  ng-hide="currentPosition.afterCourse">
         <label class="control-label">Дойдох работещ на курсовете:</label>
-        <input type="checkbox" name="withJob" ng-model="currentPosition.came_working">
+        <input type="checkbox" name="withJob" ng-model="currentPosition.came_working" ng-required='!currentPosition.afterCourse'>
       </div>
 
       <div class="form-group works-at" ng-hide="currentPosition.came_working">
         <label class="control-label">Започнах работа след курс:</label>
-        <input type="checkbox" name="afterCourse" ng-model="currentPosition.afterCourse">
+        <input type="checkbox" name="afterCourse" ng-model="currentPosition.afterCourse" ng-required='!currentPosition.withJob'>
       </div>
 
       <div class="form-group works-at" ng-show="currentPosition.afterCourse">
         <label class="control-label">След кой курс:</label>
-        <select   ng-model="currentPosition.course" ng-options="currCourse.course.id as currCourse.course.name for currCourse in courses"></select>
+        <select   ng-model="currentPosition.course" ng-options="currCourse.course.id as currCourse.course.name for currCourse in courses"  ng-required='currentPosition.afterCourse'></select>
       </div>
       
       <div class="form-group works-at">

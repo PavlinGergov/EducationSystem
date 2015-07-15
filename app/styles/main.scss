@@ -148,6 +148,7 @@ body {
 
 }
 
+
 #presence-table {
   width: 100%;
   margin-top: 10px;
@@ -313,7 +314,7 @@ body {
 }
 
 input[type='number'] {
-    -moz-appearance:textfield;
+  -moz-appearance:textfield;
 }
 
 input::-webkit-outer-spin-button,
@@ -324,11 +325,28 @@ input::-webkit-inner-spin-button {
 .student-job {
     margin-top: 15px;
     .student-position, .student-company-name {
+        cursor: pointer;
         font-size: 16px;
     }
     .student-date {
         font-size: 14px;
     }
+}
+
+#avatar {
+  cursor: pointer;
+  &:hover {
+    filter:brightness(80%);
+  }
+}
+
+#edit-avatar {
+  float: right;
+  position: absolute;
+  z-index: 300;
+  padding: 7px;
+  color: #FFF;
+  cursor: pointer;
 }
 
 .ngdialog.ngdialog-theme-default.ngdialog-works-at {
@@ -337,4 +355,11 @@ input::-webkit-inner-spin-button {
 
 .ngdialog.ngdialog-theme-default.ngdialog-works-at .ngdialog-content {
   width: 600px;
+}
+
+#social-icons {
+  a > i {
+    margin: 5px 5px 0 5px;
+    color: #777777;
+  }
 }
