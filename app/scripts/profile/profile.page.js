@@ -138,7 +138,6 @@
     };
 
     vm.editPosition = function(positionId) {
-      console.log(positionId);
       ngDialog.open({
         template: 'views/profile/profile-edit-position.html',
         className: 'ngdialog-theme-default ngdialog-works-at',
@@ -156,7 +155,6 @@
           $scope.$watch('currentPosition.start_date', function (newValue) {
             $scope.currentPosition.startMonth = $filter('date')(newValue, 'MM');
             $scope.currentPosition.startYear = parseInt($filter('date')(newValue, 'yyyy'));
-            console.log(typeof $scope.currentPosition.startYear);
           });
           $scope.$watch('currentPosition.end_date', function (newValue) {
             if(!newValue) {
@@ -211,7 +209,6 @@
             }
 
             vm.user.student.workingat_set = $scope.ngDialogData;
-            console.log($scope.ngDialogData);
             $scope.closeThisDialog();
           };
         }]
