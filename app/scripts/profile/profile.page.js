@@ -24,8 +24,8 @@
     .controller('profileCtrl', profileCtrl);
 
     //TODO:Iznasqne na direktivata v otdelen fail
-  function profileCtrl(user, events, companies, cities, ngDialog, profileService, URL, Upload, BASE_URL, navbar, studentService, teacherService) {
-
+  function profileCtrl(user, events, companies, cities, ngDialog, profileService, URL, Upload, BASE_URL, navbar, studentService, teacherService, $filter) {
+    //TODO: FIX THIS
     var vm = this;
     vm.companies = companies;
     vm.cities = cities;
@@ -46,8 +46,12 @@
     activate();
     
     vm.user = user;
-    if(vm.user.student && vm.user.student.workingat_set.length > 0) {
-      vm.lastPosition = vm.user.student.workingat_set[0];
+    if(vm.user.student && vm.user.student.courseassignment_set.length > 0) {
+      vm.courses = vm.user.student.courseassignment_set;
+    }
+
+    if(vm.user.setudent && vm.user.student.workingat_set) {
+      vm.user.student.workingat_set = $filter('orderBy')(vm.user.student.workingat_set, 'start_date', true);
     }
     
     vm.events = events;
@@ -102,6 +106,116 @@
 
     };
 
+    vm.addPosition = function() {
+      ngDialog.open({
+        template: 'views/profile/profile-add-position.html',
+        className: 'ngdialog-theme-default ngdialog-works-at',
+        controller: ['$scope', function($scope) {
+          $scope.cities = vm.cities;
+          $scope.companies = vm.companies;
+          $scope.months = vm.months;
+          $scope.courses = vm.courses;
+          $scope.worksAt = {
+            'isCurrent': false,
+            'withJob': false,
+            'afterCourse': false
+          };
+
+          $scope.inputChanged = function(str) {
+            $scope.worksAt.company_name = str;
+          };
+          
+          $scope.addWork = function() {
+            profileService.addPosition($scope.worksAt)
+              .then(function(response) {
+                vm.user.student.workingat_set.push(response);
+                $scope.closeThisDialog();
+              });
+          };
+        }]
+      });
+
+    };
+
+    vm.editPosition = function(positionId) {
+      ngDialog.open({
+        template: 'views/profile/profile-edit-position.html',
+        className: 'ngdialog-theme-default ngdialog-works-at',
+        data: angular.copy(vm.user.student.workingat_set),
+        controller: ['$scope', function($scope) {
+          
+          $scope.cities = vm.cities;
+          $scope.companies = vm.companies;
+          $scope.months = vm.months;
+          $scope.courses = vm.courses;
+          $scope.currentPosition = $scope.ngDialogData.filter(function(position) {
+            return position.id === positionId;
+          })[0];
+
+          $scope.$watch('currentPosition.start_date', function (newValue) {
+            $scope.currentPosition.startMonth = $filter('date')(newValue, 'MM');
+            $scope.currentPosition.startYear = parseInt($filter('date')(newValue, 'yyyy'));
+          });
+          $scope.$watch('currentPosition.end_date', function (newValue) {
+            if(!newValue) {
+              $scope.currentPosition.isCurrent = true;
+            }
+            else {
+              $scope.currentPosition.endMonth = $filter('date')(newValue, 'MM');
+            $scope.currentPosition.endYear = parseInt($filter('date')(newValue, 'yyyy'));
+            }
+          });
+          $scope.$watch('currentPosition.course', function (newValue) {
+            if(!!newValue) {
+              
+              $scope.currentPosition.afterCourse = true;
+            }
+            else {
+              $scope.currentPosition.afterCourse = false;
+            }
+          });
+
+          $scope.$watchGroup(['currentPosition.startMonth', 'currentPosition.startYear'], function(newValues, oldValues, scope) {
+            $scope.currentPosition.start_date = newValues[1].toString() + '-' + newValues[0] + '-01';
+          });
+          
+          $scope.$watchGroup(['currentPosition.endMonth', 'currentPosition.endYear', 'currentPosition.isCurrent'], function(newValues, oldValues, scope) {
+            if($scope.currentPosition.isCurrent === false) {
+              $scope.currentPosition.end_date = newValues[1].toString() + '-' + newValues[0] + '-01';
+            }
+            else if($scope.currentPosition.isCurrent === true){
+              $scope.currentPosition.endMonth = null;
+              $scope.currentPosition.endYear = null;
+              $scope.currentPosition.end_date = null;
+            }
+            
+          });
+
+          $scope.$watch('currentPosition.afterCourse', function (newValue) {
+            if(newValue === false) {
+              $scope.currentPosition.course = '';
+            }
+          });
+          
+          $scope.inputChanged = function(str) {
+            $scope.currentPosition.company_name = str;
+          };
+
+         
+          $scope.editWork = function() {
+            profileService.updatePosition($scope.currentPosition);
+            if(typeof $scope.currentPosition.location === 'object') {
+              $scope.currentPosition.location_full = $scope.currentPosition.location.originalObject;
+            }
+
+            vm.user.student.workingat_set = $scope.ngDialogData;
+            $scope.closeThisDialog();
+          };
+        }]
+      });
+
+    };
+
     vm.mac = function() {
       ngDialog.open({
         template: 'views/profile/profile-mac-dialog.html',
@@ -119,28 +233,7 @@
         }]
       });
     };
-
-    vm.worksAt = {};
-    vm.currentYear = new Date().getFullYear();
-
-    vm.inputChanged = function(str) {
-      vm.worksAt.company = str;
-    };
-    vm.updateWork = function() {
-      vm.worksAt.location = vm.worksAt.location.originalObject;
-      profileService.addPosition(vm.worksAt)
-        .then(function(response) {
-          $('#worksAtDialog').modal('hide');
-          $('#worksAtDialog').on('hidden', function () {
-            $(this).removeData('modal');
-          });
-          var msg = 'Успешно добави работа!';
-          profileService.notification('success', 'toast-top-right', msg);
-
-          vm.lastPosition = response;
-        });
-    };
-    
+   
     function activate() {
       
     }

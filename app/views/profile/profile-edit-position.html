@@ -1,0 +1,74 @@
+<div>
+  <form name="worksAtForm" class="form-horizontal"  ng-submit="editWork()">
+
+    <div class="form-group works-at">
+        <label class="control-label">Позиция: *</label>
+        <input type="text" name="position" class="form-control error" ng-model="currentPosition.title" required>
+        <div ng-show="currentPositionForm.position.$error.required && currentPositionForm.position.$touched">
+          <span class="help-block">Tова поле е задължително!</span>
+        </div>
+      </div>
+    
+    <div  class="form-group works-at">
+      <label class="control-label">Име на компанията: *</label>
+      <div angucomplete-alt id="company" pause="100" selected-object="currentPosition.company_name" local-data="companies" search-fields="name" title-field="name" minlength="1" input-name="company" input-class="form-control" input-changed="inputChanged" initial-value="currentPosition.company_name"></div>
+      <div ng-show="currentPositionForm.company.$touched && !currentPositionForm.company.$modelValue">
+        <span class="help-block">Tова поле е задължително!</span>
+      </div>
+      
+
+      <div class="form-group works-at">
+        <label class="control-label">Град: *</label>
+        <div angucomplete-alt id="city" pause="100" selected-object="currentPosition.location" local-data="cities" search-fields="name" title-field="name" minlength="1" input-name="city" input-class="form-control" field-required-class="err" field-required="true" initial-value="currentPosition.location_full.name"></div>
+        
+        <div ng-show="currentPositionForm.city.$touched && !currentPositionForm.city.$modelValue">
+          <span class="help-block">Tова поле е задължително!</span>
+        </div>
+      </div>
+      <div class="form-group works-at">
+        <label class="control-label">Time period:</label>
+        <div>
+          <div class="works-at-date">
+            <span>От: *</span>
+            <select name="startMonth" ng-model="currentPosition.startMonth" ng-options="currMonth.number as currMonth.name for currMonth in months" required></select>
+            <input type="number" name="number" class="form-control works-at-year" ng-model="currentPosition.startYear" ng-minlength="4" ng-maxlength="4" min="1990" max="{{vm.currentYear}}" placeholder="година" required>
+            <span ng-hide="currentPosition.isCurrent" id="endMonth">До: </span>
+            <select  ng-hide="currentPosition.isCurrent" ng-model="currentPosition.endMonth" ng-options="currMonth.number as currMonth.name for currMonth in months"></select>
+            <input  ng-hide="currentPosition.isCurrent" type="number" name="endYear" class="form-control works-at-year" ng-model="currentPosition.endYear" placeholder="година" ng-maxlength="4" min="1990" max="{{vm.currentYear}}">
+          </div>
+          <div>
+            <span>Още работя тук: </span>
+            <input type="checkbox" name="isCurrent" ng-model="currentPosition.isCurrent">
+          </div>
+          <div ng-show="currentPositionForm.startMonth.$touched && currentPositionForm.startMonth.$error.required">
+            <span class="help-block">Tова поле е задължително!</span>
+          </div>
+          <div ng-show="currentPositionForm.startYear.$touched && currentPositionForm.startYear.$error.required">
+            <span class="help-block">Tова поле е задължително!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group works-at">
+        <label class="control-label">Дойдох работещ на курсовете:</label>
+        <input type="checkbox" name="withJob" ng-model="currentPosition.came_working">
+      </div>
+
+      <div class="form-group works-at">
+        <label class="control-label">Започнах работа след курс:</label>
+        <input type="checkbox" name="afterCourse" ng-model="currentPosition.afterCourse">
+      </div>
+
+      <div class="form-group works-at" ng-show="currentPosition.afterCourse">
+        <label class="control-label">След кой курс:</label>
+        <select   ng-model="currentPosition.course" ng-options="currCourse.course.id as currCourse.course.name for currCourse in courses"></select>
+      </div>
+      
+      <div class="form-group works-at">
+        <label class="control-label">Oписание:</label>
+        <textarea name="description" class="form-control" ng-model="currentPosition.description" rows="2"></textarea>
+      </div>
+      
+      <button type="submit" ng-disabled="currentPositionForm.$invalid" class="btn btn-primary">Save</button>
+  </form>
+  </div>   

@@ -323,13 +323,18 @@ input::-webkit-inner-spin-button {
 
 .student-job {
     margin-top: 15px;
-    .student-position {
-        font-size: 18px;
-    }
-    .student-company-name {
+    .student-position, .student-company-name {
         font-size: 16px;
     }
     .student-date {
         font-size: 14px;
     }
+}
+
+.ngdialog.ngdialog-theme-default.ngdialog-works-at {
+  padding-top: 50px !important;
+}
+
+.ngdialog.ngdialog-theme-default.ngdialog-works-at .ngdialog-content {
+  width: 600px;
 }

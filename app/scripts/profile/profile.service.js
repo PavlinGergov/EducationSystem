@@ -18,7 +18,8 @@
       getCompanies: getCompanies,
       getCities: getCities,
       getMonths: getMonths,
-      addPosition: addPosition
+      addPosition: addPosition,
+      updatePosition: updatePosition
     };
 
     return service;
@@ -53,16 +54,71 @@
       return months;
     }
 
-    function addPosition(worksAt) {
-      if(typeof worksAt.company === 'object') {
-        worksAt.company = worksAt.company.originalObject.name;
+    function updatePosition(worksAt) {
+      console.log(worksAt);
+      if(typeof worksAt.company_name === 'object') {
+        worksAt.company_name = worksAt.company_name.originalObject.name;
       }
       var data = {
-        'company_name': worksAt.company,
-        'location': worksAt.location.id,
+        'working_at_id': worksAt.id,
+        'company_name': worksAt.company_name,
         'start_date': worksAt.startYear.toString() + '-' + worksAt.startMonth + '-' + '01',
-        'title': worksAt.position
+        'title': worksAt.title,
+        'description': worksAt.description,
+        'came_working': worksAt.came_working
       };
+      if(typeof worksAt.location === 'object') {
+        data.location = worksAt.location.originalObject.id;
+      }
+      else {
+        data.location = worksAt.location;
+      }
+
+      if(worksAt.afterCourse) {
+        data.course = worksAt.course;
+      }
+      else {
+        data.course = '';
+      }
+      if(!!worksAt.endMonth && !!worksAt.endYear) {
+        data.end_date =  worksAt.endYear.toString() + '-' + worksAt.endMonth + '-' + '01';
+      }
+      else {
+        data.end_date = null;
+      };
+      console.log(data);
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      return $http.patch(EDUCATION_URL + 'working_at/', data, options)
+        .then(function(response) {
+          return response.data;
+        });
+    }
+
+    function addPosition(worksAt) {
+      if(typeof worksAt.company_name === 'object') {
+        worksAt.company_name = worksAt.company_name.originalObject.name;
+      }
+      var data = {
+        'company_name': worksAt.company_name,
+        'location': worksAt.location.originalObject.id,
+        'start_date': worksAt.startYear.toString() + '-' + worksAt.startMonth + '-' + '01',
+        'title': worksAt.position,
+        'description': worksAt.description
+      };
+
+      if(worksAt.withJob) {
+        data.came_working = 1;
+      }
+      else {
+        data.came_working = 0;
+      }
+
+      if(worksAt.afterCourse) {
+        data.course = worksAt.course;
+      }
+      else {
+        data.course = '';
+      }
       if(!!worksAt.endMonth && !!worksAt.endYear) {
         data.end_date =  worksAt.endYear.toString() + '-' + worksAt.endMonth + '-' + '01';
       };
@@ -70,6 +126,7 @@
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       return $http.post(EDUCATION_URL + 'working_at/', data, options)
         .then(function(response) {
+          console.log(response);
           return response.data;
         });
     }
