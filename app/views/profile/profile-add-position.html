@@ -33,13 +33,13 @@
             <span>От: *</span>
             <select name="startMonth" ng-model="worksAt.startMonth" ng-options="currMonth.number as currMonth.name for currMonth in months" required></select>
             <input type="number" name="number" class="form-control works-at-year" ng-model="worksAt.startYear" ng-minlength="4" ng-maxlength="4" min="1990" max="{{vm.currentYear}}" placeholder="година" required>
-            <span ng-hide="vm.isCurrent" id="endMonth">До: </span>
+            <span ng-hide="worksAt.isCurrent" id="endMonth">До: </span>
             <select  ng-hide="worksAt.isCurrent" ng-model="worksAt.endMonth" ng-options="currMonth.number as currMonth.name for currMonth in months"></select>
             <input  ng-hide="worksAt.isCurrent" type="number" name="endYear" class="form-control works-at-year" ng-model="worksAt.endYear" placeholder="година" ng-maxlength="4" min="1990" max="{{vm.currentYear}}">
           </div>
           <div>
             <span>Още работя тук: </span>
-            <input type="checkbox" name="isCurrent" ng-model="worksAt.isCurrent">
+            <input type="checkbox" name="worksAt.isCurrent" ng-model="worksAt.isCurrent">
           </div>
           <div ng-show="worksAtForm.startMonth.$touched && worksAtForm.startMonth.$error.required">
             <span class="help-block">Tова поле е задължително!</span>
@@ -50,12 +50,12 @@
         </div>
       </div>
 
-      <div class="form-group works-at">
+      <div class="form-group works-at" ng-hide="worksAt.afterCourse">
         <label class="control-label">Дойдох работещ на курсовете:</label>
         <input type="checkbox" name="withJob" ng-model="worksAt.withJob">
       </div>
 
-      <div class="form-group works-at">
+      <div class="form-group works-at" ng-hide="worksAt.withJob">
         <label class="control-label">Започнах работа след курс:</label>
         <input type="checkbox" name="afterCourse" ng-model="worksAt.afterCourse">
       </div>
