@@ -102,7 +102,7 @@
         'company_name': worksAt.company_name,
         'location': worksAt.location.originalObject.id,
         'start_date': worksAt.startYear.toString() + '-' + worksAt.startMonth + '-' + '01',
-        'title': worksAt.titile,
+        'title': worksAt.title,
         'description': worksAt.description
       };
 
