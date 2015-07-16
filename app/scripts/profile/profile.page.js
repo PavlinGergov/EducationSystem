@@ -151,7 +151,8 @@
           $scope.currentPosition = $scope.ngDialogData.filter(function(position) {
             return position.id === positionId;
           })[0];
-
+          $scope.currentPosition.afterCourse = false;
+          
           $scope.$watch('currentPosition.start_date', function (newValue) {
             $scope.currentPosition.startMonth = $filter('date')(newValue, 'MM');
             $scope.currentPosition.startYear = parseInt($filter('date')(newValue, 'yyyy'));
@@ -165,16 +166,15 @@
             $scope.currentPosition.endYear = parseInt($filter('date')(newValue, 'yyyy'));
             }
           });
-          $scope.$watch('currentPosition.course', function (newValue) {
-            if(!!newValue) {
-              
-              $scope.currentPosition.afterCourse = true;
-            }
-            else {
-              $scope.currentPosition.afterCourse = false;
+          
+          $scope.$watch('currentPosition.afterCourse', function (newValue) {
+            if(newValue === false) {
+              $scope.currentPosition.course = '';
             }
           });
-
+          if(typeof $scope.currentPosition.course === 'number') {
+            $scope.currentPosition.afterCourse = true;
+          }
           $scope.$watchGroup(['currentPosition.startMonth', 'currentPosition.startYear'], function(newValues, oldValues, scope) {
             $scope.currentPosition.start_date = newValues[1].toString() + '-' + newValues[0] + '-01';
           });
@@ -188,15 +188,8 @@
               $scope.currentPosition.endYear = null;
               $scope.currentPosition.end_date = null;
             }
-            
           });
-
-          $scope.$watch('currentPosition.afterCourse', function (newValue) {
-            if(newValue === false) {
-              $scope.currentPosition.course = '';
-            }
-          });
-          
+        
           $scope.inputChanged = function(str) {
             $scope.currentPosition.company_name = str;
           };

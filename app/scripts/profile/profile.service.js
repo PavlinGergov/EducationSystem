@@ -55,7 +55,6 @@
     }
 
     function updatePosition(worksAt) {
-      console.log(worksAt);
       if(typeof worksAt.company_name === 'object') {
         worksAt.company_name = worksAt.company_name.originalObject.name;
       }
@@ -86,7 +85,6 @@
       else {
         data.end_date = null;
       };
-      console.log(data);
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       return $http.patch(EDUCATION_URL + 'working_at/', data, options)
         .then(function(response) {
@@ -126,7 +124,6 @@
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       return $http.post(EDUCATION_URL + 'working_at/', data, options)
         .then(function(response) {
-          console.log(response);
           return response.data;
         });
     }
