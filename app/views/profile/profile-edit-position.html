@@ -11,7 +11,7 @@
     
     <div  class="form-group works-at">
       <label class="control-label">Име на компанията: *</label>
-      <div angucomplete-alt id="company" pause="100" selected-object="currentPosition.company_name" local-data="companies" search-fields="name" title-field="name" minlength="1" input-name="company" input-class="form-control" input-changed="inputChanged" initial-value="currentPosition.company_name"></div>
+      <div angucomplete-alt id="company" pause="100" selected-object="currentPosition.company_name" local-data="companies" search-fields="name" title-field="name" minlength="1" input-name="company" input-class="form-control" auto-match="true" input-changed="inputChanged" initial-value="currentPosition.company_name"></div>
       <div ng-show="currentPositionForm.company.$touched && !currentPositionForm.company.$modelValue">
         <span class="help-block">Tова поле е задължително!</span>
       </div>
@@ -19,7 +19,7 @@
 
       <div class="form-group works-at">
         <label class="control-label">Град: *</label>
-        <div angucomplete-alt id="city" pause="100" selected-object="currentPosition.location" local-data="cities" search-fields="name" title-field="name" minlength="1" input-name="city" input-class="form-control" field-required-class="err" field-required="true" initial-value="currentPosition.location_full.name"></div>
+        <div angucomplete-alt id="city" pause="100" selected-object="currentPosition.location" local-data="cities" search-fields="name" title-field="name" minlength="1" input-name="city" input-class="form-control" field-required-class="err" field-required="true" initial-value="currentPosition.location_full.name" auto-match="true"></div>
         
         <div ng-show="currentPositionForm.city.$touched && !currentPositionForm.city.$modelValue">
           <span class="help-block">Tова поле е задължително!</span>

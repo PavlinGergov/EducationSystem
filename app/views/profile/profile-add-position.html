@@ -12,14 +12,14 @@
     <div  class="form-group works-at">
       <label class="control-label">Име на компанията: *</label>
       <div angucomplete-alt id="company" pause="100" selected-object="worksAt.company_name" local-data="companies" search-fields="name" title-field="name" minlength="1" input-name="company" input-class="form-control" input-changed="inputChanged"></div>
-      <div ng-show="worksAtForm.company.$touched && !worksAtForm.company.$modelValue">
+      <div ng-show="worksAtForm.company.$touched && !worksAtForm.company.$modelValue" auto-match="true">
         <span class="help-block">Tова поле е задължително!</span>
       </div>
       
 
       <div class="form-group works-at">
         <label class="control-label">Град: *</label>
-        <div angucomplete-alt id="city" pause="100" selected-object="worksAt.location" local-data="cities" search-fields="name" title-field="name" minlength="1" input-name="city" input-class="form-control" field-required-class="err" field-required="true"></div>
+        <div angucomplete-alt id="city" pause="100" selected-object="worksAt.location" local-data="cities" search-fields="name" title-field="name" minlength="1" input-name="city" input-class="form-control" field-required-class="err" field-required="true" auto-match="true"></div>
         
         <div ng-show="worksAtForm.city.$touched && !worksAtForm.city.$modelValue">
           <span class="help-block">Tова поле е задължително!</span>
