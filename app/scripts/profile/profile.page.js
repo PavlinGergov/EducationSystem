@@ -116,7 +116,7 @@
           $scope.months = vm.months;
           $scope.courses = vm.courses;
           $scope.worksAt = {
-            'isCurrent': false,
+            'isCurrent': true,
             'withJob': false,
             'afterCourse': false
           };

@@ -26,6 +26,10 @@
         </div>
       </div>
       <div class="form-group works-at">
+        <div>
+          <span>Още работя тук: </span>
+          <input type="checkbox" name="isCurrent" ng-model="currentPosition.isCurrent">
+        </div>
         <label class="control-label">Time period:</label>
         <div>
           <div class="works-at-date">
@@ -35,10 +39,6 @@
             <span ng-hide="currentPosition.isCurrent" id="endMonth">До: </span>
             <select  ng-hide="currentPosition.isCurrent" ng-model="currentPosition.endMonth" ng-options="currMonth.number as currMonth.name for currMonth in months"></select>
             <input  ng-hide="currentPosition.isCurrent" type="number" name="endYear" class="form-control works-at-year" ng-model="currentPosition.endYear" placeholder="година" ng-maxlength="4" min="1990" max="{{vm.currentYear}}">
-          </div>
-          <div>
-            <span>Още работя тук: </span>
-            <input type="checkbox" name="isCurrent" ng-model="currentPosition.isCurrent">
           </div>
           <div ng-show="currentPositionForm.startMonth.$touched && currentPositionForm.startMonth.$error.required">
             <span class="help-block">Tова поле е задължително!</span>
@@ -66,7 +66,7 @@
       
       <div class="form-group works-at">
         <label class="control-label">Oписание:</label>
-        <textarea name="description" class="form-control" ng-model="currentPosition.description" rows="2"></textarea>
+        <textarea name="description" class="form-control" ng-model="currentPosition.description" rows="2" placeholder="Малко повече информация за позицията."></textarea>
       </div>
       <button type="submit" ng-disabled="currentPositionForm.$invalid" class="btn btn-primary">Save</button>
   </form>
