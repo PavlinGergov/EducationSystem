@@ -1,19 +1,12 @@
 <div class="col-sm-9 col-sm-offset-2 main">
   <h3>Преподаватели на курса:</h3>
+
+  
   
   <div class="col-sm-6 teacher-card" ng-repeat="teacher in ovm.currentCourse.course.teacher_set">
 
-    <img class="img-thumbnail teacher-avatar" hb-avatar ng-src="{{ teacher.avatar }}">
-    <div class="card-text">
-      <p class="name">{{teacher.first_name}} {{teacher.last_name}}</p>
-      <p ng-show="teacher.email"> <i class="fa fa-envelope-o"></i> {{ teacher.email }}</p>
+    <profile-card teacher-info="teacher" class="teacher-avatar"></profile-card>
 
-      <p ng-show="teacher.github_account"><i class="fa fa-github icon-text"></i> <a href='{{teacher.github_account}}' target="_blank">{{teacher.github_account}}</a></p>
-
-      <p ng-show="teacher.linkedin_account"><i class="fa fa-linkedin icon-text"></i> <a href='{{teacher.linkedin_account}}' target="_blank">{{teacher.linkedin_account}}</a></p>
-
-      <p ng-show="teacher.twitter_account"><i class="fa fa-twitter icon-text"></i> <a href='{{teacher.twitter_account}}' target="_blank">{{teacher.twitter_account}}</a></p>
-    </div>
   </div>
 
   <div class="col-sm-12">

@@ -1,0 +1,13 @@
+<img class="img-thumbnail" hb-avatar ng-src="{{ teacherInfo.avatar }}">
+<div class="card-text">
+  <p class="name">{{ teacherInfo.first_name }} {{ teacherInfo.last_name }}</p>
+  <p ng-show="teacherInfo.email"> <i class="fa fa-envelope-o"></i> {{ teacherInfo.email }}</p>
+
+  <p ng-show="teacherInfo.github_account"><i class="fa fa-github icon-text"></i> <a href='{{ teacherInfo.github_account }}' target="_blank">{{ teacherInfo.github_account }}</a></p>
+
+  <p ng-show="teacherInfo.linkedin_account"><i class="fa fa-linkedin icon-text"></i> <a href='{{ teacherInfo.linkedin_account }}' target="_blank">{{ teacherInfo.linkedin_account }}</a></p>
+
+  <p ng-show="teacherInfo.twitter_account"><i class="fa fa-twitter icon-text"></i> <a href='{{ teacherInfo.twitter_account }}' target="_blank">{{ teacherInfo.twitter_account }}</a></p>
+  <div ng-transclude></div>
+</div>
+
