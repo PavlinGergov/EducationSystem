@@ -3,6 +3,7 @@
   
   angular.module('educationSystemApp.teacher', [
     'ui.router',
-    'permission'
+    'permission',
+    'educationSystemApp.helpers'
   ]);
 })();

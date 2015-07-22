@@ -47,11 +47,11 @@
     
     vm.user = user;
     console.log(vm.user);
-    if(vm.user.student && vm.user.student.courseassignment_set.length > 0) {
+    if(vm.user.isStudent && vm.user.student.courseassignment_set.length > 0) {
       vm.courses = vm.user.student.courseassignment_set;
     }
 
-    if(vm.user.setudent && vm.user.student.workingat_set) {
+    if(vm.user.isStudent && vm.user.student.workingat_set) {
       vm.user.student.workingat_set = $filter('orderBy')(vm.user.student.workingat_set, 'start_date', true);
     }
     

@@ -253,16 +253,14 @@
       };
 
       if(result.isStudent) {
-        result.student = {
-          'courseassignment_set': status(user.student.courseassignment_set)
-        };
+        result.student = user.student;
+        result.student.courseassignment_set = status(user.student.courseassignment_set);
         result.student.courseassignment_set = $filter('orderBy')(result.student.courseassignment_set, 'course.start_time', true);
       }
 
       if(result.isTeacher) {
-        result.teacher = {
-          'teached_courses': $filter('orderBy')(user.teacher.teached_courses, 'start_time', true)
-        };
+        result.teacher = user.teacher;
+          result.teacher.teached_courses = $filter('orderBy')(user.teacher.teached_courses, 'start_time', true);
       }
 
       if(result.isCompetitor) {
@@ -275,7 +273,11 @@
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       return $http.get(BASE_URL + 'me/', options)
         .then(function(response) {
-          return response.data;
+          var roles = {
+            'isTeacher': !!response.data.teacher,
+            'isStudent': !!response.data.student
+          };
+          return roles;
         });
     }
 

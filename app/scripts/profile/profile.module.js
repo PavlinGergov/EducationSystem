@@ -5,6 +5,7 @@
     'ui.router',
     'ngDialog',
     'permission',
-    'angucomplete-alt'
+    'angucomplete-alt',
+    'educationSystemApp.helpers'
   ]);
 })();

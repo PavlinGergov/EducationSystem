@@ -2,7 +2,7 @@
   'use strict';
   
   angular
-    .module('educationSystemApp.helpers', [])
+    .module('educationSystemApp.helpers')
     .directive('challengesCard', challengesCard);
   
   function challengesCard() {

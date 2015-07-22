@@ -16,21 +16,21 @@
       var courseId;
       var menu;
       //if isTeacher
-      if(!!user.teacher && !user.student) {
+      if(user.isTeacher && !user.isStudent) {
         courseId = user.teacher.teached_courses[0].id;
         menu = teacher(courseId);
       }
       //if isStudent
-      else if(!user.teacher && !!user.student) {
+      else if(!user.isTeacher && user.isStudent) {
         courseId = studentService.getCourses(user)[0].course.id;
         menu = student(courseId);
       }
       //if isUser
-      else if(!user.teacher && !user.student) {
+      else if(!user.isTeacher && !user.isStudent) {
         menu = userMenu();
       }
       //if isStudentAndTeacher
-      else if(!!user.teacher && !!user.student) {
+      else if(user.isTeacher && user.isStudent) {
         courseId = user.teacher.teached_courses[0].id;
         menu = studentAndTeacher(courseId);
       }

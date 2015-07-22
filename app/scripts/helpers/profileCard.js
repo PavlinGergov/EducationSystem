@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('educationSystemApp.helpers', [])
+    .module('educationSystemApp.helpers')
     .directive('profileCard', profileCard);
 
   function profileCard() {
@@ -12,7 +12,10 @@
       scope: {
         profileData: '='
       },
-      transclude: true
+      transclude: true,
+      controller: function($scope) {
+        console.log($scope.profileData);
+      }
     };
   }
 })();
