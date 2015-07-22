@@ -10,6 +10,7 @@
       'educationSystemApp.student',
       'educationSystemApp.teacher',
       'educationSystemApp.config',
+      'educationSystemApp.helpers',
       'permission',
       'ngJcrop',
       'ngFileUpload',

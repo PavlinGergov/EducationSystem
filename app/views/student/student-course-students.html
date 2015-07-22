@@ -1,7 +1,7 @@
 <div class="col-sm-10 col-sm-offset-2 main">
   <div ng-class-even="'col-md-offset-1'" class="col-sm-5 student-card" ng-repeat="student in svm.students">
     
-    <profile-card teacher-info="student" class="avatar">
+    <profile-card profile-data="student" class="avatar">
       <p ng-show="student.works_at"><i class="fa fa-cog"></i> {{student.works_at}}</p>
       <p ng-show="student.studies_at"><i class="fa fa-graduation-cap"></i> {{student.studies_at}}</p>
     </profile-card>

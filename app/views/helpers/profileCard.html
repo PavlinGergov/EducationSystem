@@ -1,0 +1,12 @@
+<img class="img-thumbnail" hb-avatar ng-src="{{ profileData.avatar }}">
+<div class="card-text">
+  <p class="name">{{ profileData.first_name }} {{ profileData.last_name }}</p>
+  <p ng-show="profileData.email"> <i class="fa fa-envelope-o"></i> {{ profileData.email }}</p>
+
+  <p ng-show="profileData.github_account"><i class="fa fa-github icon-text"></i> <a href='{{ profileData.github_account }}' target="_blank">{{ profileData.github_account }}</a></p>
+
+  <p ng-show="profileData.linkedin_account"><i class="fa fa-linkedin icon-text"></i> <a href='{{ profileData.linkedin_account }}' target="_blank">{{ profileData.linkedin_account }}</a></p>
+
+  <p ng-show="profileData.twitter_account"><i class="fa fa-twitter icon-text"></i> <a href='{{ profileData.twitter_account }}' target="_blank">{{ profileData.twitter_account }}</a></p>
+  <div ng-transclude></div>
+</div>

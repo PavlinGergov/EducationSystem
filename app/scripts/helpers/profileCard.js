@@ -2,15 +2,15 @@
   'use strict';
 
   angular
-    .module('educationSystemApp.profile')
+    .module('educationSystemApp.helpers', [])
     .directive('profileCard', profileCard);
 
   function profileCard() {
     return {
       restrict: 'E',
-      templateUrl: 'views/student/teacherCard.html',
+      templateUrl: 'views/helpers/profileCard.html',
       scope: {
-        teacherInfo: '='
+        profileData: '='
       },
       transclude: true
     };
