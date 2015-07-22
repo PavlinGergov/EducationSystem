@@ -1,0 +1,17 @@
+<hr>
+<h3>Състезания:</h3>
+<table class="table table-bordered">
+  <tr>
+    <th>Състезание</th>
+    <th>Име на отбора</th>
+    <th>Описание на идеята</th>
+    <th>Място</th>
+  </tr>
+  <tr ng-repeat="challenge in challenges">
+    <td>{{challenge.team.season.name}}</td>
+    <td>{{challenge.team.name}}</td>
+    <td>{{challenge.team.idea_description}}</td>
+    <td>{{challenge.team.place}}</td>
+  </tr>
+</table>
+</div>

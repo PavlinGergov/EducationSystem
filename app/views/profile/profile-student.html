@@ -86,7 +86,7 @@
     <div class="col-md-12" ng-show="vm.user.student">
       <hr>
       <h3>Курсове:</h3>
-      <table ng-show="vm.user.student" class="table table-bordered">
+      <table ng-show="vm.user.isStudent" class="table table-bordered">
         <tr>
           <th>Статус</th>
           <th>Курс</th>
@@ -106,24 +106,8 @@
         </tr>
       </table>
     </div>
-    <div class="col-md-12" ng-show="vm.user.competitor">
-      <hr>
-      <h3>Състезания:</h3>
-      <table ng-show="vm.user.competitor" class="table table-bordered">
-        <tr>
-          <th>Състезание</th>
-          <th>Име на отбора</th>
-          <th>Описание на идеята</th>
-          <th>Място</th>
-        </tr>
-        <tr ng-repeat="challenge in vm.user.competitor.teammembership_set">
-          <td>{{challenge.team.season.name}}</td>
-          <td>{{challenge.team.name}}</td>
-          <td>{{challenge.team.idea_description}}</td>
-          <td>{{challenge.team.place}}</td>
-        </tr>
-      </table>
-    </div>
+    <div class="col-md-12" ng-show="vm.user.isCompetitor">
+      <challenges-card challenges="vm.user.competitor.teammembership_set"></challengesCard>
 
   </div>
 </div>

@@ -48,7 +48,7 @@
         if(localStorage.getItem('token')) {
           profileService.getMe()
             .then(function(response) {
-              if(!!response.teacher && !response.student) {
+              if(response.isTeacher && !response.isStudent) {
                 deferred.resolve();
               }
               deferred.reject();
@@ -64,7 +64,7 @@
         if(localStorage.getItem('token')) {
           profileService.getMe()
             .then(function(response) {
-              if(!!response.teacher && !!response.student) {
+              if(response.isTeacher && response.isStudent) {
                 deferred.resolve();
               }
               deferred.reject();
@@ -80,7 +80,7 @@
         if(localStorage.getItem('token')) {
           profileService.getMe()
             .then(function(response) {
-              if(!!response.student && !response.teacher) {
+              if(response.isStudent && !response.isTeacher) {
                 deferred.resolve();
               }
               deferred.reject();
@@ -96,7 +96,7 @@
         if(localStorage.getItem('token')) {
           profileService.getMe()
             .then(function(response) {
-              if(!!response.student && !!response.teacher) {
+              if(!response.isStudent && !response.isTeacher) {
                 deferred.resolve();
               }
               deferred.reject();

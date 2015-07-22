@@ -46,6 +46,7 @@
     activate();
     
     vm.user = user;
+    console.log(vm.user);
     if(vm.user.student && vm.user.student.courseassignment_set.length > 0) {
       vm.courses = vm.user.student.courseassignment_set;
     }

@@ -247,18 +247,26 @@
           'twitter_account': user.twitter_account,
           'studies_at': user.studies_at
         },
-        'teacher': user.teacher,
-        'competitor': user.competitor,
-        'student': user.student
+        'isTeacher': !!user.teacher,
+        'isCompetitor': !!user.competitor && user.competitor.teammembership_set.length > 0,
+        'isStudent': !!user.student
       };
 
-      if(!!user.student) {
-        result.student.courseassignment_set = status(user.student.courseassignment_set);
+      if(result.isStudent) {
+        result.student = {
+          'courseassignment_set': status(user.student.courseassignment_set)
+        };
         result.student.courseassignment_set = $filter('orderBy')(result.student.courseassignment_set, 'course.start_time', true);
       }
 
-      if(result.teacher) {
-        result.teacher.teached_courses = $filter('orderBy')(result.teacher.teached_courses, 'start_time', true);
+      if(result.isTeacher) {
+        result.teacher = {
+          'teached_courses': $filter('orderBy')(user.teacher.teached_courses, 'start_time', true)
+        };
+      }
+
+      if(result.isCompetitor) {
+        result.competitor = user.competitor;
       }
       return result;
     }
