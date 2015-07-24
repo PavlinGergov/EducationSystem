@@ -12,10 +12,7 @@
       scope: {
         profileData: '='
       },
-      transclude: true,
-      controller: function($scope) {
-        console.log($scope.profileData);
-      }
+      transclude: true
     };
   }
 })();

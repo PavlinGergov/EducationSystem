@@ -76,7 +76,6 @@
     function profileData(profileService) {
       return profileService.getProfileData()
         .then(function(response) {
-          console.log(response);
           return response;
         });
     }

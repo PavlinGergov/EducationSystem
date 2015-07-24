@@ -5,24 +5,24 @@
     .module('educationSystemApp.student')
     .controller('overviewCtrl', overviewCtrl);
 
-  function overviewCtrl(tableData, user, studentService, $stateParams) {
+  function overviewCtrl(tableData, user, studentService, $stateParams, helperService) {
     var vm = this;
 
     var studentId = user.student.id;
     var emptyTable = tableData.data;
+    var courses = helperService.courses(user);
     vm.weekdays = tableData.weekdays;
 
     activate();
 
     function activate() {
       if(!$stateParams.courseId) {
-        vm.currentCourse = studentService.getCourses(user)[0];
-        vm.courseId = vm.currentCourse.course.id;
+        vm.currentCourse = helperService.firstCourse(courses);
+        vm.courseId = helperService.firstCourseId(courses);
       }
       else {
         vm.courseId = $stateParams.courseId;
-        vm.currentCourse = studentService.getCourseById(vm.courseId, user);
-        console.log(vm.currentCourse);
+        vm.currentCourse = helperService.courseById(courses, vm.courseId);
       }
 
       studentService.getStudentCheckins(studentId, vm.courseId)
