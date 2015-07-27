@@ -210,23 +210,23 @@
 
     };
 
-    vm.mac = function() {
-      ngDialog.open({
-        template: 'views/profile/profile-mac-dialog.html',
-        data: vm.user.student.mac,
-        showClose: false,
-        controller: ['$scope', function($scope) {
-          $scope.macAddr = $scope.ngDialogData;
-          $scope.editMac = function(isValid) {
-            if(isValid === true) {
-              profileService.changeMac($scope.macAddr);
-              vm.user.student.mac = $scope.macAddr;
-              $scope.closeThisDialog();
-            }
-          };
-        }]
-      });
-    };
+    // vm.mac = function() {
+    //   ngDialog.open({
+    //     template: 'views/profile/profile-mac-dialog.html',
+    //     data: vm.user.student.mac,
+    //     showClose: false,
+    //     controller: ['$scope', function($scope) {
+    //       $scope.macAddr = $scope.ngDialogData;
+    //       $scope.editMac = function(isValid) {
+    //         if(isValid === true) {
+    //           profileService.changeMac($scope.macAddr);
+    //           vm.user.student.mac = $scope.macAddr;
+    //           $scope.closeThisDialog();
+    //         }
+    //       };
+    //     }]
+    //   });
+    // };
    
     function activate() {
       
