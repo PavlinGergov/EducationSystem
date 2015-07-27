@@ -16,7 +16,7 @@
     };
 
     function link(scope, element, attrs) {
-      angular.element('button').click(function() {
+      angular.element(".change-mac").click(function() {
         macDialog(scope);
       });
     }

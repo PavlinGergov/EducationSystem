@@ -87,25 +87,25 @@
         });
     };
 
-    vm.info = function() {
-      ngDialog.open({
-        template: 'views/profile/profile-social-dialog.html',
-        data: angular.copy(vm.user.personalInfo),
-        showClose: false,
-        controller: ['$scope', function($scope) {
+    // vm.info = function() {
+    //   ngDialog.open({
+    //     template: 'views/profile/profile-social-dialog.html',
+    //     data: angular.copy(vm.user.personalInfo),
+    //     showClose: false,
+    //     controller: ['$scope', function($scope) {
 
-          $scope.personalInfo = $scope.ngDialogData;
-          $scope.editInfo = function(isValid) {
-            if(isValid === true) {
-              profileService.changePersonalInfo($scope.personalInfo);
-              vm.user.personalInfo = $scope.personalInfo;
-              $scope.closeThisDialog();
-            }
-          };
-        }]
-      });
+    //       $scope.personalInfo = $scope.ngDialogData;
+    //       $scope.editInfo = function(isValid) {
+    //         if(isValid === true) {
+    //           profileService.changePersonalInfo($scope.personalInfo);
+    //           vm.user.personalInfo = $scope.personalInfo;
+    //           $scope.closeThisDialog();
+    //         }
+    //       };
+    //     }]
+    //   });
 
-    };
+    // };
 
     vm.addPosition = function() {
       ngDialog.open({
@@ -210,23 +210,6 @@
 
     };
 
-    // vm.mac = function() {
-    //   ngDialog.open({
-    //     template: 'views/profile/profile-mac-dialog.html',
-    //     data: vm.user.student.mac,
-    //     showClose: false,
-    //     controller: ['$scope', function($scope) {
-    //       $scope.macAddr = $scope.ngDialogData;
-    //       $scope.editMac = function(isValid) {
-    //         if(isValid === true) {
-    //           profileService.changeMac($scope.macAddr);
-    //           vm.user.student.mac = $scope.macAddr;
-    //           $scope.closeThisDialog();
-    //         }
-    //       };
-    //     }]
-    //   });
-    // };
    
     function activate() {
       

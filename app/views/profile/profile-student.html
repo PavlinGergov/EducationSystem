@@ -11,19 +11,11 @@
           <img hb-avatar ng-src="{{vm.user.avatar}}"  class="img-thumbnail" id="avatar">
         </a>
         
-        <div id="social-icons">
-          <a ng-show="vm.user.personalInfo.github_account" href='{{vm.user.personalInfo.github_account}}' target="_blank"><i class="fa fa-github icon-text fa-2x"></i></a>
-          <a ng-show="vm.user.personalInfo.twitter_account" href='{{vm.user.personalInfo.twitter_account}}' target="_blank"><i class="fa fa-twitter icon-text fa-2x"></i></a>
-          <a ng-show="vm.user.personalInfo.linkedin_account" href='{{vm.user.personalInfo.linkedin_account}}' target="_blank"><i class="fa fa-linkedin icon-text fa-2x"></i></a>
-        </div>
+        <social-icons info="vm.user.personalInfo"></socialIcons>
       </div>
 
       <div class="col-xs-4">
-        <p ng-show="vm.user.personalInfo.studies_at">
-          <i class="fa fa-graduation-cap icon-text"></i> {{vm.user.personalInfo.studies_at}}
-        </p>
-
-        <button type="button" class="btn btn-primary" ng-click="vm.info()">Промени информацията</button>
+        <personal-info info="vm.user.personalInfo" ng-show="vm.user.personalInfo.studies_at"></personal-info>
         <mac-address mac="{{vm.user.student.mac}}" ng-show="vm.user.isStudent"></mac-address>
         
       </div>
