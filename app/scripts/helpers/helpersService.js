@@ -37,7 +37,8 @@
     };
 
     function firstCourseId(courses) {
-      return firstCourse(courses).course.id;
+      var first = firstCourse(courses);
+      return first.id;
     };
   }
 })();
