@@ -121,6 +121,10 @@
         return weekdays.indexOf(weekday) == pos;
       });
 
+      weekdays.sort(function(a, b) {
+        return days.indexOf(a) > days.indexOf(b);
+      })
+
       return weekdays;
     }
 
