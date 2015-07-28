@@ -14,8 +14,10 @@
 
     function getMenu(user) {
       var menu;
+
       var courses = helperService.courses(user);
       var courseId = helperService.firstCourseId(courses);
+
       //if isTeacher
       if(user.isTeacher && !user.isStudent) {
         menu = teacher(courseId);

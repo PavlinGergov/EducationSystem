@@ -27,6 +27,7 @@
         aspectRatio: 1,
         maxWidth: 300
       });
+
     })
     .run(function (Permission, profileService, $rootScope, $q) {
       Permission.defineRole('anonymous', function (stateParams) {

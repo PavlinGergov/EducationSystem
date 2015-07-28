@@ -33,6 +33,11 @@
       el.bind('error', function() {
         setDefaultImage(el);
       });
+
+      el.click(function() {
+        console.log('click');
+        $('#myModal').modal('show');
+      });
     }
   };
 })();

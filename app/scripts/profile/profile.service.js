@@ -92,40 +92,55 @@
         });
     }
 
-    function addPosition(worksAt) {
-      if(typeof worksAt.company_name === 'object') {
-        worksAt.company_name = worksAt.company_name.originalObject.name;
+    function companyName(company) {
+      if(typeof company === 'object') {
+        return  company.originalObject.name;
       }
+      else {
+        return company;
+      }
+    }
+
+    function afterCourse(position) {
+      if(position.afterCourse) {
+        return position.course;
+      }
+      else {
+        return '';
+      }
+    }
+
+    function buildDate(month, year) {
+      if(typeof month === 'undefined' || typeof year === 'undefined') {
+        return null;
+      }
+      else {
+        return year.toString() + '-' + month + '-01';
+      }
+    };
+
+    function positionData(position) {
       var data = {
-        'company_name': worksAt.company_name,
-        'location': worksAt.location.originalObject.id,
-        'start_date': worksAt.startYear.toString() + '-' + worksAt.startMonth + '-' + '01',
-        'title': worksAt.title,
-        'description': worksAt.description
+        'company_name': companyName(position.company_name),
+        'location': positon.location.originalObject.id,
+        'start_date': buildDate(position.startMonth, position.startYear),
+        'title': position.title,
+        'description': position.description,
+        'came_working': position.came_working,
+        'course': afterCourse(position),
+        'end_date': buildDate(position.endMonth, position.endYear)
       };
+    };
 
-      if(worksAt.withJob) {
-        data.came_working = 1;
-      }
-      else {
-        data.came_working = 0;
-      }
-
-      if(worksAt.afterCourse) {
-        data.course = worksAt.course;
-      }
-      else {
-        data.course = '';
-      }
-      if(!!worksAt.endMonth && !!worksAt.endYear) {
-        data.end_date =  worksAt.endYear.toString() + '-' + worksAt.endMonth + '-' + '01';
-      };
+    function addPosition(worksAt) {
+      var data = positionData(worksAt);
+      console.log(data);
       
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.post(EDUCATION_URL + 'working_at/', data, options)
-        .then(function(response) {
-          return response.data;
-        });
+      // return $http.post(EDUCATION_URL + 'working_at/', data, options)
+      //   .then(function(response) {
+      //     return response.data;
+      //   });
     }
 
     function getCities() {
