@@ -30,8 +30,7 @@
             <position-card position="position"></position-card>
           </div>
         </div>
-        
-        <button add-position cities="vm.cities" companies="vm.companies" ng-show="vm.user.student" courses="vm.courses" type="button" class="btn btn-primary" ng-click="vm.addPosition()">
+        <button add-position set="vm.user.student.workingat_set" cities="vm.cities" companies="vm.companies" ng-show="vm.user.student" courses="vm.courses" type="button" class="btn btn-primary" ng-click="vm.addPosition()">
           Добави работа
         </button>
       </div>

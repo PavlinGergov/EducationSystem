@@ -122,7 +122,7 @@
     function positionData(position) {
       var data = {
         'company_name': companyName(position.company_name),
-        'location': positon.location.originalObject.id,
+        'location': position.location.originalObject.id,
         'start_date': buildDate(position.startMonth, position.startYear),
         'title': position.title,
         'description': position.description,
@@ -130,17 +130,17 @@
         'course': afterCourse(position),
         'end_date': buildDate(position.endMonth, position.endYear)
       };
+      return data;
     };
 
-    function addPosition(worksAt) {
-      var data = positionData(worksAt);
-      console.log(data);
+    function addPosition(position) {
+      var data = positionData(position);
       
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      // return $http.post(EDUCATION_URL + 'working_at/', data, options)
-      //   .then(function(response) {
-      //     return response.data;
-      //   });
+      return $http.post(EDUCATION_URL + 'working_at/', data, options)
+        .then(function(response) {
+          return response.data;
+        });
     }
 
     function getCities() {

@@ -12,11 +12,12 @@
       scope: {
         cities: '=',
         companies: '=',
-        courses: '='
+        courses: '=',
+        set: '='
       },
       link: function(scope, element, attrs) {
+        console.log(scope.set);
         element.click(function() {
-          console.log('add');
           ngDialog.open({
             template: 'views/helpers/position.html',
             data: {
@@ -41,8 +42,12 @@
               };
 
               $scope.submit = function() {
-                console.log($scope.position);
-              }
+                profileService.addPosition($scope.position)
+                  .then(function(response) {
+                    scope.set.push(response);
+                  });
+                $scope.closeThisDialog();
+              };
             }]
           });
         });
