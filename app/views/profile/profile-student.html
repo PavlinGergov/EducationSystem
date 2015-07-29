@@ -1,102 +1,101 @@
 <angled-navbar menus="vm.menu"></angled-navbar>
 
-
 <div class="container-fluid">
   <div class="col-sm-12 main">
     <div class="row">
       <h1 class="page-header">{{vm.user.first_name}} {{vm.user.last_name}}</h1>
       <div class="col-xs-3 text-center">
-          <i id="edit-avatar" class="fa fa-pencil-square-o fa-2x"></i>
-          <img hb-avatar ng-src="{{vm.user.avatar}}"  class="img-thumbnail" id="avatar">
+        <i id="edit-avatar" class="fa fa-pencil-square-o fa-2x"></i>
+        <img hb-avatar ng-src="{{vm.user.avatar}}"  class="img-thumbnail" id="avatar">
         <!-- </a> -->
         
         <social-icons info="vm.user.personalInfo"></socialIcons>
-      </div>
+</div>
 
-      <div class="col-xs-4">
-        <personal-info info="vm.user.personalInfo" ng-show="vm.user.personalInfo.studies_at"></personal-info>
-        <mac-address mac="{{vm.user.student.mac}}" ng-show="vm.user.isStudent"></mac-address>
-        
-      </div>
-
-
-      <div class="col-xs-4">
-        <div class="alert alert-success" role="alert">
-          <strong>Tърсиш си работа или стаж?</strong> <br> Пиши ни на: careers@hackbulgaria.com Ние ще ти помогнем!
-        </div>
-        
-        <div class="student-job" ng-show="vm.user.student.workingat_set.length > 0">
-          <div ng-repeat="position in vm.user.student.workingat_set">
-            <position-card position="position"></position-card>
-          </div>
-        </div>
-        <button add-position set="vm.user.student.workingat_set" cities="vm.cities" companies="vm.companies" ng-show="vm.user.student" courses="vm.courses" type="button" class="btn btn-primary" ng-click="vm.addPosition()">
-          Добави работа
-        </button>
-      </div>
+<div class="col-xs-4">
+  <personal-info info="vm.user.personalInfo" ng-show="vm.user.personalInfo.studies_at"></personal-info>
+  <mac-address mac="{{vm.user.student.mac}}" ng-show="vm.user.isStudent"></mac-address>
+  
+</div>
 
 
-      <!-- <div class="col-md-12" ng-show="vm.events.length !== 0 && vm.user.ticket_set.length !== 1"> -->
-<!--         <hr> -->
-<!--         <h3>Идващи събития:</h3> -->
-<!--         <div  ng-repeat="event in vm.events"> -->
-<!--           <div class="alert alert-success"> -->
-<!--             <p> -->
-<!--               <strong> -->
-<!--                 {{event.name}} -->
-<!--               </strong> - Безплатна, двудневна конференция за IT образование в НДК. -->
-<!--             </p> -->
-<!--             <p> -->
-<!--               Дати: 19-20-ти Септември. -->
-<!--             </p> -->
-<!--             <p> -->
-<!--               Прочети повече на: -->
-<!--               <a href="{{event.url}}" target="_blank" class="alert-link"> -->
-<!--                 {{event.url}} -->
-<!--               </a> -->
-<!--             </p> -->
-<!--             <br> -->
-<!--             <button type="button" class="btn btn-primary" ng-click="vm.buyTicket(event.id)">Вземи билет</button> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--     <br> -->
+<div class="col-xs-4">
+  <div class="alert alert-success" role="alert">
+    <strong>Tърсиш си работа или стаж?</strong> <br> Пиши ни на: careers@hackbulgaria.com Ние ще ти помогнем!
+  </div>
+  
+  <div class="student-job" ng-show="vm.user.student.workingat_set.length > 0">
+    <div ng-repeat="position in vm.user.student.workingat_set">
+      <position-card position="position" cities="vm.cities" companies="vm.companies" courses="vm.courses"></position-card>
+    </div>
+  </div>
+  <button add-position set="vm.user.student.workingat_set" cities="vm.cities" companies="vm.companies" ng-show="vm.user.student" courses="vm.courses" type="button" class="btn btn-primary" ng-click="vm.addPosition()">
+    Добави работа
+  </button>
+</div>
 
-<!--     <div class="alert alert-warning" role="alert"  ng-show="vm.user.ticket_set.length === 1"> -->
-<!--       <div>Успешно се записа за <strong>HackConf 2015</strong>. Чакаме те на 19-20-ти Септември в НДК София от 9:30 часа!</div> -->
-<!--     </div> -->
 
-<!--     <div class="col-md-12" ng-show="vm.user.student"> -->
-<!--       <hr> -->
-<!--       <h3>Курсове:</h3> -->
-<!--       <table ng-show="vm.user.isStudent" class="table table-bordered"> -->
-<!--         <tr> -->
-<!--           <th>Статус</th> -->
-<!--           <th>Курс</th> -->
-<!--           <th>Период</th> -->
-<!--           <th>Сертификат</th> -->
-<!--         </tr> -->
+<div class="col-md-12" ng-show="vm.events.length !== 0 && vm.user.ticket_set.length !== 1">
+  <hr>
+  <h3>Идващи събития:</h3>
+  <div  ng-repeat="event in vm.events">
+    <div class="alert alert-success">
+      <p>
+        <strong>
+          {{event.name}}
+        </strong> - Безплатна, двудневна конференция за IT образование в НДК.
+      </p>
+      <p>
+        Дати: 19-20-ти Септември.
+      </p>
+      <p>
+        Прочети повече на:
+        <a href="{{event.url}}" target="_blank" class="alert-link">
+          {{event.url}}
+        </a>
+      </p>
+      <br>
+      <button type="button" class="btn btn-primary" ng-click="vm.buyTicket(event.id)">Вземи билет</button>
+    </div>
+  </div>
+</div>
+</div>
+<br>
 
-<!--         <tr ng-repeat="ca in vm.user.student.courseassignment_set"> -->
-<!--           <td class="text-center"><i class="{{vm.icon(ca.status)}} icon-text" ></i> {{ca.status}}</td> -->
-<!--           <td>{{ca.course.name}}</td> -->
-<!--           <td>{{ca.course.start_time | date : "dd.MM.yyyy"}} - {{ca.course.end_time | date : "dd.MM.yyyy"}}</td> -->
-<!--           <td class="last-col"> -->
-<!--             <a href='{{ca.oldcertificate_url}}' ng-show="ca.oldcertificate_url" target="_blank"> -->
-<!--               <i class="fa fa-trophy"></i> Линк към Сертификат -->
-<!--             </a> -->
-<!--             <span ng-hide="ca.oldcertificate_url">Не е генериран</span></td> -->
-<!--         </tr> -->
-<!--       </table> -->
-<!--     </div> -->
-<!--     <div class="col-md-12" ng-show="vm.user.isCompetitor"> -->
-<!--       <challenges-card challenges="vm.user.competitor.teammembership_set"></challengesCard> -->
+<div class="alert alert-warning" role="alert"  ng-show="vm.user.ticket_set.length === 1">
+  <div>Успешно се записа за <strong>HackConf 2015</strong>. Чакаме те на 19-20-ти Септември в НДК София от 9:30 часа!</div>
+</div>
 
-<!--   </div> -->
-<!-- </div> -->
-<!-- </div> -->
-<!-- </div> -->
+<div class="col-md-12" ng-show="vm.user.student">
+  <hr>
+  <h3>Курсове:</h3>
+  <table ng-show="vm.user.isStudent" class="table table-bordered">
+    <tr>
+      <th>Статус</th>
+      <th>Курс</th>
+      <th>Период</th>
+      <th>Сертификат</th>
+    </tr>
+
+    <tr ng-repeat="ca in vm.user.student.courseassignment_set">
+      <td class="text-center"><i class="{{vm.icon(ca.status)}} icon-text" ></i> {{ca.status}}</td>
+      <td>{{ca.course.name}}</td>
+      <td>{{ca.course.start_time | date : "dd.MM.yyyy"}} - {{ca.course.end_time | date : "dd.MM.yyyy"}}</td>
+      <td class="last-col">
+        <a href='{{ca.oldcertificate_url}}' ng-show="ca.oldcertificate_url" target="_blank">
+          <i class="fa fa-trophy"></i> Линк към Сертификат
+        </a>
+        <span ng-hide="ca.oldcertificate_url">Не е генериран</span></td>
+    </tr>
+  </table>
+</div>
+<div class="col-md-12" ng-show="vm.user.isCompetitor">
+  <challenges-card challenges="vm.user.competitor.teammembership_set"></challengesCard>
+
+</div>
+</div>
+</div>
+</div>
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -110,7 +109,7 @@
         <form name="avatarForm">
           <input  type="file" fileread="vm.obj.src" ng-model="picFile" name="file" accept="image/*" ngf-select=""/>
           <div ng-show="vm.obj.src" ng-jcrop="vm.obj.src" selection="vm.obj.selection">{{vm.obj}}</div>
-          </form>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>

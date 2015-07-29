@@ -7,19 +7,21 @@
 
   function profileService($http, BASE_URL, EDUCATION_URL, URL, $filter) {
     var service = {
-      getProfileData: getProfileData,
-      changeMac: changeMac,
-      changePersonalInfo: changePersonalInfo,
-      getEvents: getEvents,
-      buyTicket: buyTicket,
-      getMe: getMe,
-      notification: toast,
-      addNote: addNote,
-      getCompanies: getCompanies,
-      getCities: getCities,
-      getMonths: getMonths,
-      addPosition: addPosition,
-      updatePosition: updatePosition
+      getProfileData     : getProfileData,
+      changeMac          : changeMac,
+      changePersonalInfo : changePersonalInfo,
+      getEvents          : getEvents,
+      buyTicket          : buyTicket,
+      getMe              : getMe,
+      notification       : toast,
+      addNote            : addNote,
+      getCompanies       : getCompanies,
+      getCities          : getCities,
+      getMonths          : getMonths,
+      addPosition        : addPosition,
+      updatePosition     : updatePosition,
+      getMonth           : getMonth,
+      getYear            : getYear
     };
 
     return service;
@@ -54,37 +56,10 @@
       return months;
     }
 
-    function updatePosition(worksAt) {
-      if(typeof worksAt.company_name === 'object') {
-        worksAt.company_name = worksAt.company_name.originalObject.name;
-      }
-      var data = {
-        'working_at_id': worksAt.id,
-        'company_name': worksAt.company_name,
-        'start_date': worksAt.startYear.toString() + '-' + worksAt.startMonth + '-' + '01',
-        'title': worksAt.title,
-        'description': worksAt.description,
-        'came_working': worksAt.came_working
-      };
-      if(typeof worksAt.location === 'object') {
-        data.location = worksAt.location.originalObject.id;
-      }
-      else {
-        data.location = worksAt.location;
-      }
-
-      if(worksAt.afterCourse) {
-        data.course = worksAt.course;
-      }
-      else {
-        data.course = '';
-      }
-      if(!!worksAt.endMonth && !!worksAt.endYear) {
-        data.end_date =  worksAt.endYear.toString() + '-' + worksAt.endMonth + '-' + '01';
-      }
-      else {
-        data.end_date = null;
-      };
+    function updatePosition(position) {
+      var data = positionData(position);
+      data.working_at_id = position.id;
+      
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       return $http.patch(EDUCATION_URL + 'working_at/', data, options)
         .then(function(response) {
@@ -119,10 +94,29 @@
       }
     };
 
+    function getMonth(dateStr) {
+      var date = dateStr.split('-');
+      return date[1];
+    };
+
+    function getYear(dateStr) {
+      var date = dateStr.split('-');
+      return parseInt(date[0]);
+    };
+
+    function location(location) {
+      if(typeof location === 'object') {
+        return location.originalObject.id;
+      }
+      else {
+        return location;
+      }
+    };
+
     function positionData(position) {
       var data = {
         'company_name': companyName(position.company_name),
-        'location': position.location.originalObject.id,
+        'location': location(position.location),
         'start_date': buildDate(position.startMonth, position.startYear),
         'title': position.title,
         'description': position.description,
@@ -136,9 +130,11 @@
     function addPosition(position) {
       var data = positionData(position);
       
+      
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       return $http.post(EDUCATION_URL + 'working_at/', data, options)
         .then(function(response) {
+          console.log(response.data);
           return response.data;
         });
     }

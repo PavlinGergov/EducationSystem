@@ -3,10 +3,9 @@
   
   angular
     .module('educationSystemApp.helpers')
-    .directive('addPosition', addPosition)
-    .directive('editPosition', editPosition);
+    .directive('addPosition', addPosition);
   
-  function addPosition(profileService, ngDialog, $parse) {
+  function addPosition(profileService, ngDialog) {
     return {
       restrict: 'A',
       scope: {
@@ -16,7 +15,6 @@
         set: '='
       },
       link: function(scope, element, attrs) {
-        console.log(scope.set);
         element.click(function() {
           ngDialog.open({
             template: 'views/helpers/position.html',
@@ -27,6 +25,7 @@
             },
             className: 'ngdialog-theme-default ngdialog-works-at',
             controller: ['$scope', function($scope) {
+              $scope.edit = false;
               $scope.months = profileService.getMonths();
               $scope.cities = $scope.ngDialogData.cities;
               $scope.companies = $scope.ngDialogData.companies;
@@ -51,20 +50,7 @@
             }]
           });
         });
-        
       }
     };
   }
-
-  function editPosition() {
-    return {
-      restrict: 'A',
-      link: function(scope, element, attrs) {
-        element.click(function() {
-          console.log('edit');
-        });
-      }
-    };
-  };
-
 })();
