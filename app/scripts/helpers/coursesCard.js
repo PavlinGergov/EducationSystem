@@ -13,7 +13,6 @@
         courses: '='
       },
       controller: function($scope) {
-        console.log($scope);
         $scope.icon = function(status) {
           switch(status) {
           case 'taking':
