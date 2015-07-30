@@ -1,0 +1,19 @@
+<table class="table table-bordered">
+    <tr>
+      <th>Статус</th>
+      <th>Курс</th>
+      <th>Период</th>
+      <th>Сертификат</th>
+    </tr>
+
+    <tr ng-repeat="ca in courses">
+      <td class="text-center"><i class="{{icon(ca.status)}} icon-text" ></i> {{ca.status}}</td>
+      <td>{{ca.course.name}}</td>
+      <td>{{ca.course.start_time | date : "dd.MM.yyyy"}} - {{ca.course.end_time | date : "dd.MM.yyyy"}}</td>
+      <td class="last-col">
+        <a href='{{ca.oldcertificate_url}}' ng-show="ca.oldcertificate_url" target="_blank">
+          <i class="fa fa-trophy"></i> Линк към Сертификат
+        </a>
+        <span ng-hide="ca.oldcertificate_url">Не е генериран</span></td>
+    </tr>
+  </table>

@@ -66,28 +66,10 @@
   <div>Успешно се записа за <strong>HackConf 2015</strong>. Чакаме те на 19-20-ти Септември в НДК София от 9:30 часа!</div>
 </div>
 
-<div class="col-md-12" ng-show="vm.user.student">
+<div class="col-md-12" ng-show="vm.user.isStudent">
   <hr>
   <h3>Курсове:</h3>
-  <table ng-show="vm.user.isStudent" class="table table-bordered">
-    <tr>
-      <th>Статус</th>
-      <th>Курс</th>
-      <th>Период</th>
-      <th>Сертификат</th>
-    </tr>
-
-    <tr ng-repeat="ca in vm.user.student.courseassignment_set">
-      <td class="text-center"><i class="{{vm.icon(ca.status)}} icon-text" ></i> {{ca.status}}</td>
-      <td>{{ca.course.name}}</td>
-      <td>{{ca.course.start_time | date : "dd.MM.yyyy"}} - {{ca.course.end_time | date : "dd.MM.yyyy"}}</td>
-      <td class="last-col">
-        <a href='{{ca.oldcertificate_url}}' ng-show="ca.oldcertificate_url" target="_blank">
-          <i class="fa fa-trophy"></i> Линк към Сертификат
-        </a>
-        <span ng-hide="ca.oldcertificate_url">Не е генериран</span></td>
-    </tr>
-  </table>
+  <course-card courses="vm.user.student.courseassignment_set"></course-card>
 </div>
 <div class="col-md-12" ng-show="vm.user.isCompetitor">
   <challenges-card challenges="vm.user.competitor.teammembership_set"></challengesCard>

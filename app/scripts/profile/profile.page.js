@@ -11,19 +11,6 @@
    vm.companies = companies;
    vm.cities = cities;
     vm.months = profileService.getMonths();
-    vm.icon = function(status) {
-      switch(status) {
-      case 'taking':
-        return 'fa fa-clock-o';
-        break;
-      case 'dropped':
-        return 'fa fa-times';
-        break;
-      case 'done':
-        return 'fa fa-check';
-        break;
-      }
-    };
     activate();
     
     vm.user = user;
