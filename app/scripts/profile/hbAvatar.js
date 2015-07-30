@@ -35,7 +35,6 @@
       });
 
       el.click(function() {
-        console.log('click');
         $('#myModal').modal('show');
       });
     }
