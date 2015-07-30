@@ -16,14 +16,17 @@
       var menu;
 
       var courses = helperService.courses(user);
-      var courseId = helperService.firstCourseId(courses);
+      var firstCourse = helperService.firstCourse(courses);
+      var courseId;
 
       //if isTeacher
       if(user.isTeacher && !user.isStudent) {
+        courseId = firstCourse.id;
         menu = teacher(courseId);
       }
       //if isStudent
       else if(!user.isTeacher && user.isStudent) {
+        courseId = firstCourse.course.id;
         menu = student(courseId);
       }
       //if isUser
@@ -32,6 +35,7 @@
       }
       //if isStudentAndTeacher
       else if(user.isTeacher && user.isStudent) {
+        courseId = firstCourse.id;
         menu = studentAndTeacher(courseId);
       }
       return menu;

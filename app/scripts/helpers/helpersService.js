@@ -9,8 +9,7 @@
     var service = {
       courses        : courses,
       courseById     : courseById,
-      firstCourse    : firstCourse,
-      firstCourseId  : firstCourseId
+      firstCourse    : firstCourse
     };
     
     return service;
@@ -34,11 +33,6 @@
 
     function firstCourse(courses) {
       return courses[0];
-    };
-
-    function firstCourseId(courses) {
-      var first = firstCourse(courses);
-      return first.id;
     };
   }
 })();
