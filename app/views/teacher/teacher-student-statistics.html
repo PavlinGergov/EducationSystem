@@ -21,8 +21,7 @@
         {{ ssvm.currentCA.user.email }}
       </li>
       <li>
-        <i class="fa fa-circle {{vm.colorCoding}}"></i>
-        <span>{{ ssvm.presencePercentage }}%</span>
+        <presence-percentage data="{{ssvm.presencePercentage}}"></presence-percentage>
       </li>
       <li>
         <a class="btn btn-primary" ng-click="ssvm.dropStudent(ssvm.currentCA)">{{ ssvm.currentCA.is_attending ? 'Изключи от курса':'Върни в курса' }}</a>

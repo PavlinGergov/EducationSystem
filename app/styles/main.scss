@@ -145,9 +145,12 @@ body {
   list-style-type: none;
   margin-left: 5px;
   padding: 0px;
-
+  li {
+    a {
+    margin-top: 10px;
+    }
+  }
 }
-
 
 #presence-table {
   width: 100%;
@@ -177,21 +180,6 @@ body {
   width:500px;
   height:350px;
 }
-
-
-
-.green {
-  color: green;
-}
-
-.red {
-  color: red;
-}
-
-.yellow {
-  color: yellow;
-}
-
 
 #change-avatar-btn, #change-mac, #mac-div {
   margin-top: 10px;
