@@ -1,23 +1,8 @@
 <div class="col-sm-10 col-sm-offset-2 main">
   <h1 class="text-center">{{vm.currentCourse.name}}</h1>
-  <div class="statbox">
-    <p class="title">Students course started with:</p>
-    <p class="info">{{vm.stat.started}}</p>
-  </div>
-  <div class="statbox">
-    <p class="title">Students droped the course:</p>
-    <p class="info">{{vm.stat.dropped}}</p>
-  </div>
-  <div class="statbox">
-    <p class="title">Drop rate of the course:</p>
-    <p class="info">{{vm.stat.dropRate | number:1}}%</p>
-  </div>
-  <div class="statbox">
-    <p class="title">Attendance Rate With Dropped Students:</p>
-    <p class="info">{{vm.stat.attendanceRate | number:2}}%</p>
-  </div>
-  <div class="statbox">
-    <p class="title">Attendance Rate Without Dropped Students:</p>
-    <p class="info">{{vm.stat.attendanceRateWithoutDropped | number:2}}%</p>
-  </div>
+  <course-statistics-card title="'Students started:'" data="{{vm.stat.started}}"></course-statistics-card>
+  <course-statistics-card title="'Students dropped:'" data="{{vm.stat.dropped}}"></course-statistics-card>
+  <course-statistics-card title="'Drop rate:'" data="{{vm.stat.dropRate | number:1}}%"></course-statistics-card>
+  <course-statistics-card title="'Attendance Rate With Dropped Students:'" data="{{vm.stat.attendanceRate | number:2}}%"></course-statistics-card>
+  <course-statistics-card title="'Attendance Rate Without Dropped Students:'" data="{{vm.stat.attendanceRateWithoutDropped | number:2}}%"></course-statistics-card>
 </div>
