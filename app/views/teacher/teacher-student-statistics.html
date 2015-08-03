@@ -67,12 +67,6 @@
 
   <hr>
   <p ng-repeat="note in ssvm.currentCA.studentnote_set | orderBy:'post_time':true">
-    <span>
-      {{note.post_time | date:'dd/MM/yyyy @ h:mma'}}
-    </span>
-    <strong>
-      {{note.author.first_name}} {{note.author.last_name}}: 
-    </strong>
-    {{note.text}}
+    <notes-card note="note"></notes-card>
   </p>
 </div>
