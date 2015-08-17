@@ -7,8 +7,7 @@
       <div class="col-xs-3 text-center">
         <i id="edit-avatar" class="fa fa-pencil-square-o fa-2x"></i>
         <img hb-avatar ng-src="{{vm.user.avatar}}"  class="img-thumbnail" id="avatar">
-        <!-- </a> -->
-        
+
         <social-icons info="vm.user.personalInfo"></socialIcons>
 </div>
 
@@ -20,7 +19,7 @@
 
 
 <div class="col-xs-4">
-  <div class="alert alert-success" role="alert">
+  <div class="alert alert-success" role="alert" ng-show="vm.user.isStudent && !vm.user.isTeacher">
     <strong>Tърсиш си работа или стаж?</strong> <br> Пиши ни на: careers@hackbulgaria.com Ние ще ти помогнем!
   </div>
   

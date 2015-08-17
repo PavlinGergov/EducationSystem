@@ -22,7 +22,7 @@
       vm.user.student.workingat_set = $filter('orderBy')(vm.user.student.workingat_set, 'start_date', true);
     }
     
-     vm.events = events;
+    vm.events = events;
     vm.obj = {
       'src': '',
       'selection': [0, 0, 300, 300, 0, 0],
