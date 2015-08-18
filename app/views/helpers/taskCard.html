@@ -1,0 +1,8 @@
+<form class="form-horizontal" name="solutionForm" novalidate>
+  <label>{{task.name}}</label>
+  <br>
+  <p ng-show="solutionForm.$error.url">invalid url</p>
+  <input type="url" ng-model="solution.url">
+  <button type="submit" class="btn btn-primary" ng-click="submit()"><i class="fa fa-check-square-o"></i>
+</button>
+</form>
