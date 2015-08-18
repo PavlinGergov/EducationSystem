@@ -13,10 +13,56 @@
       getStudentCheckins: getStudentCheckins,
       getLecturesForCourse: getLecturesForCourse,
       getStudentsForCourse: getStudentsForCourse,
-      getPresencePercentage: getPresencePercentage
+      getPresencePercentage: getPresencePercentage,
+      getTasks: getTasks,
+      getSolutions: getSolutions,
+      submitSolution: submitSolution,
+      updateSolution: updateSolution
+      
     };
 
     return service;
+
+    function toast(type, css, msg) {
+      toastr.options.positionClass = css;
+      toastr[type](msg);
+    }
+    
+    function submitSolution(solution) {
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      return $http.post(EDUCATION_URL + 'solution/', solution, options)
+        .then(function(response) {
+          var msg = 'Успешно добави решение';
+          toast('success', 'toast-top-right', msg);
+          return response.data;
+        });
+    };
+
+    function updateSolution(solution) {
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      return $http.patch(EDUCATION_URL + 'solution/', solution, options)
+        .then(function(response) {
+          var msg = 'Успешно промени решението си';
+          toast('success', 'toast-top-right', msg);
+          return response.data;
+        });
+    };
+    
+    function getSolutions(courseId) {
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      return $http.get(EDUCATION_URL + 'solution/?course__id=' + courseId, options)
+        .then(function(response) {
+          return response.data;
+        });
+    }
+
+    function getTasks(courseId) {
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      return $http.get(EDUCATION_URL + 'task/?course__id=' + courseId, options)
+        .then(function(response) {
+          return response.data;
+        });
+    }
 
     function getPresencePercentage(presence) {
       var lecturesCount = 0;
