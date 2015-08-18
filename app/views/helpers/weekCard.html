@@ -1,0 +1,6 @@
+<div>
+  <h3 ng-click="toggle()"> week {{number}}</h3>
+  <div ng-show="shw" ng-repeat="task in weekTasks">
+    <task-card task="task"></task-card>
+  </div>
+</div>
