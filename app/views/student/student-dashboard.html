@@ -12,6 +12,11 @@
                 <i class="fa fa-caret-right"></i> Всички от курса
               </a>
             </li>
+            <li ui-sref-active="active" ui-sref-active-includes="studentDashboard.tasks">
+              <a ui-sref="studentDashboard.tasks({courseId: '{{course.course.id}}'})">
+                <i class="fa fa-caret-right"></i> Задачи
+              </a>
+            </li>
           </ul>
         </li>
       </ul>
