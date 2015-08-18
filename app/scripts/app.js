@@ -14,7 +14,8 @@
       'permission',
       'ngJcrop',
       'ngFileUpload',
-      'angucomplete-alt'
+      'angucomplete-alt',
+      'angular.filter'
     ])
     .config(function ($urlRouterProvider, ngJcropConfigProvider) {
       $urlRouterProvider.otherwise(function($injector) {

@@ -31,6 +31,7 @@ module.exports = function(config) {
       'bower_components/ng-jcrop/ng-jcrop.js',
       'bower_components/ng-file-upload/ng-file-upload.js',
       'bower_components/angucomplete-alt/angucomplete-alt.js',
+      'bower_components/angular-filter/dist/angular-filter.min.js',
       // endbower
       'app/scripts/app.js',
       'app/scripts/auth/auth.module.js',
