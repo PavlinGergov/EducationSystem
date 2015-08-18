@@ -55,7 +55,6 @@
               $scope.position = $scope.ngDialogData.position;
 
               $scope.$watch('position.isCurrent', function(newValue) {
-                console.log(newValue);
                 if(newValue) {
                   $scope.position.endYear = undefined;
                   $scope.position.endMonth = undefined;

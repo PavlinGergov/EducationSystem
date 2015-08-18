@@ -134,7 +134,6 @@
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       return $http.post(EDUCATION_URL + 'working_at/', data, options)
         .then(function(response) {
-          console.log(response.data);
           return response.data;
         });
     }
