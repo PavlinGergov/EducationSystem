@@ -40,7 +40,7 @@
 
     function updateSolution(solution) {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.patch(EDUCATION_URL + 'solution/', solution, options)
+      return $http.patch(EDUCATION_URL + 'solution/' + solution.id + '/', {'url': solution.url}, options)
         .then(function(response) {
           var msg = 'Успешно промени решението си';
           toast('success', 'toast-top-right', msg);

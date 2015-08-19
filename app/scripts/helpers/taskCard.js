@@ -24,7 +24,7 @@
               });
           }
           else {
-            studentService.updateSolution(scope.task)
+            studentService.updateSolution(scope.solution)
               .then(function(response) {
                 scope.solution = response;
               });
