@@ -5,21 +5,14 @@
     .module('educationSystemApp.student')
     .controller('tasksCtrl', tasksCtrl);
   
-  function tasksCtrl(studentService, $stateParams) {
+  function tasksCtrl(tasks, solutions) {
     var vm = this;
     
     activate();
     
     function activate() {
-      studentService.getTasks($stateParams.courseId)
-        .then(function(response) {
-          vm.tasks = response;
-        });
-
-      studentService.getSolutions($stateParams.courseId)
-        .then(function(response) {
-          vm.solutions = response;
-        });
+      vm.tasks = tasks;
+      vm.solutions = solutions;
     };
   };
 })();

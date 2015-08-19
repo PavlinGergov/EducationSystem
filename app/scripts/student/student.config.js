@@ -48,6 +48,10 @@
             only: ['student', 'studentAndTeacher'],
             redirectTo: 'check'
           }
+        },
+        resolve: {
+          tasks: tasks,
+          solutions: solutions
         }
       })
       .state('studentDashboard.otherStudents', {
@@ -65,6 +69,20 @@
           students: students
         }
       });
+
+    function tasks(studentService, $stateParams) {
+      return studentService.getTasks($stateParams.courseId)
+        .then(function(response) {
+          return response;
+        });
+    };
+
+    function solutions(studentService, $stateParams) {
+      return studentService.getSolutions($stateParams.courseId)
+        .then(function(response) {
+          return response;
+        });
+    }
 
     function students(studentService, $stateParams) {
       return studentService.getStudentsForCourse($stateParams.courseId)
