@@ -1,8 +1,9 @@
-<form class="form-horizontal" name="solutionForm" novalidate>
-  <label>{{task.name}}</label>
-  <br>
-  <p ng-show="solutionForm.$error.url">invalid url</p>
-  <input type="url" ng-model="solution.url">
-  <button type="submit" class="btn btn-primary" ng-click="submit()"><i class="fa fa-check-square-o"></i>
-</button>
+<form class="form-horizontal task" name="solutionForm" novalidate>
+  <h4><i class="fa fa-file-text-o"> {{task.name}}</i></h4>
+  <div class="input-group">
+   <input type="url" ng-model="solution.url" class="form-control" placeholder="Линк към твоето решение">
+   <span class="input-group-btn">
+        <button class="btn btn-primary" ng-click="submit()" type="submit"><i class="fa fa-check-square-o"> Запази</i></button>
+   </span>
+  </div>
 </form>

@@ -1,5 +1,5 @@
-<div class="col-sm-9 col-sm-offset-2 main">
+<div class="col-sm-9 col-sm-offset-2 tasks-view" >
   <div ng-repeat="(key, value) in tvm.tasks | groupBy: 'week'">
-    <week-card week-tasks="value" number="key" solutions="tvm.solutions"></week-card>
-  </div>
+  <week-card week-tasks="value" number="key" solutions="tvm.solutions"></week-card>
+</div>
 </div>
