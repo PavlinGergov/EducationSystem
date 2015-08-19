@@ -154,9 +154,9 @@
 
     function addNote(data) {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.post(EDUCATION_URL + 'create-student_note/', data, options)
+      return $http.post(EDUCATION_URL + 'note/', data, options)
         .success(function(response) {
-          var msg = response.message;
+          var msg = "Успешно добави коментар";
           toast('success', 'toast-top-right', msg);
         })
         .error(function(error) {

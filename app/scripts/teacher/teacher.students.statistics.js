@@ -19,7 +19,7 @@
     vm.addNote = function(caId) {
       var data = {
         'text': vm.newNote,
-        'ca_id': caId
+        'assignment': caId
       };
       profileService.addNote(data)
         .success(function(response) {
