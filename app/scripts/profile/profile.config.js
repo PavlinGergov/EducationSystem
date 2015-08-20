@@ -64,10 +64,13 @@
         });
     }
 
-    function profileData(profileService) {
+    function profileData(profileService, $state) {
       return profileService.getProfileData()
         .then(function(response) {
           return response;
+        }, function(error) {
+          localStorage.removeItem('token');
+          $state.go('login');
         });
     }
   }
