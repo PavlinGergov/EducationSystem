@@ -9,11 +9,11 @@
 
     //TODO: FIX THIS
     var vm = this;
+
+    activate();
     vm.companies = companies;
     vm.cities = cities;
     vm.months = profileService.getMonths();
-    activate();
-    
     vm.user = user;
     if(vm.user.isStudent && vm.user.student.courseassignment_set.length > 0) {
       vm.courses = vm.user.student.courseassignment_set;
@@ -38,7 +38,7 @@
       }
       return evt;
     });
-    
+
     vm.obj = {
       'src': '',
       'selection': [0, 0, 300, 300, 0, 0],
