@@ -18,8 +18,7 @@
               else {
                 $state.go('profile');
               }
-            })
-            .catch(function(error) {
+            }, function() {
               $state.go('login');
             });
         }
@@ -37,7 +36,7 @@
         },
         resolve: {
           user: profileData,
-          events: eventsPrep,
+          //events: eventsPrep,
           companies: companies,
           cities: cities
         }

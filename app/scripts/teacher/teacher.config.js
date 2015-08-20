@@ -76,10 +76,12 @@
       });
     }
     
-    function profileData(profileService) {
+    function profileData(profileService, $state) {
       return profileService.getProfileData()
         .then(function(response) {
           return response;
+        }, function() {
+          $state.go('login');
         });
     }
 

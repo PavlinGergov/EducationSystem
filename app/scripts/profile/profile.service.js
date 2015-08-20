@@ -5,7 +5,7 @@
     .module('educationSystemApp.profile')
     .factory('profileService', profileService);
 
-  function profileService($http, BASE_URL, EDUCATION_URL, URL, $filter) {
+  function profileService($http, BASE_URL, EDUCATION_URL, URL, $filter, $q) {
     var service = {
       getProfileData     : getProfileData,
       changeMac          : changeMac,
@@ -240,8 +240,8 @@
       return $http.get(BASE_URL + 'me/', options)
         .then(function(response) {
           return userData(response.data);
-        })
-        .catch(function(error) {
+        }, function(error) {
+          return $q.reject();
         });
     }
 
