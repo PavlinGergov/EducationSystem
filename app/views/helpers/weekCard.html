@@ -1,5 +1,5 @@
 <div class="week">
-  <h2 ng-click="toggle()">Week {{number}}</h2>
+  <h2 ng-click="toggle()">Week {{number}} <span>({{sw}} / {{weekTasks.length}})</span></h2>
   <div ng-show="shw" ng-repeat="task in weekTasks | orderBy: 'name'">
     <task-card task="task"></task-card>
   </div>

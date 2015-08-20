@@ -50,7 +50,7 @@
     
     function getSolutions(courseId) {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(EDUCATION_URL + 'solution/?course__id=' + courseId, options)
+      return $http.get(EDUCATION_URL + 'solution/?task__course__id=' + courseId, options)
         .then(function(response) {
           return response.data;
         });

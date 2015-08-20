@@ -21,13 +21,29 @@
           });
           return sol[0];
         };
+        this.addSolution = function() {
+          $scope.sw += 1;
+        };
       },
       link: function(scope, element, attrs) {
         scope.shw = false;
         scope.toggle = function() {
           scope.shw = !scope.shw;
         };
-        
+        scope.solutionsCount = function() {
+          var solutions = [];
+          scope.weekTasks.forEach(function(task) {
+            var taskSolution = scope.solutions.filter(function(sol) {
+              return sol.task === task.id;
+            });
+
+            if(taskSolution.length > 0) {
+              solutions.push(taskSolution);
+            }
+          });
+          return solutions.length;
+        };
+        scope.sw = scope.solutionsCount();
       }
     };
   }

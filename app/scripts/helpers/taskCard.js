@@ -14,6 +14,7 @@
         task: '='
       },
       link: function(scope, element, attrs, ctrl) {
+        
         scope.solution = ctrl.getSolution(scope.task.id);
         scope.submit = function() {
           if(typeof scope.solution.task === 'undefined') {
@@ -21,6 +22,7 @@
             studentService.submitSolution(scope.solution)
               .then(function(response) {
                 scope.solution = response;
+                ctrl.addSolution(response);
               });
           }
           else {
