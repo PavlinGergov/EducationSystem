@@ -1,6 +1,6 @@
 <div class="week">
   <h2 ng-click="toggle()">Week {{number}}</h2>
-  <div ng-show="shw" ng-repeat="task in weekTasks">
+  <div ng-show="shw" ng-repeat="task in weekTasks | orderBy: 'name'">
     <task-card task="task"></task-card>
   </div>
 </div>
