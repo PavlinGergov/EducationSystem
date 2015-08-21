@@ -5,7 +5,7 @@
     .module('educationSystemApp.profile')
     .controller('profileCtrl', profileCtrl);
 
-  function profileCtrl(user, cities, companies, ngDialog, profileService, URL, Upload, BASE_URL, navbar, studentService, teacherService, $filter) {
+  function profileCtrl(user, cities, events, companies, ngDialog, profileService, URL, Upload, BASE_URL, navbar, studentService, teacherService, $filter) {
     //TODO: FIX THIS
     var vm = this;
    vm.companies = companies;
@@ -22,7 +22,7 @@
       vm.user.student.workingat_set = $filter('orderBy')(vm.user.student.workingat_set, 'start_date', true);
     }
     
-    //vm.events = events;
+    vm.events = events;
     vm.obj = {
       'src': '',
       'selection': [0, 0, 300, 300, 0, 0],
