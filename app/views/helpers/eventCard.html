@@ -1,0 +1,31 @@
+<div class="alert alert-warning" role="alert"  ng-show="event.ticket">
+  <div>Успешно се записа за <strong>{{event.name}}</strong>. Чакаме те на {{event.start_date | date: 'dd'}} {{month(event.start_date)}} в {{event.location}} от {{event.start_date | date: 'hh:mm'}}!</div>
+</div>
+
+<div class="alert alert-success" ng-hide="event.ticket">
+  <p>
+    <strong>
+      {{event.name}}
+    </strong> - {{event.description}}
+  </p>
+  <p>
+    Кога: {{event.start_date | date: 'dd'}}
+    <span ng-show="event.start_date.slice(0,10) === event.end_date.slice(0,10)">
+      {{month(event.start_date)}} {{event.start_date | date: 'yyyy'}}
+    </span>
+    <span ng-hide="event.start_date.slice(0,10) === event.end_date.slice(0,10)">
+      до {{event.end_date | date: 'dd'}} {{month(event.end_date)}} {{event.end_date | date: 'yyyy'}}
+    </span>
+  </p>
+  <p>
+    Къде: {{event.location}}
+  </p>
+  <p ng-show="event.url">
+    Повече информация:
+    <a href="{{event.url}}" target="_blank" class="alert-link">
+      {{event.url}}
+    </a>
+  </p>
+  <br>
+  <button type="button" class="btn btn-primary" ng-click="buyTicket()">Вземи билет</button>
+</div>
