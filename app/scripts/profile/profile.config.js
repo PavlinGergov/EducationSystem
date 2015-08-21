@@ -38,7 +38,8 @@
           user: profileData,
           events: eventsPrep,
           companies: companies,
-          cities: cities
+          cities: cities,
+          tickets: tickets
         }
       });
 
@@ -57,7 +58,7 @@
     }
 
     function eventsPrep(profileService) {
-      return profileService.getEvents()
+      return profileService.getActiveEvents()
         .then(function(response) {
           return response;
         });
@@ -70,6 +71,13 @@
         }, function(error) {
           localStorage.removeItem('token');
           $state.go('login');
+        });
+    }
+
+    function tickets(profileService) {
+      return profileService.getTickets()
+        .then(function(response) {
+          return response;
         });
     }
   }

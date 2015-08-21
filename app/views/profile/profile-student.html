@@ -34,36 +34,17 @@
 </div>
 
 
-<div class="col-md-12" ng-show="vm.events.length !== 0 && vm.user.ticket_set.length !== 1">
+
+<div class="col-md-12" >
+  <!-- ng-show="vm.events.length !== 0 && vm.user.ticket_set.length !== 1" -->
   <hr>
   <h3>Идващи събития:</h3>
-  <div  ng-repeat="event in vm.events">
-    <div class="alert alert-success">
-      <p>
-        <strong>
-          {{event.name}}
-        </strong> - Безплатна, двудневна конференция за IT образование в НДК.
-      </p>
-      <p>
-        Дати: 19-20-ти Септември.
-      </p>
-      <p>
-        Прочети повече на:
-        <a href="{{event.url}}" target="_blank" class="alert-link">
-          {{event.url}}
-        </a>
-      </p>
-      <br>
-      <button type="button" class="btn btn-primary" ng-click="vm.buyTicket(event.id)">Вземи билет</button>
-    </div>
+  <div  ng-repeat="event in vm.events | orderBy: 'ticket'">
+    <event-card event="event" tickets="vm.user.ticket_set"></event-card>
   </div>
 </div>
 </div>
 <br>
-
-<div class="alert alert-warning" role="alert"  ng-show="vm.user.ticket_set.length === 1">
-  <div>Успешно се записа за <strong>HackConf 2015</strong>. Чакаме те на 19-20-ти Септември в НДК София от 9:30 часа!</div>
-</div>
 
 <div class="col-md-12" ng-show="vm.user.isStudent">
   <hr>
@@ -74,10 +55,6 @@
   <challenges-card challenges="vm.user.competitor.teammembership_set"></challengesCard>
 
 </div>
-</div>
-</div>
-</div>
-
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog">

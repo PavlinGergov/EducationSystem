@@ -5,11 +5,12 @@
     .module('educationSystemApp.profile')
     .controller('profileCtrl', profileCtrl);
 
-  function profileCtrl(user, cities, events, companies, ngDialog, profileService, URL, Upload, BASE_URL, navbar, studentService, teacherService, $filter) {
+  function profileCtrl(user, cities, events, tickets, companies, ngDialog, profileService, URL, Upload, BASE_URL, navbar, studentService, teacherService, $filter) {
+
     //TODO: FIX THIS
     var vm = this;
-   vm.companies = companies;
-   vm.cities = cities;
+    vm.companies = companies;
+    vm.cities = cities;
     vm.months = profileService.getMonths();
     activate();
     
@@ -21,8 +22,23 @@
     if(vm.user.isStudent && vm.user.student.workingat_set) {
       vm.user.student.workingat_set = $filter('orderBy')(vm.user.student.workingat_set, 'start_date', true);
     }
-    
+
     vm.events = events;
+    vm.tickets = tickets;
+
+    vm.events = events.map(function(evt) {
+      var tkt = vm.tickets.filter(function(ticket) {
+        return ticket.event === evt.id;
+      });
+      if(tkt.length > 0) {
+        evt.ticket = true;
+      }
+      else {
+        evt.ticket = false;
+      }
+      return evt;
+    });
+    
     vm.obj = {
       'src': '',
       'selection': [0, 0, 300, 300, 0, 0],
@@ -47,13 +63,7 @@
         });
     };
     
-    vm.buyTicket = function(eventId) {
-      profileService.buyTicket(eventId)
-        .then(function(response) {
-          vm.events = [];
-          vm.user.ticket_set.length = 1;
-        });
-    };
+    
 
     function activate() {
       

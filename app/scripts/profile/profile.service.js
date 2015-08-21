@@ -10,7 +10,7 @@
       getProfileData     : getProfileData,
       changeMac          : changeMac,
       changePersonalInfo : changePersonalInfo,
-      getEvents          : getEvents,
+      getActiveEvents    : getActiveEvents,
       buyTicket          : buyTicket,
       getMe              : getMe,
       notification       : toast,
@@ -21,7 +21,8 @@
       addPosition        : addPosition,
       updatePosition     : updatePosition,
       getMonth           : getMonth,
-      getYear            : getYear
+      getYear            : getYear,
+      getTickets         : getTickets
     };
 
     return service;
@@ -176,30 +177,28 @@
       });
     }
 
-    function getEvents() {
-      return $http.get(BASE_URL + 'get-events/')
+    function getActiveEvents() {
+      return $http.get(BASE_URL + 'event/')
         .then(function(response) {
-          return filterEvents(response.data);
+          return response.data;
         });
     }
 
-    function filterEvents(events) {
-      return events.filter(function(event) {
-          var now = new Date();
-          var eventDate = new Date(event.start_date);
-            return eventDate > now;
-        });
-    }
-
-    function buyTicket(eventId) {
+    function getTickets() {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      var data = {'event_id': eventId};
-      return $http.post(BASE_URL + 'buy-ticket/', data, options)
+      return $http.get(BASE_URL + 'ticket/', options)
         .then(function(response) {
-          var msg = 'Успешно взе своя билет за HackConf 2015';
+          return response.data;
+        });
+    }
+
+    function buyTicket(event) {
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      var data = {'event': event.id};
+      return $http.post(BASE_URL + 'ticket/', data, options)
+        .then(function(response) {
+          var msg = 'Успешно взе своя билет за ' + event.name;
           toast('success', 'toast-top-right', msg);
-        })
-        .catch(function(error) {
         });
     }
 
