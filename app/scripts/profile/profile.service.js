@@ -260,7 +260,7 @@
         },
         'isTeacher': !!user.teacher,
         'isCompetitor': !!user.competitor && user.competitor.teammembership_set.length > 0,
-        'isStudent': !!user.student
+        'isStudent': !!user.student && user.student.courseassignment_set.length > 0
       };
 
       if(result.isStudent) {
