@@ -254,7 +254,9 @@
           'github_account': user.github_account,
           'linkedin_account': user.linkedin_account,
           'twitter_account': user.twitter_account,
-          'studies_at': user.studies_at
+          'studies_at': user.studies_at,
+          'birth_place': user.birth_place,
+          'description': user.description
         },
         'isTeacher': !!user.teacher,
         'isCompetitor': !!user.competitor && user.competitor.teammembership_set.length > 0,
@@ -305,13 +307,20 @@
     }
 
     function changePersonalInfo(data) {
+      var ddata = data;
+      if(ddata.birth_place && ddata.city.originalObject.id === ddata.birth_place.id) {
+        ddata.birth_place = ddata.birth_place.id;
+      }
+      else {
+        ddata.birth_place = data.city.originalObject.id;
+      }
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
 
-      $http.patch(BASE_URL + 'baseuser-update/', data, options)
-        .success(function(data) {
+      return $http.patch(BASE_URL + 'baseuser-update/', ddata, options)
+        .then(function(response) {
           toast('success', 'toast-top-right', 'Успешно редактира информацията си!');
-        })
-        .error(function(error) {
+          return response.data;
+        }, function(error) {
           return error;
         });
     }
