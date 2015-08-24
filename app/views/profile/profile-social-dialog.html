@@ -16,18 +16,18 @@
       <input type="url" name="linkedIn" class="form-control" ng-model="personalInfo.linkedin_account">
     </div>
     <div>
-      <label>Образование:</label>
+      <label>Къде учиш:</label>
       <input type="text" name="studiesAt" class="form-control" ng-model="personalInfo.studies_at">
     </div>
     <div>
-      <label>Град:</label>
+      <label>От къде си:</label>
       <div angucomplete-alt id="city" pause="100" selected-object="personalInfo.city" local-data="cities" search-fields="name" title-field="name" minlength="1" input-name="city" input-class="form-control" auto-match="true" initial-value="personalInfo.birth_place.name">
     </div>
     <div>
       <label>Допълнителна информация:</label>
       <textarea type="text" class="form-control" ng-model="personalInfo.description"></textarea>
     </div>
-
+.
     <div class="text-center form-group">
       <button type="submit" class="btn btn-primary dialog-button">
         Промени
