@@ -311,7 +311,7 @@
       if(data.birth_place && !data.city) {
         data.birth_place = data.birth_place.id;
       }
-      else if(data.birth_place && data.city) {
+      else if(!data.birth_place && data.city) {
         data.birth_place = data.city.originalObject.id;
       }
       else {
