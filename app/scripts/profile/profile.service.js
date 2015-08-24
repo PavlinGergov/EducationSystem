@@ -306,17 +306,17 @@
        });
     }
 
-    function changePersonalInfo(data) {
-      var ddata = data;
-      if(ddata.birth_place && ddata.city.originalObject.id === ddata.birth_place.id) {
-        ddata.birth_place = ddata.birth_place.id;
+    function changePersonalInfo(personalInfo) {
+      var data = personalInfo;
+      if(data.birth_place && !data.city) {
+        data.birth_place = data.birth_place.id;
       }
       else {
-        ddata.birth_place = data.city.originalObject.id;
+        data.birth_place = data.city.originalObject.id;
       }
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
 
-      return $http.patch(BASE_URL + 'baseuser-update/', ddata, options)
+      return $http.patch(BASE_URL + 'baseuser-update/', data, options)
         .then(function(response) {
           toast('success', 'toast-top-right', 'Успешно редактира информацията си!');
           return response.data;
