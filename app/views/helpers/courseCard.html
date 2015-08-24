@@ -4,6 +4,7 @@
       <th>Курс</th>
       <th>Период</th>
       <th>Сертификат</th>
+      <th></th>
     </tr>
 
     <tr ng-repeat="ca in courses">
@@ -15,5 +16,8 @@
           <i class="fa fa-trophy"></i> Линк към Сертификат
         </a>
         <span ng-hide="ca.oldcertificate_url">Не е генериран</span></td>
+      <td>
+        <a ui-sref="studentDashboard.tasks({courseId: ca.course.id})"> <i class="fa fa-file-code-o"></i> Предай задачи!</a>
+      </td>
     </tr>
   </table>
