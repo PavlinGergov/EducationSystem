@@ -311,8 +311,11 @@
       if(data.birth_place && !data.city) {
         data.birth_place = data.birth_place.id;
       }
-      else {
+      else if(data.birth_place && data.city) {
         data.birth_place = data.city.originalObject.id;
+      }
+      else {
+        data.birth_place = undefined;
       }
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
 
