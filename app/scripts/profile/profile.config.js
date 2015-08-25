@@ -18,7 +18,8 @@
               else {
                 $state.go('profile');
               }
-            }, function() {
+            }, function(error) {
+               localStorage.removeItem('token');
               $state.go('login');
             });
         }

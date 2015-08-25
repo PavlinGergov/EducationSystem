@@ -24,7 +24,7 @@
   </div>
   
   <div class="student-job" ng-show="vm.user.student.workingat_set.length > 0">
-    <div ng-repeat="position in vm.user.student.workingat_set">
+    <div ng-repeat="position in vm.user.student.workingat_set | orderBy: position.start_date">
       <position-card position="position" cities="vm.cities" companies="vm.companies" courses="vm.courses"></position-card>
     </div>
   </div>
@@ -36,7 +36,6 @@
 
 
 <div class="col-md-12" >
-  <!-- ng-show="vm.events.length !== 0 && vm.user.ticket_set.length !== 1" -->
   <hr>
   <h3>Идващи събития:</h3>
   <div  ng-repeat="event in vm.events | orderBy: 'ticket'">

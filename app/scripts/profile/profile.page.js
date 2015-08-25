@@ -5,9 +5,8 @@
     .module('educationSystemApp.profile')
     .controller('profileCtrl', profileCtrl);
 
-  function profileCtrl(user, cities, events, tickets, companies, ngDialog, profileService, URL, Upload, BASE_URL, navbar, studentService, teacherService, $filter) {
+  function profileCtrl(user, cities, events, tickets, companies, profileService, navbar) {
 
-    //TODO: FIX THIS
     var vm = this;
 
     activate();
@@ -17,10 +16,6 @@
     vm.user = user;
     if(vm.user.isStudent && vm.user.student.courseassignment_set.length > 0) {
       vm.courses = vm.user.student.courseassignment_set;
-    }
-
-    if(vm.user.isStudent && vm.user.student.workingat_set) {
-      vm.user.student.workingat_set = $filter('orderBy')(vm.user.student.workingat_set, 'start_date', true);
     }
 
     vm.events = events;
@@ -48,25 +43,14 @@
     vm.menu = navbar.getMenu(vm.user);
 
     vm.uploadAvatar = function(file) {
-      Upload.upload({
-        url: BASE_URL +'base-user-update/',
-        method: 'PATCH',
-        fields: {'selection': vm.obj.selection},
-        file: file,
-        headers: {'Authorization': 'Token ' + localStorage.getItem('token')}
-      })
+      profileService.uploadAvatar(file, vm.obj)
         .success(function(response) {
-          $('#myModal').modal('hide');
-          var msg = 'Успешно промени аватара си!';
-          profileService.notification('success', 'toast-top-right', msg);
           vm.user.avatar = response;
         });
     };
-    
-    
 
     function activate() {
-      
+
     }
   }
 })();

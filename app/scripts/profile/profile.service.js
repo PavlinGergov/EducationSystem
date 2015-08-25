@@ -5,27 +5,53 @@
     .module('educationSystemApp.profile')
     .factory('profileService', profileService);
 
-  function profileService($http, BASE_URL, EDUCATION_URL, URL, $filter, $q) {
+  function profileService($http, BASE_URL, EDUCATION_URL, URL, $filter, $q, Upload) {
     var service = {
-      getProfileData     : getProfileData,
-      changeMac          : changeMac,
-      changePersonalInfo : changePersonalInfo,
-      getActiveEvents    : getActiveEvents,
-      buyTicket          : buyTicket,
-      getMe              : getMe,
-      notification       : toast,
-      addNote            : addNote,
-      getCompanies       : getCompanies,
-      getCities          : getCities,
-      getMonths          : getMonths,
-      addPosition        : addPosition,
-      updatePosition     : updatePosition,
-      getMonth           : getMonth,
-      getYear            : getYear,
-      getTickets         : getTickets
+      getProfileData      : getProfileData,
+      changeMac           : changeMac,
+      changePersonalInfo  : changePersonalInfo,
+      getActiveEvents     : getActiveEvents,
+      buyTicket           : buyTicket,
+      getMe               : getMe,
+      notification        : toast,
+      addNote             : addNote,
+      getCompanies        : getCompanies,
+      getCities           : getCities,
+      getMonths           : getMonths,
+      addPosition         : addPosition,
+      updatePosition      : updatePosition,
+      getMonth            : getMonth,
+      getYear             : getYear,
+      getTickets          : getTickets,
+      uploadAvatar        : uploadAvatar,
+      monthName           : monthName
     };
 
     return service;
+
+    function monthName(date) {
+      var months = getMonths();
+      months = months.filter(function(month) {
+        return month.number === date.slice(5,7);
+      });
+      return months[0].name;
+    }
+
+    function uploadAvatar(file, obj) {
+      return Upload.upload({
+        url: BASE_URL +'base-user-update/',
+        method: 'PATCH',
+        fields: {'selection': obj.selection},
+        file: file,
+        headers: {'Authorization': 'Token ' + localStorage.getItem('token')}
+      })
+        .success(function(response) {
+          $('#myModal').modal('hide');
+          var msg = 'Успешно промени аватара си!';
+          toast('success', 'toast-top-right', msg);
+          return response;
+        });
+    }
 
     function getMonths() {
       var months = [
@@ -60,7 +86,7 @@
     function updatePosition(position) {
       var data = positionData(position);
       data.working_at_id = position.id;
-      
+
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       return $http.patch(EDUCATION_URL + 'working_at/', data, options)
         .then(function(response) {
@@ -130,8 +156,8 @@
 
     function addPosition(position) {
       var data = positionData(position);
-      
-      
+
+
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       return $http.post(EDUCATION_URL + 'working_at/', data, options)
         .then(function(response) {
@@ -189,6 +215,9 @@
       return $http.get(BASE_URL + 'ticket/', options)
         .then(function(response) {
           return response.data;
+        }, function(error) {
+          $q.reject();
+          return error;
         });
     }
 
@@ -232,7 +261,6 @@
       return courses;
     }
 
-    //def service methods here
     function getProfileData() {
       var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       return $http.get(BASE_URL + 'me/', options)

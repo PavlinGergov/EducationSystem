@@ -95,7 +95,8 @@
       return profileService.getProfileData()
         .then(function(response) {
           return response;
-        }, function() {
+        }, function(error) {
+          localStorage.removeItem('token');
           $state.go('login');
         });
     }
