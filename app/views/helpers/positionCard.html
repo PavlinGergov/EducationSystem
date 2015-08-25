@@ -3,4 +3,4 @@
   <i class="fa fa-pencil"></i>
 </p>
             
-<p class="student-date">{{position.start_date | date: "MMMM yyyy"}} <span ng-show="position.end_date"> - {{position.end_date | date: "MMMM yyyy"}} </span><span ng-hide="position.end_date"> - Present </span> | {{position.location_full.name}}</p>
+<p class="student-date">{{monthName(position.start_date)}} {{position.start_date | date: "yyyy"}} <span ng-show="position.end_date"> - {{monthName(position.end_date)}} {{position.end_date | date: "yyyy"}} </span><span ng-hide="position.end_date"> - До момента </span> | {{position.location_full.name}}</p>

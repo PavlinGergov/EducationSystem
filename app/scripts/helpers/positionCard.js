@@ -1,10 +1,10 @@
 (function() {
   'use strict';
-  
+
   angular
     .module('educationSystemApp.helpers')
     .directive('positionCard', positionCard);
-  
+
   function positionCard(profileService, ngDialog) {
     return {
       restrict: 'E',
@@ -16,6 +16,15 @@
         courses: '='
       },
       link: function(scope, element, attrs) {
+        scope.monthName = function(date) {
+          if(date) {
+            return profileService.monthName(date);
+          }
+          else {
+            return "";
+          }
+        };
+
         element.click(function() {
 
           scope.position.startMonth = profileService.getMonth(scope.position.start_date);
@@ -60,7 +69,7 @@
                   $scope.position.endMonth = undefined;
                 }
               });
-              
+
               $scope.inputChanged = function(str) {
                 $scope.position.company_name = str;
               };
