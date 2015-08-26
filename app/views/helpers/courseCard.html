@@ -12,10 +12,10 @@
       <td>{{ca.course.name}}</td>
       <td>{{ca.course.start_time | date : "dd.MM.yyyy"}} - {{ca.course.end_time | date : "dd.MM.yyyy"}}</td>
       <td class="last-col">
-        <a href='{{ca.oldcertificate_url}}' ng-show="ca.oldcertificate_url" target="_blank">
+        <a href="https://hackbulgaria.com/certificate/{{ca.certificate.id}}/" ng-show="ca.certificate" target="_blank">
           <i class="fa fa-trophy"></i> Линк към Сертификат
         </a>
-        <span ng-hide="ca.oldcertificate_url">Не е генериран</span></td>
+        <span ng-hide="ca.certificate">Не е генериран</span></td>
       <td>
         <a ui-sref="studentDashboard.tasks({courseId: ca.course.id})"> <i class="fa fa-file-code-o"></i> Предай задачи!</a>
       </td>
