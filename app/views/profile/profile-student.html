@@ -38,7 +38,7 @@
 <div class="col-md-12" >
   <hr>
   <h3>Идващи събития:</h3>
-  <div  ng-repeat="event in vm.events | orderBy: 'ticket'">
+  <div  ng-repeat="event in vm.events | orderBy: 'ticket':true">
     <event-card event="event"></event-card>
   </div>
 </div>

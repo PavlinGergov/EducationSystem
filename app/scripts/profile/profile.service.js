@@ -7,28 +7,40 @@
 
   function profileService($http, BASE_URL, EDUCATION_URL, URL, $filter, $q, Upload) {
     var service = {
-      getProfileData      : getProfileData,
-      changeMac           : changeMac,
-      changePersonalInfo  : changePersonalInfo,
-      getActiveEvents     : getActiveEvents,
-      buyTicket           : buyTicket,
-      getMe               : getMe,
-      notification        : toast,
-      addNote             : addNote,
-      getCompanies        : getCompanies,
-      getCities           : getCities,
-      getMonths           : getMonths,
-      addPosition         : addPosition,
-      updatePosition      : updatePosition,
-      getMonth            : getMonth,
-      getYear             : getYear,
-      getTickets          : getTickets,
-      uploadAvatar        : uploadAvatar,
-      monthName           : monthName
+      getProfileData     : getProfileData,
+      changeMac          : changeMac,
+      changePersonalInfo : changePersonalInfo,
+      getActiveEvents    : getActiveEvents,
+      buyTicket          : buyTicket,
+      getMe              : getMe,
+      notification       : toast,
+      addNote            : addNote,
+      getCompanies       : getCompanies,
+      getCities          : getCities,
+      getMonths          : getMonths,
+      addPosition        : addPosition,
+      updatePosition     : updatePosition,
+      getMonth           : getMonth,
+      getYear            : getYear,
+      getTickets         : getTickets,
+      uploadAvatar       : uploadAvatar,
+      monthName          : monthName,
+      deleteTicket       : deleteTicket
     };
 
     return service;
 
+    function deleteTicket(ticketId) {
+      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
+      return $http.delete(BASE_URL + 'ticket/'+ticketId+'/', options)
+        .then(function(response) {
+          return response.data;
+        }, function(error) {
+          $q.reject();
+          return error;
+        });
+    }
+    
     function monthName(date) {
       var months = getMonths();
       months = months.filter(function(month) {
@@ -228,6 +240,7 @@
         .then(function(response) {
           var msg = 'Успешно взе своя билет за ' + event.name;
           toast('success', 'toast-top-right', msg);
+          return response.data;
         });
     }
 

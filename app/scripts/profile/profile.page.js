@@ -25,12 +25,7 @@
       var tkt = vm.tickets.filter(function(ticket) {
         return ticket.event === evt.id;
       });
-      if(tkt.length > 0) {
-        evt.ticket = true;
-      }
-      else {
-        evt.ticket = false;
-      }
+        evt.ticket = tkt[0];
       return evt;
     });
 

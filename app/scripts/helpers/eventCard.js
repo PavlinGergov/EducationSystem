@@ -16,7 +16,13 @@
         scope.buyTicket = function() {
           profileService.buyTicket(scope.event)
             .then(function(response) {
-              scope.event.ticket = true;
+              scope.event.ticket = response;
+            });
+        };
+        scope.deleteTicket = function(ticketId) {
+          profileService.deleteTicket(ticketId)
+            .then(function() {
+              scope.event.ticket = undefined;
             });
         };
         scope.month = function(date) {

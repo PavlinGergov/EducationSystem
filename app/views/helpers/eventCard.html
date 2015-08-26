@@ -1,5 +1,6 @@
 <div class="alert alert-warning" role="alert"  ng-show="event.ticket">
   <div>Успешно се записа за <strong>{{event.name}}</strong>. Чакаме те на {{event.start_date | date: 'dd'}} {{month(event.start_date)}} в {{event.location}} от {{event.start_date | date: 'hh:mm'}}!</div>
+  <button type="button" class="btn btn-primary" ng-click="deleteTicket(event.ticket.id)">Откажи билета</button>
 </div>
 
 <div class="alert alert-success" ng-hide="event.ticket">
