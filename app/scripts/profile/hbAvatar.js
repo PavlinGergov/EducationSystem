@@ -6,7 +6,7 @@
     .directive('hbAvatar', hbAvatar);
 
   var setDefaultImage = function (el) {
-    el.attr('src', "https://hackbulgaria.com/static/img/no-avatar.png");
+    el.attr('src', "/images/no-avatar.png");
   };
   
   function hbAvatar(URL) {
