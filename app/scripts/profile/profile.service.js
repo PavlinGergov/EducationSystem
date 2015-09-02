@@ -31,8 +31,7 @@
     return service;
 
     function deleteTicket(ticketId) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.delete(BASE_URL + 'ticket/'+ticketId+'/', options)
+      return $http.delete(BASE_URL + 'ticket/'+ticketId+'/')
         .then(function(response) {
           return response.data;
         }, function(error) {
@@ -54,8 +53,7 @@
         url: BASE_URL +'base-user-update/',
         method: 'PATCH',
         fields: {'selection': obj.selection},
-        file: file,
-        headers: {'Authorization': 'Token ' + localStorage.getItem('token')}
+        file: file
       })
         .success(function(response) {
           $('#myModal').modal('hide');
@@ -99,8 +97,7 @@
       var data = positionData(position);
       data.working_at_id = position.id;
 
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.patch(EDUCATION_URL + 'working_at/', data, options)
+      return $http.patch(EDUCATION_URL + 'working_at/', data)
         .then(function(response) {
           return response.data;
         });
@@ -169,9 +166,7 @@
     function addPosition(position) {
       var data = positionData(position);
 
-
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.post(EDUCATION_URL + 'working_at/', data, options)
+      return $http.post(EDUCATION_URL + 'working_at/', data)
         .then(function(response) {
           return response.data;
         });
@@ -192,8 +187,7 @@
     }
 
     function addNote(data) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.post(EDUCATION_URL + 'note/', data, options)
+      return $http.post(EDUCATION_URL + 'note/', data)
         .success(function(response) {
           var msg = "Успешно добави коментар";
           toast('success', 'toast-top-right', msg);
@@ -223,8 +217,7 @@
     }
 
     function getTickets() {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(BASE_URL + 'ticket/', options)
+      return $http.get(BASE_URL + 'ticket/')
         .then(function(response) {
           return response.data;
         }, function(error) {
@@ -234,9 +227,8 @@
     }
 
     function buyTicket(event) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       var data = {'event': event.id};
-      return $http.post(BASE_URL + 'ticket/', data, options)
+      return $http.post(BASE_URL + 'ticket/', data)
         .then(function(response) {
           var msg = 'Успешно взе своя билет за ' + event.name;
           toast('success', 'toast-top-right', msg);
@@ -275,8 +267,7 @@
     }
 
     function getProfileData() {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(BASE_URL + 'me/', options)
+      return $http.get(BASE_URL + 'me/')
         .then(function(response) {
           return userData(response.data);
         }, function(error) {
@@ -322,8 +313,7 @@
     }
 
     function getMe() {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(BASE_URL + 'me/', options)
+      return $http.get(BASE_URL + 'me/')
         .then(function(response) {
           var roles = {
             'isTeacher': !!response.data.teacher,
@@ -334,11 +324,10 @@
     }
 
     function changeMac(mac) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       var data = {
         'mac': transformMac(mac)
       };
-      $http.patch(EDUCATION_URL + 'student-update/', data, options)
+      $http.patch(EDUCATION_URL + 'student-update/', data)
        .then(function() {
          toast('success', 'toast-top-right', 'Успешно редактира MAC адреса си!');
        })
@@ -358,9 +347,8 @@
       else {
         data.birth_place = undefined;
       }
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
 
-      return $http.patch(BASE_URL + 'baseuser-update/', data, options)
+      return $http.patch(BASE_URL + 'baseuser-update/', data)
         .then(function(response) {
           toast('success', 'toast-top-right', 'Успешно редактира информацията си!');
           return response.data;
