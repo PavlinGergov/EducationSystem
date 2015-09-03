@@ -5,7 +5,7 @@
     .module('educationSystemApp.profile')
     .factory('profileService', profileService);
 
-  function profileService($http, BASE_URL, EDUCATION_URL, URL, $filter, $q, Upload) {
+  function profileService($http, ENV, $filter, $q, Upload) {
     var service = {
       getProfileData     : getProfileData,
       changeMac          : changeMac,
@@ -31,7 +31,7 @@
     return service;
 
     function deleteTicket(ticketId) {
-      return $http.delete(BASE_URL + 'ticket/'+ticketId+'/')
+      return $http.delete(ENV.base + 'ticket/'+ticketId+'/')
         .then(function(response) {
           return response.data;
         }, function(error) {
@@ -50,7 +50,7 @@
 
     function uploadAvatar(file, obj) {
       return Upload.upload({
-        url: BASE_URL +'base-user-update/',
+        url: ENV.base +'base-user-update/',
         method: 'PATCH',
         fields: {'selection': obj.selection},
         file: file
@@ -97,7 +97,7 @@
       var data = positionData(position);
       data.working_at_id = position.id;
 
-      return $http.patch(EDUCATION_URL + 'working_at/', data)
+      return $http.patch(ENV.education + 'working_at/', data)
         .then(function(response) {
           return response.data;
         });
@@ -166,28 +166,28 @@
     function addPosition(position) {
       var data = positionData(position);
 
-      return $http.post(EDUCATION_URL + 'working_at/', data)
+      return $http.post(ENV.education + 'working_at/', data)
         .then(function(response) {
           return response.data;
         });
     }
 
     function getCities() {
-      return $http.get(EDUCATION_URL + 'get-cities/')
+      return $http.get(ENV.education + 'get-cities/')
         .then(function(response) {
           return response.data;
         });
     }
 
     function getCompanies() {
-      return $http.get(EDUCATION_URL + 'get-companies/')
+      return $http.get(ENV.education + 'get-companies/')
         .then(function(response) {
           return response.data;
         });
     }
 
     function addNote(data) {
-      return $http.post(EDUCATION_URL + 'note/', data)
+      return $http.post(ENV.education + 'note/', data)
         .success(function(response) {
           var msg = "Успешно добави коментар";
           toast('success', 'toast-top-right', msg);
@@ -210,14 +210,14 @@
     }
 
     function getActiveEvents() {
-      return $http.get(BASE_URL + 'event/')
+      return $http.get(ENV.base + 'event/')
         .then(function(response) {
           return response.data;
         });
     }
 
     function getTickets() {
-      return $http.get(BASE_URL + 'ticket/')
+      return $http.get(ENV.base + 'ticket/')
         .then(function(response) {
           return response.data;
         }, function(error) {
@@ -228,7 +228,7 @@
 
     function buyTicket(event) {
       var data = {'event': event.id};
-      return $http.post(BASE_URL + 'ticket/', data)
+      return $http.post(ENV.base + 'ticket/', data)
         .then(function(response) {
           var msg = 'Успешно взе своя билет за ' + event.name;
           toast('success', 'toast-top-right', msg);
@@ -267,7 +267,7 @@
     }
 
     function getProfileData() {
-      return $http.get(BASE_URL + 'me/')
+      return $http.get(ENV.base + 'me/')
         .then(function(response) {
           return userData(response.data);
         }, function(error) {
@@ -313,7 +313,7 @@
     }
 
     function getMe() {
-      return $http.get(BASE_URL + 'me/')
+      return $http.get(ENV.base + 'me/')
         .then(function(response) {
           var roles = {
             'isTeacher': !!response.data.teacher,
@@ -327,7 +327,7 @@
       var data = {
         'mac': transformMac(mac)
       };
-      $http.patch(EDUCATION_URL + 'student-update/', data)
+      $http.patch(ENV.education + 'student-update/', data)
        .then(function() {
          toast('success', 'toast-top-right', 'Успешно редактира MAC адреса си!');
        })
@@ -338,17 +338,23 @@
 
     function changePersonalInfo(personalInfo) {
       var data = personalInfo;
+      console.log(personalInfo);
       if(data.birth_place && !data.city) {
         data.birth_place = data.birth_place.id;
       }
       else if(!data.birth_place && data.city) {
         data.birth_place = data.city.originalObject.id;
       }
+      else if(data.birth_place && data.city){
+        data.birth_place = data.city.originalObject.id;
+      }
       else {
         data.birth_place = undefined;
       }
 
-      return $http.patch(BASE_URL + 'baseuser-update/', data)
+      console.log(data);
+
+      return $http.patch(ENV.base + 'baseuser-update/', data)
         .then(function(response) {
           toast('success', 'toast-top-right', 'Успешно редактира информацията си!');
           return response.data;

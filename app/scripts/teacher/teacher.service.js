@@ -5,7 +5,7 @@
     .module('educationSystemApp.teacher')
     .factory('teacherService', teacherService);
 
-  function teacherService($http, EDUCATION_URL, $q, profileService, $filter) {
+  function teacherService($http, ENV, $q, profileService, $filter) {
     var service = {
       getTeachedCourses: getTeachedCourses,
       getCAsForCourse: getCAsForCourse,
@@ -28,7 +28,7 @@
     }
 
     function getCAsForCourse(courseId) {
-      return $http.get(EDUCATION_URL + 'get-cas-for-course/?course_id=' + courseId)
+      return $http.get(ENV.education + 'get-cas-for-course/?course_id=' + courseId)
         .then(function(response) {
           response.data = $filter('orderBy')(response.data, 'is_attending', true);
           return response.data;
@@ -63,7 +63,7 @@
     }
 
     function dropStudent(data) {
-      return $http.patch(EDUCATION_URL + 'drop-student/', data)
+      return $http.patch(ENV.education + 'drop-student/', data)
        .then(function() {
          profileService.notification('success', 'toast-top-right', 'Успешно променихте статуса на студента!');
        });

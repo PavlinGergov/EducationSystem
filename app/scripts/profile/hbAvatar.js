@@ -9,7 +9,7 @@
     el.attr('src', "/images/no-avatar.png");
   };
   
-  function hbAvatar(URL) {
+  function hbAvatar(ENV) {
     
     var directive = {
       restrict: 'A',
@@ -26,7 +26,7 @@
           setDefaultImage(el);
         }
         else {
-          el.attr('src', URL + src);
+          el.attr('src', ENV.api + src);
         }
       });
       
