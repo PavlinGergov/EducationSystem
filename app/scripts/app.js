@@ -17,7 +17,7 @@
       'angucomplete-alt',
       'angular.filter'
     ])
-    .config(function ($urlRouterProvider, ngJcropConfigProvider) {
+    .config(function ($urlRouterProvider, ngJcropConfigProvider, $httpProvider) {
       $urlRouterProvider.otherwise(function($injector) {
         var $state = $injector.get("$state");
         $state.go('check');
@@ -29,6 +29,24 @@
         maxWidth: 300
       });
 
+      $httpProvider.interceptors.push(function($q, $injector) {
+        return {
+          'request': function(config) {
+            if(localStorage.getItem('token')) {
+              config.headers['Authorization'] = 'Token ' + localStorage.getItem('token');
+            }
+            return config;
+          },
+          'responseError': function(response) {
+            if(response.status === 401) {
+              localStorage.removeItem('token');
+              var $state = $injector.get("$state");
+              $state.go('login');
+            }
+            return $q.reject(response);
+          }
+        };
+      });
     })
     .run(function (Permission, profileService, $rootScope, $q) {
       Permission.defineRole('anonymous', function (stateParams) {
