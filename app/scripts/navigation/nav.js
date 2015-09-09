@@ -44,6 +44,10 @@
     function userMenu() {
       var menu = [
         {
+          title  : "Кандидатствай",
+          action : 'application'
+        },
+        {
           title  : "Профил",
           action : 'profile'
         },
@@ -76,6 +80,10 @@
     function student(firstCourseId) {
       var menu = [
         {
+          title  : "Кандидатствай",
+          action : 'application'
+        },
+        {
           title  : "Dashboard",
           action : 'studentDashboard.overview({courseId: '+ firstCourseId +'})'
         },
@@ -93,6 +101,10 @@
 
     function studentAndTeacher(firstCourseId) {
       var menu = [
+        {
+          title  : "Кандидатствай",
+          action : 'application'
+        },
         {
           title  : "StudentDashboard",
           action : 'studentDashboard.overview({courseId: '+ firstCourseId +'})'
