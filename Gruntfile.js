@@ -66,7 +66,8 @@ module.exports = function (grunt) {
             name: 'development',
             api: 'https://st-data.hackbulgaria.com/',
             base: 'https://st-data.hackbulgaria.com/base/api/',
-            education: 'https://st-data.hackbulgaria.com/education/api/'
+            education: 'https://st-data.hackbulgaria.com/education/api/',
+            application: 'https://st-data.hackbulgaria.com/application/api/'
           }
         }
       },
@@ -79,7 +80,8 @@ module.exports = function (grunt) {
             name: 'travis',
             api: 'http://localhost:8000/',
             base: 'https://localhost:8000/base/api/',
-            education: 'https://localhost:8000/education/api/'
+            education: 'https://localhost:8000/education/api/',
+            application: 'https://localhost:8000/application/api/'
           }
         }
       },
@@ -92,7 +94,8 @@ module.exports = function (grunt) {
             name: 'production',
             api: 'https://data.hackbulgaria.com/',
             base: 'https://data.hackbulgaria.com/base/api/',
-            education: 'https://data.hackbulgaria.com/education/api/'
+            education: 'https://data.hackbulgaria.com/education/api/',
+            application: 'https://data.hackbulgaria.com/application/api/'
           }
         }
       }
