@@ -55,11 +55,12 @@
         fields: {'selection': obj.selection},
         file: file
       })
-        .success(function(response) {
+        .then(function(response) {
           $('#myModal').modal('hide');
           var msg = 'Успешно промени аватара си!';
           toast('success', 'toast-top-right', msg);
-          return response;
+          return response.data;
+        }, function(error) {
         });
     }
 
@@ -188,12 +189,10 @@
 
     function addNote(data) {
       return $http.post(ENV.education + 'note/', data)
-        .success(function(response) {
+        .then(function(response) {
           var msg = "Успешно добави коментар";
           toast('success', 'toast-top-right', msg);
-        })
-        .error(function(error) {
-        });
+        }, function(){});
     }
 
     function toast(type, css, msg) {

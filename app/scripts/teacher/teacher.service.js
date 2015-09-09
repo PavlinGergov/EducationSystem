@@ -28,9 +28,8 @@
     }
 
     function getCAsForCourse(courseId) {
-      return $http.get(ENV.education + 'get-cas-for-course/?course_id=' + courseId)
+      return $http.get(ENV.education + 'course-assignment/?course__id=' + courseId)
         .then(function(response) {
-          response.data = $filter('orderBy')(response.data, 'is_attending', true);
           return response.data;
         });
     }
