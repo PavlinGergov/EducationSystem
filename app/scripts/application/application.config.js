@@ -7,15 +7,21 @@
 
   function configure($stateProvider) {
     $stateProvider
-      .state('application', {
-        url: '/application',
-        templateUrl: 'views/application/application.html',
-        controller: 'applicationCtrl',
+      .state('apply', {
+        url: '/apply',
+        templateUrl: 'views/application/apply.html',
+        controller: 'applyCtrl',
         controllerAs: 'vm',
         resolve: {
           bundles: bundlesPrep,
           user: userPrep
         }
+      })
+      .state('application', {
+        url: '/application',
+        templateUrl: 'views/application/application.html',
+        controller: 'applicationCtrl',
+        controllerAs: 'vm'
       });
 
     function bundlesPrep(applicationService) {

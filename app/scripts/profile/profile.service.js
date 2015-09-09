@@ -289,6 +289,7 @@
           'birth_place': user.birth_place,
           'description': user.description
         },
+        'application_set': user.application_set,
         'isTeacher': !!user.teacher,
         'isCompetitor': !!user.competitor && user.competitor.teammembership_set.length > 0,
         'isStudent': !!user.student && user.student.courseassignment_set.length > 0

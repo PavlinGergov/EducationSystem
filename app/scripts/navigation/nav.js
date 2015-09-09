@@ -45,7 +45,7 @@
       var menu = [
         {
           title  : "Кандидатствай",
-          action : 'application'
+          action : 'apply'
         },
         {
           title  : "Профил",
@@ -81,7 +81,7 @@
       var menu = [
         {
           title  : "Кандидатствай",
-          action : 'application'
+          action : 'apply'
         },
         {
           title  : "Dashboard",
@@ -103,7 +103,7 @@
       var menu = [
         {
           title  : "Кандидатствай",
-          action : 'application'
+          action : 'apply'
         },
         {
           title  : "StudentDashboard",
