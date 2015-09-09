@@ -5,7 +5,7 @@
     .module('educationSystemApp.auth')
     .factory('authService', authService);
 
-  function authService($http, BASE_URL, EDUCATION_URL, URL, $q) {
+  function authService($http, ENV, $q) {
     var service = {
       register: register,
       login: login,
@@ -32,7 +32,7 @@
     }
 
     function resetPassword(data) {
-      return $http.post(BASE_URL + 'password-reset/', data)
+      return $http.post(ENV.base + 'password-reset/', data)
         .then(function() {
           var msg = 'Изпратихме ти email с линк, от който можеш да промениш паролата си.';
           toast('success', 'toast-top-right', msg);
@@ -40,7 +40,7 @@
     }
 
     function setNewPassword(data) {
-      return $http.post(BASE_URL + 'password-reset-confirm/', data)
+      return $http.post(ENV.base + 'password-reset-confirm/', data)
         .then(function(response) {
           var msg = 'Успешно промени паролата си.';
           toast('success', 'toast-top-right', msg);
@@ -55,7 +55,7 @@
     }
     
     function register(user) {
-      return $http.post(BASE_URL + 'register/', user)
+      return $http.post(ENV.base + 'register/', user)
         .then(function(response) {
           return response;
         })
@@ -67,7 +67,7 @@
     };
 
     function login(user) {
-      return $http.post(BASE_URL + 'login/', user)
+      return $http.post(ENV.base + 'login/', user)
         .then(function(response) {
           return response;
         })
@@ -78,7 +78,7 @@
     }
 
     function activate(data) {
-      return $http.post(BASE_URL + 'activate/', data);
+      return $http.post(ENV.base + 'activate/', data);
     }
 
     function splitName(name) {

@@ -1,33 +1,21 @@
-// Generated on 2015-05-21 using generator-angular 0.11.1
 'use strict';
 
-// # Globbing
-// for performance reasons we're only matching one level down:
-// 'test/spec/{,*/}*.js'
-// use this if you want to recursively match all subfolders:
-// 'test/spec/**/*.js'
-
 module.exports = function (grunt) {
-
-  // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
-  // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
-  // Configurable paths for the application
+  var sauceUser = 'mh_vasileva';
+  var sauceKey = 'bed742a6-791a-417d-a4f2-e830d848bbb2';
+
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
     dist: 'dist'
   };
 
-  // Define the configuration for all the tasks
   grunt.initConfig({
-
-    // Project settings
     yeoman: appConfig,
 
-    // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
         files: ['bower.json'],
@@ -63,11 +51,56 @@ module.exports = function (grunt) {
       }
     },
 
-    // The actual grunt server settings
+    ngconstant: {
+      options: {
+        space: ' ',
+        dest: '<%= yeoman.app %>/scripts/config/config.module.js',
+        name: 'educationSystemApp.config'
+      },
+      development: {
+        options: {
+          dest: '<%= yeoman.app %>/scripts/config/config.module.js'
+        },
+        constants: {
+          ENV: {
+            name: 'development',
+            api: 'https://st-data.hackbulgaria.com/',
+            base: 'https://st-data.hackbulgaria.com/base/api/',
+            education: 'https://st-data.hackbulgaria.com/education/api/'
+          }
+        }
+      },
+      travis: {
+        options: {
+          dest: '<%= yeoman.app %>/scripts/config/config.module.js'
+        },
+        constants: {
+          ENV: {
+            name: 'travis',
+            api: 'http://localhost:8000/',
+            base: 'https://localhost:8000/base/api/',
+            education: 'https://localhost:8000/education/api/'
+          }
+        }
+      },
+      production: {
+        options: {
+          dest: '<%= yeoman.app %>/scripts/config/config.module.js'
+        },
+        constants: {
+          ENV: {
+            name: 'production',
+            api: 'https://data.hackbulgaria.com/',
+            base: 'https://data.hackbulgaria.com/base/api/',
+            education: 'https://data.hackbulgaria.com/education/api/'
+          }
+        }
+      }
+    },
+
     connect: {
       options: {
-        port: 9001,
-        // Change this to '0.0.0.0' to access the server from outside.
+        port: 9000,
         hostname: 'localhost',
         livereload: 35730
       },
@@ -93,6 +126,7 @@ module.exports = function (grunt) {
       test: {
         options: {
           port: 9001,
+          hostname: '0.0.0.0',
           middleware: function (connect) {
             return [
               connect.static('.tmp'),
@@ -114,7 +148,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {
       options: {
         jshintrc: '.jshintrc',
@@ -431,6 +464,24 @@ module.exports = function (grunt) {
         singleRun: false,
         autoWatch: true
       }
+    },
+
+    protractor: {
+      travis: {
+        options: {
+          configFile: 'protractor-config.js',
+          args: {
+            sauceUser: sauceUser,
+            sauceKey: sauceKey
+          }
+        }
+      }
+    },
+    
+    shell: {
+      protractor_update: {
+        command: 'node_modules/protractor/bin/webdriver-manager update'
+      }
     }
   });
 
@@ -442,6 +493,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'ngconstant:development',
       'wiredep',
       'concurrent:server',
       'autoprefixer:server',
@@ -450,21 +502,35 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
+  grunt.registerTask('server', function (target) {
     grunt.task.run(['serve:' + target]);
   });
 
-  grunt.registerTask('test', [
-    'clean:server',
-    'wiredep',
-    'concurrent:test',
-    'autoprefixer',
-    'connect:test',
-    'karma'
-  ]);
+  grunt.registerTask('sauce-connect', 'Launch Sauce Connect', function () {
+    var done = this.async();
+    require('sauce-connect-launcher')({
+      username: sauceUser,
+      accessKey: sauceKey
+    }, function (err, sauceConnectProcess) {
+      if (err) {
+        console.error(err.message);
+      } else {
+        done();
+      }
+    });
+  });
+
+  grunt.registerTask('test', [ 'karma:unit' ]);
+
+  grunt.registerTask('travis', [
+    'ngconstant:travis',
+    'shell:protractor_update',
+    'connect:testserver',
+    'sauce-connect',
+    'protractor:travis']);
 
   grunt.registerTask('build', [
+    'ngconstant:production',
     'clean:dist',
     'wiredep',
     'useminPrepare',

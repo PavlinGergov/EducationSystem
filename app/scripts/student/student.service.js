@@ -5,7 +5,7 @@
     .module('educationSystemApp.student')
     .factory('studentService', studentService);
 
-  function studentService($http, $filter, EDUCATION_URL) {
+  function studentService($http, $filter, ENV) {
     var service = {
       getCourses: getCourses,
       getCourseById: getCourseById,
@@ -29,8 +29,7 @@
     }
     
     function submitSolution(solution) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.post(EDUCATION_URL + 'solution/', solution, options)
+      return $http.post(ENV.education + 'solution/', solution)
         .then(function(response) {
           var msg = 'Успешно добави решение';
           toast('success', 'toast-top-right', msg);
@@ -39,8 +38,7 @@
     };
 
     function updateSolution(solution) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.patch(EDUCATION_URL + 'solution/' + solution.id + '/', {'url': solution.url}, options)
+      return $http.patch(ENV.education + 'solution/' + solution.id + '/', {'url': solution.url})
         .then(function(response) {
           var msg = 'Успешно промени решението си';
           toast('success', 'toast-top-right', msg);
@@ -49,16 +47,14 @@
     };
     
     function getSolutions(courseId) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(EDUCATION_URL + 'solution/?task__course__id=' + courseId, options)
+      return $http.get(ENV.education + 'solution/?task__course__id=' + courseId)
         .then(function(response) {
           return response.data;
         });
     }
 
     function getTasks(courseId) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(EDUCATION_URL + 'task/?course__id=' + courseId, options)
+      return $http.get(ENV.education + 'task/?course__id=' + courseId)
         .then(function(response) {
           return response.data;
         });
@@ -88,8 +84,7 @@
     }
 
     function getStudentsForCourse(courseId) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(EDUCATION_URL + 'get-students-for-course/?course_id=' + courseId, options)
+      return $http.get(ENV.education + 'get-students-for-course/?course_id=' + courseId)
         .then(function(response) {
           return response.data;
         });
@@ -123,16 +118,14 @@
     }
 
     function getStudentCheckins(studentId, courseId) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(EDUCATION_URL + 'get-check-ins/?student_id=' + studentId + '&course_id=' + courseId, options)
+      return $http.get(ENV.education + 'get-check-ins/?student_id=' + studentId + '&course_id=' + courseId)
         .then(function(response) {
           return response.data;
         });
     }
 
     function getLecturesForCourse(courseId) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(EDUCATION_URL + 'get-lectures/?course_id=' + courseId, options)
+      return $http.get(ENV.education + 'get-lectures/?course_id=' + courseId)
         .then(function(response) {
           var lectures = getLecturesTillNow(response.data);
           var days = allWeekdays(lectures);

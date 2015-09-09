@@ -66,7 +66,7 @@
   </form>
 
   <hr>
-  <p ng-repeat="note in ssvm.currentCA.studentnote_set | orderBy:'post_time':true">
+  <p ng-repeat="note in ssvm.currentCA.studentnote_set | orderBy: 'post_time':true">
     <notes-card note="note"></notes-card>
   </p>
 </div>

@@ -39,7 +39,7 @@
 
     vm.uploadAvatar = function(file) {
       profileService.uploadAvatar(file, vm.obj)
-        .success(function(response) {
+        .then(function(response) {
           vm.user.avatar = response;
         });
     };

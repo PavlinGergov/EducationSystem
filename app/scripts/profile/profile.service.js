@@ -5,7 +5,7 @@
     .module('educationSystemApp.profile')
     .factory('profileService', profileService);
 
-  function profileService($http, BASE_URL, EDUCATION_URL, URL, $filter, $q, Upload) {
+  function profileService($http, ENV, $filter, $q, Upload) {
     var service = {
       getProfileData     : getProfileData,
       changeMac          : changeMac,
@@ -31,8 +31,7 @@
     return service;
 
     function deleteTicket(ticketId) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.delete(BASE_URL + 'ticket/'+ticketId+'/', options)
+      return $http.delete(ENV.base + 'ticket/'+ticketId+'/')
         .then(function(response) {
           return response.data;
         }, function(error) {
@@ -51,17 +50,17 @@
 
     function uploadAvatar(file, obj) {
       return Upload.upload({
-        url: BASE_URL +'base-user-update/',
+        url: ENV.base +'base-user-update/',
         method: 'PATCH',
         fields: {'selection': obj.selection},
-        file: file,
-        headers: {'Authorization': 'Token ' + localStorage.getItem('token')}
+        file: file
       })
-        .success(function(response) {
+        .then(function(response) {
           $('#myModal').modal('hide');
           var msg = 'Успешно промени аватара си!';
           toast('success', 'toast-top-right', msg);
-          return response;
+          return response.data;
+        }, function(error) {
         });
     }
 
@@ -99,8 +98,7 @@
       var data = positionData(position);
       data.working_at_id = position.id;
 
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.patch(EDUCATION_URL + 'working_at/', data, options)
+      return $http.patch(ENV.education + 'working_at/', data)
         .then(function(response) {
           return response.data;
         });
@@ -169,37 +167,32 @@
     function addPosition(position) {
       var data = positionData(position);
 
-
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.post(EDUCATION_URL + 'working_at/', data, options)
+      return $http.post(ENV.education + 'working_at/', data)
         .then(function(response) {
           return response.data;
         });
     }
 
     function getCities() {
-      return $http.get(EDUCATION_URL + 'get-cities/')
+      return $http.get(ENV.education + 'get-cities/')
         .then(function(response) {
           return response.data;
         });
     }
 
     function getCompanies() {
-      return $http.get(EDUCATION_URL + 'get-companies/')
+      return $http.get(ENV.education + 'get-companies/')
         .then(function(response) {
           return response.data;
         });
     }
 
     function addNote(data) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.post(EDUCATION_URL + 'note/', data, options)
-        .success(function(response) {
+      return $http.post(ENV.education + 'note/', data)
+        .then(function(response) {
           var msg = "Успешно добави коментар";
           toast('success', 'toast-top-right', msg);
-        })
-        .error(function(error) {
-        });
+        }, function(){});
     }
 
     function toast(type, css, msg) {
@@ -216,15 +209,14 @@
     }
 
     function getActiveEvents() {
-      return $http.get(BASE_URL + 'event/')
+      return $http.get(ENV.base + 'event/')
         .then(function(response) {
           return response.data;
         });
     }
 
     function getTickets() {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(BASE_URL + 'ticket/', options)
+      return $http.get(ENV.base + 'ticket/')
         .then(function(response) {
           return response.data;
         }, function(error) {
@@ -234,9 +226,8 @@
     }
 
     function buyTicket(event) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       var data = {'event': event.id};
-      return $http.post(BASE_URL + 'ticket/', data, options)
+      return $http.post(ENV.base + 'ticket/', data)
         .then(function(response) {
           var msg = 'Успешно взе своя билет за ' + event.name;
           toast('success', 'toast-top-right', msg);
@@ -275,8 +266,7 @@
     }
 
     function getProfileData() {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(BASE_URL + 'me/', options)
+      return $http.get(ENV.base + 'me/')
         .then(function(response) {
           return userData(response.data);
         }, function(error) {
@@ -322,8 +312,7 @@
     }
 
     function getMe() {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
-      return $http.get(BASE_URL + 'me/', options)
+      return $http.get(ENV.base + 'me/')
         .then(function(response) {
           var roles = {
             'isTeacher': !!response.data.teacher,
@@ -334,11 +323,10 @@
     }
 
     function changeMac(mac) {
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
       var data = {
         'mac': transformMac(mac)
       };
-      $http.patch(EDUCATION_URL + 'student-update/', data, options)
+      $http.patch(ENV.education + 'student-update/', data)
        .then(function() {
          toast('success', 'toast-top-right', 'Успешно редактира MAC адреса си!');
        })
@@ -349,18 +337,23 @@
 
     function changePersonalInfo(personalInfo) {
       var data = personalInfo;
+      console.log(personalInfo);
       if(data.birth_place && !data.city) {
         data.birth_place = data.birth_place.id;
       }
       else if(!data.birth_place && data.city) {
         data.birth_place = data.city.originalObject.id;
       }
+      else if(data.birth_place && data.city){
+        data.birth_place = data.city.originalObject.id;
+      }
       else {
         data.birth_place = undefined;
       }
-      var options = { headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }};
 
-      return $http.patch(BASE_URL + 'baseuser-update/', data, options)
+      console.log(data);
+
+      return $http.patch(ENV.base + 'baseuser-update/', data)
         .then(function(response) {
           toast('success', 'toast-top-right', 'Успешно редактира информацията си!');
           return response.data;

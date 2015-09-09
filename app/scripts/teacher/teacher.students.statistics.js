@@ -21,14 +21,14 @@
         'text': vm.newNote,
         'assignment': caId
       };
+
       profileService.addNote(data)
-        .success(function(response) {
+        .then(function(response) {
           vm.newNote = '';
           data.author = {
             'first_name': user.first_name,
             'last_name': user.last_name
           };
-
           vm.currentCA.studentnote_set.push(data);
         });
     };
