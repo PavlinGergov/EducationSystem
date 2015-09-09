@@ -20,13 +20,13 @@
       transclude: true,
       replace: true,
       templateUrl: 'views/application/directives/bundle.html',
-      controller: function($scope) {
+      controller: function($scope, applicationService) {
         this.getCourses = function() {
           return $scope.bundle.course_set;
         };
 
         $scope.applyForBundle = function(){
-          console.log('applyForbundle ', $scope.bundle.id);
+          applicationService.createApplication($scope.bundle.id);
         };
       }
     };

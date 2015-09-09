@@ -11,19 +11,19 @@
     // rename functions
 
     return {
-      getBundle        : getBundle,
-      getApplication   : getApplication,
-      postApplication  : postApplication,
-      patchApplication : patchApplication,
-      getTask          : getTask,
-      createSolution   : createSolution,
-      getSolution      : getSolution,
-      updateSolution   : updateSolution
+      getBundle         : getBundle,
+      getApplication    : getApplication,
+      createApplication : createApplication,
+      patchApplication  : patchApplication,
+      getTask           : getTask,
+      createSolution    : createSolution,
+      getSolution       : getSolution,
+      updateSolution    : updateSolution
       
     };
 
     function getBundle() {
-      return $http.get(ENV.application + 'bundle')
+      return $http.get(ENV.application + 'bundle/')
         .then(function(response) {
           return response.data;
         }, function(error) {
@@ -40,13 +40,16 @@
       //   });
     };
 
-    function postApplication(data) {
-      // return $http.post(ENV.application + 'application/', data)
-      //   .then(function(response) {
-      //     return response.data;
-      //   }, function(error) {
-      //     // handle error
-      //   });
+    function createApplication(bundleId) {
+      var data = {
+        'bundle': bundleId
+      };
+      return $http.post(ENV.application + 'application/', data)
+        .then(function(response) {
+          return response.data;
+        }, function(error) {
+          // handle error
+        });
     };
 
     function patchApplication(data) {
