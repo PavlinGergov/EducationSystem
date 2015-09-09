@@ -19,17 +19,6 @@
     ])
     .config(function ($urlRouterProvider, ngJcropConfigProvider, $httpProvider) {
 
-      $httpProvider.interceptors.push(function($q) {
-        return {
-          'request': function(config) {
-            if(localStorage.getItem('token')) {
-              config.headers['Authorization'] = 'Token ' + localStorage.getItem('token');
-            }
-            return config;
-          }
-        };
-      });
-
       $urlRouterProvider.otherwise(function($injector) {
         var $state = $injector.get("$state");
         $state.go('check');

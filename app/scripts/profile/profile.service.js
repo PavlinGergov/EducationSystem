@@ -337,7 +337,6 @@
 
     function changePersonalInfo(personalInfo) {
       var data = personalInfo;
-      console.log(personalInfo);
       if(data.birth_place && !data.city) {
         data.birth_place = data.birth_place.id;
       }
@@ -350,8 +349,6 @@
       else {
         data.birth_place = undefined;
       }
-
-      console.log(data);
 
       return $http.patch(ENV.base + 'baseuser-update/', data)
         .then(function(response) {
