@@ -1,0 +1,10 @@
+<div>
+  <h2>{{ bundle.name }}</h2>
+  <p>{{ bundle.description }}</p>
+  <div ng-transclude>
+    
+  </div>
+  <p>Срок за кандидатстване: {{ bundle.end_date | date: 'dd MMMM yyyy' }}</p>
+  <p>Начало на курсовете: {{ bundle.start_date | date: 'dd MMMM yyyy' }}</p>
+  <button ng-click="applyForBundle()">Кандидатствай!</button>
+</div>
