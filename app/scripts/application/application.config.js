@@ -21,7 +21,10 @@
         url: '/application',
         templateUrl: 'views/application/application.html',
         controller: 'applicationCtrl',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          user: userPrep
+        }
       });
 
     function bundlesPrep(applicationService) {

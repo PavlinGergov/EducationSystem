@@ -5,13 +5,13 @@
     .module('educationSystemApp.application')
     .controller('applicationCtrl', applicationCtrl);
 
-  function applicationCtrl() {
+  function applicationCtrl(user) {
     var vm = this;
 
     activate();
 
     function activate() {
-      console.log('applicationCtrl');
+      vm.user = user;
     };
   }
 })();

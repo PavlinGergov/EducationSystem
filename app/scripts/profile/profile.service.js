@@ -287,7 +287,9 @@
           'twitter_account': user.twitter_account,
           'studies_at': user.studies_at,
           'birth_place': user.birth_place,
-          'description': user.description
+          'description': user.description,
+          'skype': user.skype,
+          'phone': user.phone
         },
         'application_set': user.application_set,
         'isTeacher': !!user.teacher,
