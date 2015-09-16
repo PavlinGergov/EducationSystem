@@ -5,7 +5,7 @@
     .module('educationSystemApp.helpers')
     .directive('weekCard', weekCard);
 
-  function weekCard($rootScope) {
+  function weekCard() {
     return {
       restrict: 'E',
       templateUrl: 'views/helpers/weekCard.html',
