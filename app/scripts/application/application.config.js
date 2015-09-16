@@ -18,14 +18,23 @@
         }
       })
       .state('application', {
-        url: '/application',
+        url: '/application/:bundleId',
         templateUrl: 'views/application/application.html',
         controller: 'applicationCtrl',
         controllerAs: 'vm',
         resolve: {
-          user: userPrep
+          user: userPrep,
+          tasks: tasksPrep
         }
       });
+
+    function tasksPrep(applicationService, $stateParams) {
+      var bundleId = $stateParams.bundleId;
+      return applicationService.getTasks(bundleId)
+        .then(function(response) {
+          return response;
+        });
+    }
 
     function bundlesPrep(applicationService) {
       return applicationService.getBundle()
