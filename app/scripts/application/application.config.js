@@ -24,10 +24,19 @@
         controllerAs: 'vm',
         resolve: {
           user: userPrep,
-          tasks: tasksPrep
+          tasks: tasksPrep,
+          courses: coursesPrep
         }
       });
 
+    function coursesPrep($stateParams, applicationService) {
+      var bundleId = $stateParams.bundleId;
+      return applicationService.getBundleCourses(bundleId)
+        .then(function(response) {
+          return response;
+        });
+    }
+    
     function tasksPrep(applicationService, $stateParams) {
       var bundleId = $stateParams.bundleId;
       return applicationService.getTasks(bundleId)

@@ -16,9 +16,10 @@
       getTasks          : getTasks,
       createSolution    : createSolution,
       changeSolution    : changeSolution,
-      changeSkype: changeSkype,
-      changePhone: changePhone,
-      getSolutions : getSolutions
+      changeSkype       : changeSkype,
+      changePhone       : changePhone,
+      getSolutions      : getSolutions,
+      getBundleCourses  : getBundleCourses
       
     };
 
@@ -58,6 +59,14 @@
         });
     };
 
+    function getBundleCourses(bundleId) {
+      return $http.get(ENV.application + 'bundle/?id='+bundleId)
+        .then(function(response) {
+          return response.data[0].course_set;
+        }, function(error) {
+          // handle error
+        });
+    };
 
     function createApplication(bundleId) {
       var data = {

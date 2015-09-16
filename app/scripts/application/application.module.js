@@ -2,5 +2,7 @@
   'use strict';
   
   angular
-    .module('educationSystemApp.application', []);
+    .module('educationSystemApp.application', [
+      'ui.sortable'
+    ]);
 })();
