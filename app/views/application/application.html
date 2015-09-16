@@ -1,6 +1,8 @@
 <div>статус лента</div>
-<div>информация за интервю</div>
+<application-info data="vm.user.personalInfo"></application-info>
 <div>подреждане на желания</div>
 <div>предаване на задачи</div>
 
-<application-info data="vm.user.personalInfo"></application-info>
+<div class="col-sm-9 col-sm-offset-2" ng-repeat="task in vm.tasks">
+  <bundle-task tasks task="task"></bundle-task>
+</div>
