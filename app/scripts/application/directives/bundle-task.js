@@ -16,7 +16,10 @@
           });
           return sol[0];
         };
-        
+
+        this.setSolution = function(solution) {
+          $scope.$parent.vm.user.solution_set.push(solution);
+        };
       }
     };
   }
@@ -31,47 +34,54 @@
       replace: true,
       templateUrl: 'views/application/directives/bundle-task.html',
       link: function(scope, element, attrs, ctrl) {
-        var ready = function(idName) {
+        
+        
+        var ready = function() {
           var i = angular.element(element.find('i')[1]);
           i.removeClass();
           i.addClass('fa fa-check fa-2');
         };
 
-        var notReady = function(idName) {
+        var notReady = function() {
           var i = angular.element(element.find('i')[1]);
           i.removeClass();
           i.addClass('fa fa-times fa-2');
         };
-        
         scope.solution = ctrl.getSolution(scope.task.id);
-       
-        if(scope.solution) {
-          ready(scope.task.id);
-        }
-        else {
-          notReady(scope.task.id);
-        };
-        
-        scope.submit = function() {
-          scope.solution.id = scope.task.id;
+
+        scope.$watch('solution.url', function(newValue, oldValue) {
+          if(newValue || oldValue) {
+            ready();
+          };
           
-          applicationService.createSolution(scope.solution)
+          if(newValue && newValue !== oldValue) {
+            scope.solution.url = newValue;
+          }
+        });
+
+        scope.submit = function() {
+          if(typeof scope.solution.id === 'undefined') {
+            create();
+          }
+          else {
+            update();
+          }
+        };
+
+        var create = function() {
+          applicationService.createSolution(scope.solution, scope.task.id)
             .then(function(response) {
-              scope.task.solution = true;
-              scope.$parent.vm.user.solution_set.push(response);
+              ctrl.setSolution(response);
+              scope.solution = ctrl.getSolution(scope.task.id);
             });
         };
 
-        scope.$watch('solution.url', function(newValue, oldValue) {
-          if(newValue && newValue !== oldValue) {
-            var data = scope.solution;
-            data.url = newValue;
-            applicationService.changeSolution(data)
-              .then(function(response) {
-                scope.solution = response;
-              });
-          }
-        });
+        var update = function() {
+          applicationService.changeSolution(scope.solution)
+            .then(function(response) {
+              scope.solution = response;
+            });
+        };
       }
     };
   }

@@ -80,13 +80,13 @@
         });
     };
 
-    function createSolution(data) {
-      // data = {taskId, solution->url}
-      var solutionObj = {
-        'task': data.id,
-        'url': data.url
+    function createSolution(solution, taskId) {
+      var data = {
+        'task': taskId,
+        'url': solution.url
       };
-      return $http.post(ENV.application + 'solution/', solutionObj)
+      
+      return $http.post(ENV.application + 'solution/', data)
         .then(function(response) {
           return response.data;
         }, function(error) {
@@ -95,7 +95,7 @@
     };
 
     function changeSolution(data) {
-      return $http.patch(ENV.application + 'solution/'+data.id, data)
+      return $http.patch(ENV.application + 'solution/'+data.id +'/', data)
         .then(function(response) {
           return response.data;
         }, function(error) {
