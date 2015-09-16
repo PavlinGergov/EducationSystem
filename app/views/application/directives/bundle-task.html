@@ -1,0 +1,9 @@
+<form class="form-horizontal task" novalidate>
+  <h4><i class="fa fa-file-text-o"> <a href="{{task.url}}" target="_blank">{{task.name}}</i></a></h4>
+  <div class="input-group">
+   <input type="url" ng-model="solution.url" class="form-control application-input" placeholder="Линк към твоето решение" ng-model-options="{ updateOn: 'focusout'}">
+   <span class="input-group-btn">
+     <button class="btn btn-primary"  ng-click="submit()"><i class="fa fa-times fa-2"></i></button>
+   </span>
+  </div>
+</form>
