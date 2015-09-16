@@ -292,6 +292,7 @@
           'phone': user.phone
         },
         'application_set': user.application_set,
+        'solution_set': user.applicationsolution_set,
         'isTeacher': !!user.teacher,
         'isCompetitor': !!user.competitor && user.competitor.teammembership_set.length > 0,
         'isStudent': !!user.student && user.student.courseassignment_set.length > 0
