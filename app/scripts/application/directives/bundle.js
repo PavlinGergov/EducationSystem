@@ -28,7 +28,7 @@
         $scope.applyForBundle = function(){
           applicationService.createApplication($scope.bundle.id)
             .then(function(response) {
-              $state.go('application');
+              $state.go('application', { bundleId: $scope.bundle.id});
             });
         };
       }
