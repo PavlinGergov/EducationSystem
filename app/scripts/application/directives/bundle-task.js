@@ -63,8 +63,6 @@
         };
 
         scope.$watch('solution.url', function(newValue, oldValue) {
-          console.log(newValue);
-          console.log(oldValue);
           if(newValue && newValue !== oldValue) {
             var data = scope.solution;
             data.url = newValue;
