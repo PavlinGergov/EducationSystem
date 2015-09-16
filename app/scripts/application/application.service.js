@@ -12,16 +12,43 @@
 
     return {
       getBundle         : getBundle,
-      getApplication    : getApplication,
       createApplication : createApplication,
-      patchApplication  : patchApplication,
-      getTask           : getTask,
+      getTasks          : getTasks,
       createSolution    : createSolution,
-      getSolution       : getSolution,
-      updateSolution    : updateSolution
+      changeSolution    : changeSolution,
+      changeSkype: changeSkype,
+      changePhone: changePhone,
+      getSolutions : getSolutions
       
     };
 
+    function getSolutions() {
+      return $http.get(ENV.application + 'solution/')
+        .then(function(response) {
+          return response.data;
+        });
+    }
+    
+    function changeSkype(skypeName) {
+      var data = {
+        'skype': skypeName
+      };
+      return $http.patch(ENV.base + 'baseuser-update/', data)
+        .then(function(response) {
+          return response.data;
+        });
+    };
+
+    function changePhone(phoneNumber) {
+      var data = {
+        'phone': phoneNumber
+      };
+      return $http.patch(ENV.base + 'baseuser-update/', data)
+        .then(function(response) {
+          return response.data;
+        });
+    };
+    
     function getBundle() {
       return $http.get(ENV.application + 'bundle/')
         .then(function(response) {
@@ -31,14 +58,6 @@
         });
     };
 
-    function getApplication() {
-      // return $http.get(ENV.application + 'application/')
-      //   .then(function(response) {
-      //     return response.data;
-      //   }, function(error) {
-      //     // handle error
-      //   });
-    };
 
     function createApplication(bundleId) {
       var data = {
@@ -52,49 +71,36 @@
         });
     };
 
-    function patchApplication(data) {
-      // return $http.get(ENV.application + 'application/', data)
-      //   .then(function(response) {
-      //     return response.data;
-      //   }, function(error) {
-      //     // handle error
-      //   });
-    };
-
-    function getTask() {
-      // return $http.get(ENV.application + 'task/')
-      //   .then(function(response) {
-      //     return response.data;
-      //   }, function(error) {
-      //     // handle error
-      //   });
+    function getTasks(bundleId) {
+      return $http.get(ENV.application + 'task/?bundle__id='+bundleId)
+        .then(function(response) {
+          return response.data;
+        }, function(error) {
+          // handle error
+        });
     };
 
     function createSolution(data) {
-      // return $http.post(ENV.application + 'task/', data)
-      //   .then(function(response) {
-      //     return response.data;
-      //   }, function(error) {
-      //     // handle error
-      //   });
+      // data = {taskId, solution->url}
+      var solutionObj = {
+        'task': data.id,
+        'url': data.url
+      };
+      return $http.post(ENV.application + 'solution/', solutionObj)
+        .then(function(response) {
+          return response.data;
+        }, function(error) {
+          // handle error
+        });
     };
 
-    function getSolution() {
-      // return $http.get(ENV.application + 'solution/')
-      //   .then(function(response) {
-      //     return response.data;
-      //   }, function(error) {
-      //     // handle error
-      //   });
-    };
-
-    function updateSolution(data) {
-      // return $http.patch(ENV.application + 'solution/', data)
-      //   .then(function(response) {
-      //     return response.data;
-      //   }, function(error) {
-      //     // handle error
-      //   });
+    function changeSolution(data) {
+      return $http.patch(ENV.application + 'solution/'+data.id, data)
+        .then(function(response) {
+          return response.data;
+        }, function(error) {
+          // handle error
+        });
     };
   }
 })();
