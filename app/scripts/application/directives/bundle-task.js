@@ -40,12 +40,20 @@
           var i = angular.element(element.find('i')[1]);
           i.removeClass();
           i.addClass('fa fa-check fa-2');
+
+          var btn = angular.element(element.find('button'));
+          btn.removeClass();
+          btn.addClass('btn btn-primary');
         };
 
         var notReady = function() {
           var i = angular.element(element.find('i')[1]);
           i.removeClass();
           i.addClass('fa fa-times fa-2');
+
+          var btn = angular.element(element.find('button'));
+          btn.removeClass();
+          btn.addClass('btn btn-not-ready');
         };
         scope.solution = ctrl.getSolution(scope.task.id);
 

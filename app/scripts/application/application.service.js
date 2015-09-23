@@ -10,6 +10,8 @@
     // TODO:
     // rename functions
 
+    //application/api/set-ranking/
+
     return {
       getBundle         : getBundle,
       createApplication : createApplication,
@@ -19,9 +21,56 @@
       changeSkype       : changeSkype,
       changePhone       : changePhone,
       getSolutions      : getSolutions,
-      getBundleCourses  : getBundleCourses
+      getBundleCourses  : getBundleCourses,
+      setRanking: setRanking,
+      getApplicationId : getApplicationId,
+      ranking: ranking
       
     };
+
+    function ranking(courses, rank) {
+      var data = {
+        'courses': [],
+        'ranking': []
+      };
+
+      data.courses = courses.filter(function(course) {
+        return rank.filter(function(rankCourse) {
+          return rankCourse.course == course.id;
+        }).length == 0;
+      });
+
+      data.ranking = rank.map(function(rankCourse) {
+        var currentCourse = courses.filter(function(course) {
+          return rankCourse.course == course.id;
+        })[0];
+        rankCourse.name = currentCourse.name;
+        rankCourse.id = currentCourse.id;
+        return rankCourse;
+      });
+
+      return data;
+    }
+    function getApplicationId(applications, bundleId) {
+      return applications.filter(function(application) {
+        return application.bundle == bundleId;
+      });
+    }
+
+    function setRanking(data) {
+      // { 'application': applicationId,
+      //   'ranking': [
+      //     { 'course': courseId, 'rank': rankNumber},
+      //     { 'course': courseId, 'rank': rankNumber},
+      //   ]
+      // }
+      return $http.post(ENV.application + 'set-ranking/', data)
+        .then(function(response) {
+          return response.data;
+        }, function(error) {
+          // handle error
+        });
+    }
 
     function getSolutions() {
       return $http.get(ENV.application + 'solution/')

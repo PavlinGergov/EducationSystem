@@ -194,7 +194,15 @@ body {
   &:hover, &:focus, &:active:focus, .active, &:disabled, &:disabled:hover  {
     background-color: #777777;
     border-color: #1B1B1B;
+    color: #fff;
   }
+
+}
+
+.btn-not-ready {
+    background-color: #777777;
+    border-color: #1B1B1B;
+    color: #fff;
 }
 
 .navbar {
@@ -397,4 +405,80 @@ input::-webkit-inner-spin-button {
 .application-input {
   font-size: 17px;
   height: 36px;
+}
+
+.floatleft {
+  float: left;
+}
+
+.floatright {
+  float: right;
+}
+
+.course {
+  padding: 5px;
+  margin: 5px;
+  border: 2px solid #1B1B1B;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 1.1em;
+  text-align: center;
+  cursor: move;
+  
+  &:hover {
+      background-color: #EFAC26;
+      color: #fff;
+      border-color: #C78434;
+  }
+}
+.course-placeholder {
+    padding: 5px;
+    margin: 5px;
+    width:auto;
+    height: 30px;
+    border: 2px solid #C78434;
+    border-radius: 5px;
+    background-color: #EFAC26;
+}
+
+.application-info, .application-ranking, .application-task {
+    background-color: #F7F7F7;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+    border: 1px solid #F0F0F0;
+}
+
+.application-info {
+    margin-bottom: 10px;
+    padding-bottom: 25px;
+    padding-top: 10px;
+}
+
+.application-ranking {
+    margin-bottom: 30px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.application-task {
+    margin-bottom: 30px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+
+}
+
+.panel-info {
+  border-color: #1B1B1B;
+}
+.panel-info > .panel-heading {
+  color: #fff;
+  background-color: #EFAC26;
+  border-color: #C78434;
+}
+
+.ranking-btn-container {
+    text-align: center;
+    .ranking-btn {
+        width: 40%;
+    }
 }

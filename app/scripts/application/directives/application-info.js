@@ -16,10 +16,10 @@
       link: function(scope, elm, attrs) {
         scope.$watch('user.skype', function(newValue, oldValue) {
           if(oldValue) {
-            ready('#skype');
+            ready('skype');
           }
           else {
-            notReady('#skype');
+            notReady('skype');
           }
           
           if(newValue && newValue !== oldValue) {
@@ -27,23 +27,23 @@
               .then(function(response) {
                 scope.user.skype = response.skype;
               });
-            ready('#skype');
+            ready('skype');
           }
           else if(newValue === '') {
             applicationService.changeSkype(newValue)
               .then(function(response) {
                 scope.user.skype = response.skype;
               });
-            notReady('#skype');
+            notReady('skype');
           }
         });
         
         scope.$watch('user.phone', function(newValue, oldValue) {
           if(oldValue) {
-            ready('#phone');
+            ready('phone');
           }
           else {
-            notReady('#phone');
+            notReady('phone');
           }
           
           if(newValue && newValue !== oldValue) {
@@ -51,27 +51,36 @@
               .then(function(response) {
                 scope.user.phone = response.phone;
               });
-            ready('#phone');
+            ready('phone');
           }
           else if(newValue === '') {
             applicationService.changePhone(newValue)
               .then(function(response) {
                 scope.user.phone = response.phone;
               });
-            notReady('#phone');
+            notReady('phone');
           }
         });
         
         var ready = function(idName) {
-          var i = elm.find(idName);
+          var i = angular.element(elm.find('#'+idName));
           i.removeClass();
           i.addClass('fa fa-check fa-2');
+
+          var btn = elm.find('.'+idName);
+          console.log(btn);
+          btn.removeClass();
+          btn.addClass('btn btn-primary '+idName);
         };
 
         var notReady = function(idName) {
-          var i = elm.find(idName);
+          var i = angular.element(elm.find('#'+idName));
           i.removeClass();
           i.addClass('fa fa-times fa-2');
+
+          var btn = angular.element(elm.find('.'+idName));
+          btn.removeClass();
+          btn.addClass('btn btn-not-ready '+ idName);
         };
       }
     };
