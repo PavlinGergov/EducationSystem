@@ -1,0 +1,30 @@
+<div class="col-xs-12">
+  <div class="col-xs-12 col-md-6 col-lg-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Всички курсове
+      </div>
+      <div class="panel-body">
+        <div ui-sortable="sortableOptions" class="course-container" ng-model="courses">
+          <div class="course" ng-repeat="course in courses">{{course.name}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6 col-lg-6" >
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Твоите желания:
+      </div>
+      <div class="panel-body">
+        <div ui-sortable="sortableOptions" class="course-container" ng-model="ranking">
+          <div class="course" ng-repeat="course in ranking">{{$index + 1}}: {{course.name}}</div>
+        </div>
+       </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-12 col-md-12 col-lg-12  ranking-btn-container">
+  <button type="button" class="btn btn-primary ranking-btn" ng-click="save()">Запази</button>
+</div>
